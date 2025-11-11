@@ -140,7 +140,7 @@ export function LodgeStorySection() {
 
       {lodgeStories.map((lodge, storyIndex) => {
         return (
-          <div key={lodge.id}>
+          <div key={lodge.id} className="relative z-10">
             <div className="container mx-auto px-6 max-w-7xl">
               <FadeInSection delay={0.1}>
                 <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-16 lg:mb-24`}>

@@ -18,9 +18,9 @@ export default function TreeShadowBackground({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
 
-  // Intensity settings - opacity for each layer
+  // Intensity settings - opacity for each layer - さらに控えめに調整
   const opacityLevels = {
-    subtle: { deep: 0.035, mid: 0.025, light: 0.018 },
+    subtle: { deep: 0.022, mid: 0.016, light: 0.011 },
     medium: { deep: 0.05, mid: 0.035, light: 0.025 },
     strong: { deep: 0.08, mid: 0.055, light: 0.04 },
   }
@@ -132,7 +132,7 @@ export default function TreeShadowBackground({
           inset: 0;
           overflow: hidden;
           pointer-events: none;
-          z-index: 0;
+          z-index: -1;
         }
 
         .tree-shadow-layer {
