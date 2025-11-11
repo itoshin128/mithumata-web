@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ArrowRight, Mountain, Users } from "lucide-react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { WashiBackground } from "@/components/effects/washi-background"
+import TreeShadowBackground from "@/components/effects/tree-shadow-background"
 
 const lodgesData = [
   {
@@ -45,6 +46,7 @@ export function LodgesSection() {
   return (
     <section className="relative py-24 lg:py-32">
       <div className="absolute inset-0 -z-10">
+        <TreeShadowBackground intensity="medium" enableParallax={true} />
         <WashiBackground intensity="strong" animated={false} />
       </div>
 
