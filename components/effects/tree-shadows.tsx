@@ -7,7 +7,7 @@ export function TreeShadows() {
   const shadow1Ref = useRef<HTMLDivElement>(null)
   const shadow2Ref = useRef<HTMLDivElement>(null)
   const shadow3Ref = useRef<HTMLDivElement>(null)
-  const rafRef = useRef<number>()
+  const rafRef = useRef<number | undefined>(undefined)
 
   useEffect(() => {
     const handleScroll = () => {

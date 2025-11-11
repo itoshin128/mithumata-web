@@ -10,6 +10,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { WashiBackground } from "@/components/effects/washi-background"
+import TreeShadowBackground from "@/components/effects/tree-shadow-background"
 
 interface LodgeStory {
   id: string
@@ -133,6 +134,7 @@ export function LodgeStorySection() {
   return (
     <section className="relative py-32 lg:py-40 z-20">
       <div className="absolute inset-0 -z-10">
+        <TreeShadowBackground intensity="medium" enableParallax={true} />
         <WashiBackground intensity="strong" animated={false} />
       </div>
 
