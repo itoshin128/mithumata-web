@@ -15,16 +15,16 @@ export default function HomePage() {
       <HeroParallaxSection />
 
       <div className="post-parallax-content relative">
+        {/* post-parallax-content全体に和紙背景と木の影を適用 */}
+        <div className="absolute inset-0 z-0">
+          <WashiBackground intensity="strong" animated={false} />
+          <TreeShadowBackground intensity="subtle" enableParallax={true} />
+        </div>
+
         {seasonalTheme.banner?.show && (
-          <div className="relative z-50 bg-[#f9f7f3]">
-            <div className="absolute inset-0 z-0">
-              <WashiBackground intensity="strong" animated={false} />
-              <TreeShadowBackground intensity="subtle" enableParallax={true} />
-            </div>
-            <div className="relative z-10">
-              <div className="container mx-auto px-4 max-w-7xl py-8">
-                <SeasonalBanner text={seasonalTheme.banner.text} type={seasonalTheme.banner.type} />
-              </div>
+          <div className="relative z-10">
+            <div className="container mx-auto px-4 max-w-7xl py-8">
+              <SeasonalBanner text={seasonalTheme.banner.text} type={seasonalTheme.banner.type} />
             </div>
           </div>
         )}
@@ -34,25 +34,13 @@ export default function HomePage() {
         </div>
 
         {/* 最新情報セクション */}
-        <div className="relative bg-[#f9f7f3]">
-          <div className="absolute inset-0 z-0">
-            <WashiBackground intensity="strong" animated={false} />
-            <TreeShadowBackground intensity="subtle" enableParallax={true} />
-          </div>
-          <div className="relative z-10">
-            <LatestPostsSection />
-          </div>
+        <div className="relative z-10">
+          <LatestPostsSection />
         </div>
 
         {/* FAQセクション */}
-        <div className="relative bg-[#f9f7f3]">
-          <div className="absolute inset-0 z-0">
-            <WashiBackground intensity="strong" animated={false} />
-            <TreeShadowBackground intensity="subtle" enableParallax={true} />
-          </div>
-          <div className="relative z-10">
-            <FAQSection />
-          </div>
+        <div className="relative z-10">
+          <FAQSection />
         </div>
       </div>
     </main>
