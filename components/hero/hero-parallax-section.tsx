@@ -7,8 +7,6 @@ import { Autoplay, EffectFade } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/effect-fade"
 import { useEffect, useRef, useState } from "react"
-import { WashiBackground } from "@/components/effects/washi-background"
-import TreeShadowBackground from "@/components/effects/tree-shadow-background"
 
 const heroImagesDesktop = [
   {
@@ -74,22 +72,22 @@ export function HeroParallaxSection() {
       const scrollPosition = window.scrollY
       const viewportHeight = window.innerHeight
 
-      // モバイルでは、スクロール開始後すぐに固定背景をフェードアウト
+      // モバイルでは、ヒーローセクションの終わりに向けて固定背景をフェードアウト
       if (window.innerWidth < 768) {
-        const fadeStartPoint = viewportHeight * 0.6 // 60vhから透明度変化開始
-        const fadeEndPoint = viewportHeight * 0.9 // 90vhで完全に消える
+        const fadeStartPoint = viewportHeight * 0.7 // 70vhから透明度変化開始
+        const fadeEndPoint = viewportHeight * 1.0 // 100vhで完全に消える
 
         if (scrollPosition < fadeStartPoint) {
-          // 60vhまでは完全に不透明
+          // 70vhまでは完全に不透明
           setBgOpacity(1)
           setShowFixedBg(true)
         } else if (scrollPosition < fadeEndPoint) {
-          // 60vh～90vhの間で透明度を1→0に変化
+          // 70vh～100vhの間で透明度を1→0に変化
           const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint)
           setBgOpacity(1 - fadeProgress)
           setShowFixedBg(true)
         } else {
-          // 90vh以降は完全に非表示
+          // 100vh以降は完全に非表示
           setBgOpacity(0)
           setShowFixedBg(false)
         }
@@ -110,12 +108,6 @@ export function HeroParallaxSection() {
 
   return (
     <section ref={sectionRef} className="relative w-full">
-      {/* モバイル用の和紙背景と木の影レイヤー（固定背景の下に） */}
-      <div className="md:hidden absolute inset-0 z-0">
-        <WashiBackground intensity="strong" animated={false} />
-        <TreeShadowBackground intensity="subtle" enableParallax={false} />
-      </div>
-
       {showFixedBg && (
         <div
           className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
