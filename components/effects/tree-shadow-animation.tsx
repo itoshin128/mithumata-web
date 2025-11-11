@@ -19,34 +19,52 @@ export function TreeShadowAnimation() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll()
   const [particles, setParticles] = useState<LightParticle[]>([])
+  const [isMobile, setIsMobile] = useState(false)
 
   // スクロールに応じて影の位置と透明度を変化（各レイヤーで異なる速度）
   const shadowY1 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -80, -160])
   const shadowY2 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -120, -240])
   const shadowY3 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -100, -200])
-  const shadowY4 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -140, -280])
-  const shadowY5 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -90, -180])
 
   const shadowOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.6, 0.5, 0.35, 0.2])
 
-  // 木漏れ日のパーティクルを生成
+  // モバイル判定とパーティクル生成を最適化
   useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768
+      setIsMobile(mobile)
+      return mobile
+    }
+
+    const mobile = checkMobile()
+    const particleCount = mobile ? 5 : 10 // モバイルは5個、デスクトップは10個（元は30個）
     const generatedParticles: LightParticle[] = []
-    for (let i = 0; i < 30; i++) {
+
+    for (let i = 0; i < particleCount; i++) {
       generatedParticles.push({
         id: i,
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 8 + 4,
-        opacity: Math.random() * 0.6 + 0.3,
+        size: Math.random() * 6 + 3,
+        opacity: Math.random() * 0.5 + 0.2,
         duration: Math.random() * 15 + 20,
         delay: Math.random() * 10,
       })
     }
     setParticles(generatedParticles)
+
+    const handleResize = () => {
+      checkMobile()
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   useEffect(() => {
+    // モバイルではアニメーションを軽量化
+    if (isMobile) return
+
     // 風の揺れをシミュレーション - より自然で複雑な動き
     let animationId: number
     let time = 0
@@ -97,11 +115,11 @@ export function TreeShadowAnimation() {
         cancelAnimationFrame(animationId)
       }
     }
-  }, [])
+  }, [isMobile])
 
   return (
     <div ref={containerRef} className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
-      {/* 木漏れ日の光レイヤー1 - 最も明るい部分 */}
+      {/* 木漏れ日の光レイヤー - 最も明るい部分 */}
       <motion.div
         data-shadow-layer="0"
         className="absolute inset-0"
@@ -119,10 +137,12 @@ export function TreeShadowAnimation() {
             className="object-cover"
             style={{
               mixBlendMode: "overlay",
-              filter: "brightness(1.9) contrast(1.15) blur(10px) saturate(1.1)",
-              opacity: 0.4,
+              filter: isMobile
+                ? "brightness(1.7) contrast(1.1) blur(8px)"
+                : "brightness(1.9) contrast(1.15) blur(10px) saturate(1.1)",
+              opacity: isMobile ? 0.3 : 0.4,
             }}
-            quality={90}
+            quality={isMobile ? 60 : 75}
             priority
           />
         </div>
@@ -146,16 +166,18 @@ export function TreeShadowAnimation() {
             className="object-cover"
             style={{
               mixBlendMode: "multiply",
-              filter: "brightness(0.35) contrast(1.6) blur(1.5px) saturate(0.9)",
-              opacity: 0.35,
+              filter: isMobile
+                ? "brightness(0.4) contrast(1.4) blur(1px)"
+                : "brightness(0.35) contrast(1.6) blur(1.5px) saturate(0.9)",
+              opacity: isMobile ? 0.3 : 0.35,
               transform: "scale(1.03)",
             }}
-            quality={90}
+            quality={isMobile ? 60 : 75}
           />
         </div>
       </motion.div>
 
-      {/* 木の影レイヤー2 - 中間の影 */}
+      {/* 木の影レイヤー2 - 遠い影（柔らかく立体感） */}
       <motion.div
         data-shadow-layer="2"
         className="absolute inset-0"
@@ -172,71 +194,19 @@ export function TreeShadowAnimation() {
             fill
             className="object-cover"
             style={{
-              mixBlendMode: "multiply",
-              filter: "brightness(0.48) contrast(1.35) blur(5px) saturate(0.85)",
-              opacity: 0.25,
-              transform: "scale(1.08) rotate(1.5deg)",
-            }}
-            quality={90}
-          />
-        </div>
-      </motion.div>
-
-      {/* 木漏れ日レイヤー2 - 光のディテール */}
-      <motion.div
-        data-shadow-layer="3"
-        className="absolute inset-0"
-        style={{
-          y: shadowY4,
-          opacity: shadowOpacity,
-          willChange: "transform, opacity",
-        }}
-      >
-        <div className="relative w-full h-full">
-          <Image
-            src="/images/tree-shadow.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            style={{
-              mixBlendMode: "screen",
-              filter: "brightness(2.3) contrast(0.85) blur(15px) saturate(1.2)",
-              opacity: 0.18,
-              transform: "scale(1.12) rotate(-1.2deg)",
-            }}
-            quality={90}
-          />
-        </div>
-      </motion.div>
-
-      {/* 木の影レイヤー3 - 最も遠い影（柔らかく立体感） */}
-      <motion.div
-        data-shadow-layer="4"
-        className="absolute inset-0"
-        style={{
-          y: shadowY5,
-          opacity: shadowOpacity,
-          willChange: "transform, opacity",
-        }}
-      >
-        <div className="relative w-full h-full">
-          <Image
-            src="/images/tree-shadow.jpg"
-            alt=""
-            fill
-            className="object-cover"
-            style={{
               mixBlendMode: "darken",
-              filter: "brightness(0.55) contrast(1.25) blur(12px) saturate(0.8)",
+              filter: isMobile
+                ? "brightness(0.6) contrast(1.2) blur(8px)"
+                : "brightness(0.55) contrast(1.25) blur(12px) saturate(0.8)",
               opacity: 0.2,
-              transform: "scale(1.18) rotate(-2.5deg)",
+              transform: "scale(1.1) rotate(-1.5deg)",
             }}
-            quality={90}
+            quality={isMobile ? 60 : 75}
           />
         </div>
       </motion.div>
 
-      {/* 木漏れ日の光のパーティクル（動的に生成） */}
+      {/* 木漏れ日の光のパーティクル（最適化済み） */}
       <motion.div
         className="absolute inset-0"
         style={{
@@ -254,7 +224,9 @@ export function TreeShadowAnimation() {
               width: `${particle.size}px`,
               height: `${particle.size}px`,
               background: "radial-gradient(circle, rgba(255, 250, 235, 0.9) 0%, rgba(255, 248, 220, 0.6) 40%, transparent 70%)",
-              boxShadow: "0 0 15px rgba(255, 248, 200, 0.8), 0 0 30px rgba(255, 250, 220, 0.4)",
+              boxShadow: isMobile
+                ? "0 0 8px rgba(255, 248, 200, 0.6)"
+                : "0 0 15px rgba(255, 248, 200, 0.8), 0 0 30px rgba(255, 250, 220, 0.4)",
               mixBlendMode: "screen",
               filter: "blur(2px)",
               willChange: "transform, opacity",
@@ -275,31 +247,31 @@ export function TreeShadowAnimation() {
         ))}
       </motion.div>
 
-      {/* 追加の光のグラデーション効果 */}
-      <motion.div
-        data-shadow-layer="5"
-        className="absolute inset-0"
-        style={{
-          y: shadowY3,
-          opacity: shadowOpacity,
-          willChange: "transform, opacity",
-        }}
-      >
-        <div
-          className="relative w-full h-full"
+      {/* 追加の光のグラデーション効果（デスクトップのみ） */}
+      {!isMobile && (
+        <motion.div
+          data-shadow-layer="3"
+          className="absolute inset-0"
           style={{
-            background: `
-              radial-gradient(ellipse 900px 700px at 25% 20%, rgba(255, 255, 235, 0.08) 0%, transparent 55%),
-              radial-gradient(ellipse 700px 1000px at 75% 55%, rgba(250, 248, 225, 0.06) 0%, transparent 50%),
-              radial-gradient(ellipse 800px 600px at 50% 85%, rgba(255, 253, 240, 0.05) 0%, transparent 60%),
-              radial-gradient(ellipse 600px 800px at 15% 70%, rgba(255, 250, 230, 0.04) 0%, transparent 55%)
-            `,
-            mixBlendMode: "screen",
-            filter: "blur(25px)",
-            opacity: 0.5,
+            y: shadowY3,
+            opacity: shadowOpacity,
+            willChange: "transform, opacity",
           }}
-        />
-      </motion.div>
+        >
+          <div
+            className="relative w-full h-full"
+            style={{
+              background: `
+                radial-gradient(ellipse 900px 700px at 25% 20%, rgba(255, 255, 235, 0.08) 0%, transparent 55%),
+                radial-gradient(ellipse 700px 1000px at 75% 55%, rgba(250, 248, 225, 0.06) 0%, transparent 50%)
+              `,
+              mixBlendMode: "screen",
+              filter: "blur(25px)",
+              opacity: 0.5,
+            }}
+          />
+        </motion.div>
+      )}
     </div>
   )
 }
