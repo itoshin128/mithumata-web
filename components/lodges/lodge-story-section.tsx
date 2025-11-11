@@ -132,10 +132,10 @@ function SectionDivider() {
 
 export function LodgeStorySection() {
   return (
-    <section className="relative py-32 lg:py-40 z-20">
-      <div className="absolute inset-0 -z-10">
-        <TreeShadowBackground intensity="subtle" enableParallax={true} />
+    <section className="relative py-32 lg:py-40">
+      <div className="absolute inset-0 z-0">
         <WashiBackground intensity="strong" animated={false} />
+        <TreeShadowBackground intensity="subtle" enableParallax={true} />
       </div>
 
       {lodgeStories.map((lodge, storyIndex) => {

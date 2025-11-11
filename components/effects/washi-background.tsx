@@ -53,6 +53,7 @@ export function WashiBackground({ className = "", intensity = "medium", animated
       ref={canvasRef}
       className={`absolute inset-0 pointer-events-none ${intensityStyles[intensity]} ${className}`}
       style={{
+        zIndex: 0,
         backgroundColor: "#f9f7f3",
         backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain1b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='12' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.32, 0 0 0 0 0.30, 0 0 0 0 0.26, 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain1b)' opacity='0.75'/%3E%3C/svg%3E"),

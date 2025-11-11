@@ -30,11 +30,11 @@ export default function TreeShadowBackground({
   const [lightParticles, setLightParticles] = useState<LightParticle[]>([])
   const animationFrameRef = useRef<number | undefined>(undefined)
 
-  // Intensity settings - より視認性の高い不透明度に調整
+  // Intensity settings - 視認性の高い不透明度に調整
   const opacityLevels = {
-    subtle: { deep: 0.08, mid: 0.055, light: 0.04, sunlight: 0.15 },
-    medium: { deep: 0.12, mid: 0.085, light: 0.06, sunlight: 0.22 },
-    strong: { deep: 0.18, mid: 0.13, light: 0.09, sunlight: 0.3 },
+    subtle: { deep: 0.15, mid: 0.11, light: 0.08, sunlight: 0.25 },
+    medium: { deep: 0.22, mid: 0.16, light: 0.12, sunlight: 0.35 },
+    strong: { deep: 0.3, mid: 0.22, light: 0.16, sunlight: 0.45 },
   }
 
   const opacity = opacityLevels[intensity]
@@ -239,7 +239,7 @@ export default function TreeShadowBackground({
           inset: 0;
           overflow: hidden;
           pointer-events: none;
-          z-index: -1;
+          z-index: 1;
         }
 
         .tree-shadow-layer {
