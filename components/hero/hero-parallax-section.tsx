@@ -72,22 +72,22 @@ export function HeroParallaxSection() {
       const scrollPosition = window.scrollY
       const viewportHeight = window.innerHeight
 
-      // モバイルでは、ヒーローセクションの高さ（180vh）まで固定背景を表示
+      // モバイルでは、スクロール開始後すぐに固定背景をフェードアウト
       if (window.innerWidth < 768) {
-        const heroHeight = viewportHeight * 1.8
-        const fadeStartPoint = viewportHeight * 1.5 // 150vhから透明度変化開始
+        const fadeStartPoint = viewportHeight * 0.8 // 80vhから透明度変化開始
+        const fadeEndPoint = viewportHeight * 1.2 // 120vhで完全に消える
 
         if (scrollPosition < fadeStartPoint) {
-          // 150vhまでは完全に不透明
+          // 80vhまでは完全に不透明
           setBgOpacity(1)
           setShowFixedBg(true)
-        } else if (scrollPosition < heroHeight) {
-          // 150vh～180vhの間で透明度を1→0に変化
-          const fadeProgress = (scrollPosition - fadeStartPoint) / (heroHeight - fadeStartPoint)
+        } else if (scrollPosition < fadeEndPoint) {
+          // 80vh～120vhの間で透明度を1→0に変化
+          const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint)
           setBgOpacity(1 - fadeProgress)
           setShowFixedBg(true)
         } else {
-          // 180vh以降は完全に非表示
+          // 120vh以降は完全に非表示
           setBgOpacity(0)
           setShowFixedBg(false)
         }
