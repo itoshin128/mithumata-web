@@ -9,6 +9,16 @@ interface TreeShadowBackgroundProps {
   className?: string
 }
 
+interface LightParticle {
+  id: number
+  x: number
+  y: number
+  size: number
+  duration: number
+  delay: number
+  intensity: number
+}
+
 export default function TreeShadowBackground({
   intensity = 'medium',
   enableParallax = true,
@@ -17,15 +27,37 @@ export default function TreeShadowBackground({
   const containerRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
+  const [lightParticles, setLightParticles] = useState<LightParticle[]>([])
+  const animationFrameRef = useRef<number | undefined>(undefined)
 
-  // Intensity settings - opacity for each layer - さらに控えめに調整
+  // Intensity settings - より控えめで上品な透明度に調整
   const opacityLevels = {
-    subtle: { deep: 0.022, mid: 0.016, light: 0.011 },
-    medium: { deep: 0.05, mid: 0.035, light: 0.025 },
-    strong: { deep: 0.08, mid: 0.055, light: 0.04 },
+    subtle: { deep: 0.11, mid: 0.08, light: 0.06, sunlight: 0.18 },
+    medium: { deep: 0.22, mid: 0.16, light: 0.12, sunlight: 0.35 },
+    strong: { deep: 0.3, mid: 0.22, light: 0.16, sunlight: 0.45 },
   }
 
   const opacity = opacityLevels[intensity]
+
+  // 木漏れ日のパーティクルを生成
+  useEffect(() => {
+    const particleCount = intensity === 'subtle' ? 8 : intensity === 'medium' ? 12 : 18
+    const particles: LightParticle[] = []
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 40 + 20, // 20-60px
+        duration: Math.random() * 8 + 12, // 12-20秒
+        delay: Math.random() * 10,
+        intensity: Math.random() * 0.4 + 0.3, // 0.3-0.7
+      })
+    }
+
+    setLightParticles(particles)
+  }, [intensity])
 
   // Mouse parallax effect
   useEffect(() => {
@@ -50,13 +82,65 @@ export default function TreeShadowBackground({
     }
   }, [enableParallax])
 
+  // 風による揺れのアニメーション
+  useEffect(() => {
+    let time = 0
+    const layers = containerRef.current?.querySelectorAll('.tree-shadow-layer')
+    if (!layers) return
+
+    const animate = () => {
+      time += 0.008 // アニメーション速度
+
+      layers.forEach((layer, index) => {
+        const element = layer as HTMLElement
+
+        // 各レイヤーで異なる揺れのパラメータ
+        const baseSpeed = 0.3 + index * 0.15
+        const amplitude = 2.5 + index * 1.2
+
+        // 複数の波を組み合わせた自然な揺れ
+        const wave1 = Math.sin(time * baseSpeed) * amplitude
+        const wave2 = Math.cos(time * baseSpeed * 0.7) * amplitude * 0.7
+        const wave3 = Math.sin(time * baseSpeed * 1.4) * amplitude * 0.5
+
+        // 風で揺れる動き - より大きな動きに
+        const rotateZ = (wave1 + wave2) * 0.4
+        const translateX = (Math.sin(time * baseSpeed * 1.2) * amplitude * 2) + wave2 * 1.5
+        const translateY = (Math.cos(time * baseSpeed * 0.8) * amplitude * 1.5) + wave3 * 1.2
+
+        // 微妙なスケール変化で呼吸するような効果
+        const scale = 1 + Math.sin(time * baseSpeed * 0.4) * 0.03
+
+        // 不透明度も微妙に変化させて雲の流れを表現
+        const opacityFluctuation = 1 + Math.sin(time * baseSpeed * 0.25) * 0.15
+
+        element.style.transform = `
+          translate(${translateX}px, ${translateY}px)
+          rotate(${rotateZ}deg)
+          scale(${scale})
+        `
+        element.style.opacity = String(opacityFluctuation)
+      })
+
+      animationFrameRef.current = requestAnimationFrame(animate)
+    }
+
+    animate()
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
+      }
+    }
+  }, [])
+
   // Calculate parallax transforms
   const getParallaxStyle = (depth: number) => {
     if (!enableParallax) return {}
 
-    const mouseX = mousePosition.x * depth * 15
-    const mouseY = mousePosition.y * depth * 15
-    const scrollOffset = scrollY * depth * 0.3
+    const mouseX = mousePosition.x * depth * 20
+    const mouseY = mousePosition.y * depth * 20
+    const scrollOffset = scrollY * depth * 0.2
 
     return {
       transform: `translate3d(${mouseX}px, ${mouseY + scrollOffset}px, 0)`,
@@ -69,11 +153,10 @@ export default function TreeShadowBackground({
       className={`tree-shadow-background ${className}`}
       aria-hidden="true"
     >
-      {/* Deep shadow layer - slowest movement */}
+      {/* Deep shadow layer - 最も濃い影 */}
       <div
         className="tree-shadow-layer tree-shadow-deep"
         style={{
-          opacity: opacity.deep,
           ...getParallaxStyle(0.3),
         }}
       >
@@ -88,11 +171,10 @@ export default function TreeShadowBackground({
         />
       </div>
 
-      {/* Mid shadow layer - medium movement */}
+      {/* Mid shadow layer - 中間の影 */}
       <div
         className="tree-shadow-layer tree-shadow-mid"
         style={{
-          opacity: opacity.mid,
           ...getParallaxStyle(0.5),
         }}
       >
@@ -107,11 +189,10 @@ export default function TreeShadowBackground({
         />
       </div>
 
-      {/* Light dappled layer - fastest movement */}
+      {/* Light dappled layer - 薄い影 */}
       <div
         className="tree-shadow-layer tree-shadow-light"
         style={{
-          opacity: opacity.light,
           ...getParallaxStyle(0.7),
         }}
       >
@@ -126,13 +207,39 @@ export default function TreeShadowBackground({
         />
       </div>
 
+      {/* 木漏れ日の光のパーティクル */}
+      <div className="sunlight-particles">
+        {lightParticles.map((particle) => (
+          <div
+            key={particle.id}
+            className="sunlight-particle"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              opacity: particle.intensity * opacity.sunlight,
+              animationDuration: `${particle.duration}s`,
+              animationDelay: `${particle.delay}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* 木漏れ日のグラデーション効果 */}
+      <div className="sunlight-gradient" style={{ opacity: opacity.sunlight }}>
+        <div className="sunlight-spot sunlight-spot-1" />
+        <div className="sunlight-spot sunlight-spot-2" />
+        <div className="sunlight-spot sunlight-spot-3" />
+      </div>
+
       <style jsx>{`
         .tree-shadow-background {
           position: absolute;
           inset: 0;
           overflow: hidden;
           pointer-events: none;
-          z-index: -1;
+          z-index: 1;
         }
 
         .tree-shadow-layer {
@@ -140,8 +247,8 @@ export default function TreeShadowBackground({
           inset: -10%;
           width: 120%;
           height: 120%;
-          will-change: transform;
-          transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          will-change: transform, opacity;
+          transition: none;
         }
 
         :global(.tree-shadow-image) {
@@ -152,113 +259,132 @@ export default function TreeShadowBackground({
         /* Deep shadow layer - multiply for dark shadows */
         .tree-shadow-deep :global(.tree-shadow-image) {
           mix-blend-mode: multiply;
-          filter: blur(4px) contrast(1.2) brightness(0.9);
-          animation: treeSway1 45s ease-in-out infinite;
+          filter: blur(3px) contrast(1.3) brightness(0.75);
+          opacity: ${opacity.deep};
         }
 
-        /* Mid layer - soft-light for balanced tones */
+        /* Mid layer - darken for balanced tones */
         .tree-shadow-mid :global(.tree-shadow-image) {
-          mix-blend-mode: soft-light;
-          filter: blur(3px) contrast(1.1) brightness(0.95);
-          animation: treeSway2 38s ease-in-out infinite;
-          animation-delay: -8s;
+          mix-blend-mode: darken;
+          filter: blur(5px) contrast(1.15) brightness(0.85);
+          opacity: ${opacity.mid};
         }
 
         /* Light layer - soft-light for gentle dappled effect */
         .tree-shadow-light :global(.tree-shadow-image) {
           mix-blend-mode: soft-light;
-          filter: blur(5px) brightness(1.02) saturate(0.9);
-          animation: treeSway3 52s ease-in-out infinite;
-          animation-delay: -15s;
+          filter: blur(8px) brightness(0.92) saturate(0.9);
+          opacity: ${opacity.light};
         }
 
-        /* Organic swaying animation - layer 1 */
-        @keyframes treeSway1 {
-          0%,
-          100% {
-            transform: translate(0, 0) rotate(0deg) rotateX(0deg) scale(1);
+        /* 木漏れ日のパーティクル */
+        .sunlight-particles {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+
+        .sunlight-particle {
+          position: absolute;
+          border-radius: 50%;
+          background: radial-gradient(
+            circle at center,
+            rgba(252, 248, 242, 0.85) 0%,
+            rgba(250, 246, 238, 0.55) 30%,
+            rgba(248, 244, 234, 0.28) 60%,
+            transparent 100%
+          );
+          filter: blur(8px);
+          mix-blend-mode: screen;
+          animation: sunlightFloat 12s ease-in-out infinite;
+          will-change: transform, opacity;
+        }
+
+        @keyframes sunlightFloat {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.3;
           }
-          15% {
-            transform: translate(-8px, 4px) rotate(-0.3deg) rotateX(0.2deg)
-              scale(1.01);
-          }
-          35% {
-            transform: translate(6px, -3px) rotate(0.25deg) rotateX(-0.15deg)
-              scale(0.99);
+          25% {
+            transform: translate(15px, -20px) scale(1.1);
+            opacity: 0.7;
           }
           50% {
-            transform: translate(-4px, 5px) rotate(-0.2deg) rotateX(0.25deg)
-              scale(1.005);
-          }
-          70% {
-            transform: translate(9px, -6px) rotate(0.35deg) rotateX(-0.2deg)
-              scale(1.01);
-          }
-          85% {
-            transform: translate(-5px, 2px) rotate(-0.15deg) rotateX(0.1deg)
-              scale(0.995);
-          }
-        }
-
-        /* Organic swaying animation - layer 2 */
-        @keyframes treeSway2 {
-          0%,
-          100% {
-            transform: translate(0, 0) rotate(0deg) rotateX(0deg)
-              rotateY(0deg) scale(1);
-          }
-          20% {
-            transform: translate(7px, -5px) rotate(0.28deg) rotateX(-0.18deg)
-              rotateY(0.1deg) scale(1.008);
-          }
-          40% {
-            transform: translate(-9px, 6px) rotate(-0.32deg) rotateX(0.22deg)
-              rotateY(-0.12deg) scale(0.992);
-          }
-          55% {
-            transform: translate(5px, -4px) rotate(0.18deg) rotateX(-0.14deg)
-              rotateY(0.08deg) scale(1.006);
+            transform: translate(-10px, -35px) scale(0.95);
+            opacity: 1;
           }
           75% {
-            transform: translate(-6px, 7px) rotate(-0.25deg) rotateX(0.19deg)
-              rotateY(-0.09deg) scale(0.997);
-          }
-          90% {
-            transform: translate(8px, -3px) rotate(0.22deg) rotateX(-0.16deg)
-              rotateY(0.11deg) scale(1.004);
+            transform: translate(20px, -15px) scale(1.05);
+            opacity: 0.6;
           }
         }
 
-        /* Organic swaying animation - layer 3 */
-        @keyframes treeSway3 {
-          0%,
-          100% {
-            transform: translate(0, 0) rotate(0deg) rotateX(0deg)
-              rotateY(0deg) scale(1);
+        /* 木漏れ日のグラデーション効果 */
+        .sunlight-gradient {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+
+        .sunlight-spot {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(60px);
+          mix-blend-mode: screen;
+          animation: sunlightPulse 18s ease-in-out infinite;
+        }
+
+        .sunlight-spot-1 {
+          top: 10%;
+          left: 20%;
+          width: 400px;
+          height: 400px;
+          background: radial-gradient(
+            circle at center,
+            rgba(252, 248, 240, 0.38) 0%,
+            transparent 70%
+          );
+          animation-delay: 0s;
+        }
+
+        .sunlight-spot-2 {
+          top: 40%;
+          right: 15%;
+          width: 350px;
+          height: 350px;
+          background: radial-gradient(
+            circle at center,
+            rgba(250, 246, 236, 0.32) 0%,
+            transparent 70%
+          );
+          animation-delay: -6s;
+        }
+
+        .sunlight-spot-3 {
+          bottom: 20%;
+          left: 40%;
+          width: 450px;
+          height: 450px;
+          background: radial-gradient(
+            circle at center,
+            rgba(252, 249, 242, 0.28) 0%,
+            transparent 70%
+          );
+          animation-delay: -12s;
+        }
+
+        @keyframes sunlightPulse {
+          0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.5;
           }
-          12% {
-            transform: translate(-7px, 5px) rotate(-0.26deg) rotateX(0.17deg)
-              rotateY(-0.13deg) scale(1.012);
+          33% {
+            transform: translate(30px, -40px) scale(1.15);
+            opacity: 0.8;
           }
-          28% {
-            transform: translate(10px, -7px) rotate(0.34deg) rotateX(-0.21deg)
-              rotateY(0.15deg) scale(0.988);
-          }
-          45% {
-            transform: translate(-6px, 4px) rotate(-0.19deg) rotateX(0.13deg)
-              rotateY(-0.1deg) scale(1.007);
-          }
-          62% {
-            transform: translate(8px, -6px) rotate(0.29deg) rotateX(-0.19deg)
-              rotateY(0.12deg) scale(0.993);
-          }
-          80% {
-            transform: translate(-9px, 8px) rotate(-0.31deg) rotateX(0.23deg)
-              rotateY(-0.14deg) scale(1.009);
-          }
-          95% {
-            transform: translate(5px, -4px) rotate(0.16deg) rotateX(-0.12deg)
-              rotateY(0.08deg) scale(0.998);
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+            opacity: 0.6;
           }
         }
 
@@ -270,64 +396,15 @@ export default function TreeShadowBackground({
             height: 110%;
           }
 
-          .tree-shadow-deep :global(.tree-shadow-image) {
-            animation: treeSwayMobile1 35s ease-in-out infinite;
+          .sunlight-spot {
+            filter: blur(40px);
           }
 
-          .tree-shadow-mid :global(.tree-shadow-image) {
-            animation: treeSwayMobile2 30s ease-in-out infinite;
-          }
-
-          .tree-shadow-light :global(.tree-shadow-image) {
-            animation: treeSwayMobile3 40s ease-in-out infinite;
-          }
-
-          @keyframes treeSwayMobile1 {
-            0%,
-            100% {
-              transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            25% {
-              transform: translate(-4px, 2px) rotate(-0.2deg) scale(1.005);
-            }
-            50% {
-              transform: translate(3px, -2px) rotate(0.15deg) scale(0.995);
-            }
-            75% {
-              transform: translate(-3px, 3px) rotate(-0.18deg) scale(1.003);
-            }
-          }
-
-          @keyframes treeSwayMobile2 {
-            0%,
-            100% {
-              transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            30% {
-              transform: translate(4px, -3px) rotate(0.18deg) scale(1.004);
-            }
-            60% {
-              transform: translate(-5px, 4px) rotate(-0.22deg) scale(0.996);
-            }
-            85% {
-              transform: translate(3px, -2px) rotate(0.14deg) scale(1.002);
-            }
-          }
-
-          @keyframes treeSwayMobile3 {
-            0%,
-            100% {
-              transform: translate(0, 0) rotate(0deg) scale(1);
-            }
-            20% {
-              transform: translate(-4px, 3px) rotate(-0.16deg) scale(1.006);
-            }
-            55% {
-              transform: translate(5px, -4px) rotate(0.2deg) scale(0.994);
-            }
-            90% {
-              transform: translate(-3px, 2px) rotate(-0.12deg) scale(1.003);
-            }
+          .sunlight-spot-1,
+          .sunlight-spot-2,
+          .sunlight-spot-3 {
+            width: 250px;
+            height: 250px;
           }
         }
 
@@ -337,9 +414,8 @@ export default function TreeShadowBackground({
             transition: none;
           }
 
-          .tree-shadow-deep :global(.tree-shadow-image),
-          .tree-shadow-mid :global(.tree-shadow-image),
-          .tree-shadow-light :global(.tree-shadow-image) {
+          .sunlight-particle,
+          .sunlight-spot {
             animation: none;
           }
         }
