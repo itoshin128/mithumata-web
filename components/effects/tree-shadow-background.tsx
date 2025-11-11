@@ -28,7 +28,7 @@ export default function TreeShadowBackground({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
   const [lightParticles, setLightParticles] = useState<LightParticle[]>([])
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number | undefined>(undefined)
 
   // Intensity settings - より視認性の高い不透明度に調整
   const opacityLevels = {
