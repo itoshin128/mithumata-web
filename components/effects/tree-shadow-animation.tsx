@@ -118,7 +118,7 @@ export function TreeShadowAnimation() {
   }, [isMobile])
 
   return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 3 }}>
+    <div ref={containerRef} className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 15000 }}>
       {/* 木漏れ日の光レイヤー - 最も明るい部分 */}
       <motion.div
         data-shadow-layer="0"

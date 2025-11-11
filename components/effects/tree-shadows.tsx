@@ -87,7 +87,7 @@ export function TreeShadows() {
     <>
       {/* 木の影レイヤー - 簡素化して2つのSVG影のみ */}
       <div
-        className="fixed inset-0 pointer-events-none z-[2] overflow-hidden transition-opacity duration-1000"
+        className="fixed inset-0 pointer-events-none z-[15001] overflow-hidden transition-opacity duration-1000"
         style={{ opacity: isVisible ? (isMobile ? 0.85 : 1) : 0 }}
       >
         {/* 木の影 1 - 左上 */}
@@ -165,7 +165,7 @@ export function TreeShadows() {
       {/* 光のグラデーション（簡素化・デスクトップのみ） */}
       {!isMobile && (
         <div
-          className="fixed inset-0 pointer-events-none z-[1] overflow-hidden transition-opacity duration-1000"
+          className="fixed inset-0 pointer-events-none z-[15000] overflow-hidden transition-opacity duration-1000"
           style={{ opacity: isVisible ? 0.4 : 0 }}
         >
           <div
@@ -181,7 +181,7 @@ export function TreeShadows() {
 
       {/* パーティクル - 大幅に削減 */}
       <div
-        className="fixed inset-0 pointer-events-none z-[2] overflow-hidden transition-opacity duration-1000"
+        className="fixed inset-0 pointer-events-none z-[15001] overflow-hidden transition-opacity duration-1000"
         style={{ opacity: isVisible ? 1 : 0 }}
       >
         {[...Array(particleCount)].map((_, i) => (
@@ -207,7 +207,7 @@ export function TreeShadows() {
       {/* 木漏れ日パターン - radial-gradientを削減（デスクトップのみ） */}
       {!isMobile && (
         <div
-          className="fixed inset-0 pointer-events-none z-[1] transition-opacity duration-1000"
+          className="fixed inset-0 pointer-events-none z-[15000] transition-opacity duration-1000"
           style={{ opacity: isVisible ? 0.25 : 0 }}
         >
           <div
