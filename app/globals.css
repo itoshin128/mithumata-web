@@ -275,7 +275,6 @@
   /* .post-parallax-contentにも同じ強化された和紙背景を適用 */
   .post-parallax-content {
     position: relative;
-    z-index: 10000;
     /* ベースカラーを明るく調整: #f5f3ef → #f9f7f3 */
     background-color: #f9f7f3;
   }
@@ -351,10 +350,9 @@
     }
   }
 
-  /* コンテンツを前面に配置 */
+  /* コンテンツを前面に配置 - z-indexはコンポーネント側で制御 */
   body > * {
     position: relative;
-    z-index: 1;
   }
 
   /* Typography */

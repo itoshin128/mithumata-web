@@ -18,9 +18,9 @@ export default function TreeShadowBackground({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
 
-  // Intensity settings - opacity for each layer
+  // Intensity settings - opacity for each layer - さらに控えめに調整
   const opacityLevels = {
-    subtle: { deep: 0.03, mid: 0.02, light: 0.015 },
+    subtle: { deep: 0.022, mid: 0.016, light: 0.011 },
     medium: { deep: 0.05, mid: 0.035, light: 0.025 },
     strong: { deep: 0.08, mid: 0.055, light: 0.04 },
   }
@@ -132,7 +132,7 @@ export default function TreeShadowBackground({
           inset: 0;
           overflow: hidden;
           pointer-events: none;
-          z-index: 0;
+          z-index: -1;
         }
 
         .tree-shadow-layer {
@@ -152,14 +152,14 @@ export default function TreeShadowBackground({
         /* Deep shadow layer - multiply for dark shadows */
         .tree-shadow-deep :global(.tree-shadow-image) {
           mix-blend-mode: multiply;
-          filter: blur(2px) contrast(1.3);
+          filter: blur(4px) contrast(1.2) brightness(0.9);
           animation: treeSway1 45s ease-in-out infinite;
         }
 
-        /* Mid layer - overlay for balanced tones */
+        /* Mid layer - soft-light for balanced tones */
         .tree-shadow-mid :global(.tree-shadow-image) {
-          mix-blend-mode: overlay;
-          filter: blur(1px) contrast(1.1);
+          mix-blend-mode: soft-light;
+          filter: blur(3px) contrast(1.1) brightness(0.95);
           animation: treeSway2 38s ease-in-out infinite;
           animation-delay: -8s;
         }
@@ -167,7 +167,7 @@ export default function TreeShadowBackground({
         /* Light layer - soft-light for gentle dappled effect */
         .tree-shadow-light :global(.tree-shadow-image) {
           mix-blend-mode: soft-light;
-          filter: blur(3px) brightness(1.1);
+          filter: blur(5px) brightness(1.02) saturate(0.9);
           animation: treeSway3 52s ease-in-out infinite;
           animation-delay: -15s;
         }

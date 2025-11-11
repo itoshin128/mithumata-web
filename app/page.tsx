@@ -4,21 +4,15 @@ import { LodgeStorySection } from "@/components/lodges/lodge-story-section"
 import { LatestPostsSection } from "@/components/blog/latest-posts-section"
 import { FAQSection } from "@/components/faq/faq-section"
 import { SeasonalBanner } from "@/components/ui/seasonal-banner"
-import { TreeShadows } from "@/components/effects/tree-shadows"
-import { TreeShadowAnimation } from "@/components/effects/tree-shadow-animation"
 
 export default function HomePage() {
   const seasonalTheme = getSeasonalTheme()
 
   return (
     <main className="min-h-screen">
-      <TreeShadowAnimation />
-
-      <TreeShadows />
-
       <HeroParallaxSection />
 
-      <div className="post-parallax-content relative z-[10000]">
+      <div className="post-parallax-content relative z-10">
         {seasonalTheme.banner?.show && (
           <div className="relative z-20">
             <div className="container mx-auto px-4 max-w-7xl py-8">

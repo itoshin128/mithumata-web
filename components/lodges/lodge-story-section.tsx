@@ -134,13 +134,13 @@ export function LodgeStorySection() {
   return (
     <section className="relative py-32 lg:py-40 z-20">
       <div className="absolute inset-0 -z-10">
-        <TreeShadowBackground intensity="medium" enableParallax={true} />
+        <TreeShadowBackground intensity="subtle" enableParallax={true} />
         <WashiBackground intensity="strong" animated={false} />
       </div>
 
       {lodgeStories.map((lodge, storyIndex) => {
         return (
-          <div key={lodge.id}>
+          <div key={lodge.id} className="relative z-10">
             <div className="container mx-auto px-6 max-w-7xl">
               <FadeInSection delay={0.1}>
                 <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-16 lg:mb-24`}>
