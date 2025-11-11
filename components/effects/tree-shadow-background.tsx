@@ -289,9 +289,9 @@ export default function TreeShadowBackground({
           border-radius: 50%;
           background: radial-gradient(
             circle at center,
-            rgba(255, 252, 240, 0.9) 0%,
-            rgba(255, 248, 220, 0.6) 30%,
-            rgba(255, 245, 200, 0.3) 60%,
+            rgba(252, 248, 242, 0.85) 0%,
+            rgba(250, 246, 238, 0.55) 30%,
+            rgba(248, 244, 234, 0.28) 60%,
             transparent 100%
           );
           filter: blur(8px);
@@ -341,7 +341,7 @@ export default function TreeShadowBackground({
           height: 400px;
           background: radial-gradient(
             circle at center,
-            rgba(255, 250, 220, 0.4) 0%,
+            rgba(252, 248, 240, 0.38) 0%,
             transparent 70%
           );
           animation-delay: 0s;
@@ -354,7 +354,7 @@ export default function TreeShadowBackground({
           height: 350px;
           background: radial-gradient(
             circle at center,
-            rgba(255, 248, 200, 0.35) 0%,
+            rgba(250, 246, 236, 0.32) 0%,
             transparent 70%
           );
           animation-delay: -6s;
@@ -367,7 +367,7 @@ export default function TreeShadowBackground({
           height: 450px;
           background: radial-gradient(
             circle at center,
-            rgba(255, 252, 230, 0.3) 0%,
+            rgba(252, 249, 242, 0.28) 0%,
             transparent 70%
           );
           animation-delay: -12s;

@@ -235,20 +235,20 @@
       radial-gradient(ellipse 1200px 1400px at 85% 45%, rgba(255, 252, 248, 0.85) 0%, transparent 50%),
       radial-gradient(ellipse 1500px 1000px at 50% 85%, rgba(255, 253, 249, 0.92) 0%, transparent 45%),
       radial-gradient(ellipse 800px 900px at 25% 60%, rgba(255, 253, 250, 0.7) 0%, transparent 55%),
-      /* ベースグラデーションをより明るいベージュ・クリームトーンに調整 */
+      /* ベースグラデーションを淡いクリームトーンに調整 */
       linear-gradient(
         135deg,
-        #fcfaf5 0%,
-        #f9f7f3 10%,
-        #fdfbf7 20%,
-        #f8f6f2 30%,
+        #fcfaf6 0%,
+        #faf8f4 10%,
+        #fcfbf7 20%,
+        #f9f7f3 30%,
         #fbf9f5 40%,
-        #f7f5f1 50%,
+        #f8f6f2 50%,
         #faf8f4 60%,
-        #f6f4f0 70%,
-        #f9f7f3 80%,
-        #f8f6f2 90%,
-        #fbf9f5 100%
+        #f7f5f1 70%,
+        #faf8f4 80%,
+        #f9f7f3 90%,
+        #fcfaf6 100%
       );
 
     /* サイズを最適化してより明確な質感に */
