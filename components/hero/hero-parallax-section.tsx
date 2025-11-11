@@ -75,14 +75,6 @@ export function HeroParallaxSection() {
       if (window.innerWidth < 768) {
         const shouldShow = scrollPosition < viewportHeight * 1.5
         setShowFixedBg(shouldShow)
-        console.log(
-          "[v0] Mobile scroll:",
-          scrollPosition,
-          "threshold:",
-          viewportHeight * 1.5,
-          "showFixedBg:",
-          shouldShow,
-        )
       }
     }
 
