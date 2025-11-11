@@ -11,51 +11,51 @@ import { useEffect, useRef, useState } from "react"
 const heroImagesDesktop = [
   {
     id: 1,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/_DSF5531-LD5GBso6bYuvyo2mDIbuITjyApbf17.jpg",
-    alt: "三俣山荘と美しい山の稜線を見下ろす景色",
+    url: "/images/hero/washibadake-ridgeline.jpg",
+    alt: "鷲羽岳の美しい稜線と北アルプスの山々",
   },
   {
     id: 2,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/03-ios2ydXxcILEL77CGlzP33hmaez9VU.jpg",
-    alt: "湯俣渓谷のエメラルドグリーンの川と迫力ある岩壁",
+    url: "/images/lodges/mitsumata-2.jpg",
+    alt: "三俣山荘と美しい山の稜線を見下ろす景色",
   },
   {
     id: 3,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/04-7cjaiJbx2OsZCai4LOxN2OLGs9AJdY.jpg",
-    alt: "ライチョウのポートレート、青い空と高山植物を背景に",
+    url: "/images/lodges/yumata-1.jpg",
+    alt: "湯俣渓谷のエメラルドグリーンの川と迫力ある岩壁",
   },
   {
     id: 4,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/02-3LtX1kcTrDwDsbx48VNw5cSoGzjBQ9.jpg",
-    alt: "三俣山荘の屋根の上で作業するスタッフ、雲海と山々が背景",
+    url: "/images/lodges/suisho-2.jpg",
+    alt: "水晶小屋と高山の雄大な景色",
   },
   {
     id: 5,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/06-YNif9GSi0Jgf1vtvrTIUUPHWRCORiC.jpg",
-    alt: "夕暮れ時の山岳風景、柔らかな光が差し込む稜線",
+    url: "/images/lodges/mitsumata-3.jpg",
+    alt: "三俣山荘の外観、雲海と山々が背景",
   },
   {
     id: 6,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/05-hYTftimz2QldYwKF4oDaqRdqKHPpU5.jpg",
-    alt: "高山植物の接写、オレンジ色の百合のような花と蝶々",
+    url: "/images/lodges/yumata-2.jpg",
+    alt: "湯俣山荘周辺の自然豊かな景色",
   },
 ]
 
 const heroImagesMobile = [
   {
     id: 1,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/03-d7leNOLU5Vm5OlhTFXAnZiblOwQsp2.jpg",
-    alt: "湯俣渓谷のエメラルドグリーンの川と岩壁",
+    url: "/images/hero/washibadake-ridgeline.jpg",
+    alt: "鷲羽岳の美しい稜線と北アルプスの山々",
   },
   {
     id: 2,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/_DSF5531-0gVEfEJXNGpn4vRLTbqT0ZHd1gcfi9.jpg",
+    url: "/images/lodges/mitsumata-1.jpg",
     alt: "三俣山荘と山の稜線を見下ろす景色",
   },
   {
     id: 3,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/_DSF3852%20%281%29-NwvlmQJNtAK54ffMzi7J8Ui8iyb1Lb.jpg",
-    alt: "ライチョウのポートレート、青い空と高山植物",
+    url: "/images/lodges/yumata-1.jpg",
+    alt: "湯俣渓谷のエメラルドグリーンの川と岩壁",
   },
 ]
 
