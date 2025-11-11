@@ -105,7 +105,7 @@ function InteractivePhoto({
           rotateX: isHovering ? -mousePosition.y * 5 : 0,
         }}
       >
-        <div className={`relative ${aspectRatio} overflow-hidden rounded-2xl shadow-2xl`}>
+        <div className={`relative ${aspectRatio} overflow-hidden shadow-2xl`}>
           <Image src={src || "/placeholder.svg"} alt={alt} fill className="object-cover" sizes={sizes} />
         </div>
       </motion.div>

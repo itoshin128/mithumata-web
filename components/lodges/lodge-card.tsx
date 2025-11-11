@@ -23,7 +23,7 @@ export function LodgeCard({ lodge, elevation, capacity, location, description, f
     <motion.article
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-      className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+      className="group bg-white overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
     >
       {/* 画像 */}
       <div className="relative h-64 overflow-hidden">
