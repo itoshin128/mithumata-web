@@ -61,6 +61,7 @@ const heroImagesMobile = [
 
 export function HeroParallaxSection() {
   const [showFixedBg, setShowFixedBg] = useState(true)
+  const [bgOpacity, setBgOpacity] = useState(1)
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -71,10 +72,25 @@ export function HeroParallaxSection() {
       const scrollPosition = window.scrollY
       const viewportHeight = window.innerHeight
 
-      // モバイルでは、1.5画面分スクロールしたら固定背景を非表示
+      // モバイルでは、ヒーローセクションの終わりに向けて固定背景をフェードアウト
       if (window.innerWidth < 768) {
-        const shouldShow = scrollPosition < viewportHeight * 1.5
-        setShowFixedBg(shouldShow)
+        const fadeStartPoint = viewportHeight * 1.5 // 150vhから透明度変化開始
+        const fadeEndPoint = viewportHeight * 1.8 // 180vhで完全に消える
+
+        if (scrollPosition < fadeStartPoint) {
+          // 150vhまでは完全に不透明
+          setBgOpacity(1)
+          setShowFixedBg(true)
+        } else if (scrollPosition < fadeEndPoint) {
+          // 150vh～180vhの間で透明度を1→0に変化
+          const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint)
+          setBgOpacity(1 - fadeProgress)
+          setShowFixedBg(true)
+        } else {
+          // 180vh以降は完全に非表示
+          setBgOpacity(0)
+          setShowFixedBg(false)
+        }
       }
     }
 
@@ -91,9 +107,12 @@ export function HeroParallaxSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative w-full z-30">
+    <section ref={sectionRef} className="relative w-full">
       {showFixedBg && (
-        <div className="md:hidden fixed top-0 left-0 w-full h-screen z-0">
+        <div
+          className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
+          style={{ opacity: bgOpacity }}
+        >
           <div className="h-full w-full">
             <Swiper
               modules={[Autoplay, EffectFade]}
@@ -123,12 +142,12 @@ export function HeroParallaxSection() {
               ))}
             </Swiper>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 pointer-events-none" />
         </div>
       )}
 
       {/* デスクトップ用パララックス背景 */}
-      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-0 overflow-hidden">
+      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-10 overflow-hidden">
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -162,7 +181,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className="relative z-20 min-h-[180vh] md:min-h-[200vh]">
+      <div className="relative z-30 min-h-[180vh] md:min-h-[200vh]">
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
