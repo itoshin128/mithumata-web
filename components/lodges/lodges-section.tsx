@@ -66,7 +66,7 @@ export function LodgesSection() {
                   whileHover={{ y: -8 }}
                   className="
                     group relative
-                    bg-white rounded-2xl
+                    bg-white
                     overflow-hidden
                     shadow-lg hover:shadow-2xl
                     transition-all duration-500
