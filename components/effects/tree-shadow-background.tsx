@@ -20,7 +20,7 @@ export default function TreeShadowBackground({
 
   // Intensity settings - opacity for each layer
   const opacityLevels = {
-    subtle: { deep: 0.03, mid: 0.02, light: 0.015 },
+    subtle: { deep: 0.018, mid: 0.012, light: 0.008 },
     medium: { deep: 0.05, mid: 0.035, light: 0.025 },
     strong: { deep: 0.08, mid: 0.055, light: 0.04 },
   }
@@ -152,14 +152,14 @@ export default function TreeShadowBackground({
         /* Deep shadow layer - multiply for dark shadows */
         .tree-shadow-deep :global(.tree-shadow-image) {
           mix-blend-mode: multiply;
-          filter: blur(2px) contrast(1.3);
+          filter: blur(3px) contrast(1.15);
           animation: treeSway1 45s ease-in-out infinite;
         }
 
         /* Mid layer - overlay for balanced tones */
         .tree-shadow-mid :global(.tree-shadow-image) {
-          mix-blend-mode: overlay;
-          filter: blur(1px) contrast(1.1);
+          mix-blend-mode: soft-light;
+          filter: blur(2px) contrast(1.05);
           animation: treeSway2 38s ease-in-out infinite;
           animation-delay: -8s;
         }
@@ -167,7 +167,7 @@ export default function TreeShadowBackground({
         /* Light layer - soft-light for gentle dappled effect */
         .tree-shadow-light :global(.tree-shadow-image) {
           mix-blend-mode: soft-light;
-          filter: blur(3px) brightness(1.1);
+          filter: blur(4px) brightness(1.05);
           animation: treeSway3 52s ease-in-out infinite;
           animation-delay: -15s;
         }
