@@ -74,20 +74,20 @@ export function HeroParallaxSection() {
 
       // モバイルでは、ヒーローセクションの終わりに向けて固定背景をフェードアウト
       if (window.innerWidth < 768) {
-        const fadeStartPoint = viewportHeight * 0.7 // 70vhから透明度変化開始
-        const fadeEndPoint = viewportHeight * 1.0 // 100vhで完全に消える
+        const fadeStartPoint = viewportHeight * 1.5 // 150vhから透明度変化開始
+        const fadeEndPoint = viewportHeight * 1.8 // 180vhで完全に消える
 
         if (scrollPosition < fadeStartPoint) {
-          // 70vhまでは完全に不透明
+          // 150vhまでは完全に不透明
           setBgOpacity(1)
           setShowFixedBg(true)
         } else if (scrollPosition < fadeEndPoint) {
-          // 70vh～100vhの間で透明度を1→0に変化
+          // 150vh～180vhの間で透明度を1→0に変化
           const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint)
           setBgOpacity(1 - fadeProgress)
           setShowFixedBg(true)
         } else {
-          // 100vh以降は完全に非表示
+          // 180vh以降は完全に非表示
           setBgOpacity(0)
           setShowFixedBg(false)
         }
@@ -181,7 +181,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className="relative z-30 min-h-screen md:min-h-[200vh]">
+      <div className="relative z-30 min-h-[180vh] md:min-h-[200vh]">
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
@@ -224,8 +224,8 @@ export function HeroParallaxSection() {
           </div>
         </div>
 
-        {/* わたしたちについてセクション（モバイルでは非表示） */}
-        <div className="hidden md:flex min-h-screen items-center px-4 sm:px-6 md:px-12 lg:px-20 py-16 sm:py-20 md:py-24">
+        {/* わたしたちについてセクション */}
+        <div className="min-h-screen flex items-center px-4 sm:px-6 md:px-12 lg:px-20 py-16 sm:py-20 md:py-24">
           <div className="w-full max-w-[1600px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 items-start">
               {/* 左側 - 大きなキャッチコピー */}
