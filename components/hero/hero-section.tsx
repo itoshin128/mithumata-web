@@ -10,33 +10,33 @@ import "swiper/css/effect-fade"
 const heroImages = [
   {
     id: 1,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/01-hk5x19gmdW0yvBZe81xz1TaeSQK5kX.jpg",
-    alt: "緑豊かな稜線に佇む三俣山荘の全景",
+    url: "/images/hero/washibadake-ridgeline.jpg",
+    alt: "鷲羽岳の美しい稜線と北アルプスの山々",
   },
   {
     id: 2,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/03-G411ifnlCY2fjUREKRp4xAeGWrye4b.jpg",
-    alt: "エメラルドグリーンの渓流と岩壁、湯俣の渓谷",
+    url: "/images/lodges/mitsumata-2.jpg",
+    alt: "緑豊かな稜線に佇む三俣山荘の全景",
   },
   {
     id: 3,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/02-dlYQ1f2XRbVib1K2EWMcvHjJPD5YAc.jpg",
-    alt: "雲海の上、山荘の屋根で作業をするスタッフ",
+    url: "/images/lodges/yumata-1.jpg",
+    alt: "エメラルドグリーンの渓流と岩壁、湯俣の渓谷",
   },
   {
     id: 4,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/05-M1Ruk2J1jC4Pc2ZxCGXLuR4FhxvRuJ.jpg",
-    alt: "高山植物 - オレンジのユリと青い花、黄色い花",
+    url: "/images/lodges/suisho-2.jpg",
+    alt: "水晶小屋と高山の雄大な景色",
   },
   {
     id: 5,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/04-PHwg8PgQYBcd5pN4dEHR7ltpyUVhVC.jpg",
-    alt: "ライチョウが山の稜線に立つ姿",
+    url: "/images/lodges/mitsumata-3.jpg",
+    alt: "三俣山荘の外観、雲海と山々が背景",
   },
   {
     id: 6,
-    url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/06-DTKla1bHWfmg7F899gDlimPgdApTxb.jpg",
-    alt: "夕焼けに染まる山々の稜線",
+    url: "/images/lodges/yumata-3.jpg",
+    alt: "湯俣山荘周辺の自然豊かな景色",
   },
 ]
 

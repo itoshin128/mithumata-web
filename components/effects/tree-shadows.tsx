@@ -87,8 +87,8 @@ export function TreeShadows() {
     <>
       {/* 木の影レイヤー - 簡素化して2つのSVG影のみ */}
       <div
-        className="fixed inset-0 pointer-events-none z-[2] overflow-hidden transition-opacity duration-1000"
-        style={{ opacity: isVisible ? (isMobile ? 0.6 : 0.7) : 0 }}
+        className="fixed inset-0 pointer-events-none z-[15001] overflow-hidden transition-opacity duration-1000"
+        style={{ opacity: isVisible ? (isMobile ? 0.85 : 1) : 0 }}
       >
         {/* 木の影 1 - 左上 */}
         <div
@@ -113,15 +113,15 @@ export function TreeShadows() {
               cy="200"
               rx="280"
               ry="320"
-              fill="#3a3228"
+              fill="#2a1f18"
               filter="url(#shadow1)"
-              opacity="0.65"
+              opacity="0.9"
               style={{ mixBlendMode: "multiply" }}
             />
             {!isMobile && (
               <>
-                <ellipse cx="450" cy="400" rx="200" ry="280" fill="#42382c" filter="url(#shadow1)" opacity="0.5" />
-                <ellipse cx="280" cy="550" rx="180" ry="220" fill="#3d3429" filter="url(#shadow1)" opacity="0.55" />
+                <ellipse cx="450" cy="400" rx="200" ry="280" fill="#32281c" filter="url(#shadow1)" opacity="0.8" />
+                <ellipse cx="280" cy="550" rx="180" ry="220" fill="#2d2419" filter="url(#shadow1)" opacity="0.85" />
               </>
             )}
           </svg>
@@ -150,13 +150,13 @@ export function TreeShadows() {
               cy="180"
               rx="260"
               ry="300"
-              fill="#3c342a"
+              fill="#2c241a"
               filter="url(#shadow2)"
-              opacity="0.6"
+              opacity="0.85"
               style={{ mixBlendMode: "multiply" }}
             />
             {!isMobile && (
-              <ellipse cx="450" cy="380" rx="220" ry="260" fill="#3f362b" filter="url(#shadow2)" opacity="0.48" />
+              <ellipse cx="450" cy="380" rx="220" ry="260" fill="#2f261b" filter="url(#shadow2)" opacity="0.75" />
             )}
           </svg>
         </div>
@@ -165,8 +165,8 @@ export function TreeShadows() {
       {/* 光のグラデーション（簡素化・デスクトップのみ） */}
       {!isMobile && (
         <div
-          className="fixed inset-0 pointer-events-none z-[1] overflow-hidden transition-opacity duration-1000"
-          style={{ opacity: isVisible ? 0.25 : 0 }}
+          className="fixed inset-0 pointer-events-none z-[15000] overflow-hidden transition-opacity duration-1000"
+          style={{ opacity: isVisible ? 0.4 : 0 }}
         >
           <div
             className="absolute inset-0"
@@ -181,7 +181,7 @@ export function TreeShadows() {
 
       {/* パーティクル - 大幅に削減 */}
       <div
-        className="fixed inset-0 pointer-events-none z-[2] overflow-hidden transition-opacity duration-1000"
+        className="fixed inset-0 pointer-events-none z-[15001] overflow-hidden transition-opacity duration-1000"
         style={{ opacity: isVisible ? 1 : 0 }}
       >
         {[...Array(particleCount)].map((_, i) => (
@@ -207,8 +207,8 @@ export function TreeShadows() {
       {/* 木漏れ日パターン - radial-gradientを削減（デスクトップのみ） */}
       {!isMobile && (
         <div
-          className="fixed inset-0 pointer-events-none z-[1] transition-opacity duration-1000"
-          style={{ opacity: isVisible ? 0.15 : 0 }}
+          className="fixed inset-0 pointer-events-none z-[15000] transition-opacity duration-1000"
+          style={{ opacity: isVisible ? 0.25 : 0 }}
         >
           <div
             className="absolute inset-0"
