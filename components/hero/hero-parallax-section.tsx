@@ -93,7 +93,7 @@ export function HeroParallaxSection() {
   return (
     <section ref={sectionRef} className="relative w-full isolate" style={{ zIndex: 100 }}>
       {showFixedBg && (
-        <div className="md:hidden fixed top-0 left-0 w-full h-screen z-10">
+        <div className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none">
           <div className="h-full w-full">
             <Swiper
               modules={[Autoplay, EffectFade]}
@@ -123,7 +123,7 @@ export function HeroParallaxSection() {
               ))}
             </Swiper>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 pointer-events-none" />
         </div>
       )}
 
