@@ -88,7 +88,7 @@ export function TreeShadows() {
       {/* 木の影レイヤー - 簡素化して2つのSVG影のみ */}
       <div
         className="fixed inset-0 pointer-events-none z-[2] overflow-hidden transition-opacity duration-1000"
-        style={{ opacity: isVisible ? (isMobile ? 0.6 : 0.7) : 0 }}
+        style={{ opacity: isVisible ? (isMobile ? 0.85 : 1) : 0 }}
       >
         {/* 木の影 1 - 左上 */}
         <div
@@ -115,13 +115,13 @@ export function TreeShadows() {
               ry="320"
               fill="#3a3228"
               filter="url(#shadow1)"
-              opacity="0.65"
+              opacity="0.8"
               style={{ mixBlendMode: "multiply" }}
             />
             {!isMobile && (
               <>
-                <ellipse cx="450" cy="400" rx="200" ry="280" fill="#42382c" filter="url(#shadow1)" opacity="0.5" />
-                <ellipse cx="280" cy="550" rx="180" ry="220" fill="#3d3429" filter="url(#shadow1)" opacity="0.55" />
+                <ellipse cx="450" cy="400" rx="200" ry="280" fill="#42382c" filter="url(#shadow1)" opacity="0.7" />
+                <ellipse cx="280" cy="550" rx="180" ry="220" fill="#3d3429" filter="url(#shadow1)" opacity="0.75" />
               </>
             )}
           </svg>
@@ -152,11 +152,11 @@ export function TreeShadows() {
               ry="300"
               fill="#3c342a"
               filter="url(#shadow2)"
-              opacity="0.6"
+              opacity="0.75"
               style={{ mixBlendMode: "multiply" }}
             />
             {!isMobile && (
-              <ellipse cx="450" cy="380" rx="220" ry="260" fill="#3f362b" filter="url(#shadow2)" opacity="0.48" />
+              <ellipse cx="450" cy="380" rx="220" ry="260" fill="#3f362b" filter="url(#shadow2)" opacity="0.65" />
             )}
           </svg>
         </div>
@@ -166,7 +166,7 @@ export function TreeShadows() {
       {!isMobile && (
         <div
           className="fixed inset-0 pointer-events-none z-[1] overflow-hidden transition-opacity duration-1000"
-          style={{ opacity: isVisible ? 0.25 : 0 }}
+          style={{ opacity: isVisible ? 0.4 : 0 }}
         >
           <div
             className="absolute inset-0"
@@ -208,7 +208,7 @@ export function TreeShadows() {
       {!isMobile && (
         <div
           className="fixed inset-0 pointer-events-none z-[1] transition-opacity duration-1000"
-          style={{ opacity: isVisible ? 0.15 : 0 }}
+          style={{ opacity: isVisible ? 0.25 : 0 }}
         >
           <div
             className="absolute inset-0"
