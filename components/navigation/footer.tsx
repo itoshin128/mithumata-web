@@ -26,7 +26,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-stone-50 to-stone-100 text-stone-700 border-t border-stone-200">
+    <footer className="relative z-30 bg-gradient-to-b from-stone-50 to-stone-100 text-stone-700 border-t border-stone-200">
       {/* 装飾的な区切り線 */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-stone-300 to-transparent" />
 
