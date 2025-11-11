@@ -20,9 +20,9 @@ export default function TreeShadowBackground({
 
   // Intensity settings - opacity for each layer
   const opacityLevels = {
-    subtle: { deep: 0.03, mid: 0.02, light: 0.015 },
-    medium: { deep: 0.05, mid: 0.035, light: 0.025 },
-    strong: { deep: 0.08, mid: 0.055, light: 0.04 },
+    subtle: { deep: 0.15, mid: 0.12, light: 0.08 },
+    medium: { deep: 0.25, mid: 0.18, light: 0.12 },
+    strong: { deep: 0.35, mid: 0.25, light: 0.18 },
   }
 
   const opacity = opacityLevels[intensity]
@@ -153,23 +153,23 @@ export default function TreeShadowBackground({
         .tree-shadow-deep :global(.tree-shadow-image) {
           mix-blend-mode: multiply;
           filter: blur(2px) contrast(1.3);
-          animation: treeSway1 45s ease-in-out infinite;
+          animation: treeSway1 25s ease-in-out infinite;
         }
 
         /* Mid layer - overlay for balanced tones */
         .tree-shadow-mid :global(.tree-shadow-image) {
           mix-blend-mode: overlay;
           filter: blur(1px) contrast(1.1);
-          animation: treeSway2 38s ease-in-out infinite;
-          animation-delay: -8s;
+          animation: treeSway2 20s ease-in-out infinite;
+          animation-delay: -5s;
         }
 
         /* Light layer - soft-light for gentle dappled effect */
         .tree-shadow-light :global(.tree-shadow-image) {
           mix-blend-mode: soft-light;
           filter: blur(3px) brightness(1.1);
-          animation: treeSway3 52s ease-in-out infinite;
-          animation-delay: -15s;
+          animation: treeSway3 30s ease-in-out infinite;
+          animation-delay: -10s;
         }
 
         /* Organic swaying animation - layer 1 */
@@ -179,24 +179,24 @@ export default function TreeShadowBackground({
             transform: translate(0, 0) rotate(0deg) rotateX(0deg) scale(1);
           }
           15% {
-            transform: translate(-8px, 4px) rotate(-0.3deg) rotateX(0.2deg)
-              scale(1.01);
+            transform: translate(-20px, 10px) rotate(-0.8deg) rotateX(0.5deg)
+              scale(1.02);
           }
           35% {
-            transform: translate(6px, -3px) rotate(0.25deg) rotateX(-0.15deg)
-              scale(0.99);
+            transform: translate(15px, -8px) rotate(0.6deg) rotateX(-0.4deg)
+              scale(0.98);
           }
           50% {
-            transform: translate(-4px, 5px) rotate(-0.2deg) rotateX(0.25deg)
-              scale(1.005);
-          }
-          70% {
-            transform: translate(9px, -6px) rotate(0.35deg) rotateX(-0.2deg)
+            transform: translate(-10px, 12px) rotate(-0.5deg) rotateX(0.6deg)
               scale(1.01);
           }
+          70% {
+            transform: translate(22px, -15px) rotate(0.9deg) rotateX(-0.5deg)
+              scale(1.02);
+          }
           85% {
-            transform: translate(-5px, 2px) rotate(-0.15deg) rotateX(0.1deg)
-              scale(0.995);
+            transform: translate(-12px, 5px) rotate(-0.4deg) rotateX(0.3deg)
+              scale(0.99);
           }
         }
 
@@ -208,24 +208,24 @@ export default function TreeShadowBackground({
               rotateY(0deg) scale(1);
           }
           20% {
-            transform: translate(7px, -5px) rotate(0.28deg) rotateX(-0.18deg)
-              rotateY(0.1deg) scale(1.008);
+            transform: translate(18px, -12px) rotate(0.7deg) rotateX(-0.45deg)
+              rotateY(0.3deg) scale(1.02);
           }
           40% {
-            transform: translate(-9px, 6px) rotate(-0.32deg) rotateX(0.22deg)
-              rotateY(-0.12deg) scale(0.992);
+            transform: translate(-22px, 15px) rotate(-0.8deg) rotateX(0.55deg)
+              rotateY(-0.35deg) scale(0.98);
           }
           55% {
-            transform: translate(5px, -4px) rotate(0.18deg) rotateX(-0.14deg)
-              rotateY(0.08deg) scale(1.006);
+            transform: translate(12px, -10px) rotate(0.5deg) rotateX(-0.35deg)
+              rotateY(0.25deg) scale(1.015);
           }
           75% {
-            transform: translate(-6px, 7px) rotate(-0.25deg) rotateX(0.19deg)
-              rotateY(-0.09deg) scale(0.997);
+            transform: translate(-15px, 18px) rotate(-0.6deg) rotateX(0.48deg)
+              rotateY(-0.28deg) scale(0.99);
           }
           90% {
-            transform: translate(8px, -3px) rotate(0.22deg) rotateX(-0.16deg)
-              rotateY(0.11deg) scale(1.004);
+            transform: translate(20px, -8px) rotate(0.55deg) rotateX(-0.4deg)
+              rotateY(0.32deg) scale(1.01);
           }
         }
 
@@ -237,28 +237,28 @@ export default function TreeShadowBackground({
               rotateY(0deg) scale(1);
           }
           12% {
-            transform: translate(-7px, 5px) rotate(-0.26deg) rotateX(0.17deg)
-              rotateY(-0.13deg) scale(1.012);
+            transform: translate(-18px, 12px) rotate(-0.65deg) rotateX(0.42deg)
+              rotateY(-0.38deg) scale(1.03);
           }
           28% {
-            transform: translate(10px, -7px) rotate(0.34deg) rotateX(-0.21deg)
-              rotateY(0.15deg) scale(0.988);
+            transform: translate(25px, -18px) rotate(0.85deg) rotateX(-0.52deg)
+              rotateY(0.45deg) scale(0.97);
           }
           45% {
-            transform: translate(-6px, 4px) rotate(-0.19deg) rotateX(0.13deg)
-              rotateY(-0.1deg) scale(1.007);
+            transform: translate(-15px, 10px) rotate(-0.48deg) rotateX(0.32deg)
+              rotateY(-0.3deg) scale(1.018);
           }
           62% {
-            transform: translate(8px, -6px) rotate(0.29deg) rotateX(-0.19deg)
-              rotateY(0.12deg) scale(0.993);
+            transform: translate(20px, -15px) rotate(0.72deg) rotateX(-0.48deg)
+              rotateY(0.35deg) scale(0.985);
           }
           80% {
-            transform: translate(-9px, 8px) rotate(-0.31deg) rotateX(0.23deg)
-              rotateY(-0.14deg) scale(1.009);
+            transform: translate(-22px, 20px) rotate(-0.78deg) rotateX(0.58deg)
+              rotateY(-0.42deg) scale(1.022);
           }
           95% {
-            transform: translate(5px, -4px) rotate(0.16deg) rotateX(-0.12deg)
-              rotateY(0.08deg) scale(0.998);
+            transform: translate(12px, -10px) rotate(0.4deg) rotateX(-0.3deg)
+              rotateY(0.25deg) scale(0.995);
           }
         }
 
@@ -271,15 +271,15 @@ export default function TreeShadowBackground({
           }
 
           .tree-shadow-deep :global(.tree-shadow-image) {
-            animation: treeSwayMobile1 35s ease-in-out infinite;
+            animation: treeSwayMobile1 18s ease-in-out infinite;
           }
 
           .tree-shadow-mid :global(.tree-shadow-image) {
-            animation: treeSwayMobile2 30s ease-in-out infinite;
+            animation: treeSwayMobile2 15s ease-in-out infinite;
           }
 
           .tree-shadow-light :global(.tree-shadow-image) {
-            animation: treeSwayMobile3 40s ease-in-out infinite;
+            animation: treeSwayMobile3 22s ease-in-out infinite;
           }
 
           @keyframes treeSwayMobile1 {
@@ -288,13 +288,13 @@ export default function TreeShadowBackground({
               transform: translate(0, 0) rotate(0deg) scale(1);
             }
             25% {
-              transform: translate(-4px, 2px) rotate(-0.2deg) scale(1.005);
+              transform: translate(-10px, 5px) rotate(-0.5deg) scale(1.015);
             }
             50% {
-              transform: translate(3px, -2px) rotate(0.15deg) scale(0.995);
+              transform: translate(8px, -5px) rotate(0.4deg) scale(0.99);
             }
             75% {
-              transform: translate(-3px, 3px) rotate(-0.18deg) scale(1.003);
+              transform: translate(-8px, 8px) rotate(-0.45deg) scale(1.008);
             }
           }
 
@@ -304,13 +304,13 @@ export default function TreeShadowBackground({
               transform: translate(0, 0) rotate(0deg) scale(1);
             }
             30% {
-              transform: translate(4px, -3px) rotate(0.18deg) scale(1.004);
+              transform: translate(10px, -8px) rotate(0.45deg) scale(1.01);
             }
             60% {
-              transform: translate(-5px, 4px) rotate(-0.22deg) scale(0.996);
+              transform: translate(-12px, 10px) rotate(-0.55deg) scale(0.99);
             }
             85% {
-              transform: translate(3px, -2px) rotate(0.14deg) scale(1.002);
+              transform: translate(8px, -5px) rotate(0.35deg) scale(1.005);
             }
           }
 
@@ -320,13 +320,13 @@ export default function TreeShadowBackground({
               transform: translate(0, 0) rotate(0deg) scale(1);
             }
             20% {
-              transform: translate(-4px, 3px) rotate(-0.16deg) scale(1.006);
+              transform: translate(-10px, 8px) rotate(-0.4deg) scale(1.015);
             }
             55% {
-              transform: translate(5px, -4px) rotate(0.2deg) scale(0.994);
+              transform: translate(12px, -10px) rotate(0.5deg) scale(0.985);
             }
             90% {
-              transform: translate(-3px, 2px) rotate(-0.12deg) scale(1.003);
+              transform: translate(-8px, 5px) rotate(-0.3deg) scale(1.008);
             }
           }
         }
