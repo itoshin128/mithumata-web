@@ -91,9 +91,9 @@ export function HeroParallaxSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative w-full z-30">
+    <section ref={sectionRef} className="relative w-full isolate" style={{ zIndex: 100 }}>
       {showFixedBg && (
-        <div className="md:hidden fixed top-0 left-0 w-full h-screen z-0">
+        <div className="md:hidden fixed top-0 left-0 w-full h-screen z-10">
           <div className="h-full w-full">
             <Swiper
               modules={[Autoplay, EffectFade]}
@@ -128,7 +128,7 @@ export function HeroParallaxSection() {
       )}
 
       {/* デスクトップ用パララックス背景 */}
-      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-0 overflow-hidden">
+      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-10 overflow-hidden">
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -162,7 +162,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className="relative z-20 min-h-[180vh] md:min-h-[200vh]">
+      <div className="relative z-30 min-h-[180vh] md:min-h-[200vh]">
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
