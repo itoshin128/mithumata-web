@@ -189,7 +189,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className="relative z-30 min-h-[180vh] md:min-h-[200vh]">
+      <div className="relative z-30 min-h-screen md:min-h-[200vh]">
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
@@ -232,8 +232,8 @@ export function HeroParallaxSection() {
           </div>
         </div>
 
-        {/* わたしたちについてセクション */}
-        <div className="min-h-screen flex items-center px-4 sm:px-6 md:px-12 lg:px-20 py-16 sm:py-20 md:py-24">
+        {/* わたしたちについてセクション（モバイルでは非表示） */}
+        <div className="hidden md:flex min-h-screen items-center px-4 sm:px-6 md:px-12 lg:px-20 py-16 sm:py-20 md:py-24">
           <div className="w-full max-w-[1600px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 items-start">
               {/* 左側 - 大きなキャッチコピー */}
