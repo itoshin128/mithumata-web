@@ -12,7 +12,7 @@ export default function HomePage() {
     <main className="min-h-screen">
       <HeroParallaxSection />
 
-      <div className="post-parallax-content relative z-[10000]">
+      <div className="post-parallax-content relative z-10">
         {seasonalTheme.banner?.show && (
           <div className="relative z-20">
             <div className="container mx-auto px-4 max-w-7xl py-8">
