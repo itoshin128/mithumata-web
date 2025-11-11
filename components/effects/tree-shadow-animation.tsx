@@ -26,7 +26,7 @@ export function TreeShadowAnimation() {
   const shadowY2 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -120, -240])
   const shadowY3 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -100, -200])
 
-  const shadowOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.6, 0.5, 0.35, 0.2])
+  const shadowOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [1, 0.9, 0.7, 0.5])
 
   // モバイル判定とパーティクル生成を最適化
   useEffect(() => {
@@ -118,7 +118,7 @@ export function TreeShadowAnimation() {
   }, [isMobile])
 
   return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
+    <div ref={containerRef} className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 15000 }}>
       {/* 木漏れ日の光レイヤー - 最も明るい部分 */}
       <motion.div
         data-shadow-layer="0"
@@ -138,9 +138,9 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "overlay",
               filter: isMobile
-                ? "brightness(1.7) contrast(1.1) blur(8px)"
-                : "brightness(1.9) contrast(1.15) blur(10px) saturate(1.1)",
-              opacity: isMobile ? 0.3 : 0.4,
+                ? "brightness(1.9) contrast(1.2) blur(8px)"
+                : "brightness(2.1) contrast(1.3) blur(10px) saturate(1.2)",
+              opacity: isMobile ? 0.6 : 0.7,
             }}
             quality={isMobile ? 60 : 75}
             priority
@@ -167,9 +167,9 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "multiply",
               filter: isMobile
-                ? "brightness(0.4) contrast(1.4) blur(1px)"
-                : "brightness(0.35) contrast(1.6) blur(1.5px) saturate(0.9)",
-              opacity: isMobile ? 0.3 : 0.35,
+                ? "brightness(0.25) contrast(1.6) blur(0.5px)"
+                : "brightness(0.2) contrast(1.8) blur(1px) saturate(0.8)",
+              opacity: isMobile ? 0.7 : 0.85,
               transform: "scale(1.03)",
             }}
             quality={isMobile ? 60 : 75}
@@ -194,11 +194,11 @@ export function TreeShadowAnimation() {
             fill
             className="object-cover"
             style={{
-              mixBlendMode: "darken",
+              mixBlendMode: "multiply",
               filter: isMobile
-                ? "brightness(0.6) contrast(1.2) blur(8px)"
-                : "brightness(0.55) contrast(1.25) blur(12px) saturate(0.8)",
-              opacity: 0.2,
+                ? "brightness(0.4) contrast(1.4) blur(6px)"
+                : "brightness(0.35) contrast(1.5) blur(10px) saturate(0.75)",
+              opacity: isMobile ? 0.6 : 0.7,
               transform: "scale(1.1) rotate(-1.5deg)",
             }}
             quality={isMobile ? 60 : 75}
