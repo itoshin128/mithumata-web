@@ -61,6 +61,7 @@ const heroImagesMobile = [
 
 export function HeroParallaxSection() {
   const [showFixedBg, setShowFixedBg] = useState(true)
+  const [bgOpacity, setBgOpacity] = useState(1)
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -71,10 +72,25 @@ export function HeroParallaxSection() {
       const scrollPosition = window.scrollY
       const viewportHeight = window.innerHeight
 
-      // モバイルでは、1.5画面分スクロールしたら固定背景を非表示
+      // モバイルでは、ヒーローセクションの高さ（180vh）まで固定背景を表示
       if (window.innerWidth < 768) {
-        const shouldShow = scrollPosition < viewportHeight * 1.5
-        setShowFixedBg(shouldShow)
+        const heroHeight = viewportHeight * 1.8
+        const fadeStartPoint = viewportHeight * 1.5 // 150vhから透明度変化開始
+
+        if (scrollPosition < fadeStartPoint) {
+          // 150vhまでは完全に不透明
+          setBgOpacity(1)
+          setShowFixedBg(true)
+        } else if (scrollPosition < heroHeight) {
+          // 150vh～180vhの間で透明度を1→0に変化
+          const fadeProgress = (scrollPosition - fadeStartPoint) / (heroHeight - fadeStartPoint)
+          setBgOpacity(1 - fadeProgress)
+          setShowFixedBg(true)
+        } else {
+          // 180vh以降は完全に非表示
+          setBgOpacity(0)
+          setShowFixedBg(false)
+        }
       }
     }
 
@@ -91,9 +107,12 @@ export function HeroParallaxSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative w-full isolate" style={{ zIndex: 100 }}>
+    <section ref={sectionRef} className="relative w-full">
       {showFixedBg && (
-        <div className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none">
+        <div
+          className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
+          style={{ opacity: bgOpacity }}
+        >
           <div className="h-full w-full">
             <Swiper
               modules={[Autoplay, EffectFade]}
