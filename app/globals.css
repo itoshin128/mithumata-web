@@ -214,7 +214,7 @@
 
     /* 参考サイトhachi.buttersand.comの和紙質感を極めて忠実に再現 - より強力で視覚的に明確な実装 */
     /* ベースカラーを明るいオフホワイトに調整 */
-    background-color: #fefefd;
+    background-color: #faf8f4;
 
     /* 超強力な和紙の粒子感 - 参考サイトの質感を完全再現（ざらざら感は維持） */
     /* 超微細な粒子レイヤー1 - 最も目立つ質感 */
@@ -276,7 +276,7 @@
   .post-parallax-content {
     position: relative;
     /* ベースカラーを明るいオフホワイトに調整 */
-    background-color: #fefefd;
+    background-color: #faf8f4;
   }
 
   .post-parallax-content::before {

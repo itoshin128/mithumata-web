@@ -54,31 +54,31 @@ export function WashiBackground({ className = "", intensity = "medium", animated
       className={`absolute inset-0 pointer-events-none ${intensityStyles[intensity]} ${className}`}
       style={{
         zIndex: 0,
-        backgroundColor: "#fefefd",
+        backgroundColor: "#faf8f4",
         backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain1b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='12' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.32, 0 0 0 0 0.30, 0 0 0 0 0.26, 0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain1b)' opacity='0.45'/%3E%3C/svg%3E"),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='grain2b'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.8' numOctaves='10' seed='27'/%3E%3CfeColorMatrix values='0 0 0 0 0.28, 0 0 0 0 0.26, 0 0 0 0 0.22, 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23grain2b)' opacity='0.4'/%3E%3C/svg%3E"),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='fiberb'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 2.1' numOctaves='8' seed='43'/%3E%3CfeColorMatrix values='0 0 0 0 0.30, 0 0 0 0 0.28, 0 0 0 0 0.24, 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23fiberb)' opacity='0.38'/%3E%3C/svg%3E"),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='mediumb'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.3' numOctaves='9' seed='61'/%3E%3CfeColorMatrix values='0 0 0 0 0.33, 0 0 0 0 0.31, 0 0 0 0 0.27, 0 0 0 0.24 0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23mediumb)' opacity='0.4'/%3E%3C/svg%3E"),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='ultrab'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.2' numOctaves='14' seed='81'/%3E%3CfeColorMatrix values='0 0 0 0 0.35, 0 0 0 0 0.33, 0 0 0 0 0.29, 0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23ultrab)' opacity='0.48'/%3E%3C/svg%3E"),
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='depthb'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='6' seed='99'/%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.97, 0 0 0 0 0.96, 0 0 0 0 0.95, 0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23depthb)' opacity='0.38'/%3E%3C/svg%3E"),
-          radial-gradient(ellipse 1400px 1200px at 15% 10%, rgba(255, 255, 255, 0.92) 0%, transparent 45%),
-          radial-gradient(ellipse 1200px 1400px at 85% 45%, rgba(255, 255, 254, 0.78) 0%, transparent 50%),
-          radial-gradient(ellipse 1500px 1000px at 50% 85%, rgba(255, 255, 253, 0.85) 0%, transparent 45%),
-          radial-gradient(ellipse 800px 900px at 25% 60%, rgba(255, 255, 254, 0.65) 0%, transparent 55%),
+          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='depthb'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='6' seed='99'/%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.97, 0 0 0 0 0.96, 0 0 0 0 0.94, 0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23depthb)' opacity='0.38'/%3E%3C/svg%3E"),
+          radial-gradient(ellipse 1400px 1200px at 15% 10%, rgba(255, 252, 247, 0.92) 0%, transparent 45%),
+          radial-gradient(ellipse 1200px 1400px at 85% 45%, rgba(255, 251, 245, 0.78) 0%, transparent 50%),
+          radial-gradient(ellipse 1500px 1000px at 50% 85%, rgba(255, 250, 243, 0.85) 0%, transparent 45%),
+          radial-gradient(ellipse 800px 900px at 25% 60%, rgba(255, 251, 246, 0.65) 0%, transparent 55%),
           linear-gradient(
             135deg,
-            #ffffff 0%,
-            #fefefd 10%,
-            #ffffff 20%,
-            #fdfdfb 30%,
-            #fefefd 40%,
-            #fcfcfb 50%,
-            #fefefd 60%,
-            #fbfbf9 70%,
-            #fefefd 80%,
-            #fdfdfb 90%,
-            #ffffff 100%
+            #fcfaf6 0%,
+            #faf8f4 10%,
+            #fcfbf7 20%,
+            #f9f7f3 30%,
+            #fbf9f5 40%,
+            #f8f6f2 50%,
+            #faf8f4 60%,
+            #f7f5f1 70%,
+            #faf8f4 80%,
+            #f9f7f3 90%,
+            #fcfaf6 100%
           )
         `,
         backgroundSize: `
