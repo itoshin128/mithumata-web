@@ -27,7 +27,7 @@ export function TreeShadowAnimation() {
   const shadowY4 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -140, -280])
   const shadowY5 = useTransform(scrollYProgress, [0, 0.5, 1], [0, -90, -180])
 
-  const shadowOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.2, 0.16, 0.1, 0.06])
+  const shadowOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.6, 0.5, 0.35, 0.2])
 
   // 木漏れ日のパーティクルを生成
   useEffect(() => {
@@ -120,7 +120,7 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "overlay",
               filter: "brightness(1.9) contrast(1.15) blur(10px) saturate(1.1)",
-              opacity: 0.28,
+              opacity: 0.4,
             }}
             quality={90}
             priority
@@ -147,7 +147,7 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "multiply",
               filter: "brightness(0.35) contrast(1.6) blur(1.5px) saturate(0.9)",
-              opacity: 0.22,
+              opacity: 0.35,
               transform: "scale(1.03)",
             }}
             quality={90}
@@ -174,7 +174,7 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "multiply",
               filter: "brightness(0.48) contrast(1.35) blur(5px) saturate(0.85)",
-              opacity: 0.15,
+              opacity: 0.25,
               transform: "scale(1.08) rotate(1.5deg)",
             }}
             quality={90}
@@ -201,7 +201,7 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "screen",
               filter: "brightness(2.3) contrast(0.85) blur(15px) saturate(1.2)",
-              opacity: 0.1,
+              opacity: 0.18,
               transform: "scale(1.12) rotate(-1.2deg)",
             }}
             quality={90}
@@ -228,7 +228,7 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "darken",
               filter: "brightness(0.55) contrast(1.25) blur(12px) saturate(0.8)",
-              opacity: 0.12,
+              opacity: 0.2,
               transform: "scale(1.18) rotate(-2.5deg)",
             }}
             quality={90}
