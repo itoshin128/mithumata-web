@@ -113,15 +113,15 @@ export function TreeShadows() {
               cy="200"
               rx="280"
               ry="320"
-              fill="#3a3228"
+              fill="#2a1f18"
               filter="url(#shadow1)"
-              opacity="0.8"
+              opacity="0.9"
               style={{ mixBlendMode: "multiply" }}
             />
             {!isMobile && (
               <>
-                <ellipse cx="450" cy="400" rx="200" ry="280" fill="#42382c" filter="url(#shadow1)" opacity="0.7" />
-                <ellipse cx="280" cy="550" rx="180" ry="220" fill="#3d3429" filter="url(#shadow1)" opacity="0.75" />
+                <ellipse cx="450" cy="400" rx="200" ry="280" fill="#32281c" filter="url(#shadow1)" opacity="0.8" />
+                <ellipse cx="280" cy="550" rx="180" ry="220" fill="#2d2419" filter="url(#shadow1)" opacity="0.85" />
               </>
             )}
           </svg>
@@ -150,13 +150,13 @@ export function TreeShadows() {
               cy="180"
               rx="260"
               ry="300"
-              fill="#3c342a"
+              fill="#2c241a"
               filter="url(#shadow2)"
-              opacity="0.75"
+              opacity="0.85"
               style={{ mixBlendMode: "multiply" }}
             />
             {!isMobile && (
-              <ellipse cx="450" cy="380" rx="220" ry="260" fill="#3f362b" filter="url(#shadow2)" opacity="0.65" />
+              <ellipse cx="450" cy="380" rx="220" ry="260" fill="#2f261b" filter="url(#shadow2)" opacity="0.75" />
             )}
           </svg>
         </div>
