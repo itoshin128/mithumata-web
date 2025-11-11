@@ -7,6 +7,8 @@ import { Autoplay, EffectFade } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/effect-fade"
 import { useEffect, useRef, useState } from "react"
+import { WashiBackground } from "@/components/effects/washi-background"
+import TreeShadowBackground from "@/components/effects/tree-shadow-background"
 
 const heroImagesDesktop = [
   {
@@ -108,6 +110,12 @@ export function HeroParallaxSection() {
 
   return (
     <section ref={sectionRef} className="relative w-full">
+      {/* モバイル用の和紙背景と木の影レイヤー（固定背景の下に） */}
+      <div className="md:hidden absolute inset-0 z-0">
+        <WashiBackground intensity="strong" animated={false} />
+        <TreeShadowBackground intensity="subtle" enableParallax={false} />
+      </div>
+
       {showFixedBg && (
         <div
           className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
