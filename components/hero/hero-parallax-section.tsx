@@ -163,7 +163,7 @@ export function HeroParallaxSection() {
                             }
                       }
                       transition={{
-                        duration: 7,
+                        duration: 6,
                         ease: "easeInOut",
                       }}
                     >
@@ -226,7 +226,7 @@ export function HeroParallaxSection() {
                           }
                     }
                     transition={{
-                      duration: 7,
+                      duration: 6,
                       ease: "easeInOut",
                     }}
                   >
