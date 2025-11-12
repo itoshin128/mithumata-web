@@ -8,6 +8,254 @@ import "swiper/css"
 import "swiper/css/effect-fade"
 import { useEffect, useRef, useState } from "react"
 
+// 山の稜線SVGパス
+const MountainRidgePath = () => (
+  <svg
+    className="absolute -top-6 left-0 w-full h-8 opacity-0 group-hover:opacity-60 transition-all duration-700"
+    viewBox="0 0 100 20"
+    preserveAspectRatio="none"
+  >
+    <motion.path
+      d="M0,15 L15,10 L25,5 L35,8 L50,3 L65,7 L80,5 L90,8 L100,12 L100,20 L0,20 Z"
+      fill="currentColor"
+      className="text-mitsumata-primary/20"
+      initial={{ pathLength: 0 }}
+      animate={{ pathLength: 1 }}
+      transition={{ duration: 2, ease: "easeInOut" }}
+    />
+  </svg>
+)
+
+// 予約ボタンコンポーネント
+const ReservationButton = () => {
+  const [isExpanded, setIsExpanded] = useState(false)
+  const { scrollY } = useScroll()
+
+  // デスクトップ版: スクロールに連動した微妙な浮遊感
+  const floatY = useTransform(scrollY, [0, 1000], [0, -10])
+
+  const handleClick = () => {
+    if (window.innerWidth < 768) {
+      // モバイル: 1回目のタップで展開、2回目で遷移
+      if (!isExpanded) {
+        setIsExpanded(true)
+        setTimeout(() => setIsExpanded(false), 3000)
+        return
+      }
+    }
+    window.location.href = "/reservations"
+  }
+
+  return (
+    <>
+      {/* デスクトップ版 - 右側中央の和紙風縦書きボタン */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        style={{ y: floatY }}
+        transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="hidden md:block fixed right-0 top-1/2 -translate-y-1/2 z-50"
+      >
+        <motion.button
+          whileHover={{ scale: 1.03, x: -3 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          onClick={handleClick}
+          className="
+            relative group
+            bg-white/96 hover:bg-white/99
+            text-black
+            px-5 py-14
+            backdrop-blur-sm
+            shadow-[0_2px_16px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.04)]
+            hover:shadow-[0_4px_24px_rgba(0,0,0,0.08),0_12px_48px_rgba(0,0,0,0.06)]
+            border-l-[3px] border-l-transparent
+            hover:border-l-mitsumata-primary
+            overflow-hidden
+            transition-all duration-500
+          "
+          style={{
+            backgroundImage: `
+              repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px),
+              repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px)
+            `,
+          }}
+        >
+          {/* 和紙風テクスチャ背景 */}
+          <div
+            className="absolute inset-0 opacity-30 pointer-events-none mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
+          />
+
+          {/* 山の稜線（ホバー時に出現） */}
+          <MountainRidgePath />
+
+          {/* 縦書きテキスト */}
+          <span className="relative z-10 flex flex-col items-center gap-3 [writing-mode:vertical-rl]">
+            <motion.span
+              whileHover={{ letterSpacing: "0.28em" }}
+              transition={{ duration: 0.4 }}
+              className="text-sm font-serif font-light tracking-[0.22em] text-black/90"
+            >
+              予約する
+            </motion.span>
+
+            {/* 装飾的な点 */}
+            <motion.span
+              animate={{
+                opacity: [0.3, 0.7, 0.3],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+              className="text-[6px] text-mitsumata-primary"
+            >
+              ●
+            </motion.span>
+
+            {/* アニメーション矢印 */}
+            <motion.span
+              animate={{ y: [0, 5, 0] }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+              className="text-[11px] opacity-30 group-hover:opacity-60 transition-opacity rotate-90"
+            >
+              →
+            </motion.span>
+          </span>
+
+          {/* ホバー時の光の流れ */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-b from-transparent via-mitsumata-primary/5 to-transparent opacity-0 group-hover:opacity-100"
+            animate={{
+              y: ["-100%", "200%"],
+            }}
+            transition={{
+              repeat: Number.POSITIVE_INFINITY,
+              duration: 3,
+              ease: "linear",
+            }}
+          />
+        </motion.button>
+      </motion.div>
+
+      {/* モバイル版 - 右下の展開式ボタン */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="md:hidden fixed bottom-6 right-6 z-50"
+      >
+        <motion.button
+          whileTap={{ scale: 0.92 }}
+          animate={
+            isExpanded
+              ? {
+                  width: "auto",
+                  borderRadius: "28px",
+                }
+              : {
+                  width: "56px",
+                  borderRadius: "28px",
+                }
+          }
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          onClick={handleClick}
+          className="
+            relative
+            h-14
+            bg-white/96
+            text-black
+            backdrop-blur-sm
+            shadow-[0_4px_20px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)]
+            active:shadow-[0_2px_12px_rgba(0,0,0,0.16)]
+            border-2 border-black/5
+            overflow-hidden
+            flex items-center justify-center
+            transition-shadow duration-300
+          "
+          style={{
+            backgroundImage: `
+              repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px),
+              repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px)
+            `,
+          }}
+        >
+          {/* 和紙風テクスチャ */}
+          <div
+            className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
+          />
+
+          {/* パルスアニメーション */}
+          <motion.div
+            className="absolute inset-0 bg-mitsumata-primary/5 rounded-[28px]"
+            animate={{
+              scale: [1, 1.15, 1],
+              opacity: [0.3, 0, 0.3],
+            }}
+            transition={{
+              repeat: Number.POSITIVE_INFINITY,
+              duration: 2.5,
+              ease: "easeInOut",
+            }}
+          />
+
+          {/* コンテンツ */}
+          <div className="relative z-10 flex items-center gap-2 px-5">
+            {!isExpanded ? (
+              // 縮小状態: 「予」の一文字
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-base font-serif font-medium tracking-wider"
+              >
+                予
+              </motion.span>
+            ) : (
+              // 展開状態: 全文
+              <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "auto" }}
+                exit={{ opacity: 0, width: 0 }}
+                className="flex items-center gap-2 whitespace-nowrap"
+              >
+                <span className="text-sm font-serif font-light tracking-[0.15em]">
+                  予約する
+                </span>
+                <motion.span
+                  animate={{ x: [0, 3, 0] }}
+                  transition={{
+                    repeat: Number.POSITIVE_INFINITY,
+                    duration: 1.5,
+                    ease: "easeInOut",
+                  }}
+                  className="text-xs opacity-50"
+                >
+                  →
+                </motion.span>
+              </motion.div>
+            )}
+          </div>
+
+          {/* 左端のアクセントライン */}
+          <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-gradient-to-b from-transparent via-mitsumata-primary/40 to-transparent" />
+        </motion.button>
+      </motion.div>
+    </>
+  )
+}
+
 // Ken Burns効果のアニメーションパターン
 type AnimationPattern = {
   scale: [number, number]
@@ -429,181 +677,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* 予約ボタン - 固定表示 */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed bottom-6 right-6 md:right-0 md:top-1/2 md:-translate-y-1/2 z-50"
-      >
-        {/* デスクトップ版 - エレガントな縦書きデザイン */}
-        <motion.button
-          whileHover={{ scale: 1.05, x: -4 }}
-          whileTap={{ scale: 0.97 }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="
-            hidden md:block
-            relative
-            bg-gradient-to-br from-white/98 via-white/95 to-white/92
-            hover:from-white hover:via-white/98 hover:to-white/95
-            text-black
-            px-6 py-16
-            backdrop-blur-xl
-            group
-            shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)]
-            hover:shadow-[0_12px_48px_rgba(0,0,0,0.16),0_4px_16px_rgba(0,0,0,0.12)]
-            border-l-2 border-black/8
-            overflow-hidden
-            transition-all duration-500
-          "
-        >
-          {/* 背景グラデーションアニメーション */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-b from-transparent via-black/[0.02] to-transparent opacity-0 group-hover:opacity-100"
-            animate={{
-              y: ["-100%", "200%"],
-            }}
-            transition={{
-              repeat: Number.POSITIVE_INFINITY,
-              duration: 3,
-              ease: "linear",
-            }}
-          />
-
-          {/* 左端のアクセントライン */}
-          <motion.div
-            className="absolute left-0 top-0 w-[2px] h-0 bg-gradient-to-b from-mitsumata-primary via-mitsumata-light to-mitsumata-primary group-hover:h-full transition-all duration-700"
-            initial={{ height: 0 }}
-            whileHover={{ height: "100%" }}
-          />
-
-          <span className="relative z-10 flex flex-col items-center gap-4 [writing-mode:vertical-rl]">
-            {/* メインテキスト */}
-            <motion.span
-              whileHover={{ letterSpacing: "0.3em" }}
-              transition={{ duration: 0.4 }}
-              className="inline-block text-sm font-serif font-light tracking-[0.25em]"
-            >
-              予約する
-            </motion.span>
-
-            {/* 装飾的な区切り線 */}
-            <motion.span
-              className="w-[1px] h-6 bg-gradient-to-b from-transparent via-black/30 to-transparent"
-              animate={{
-                opacity: [0.3, 0.8, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            />
-
-            {/* サブテキスト */}
-            <span className="text-[9px] font-sans font-light tracking-[0.2em] opacity-50 group-hover:opacity-80 transition-opacity duration-500">
-              RESERVE
-            </span>
-
-            {/* アニメーション矢印 */}
-            <motion.span
-              animate={{ y: [0, 6, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              className="text-xs opacity-40 group-hover:opacity-100 transition-opacity rotate-90 mt-2"
-            >
-              →
-            </motion.span>
-          </span>
-
-          {/* ホバー時のシャイン効果 */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100"
-            initial={{ x: "-100%", y: "-100%" }}
-            whileHover={{ x: "100%", y: "100%" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
-        </motion.button>
-
-        {/* モバイル版 - 右下のコンパクトFABデザイン */}
-        <motion.button
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.3 }}
-          className="
-            md:hidden
-            relative
-            w-16 h-16
-            bg-gradient-to-br from-white/98 via-white/95 to-white/92
-            hover:from-white hover:via-white/98 hover:to-white/95
-            text-black
-            rounded-2xl
-            backdrop-blur-xl
-            group
-            shadow-[0_8px_32px_rgba(0,0,0,0.15),0_2px_12px_rgba(0,0,0,0.1)]
-            active:shadow-[0_4px_16px_rgba(0,0,0,0.2)]
-            border-2 border-white/40
-            overflow-hidden
-            flex items-center justify-center
-            transition-all duration-300
-          "
-        >
-          {/* 背景パルス効果 */}
-          <motion.div
-            className="absolute inset-0 bg-black/[0.03] rounded-2xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.5, 0, 0.5],
-            }}
-            transition={{
-              repeat: Number.POSITIVE_INFINITY,
-              duration: 2.5,
-              ease: "easeInOut",
-            }}
-          />
-
-          {/* アイコンコンテンツ */}
-          <div className="relative z-10 flex flex-col items-center justify-center gap-0.5">
-            <motion.span
-              className="text-[11px] font-serif font-medium tracking-[0.15em]"
-              animate={{ opacity: [0.9, 1, 0.9] }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            >
-              予約
-            </motion.span>
-            <motion.span
-              animate={{ x: [0, 2, 0] }}
-              transition={{
-                duration: 1.5,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              className="text-[8px] opacity-40"
-            >
-              →
-            </motion.span>
-          </div>
-
-          {/* タップ時のリップル効果 */}
-          <motion.div
-            className="absolute inset-0 bg-black/10 rounded-2xl opacity-0"
-            whileTap={{ opacity: [0, 0.3, 0], scale: [0.8, 1.2] }}
-            transition={{ duration: 0.5 }}
-          />
-
-          {/* 角の装飾 */}
-          <div className="absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 border-black/10 rounded-tr-sm" />
-          <div className="absolute bottom-1 left-1 w-2 h-2 border-b-2 border-l-2 border-black/10 rounded-bl-sm" />
-
-          {/* グロー効果 */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/10 opacity-0 group-active:opacity-100 transition-opacity rounded-2xl" />
-        </motion.button>
-      </motion.div>
+      <ReservationButton />
 
       {/* スクロールインジケーター */}
       <motion.div
