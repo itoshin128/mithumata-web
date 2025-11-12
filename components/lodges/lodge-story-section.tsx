@@ -219,7 +219,7 @@ export function LodgeStorySection() {
               )}
 
               <FadeInSection delay={0.5}>
-                <div className={`flex ${lodge.id === "suisho" ? "justify-start ml-6 md:ml-12 lg:ml-20" : "justify-end mr-6 md:mr-12 lg:mr-20"} mt-24 md:mt-28 lg:mt-32 mb-8 md:mb-12`}>
+                <div className="flex justify-center mt-24 md:mt-28 lg:mt-32 mb-8 md:mb-12">
                   <Link href={lodge.link}>
                     <motion.button
                       whileHover={{ scale: 1.05, backgroundColor: "rgb(17, 24, 39)" }}
