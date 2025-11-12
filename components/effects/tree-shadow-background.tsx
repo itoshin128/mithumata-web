@@ -240,6 +240,7 @@ export default function TreeShadowBackground({
           overflow: hidden;
           pointer-events: none;
           z-index: 1;
+          background-color: var(--washi-bg-color);
         }
 
         .tree-shadow-layer {
@@ -256,24 +257,24 @@ export default function TreeShadowBackground({
           object-position: center;
         }
 
-        /* Deep shadow layer - multiply for dark shadows */
+        /* Deep shadow layer - 少し濃くして存在感を強化 */
         .tree-shadow-deep :global(.tree-shadow-image) {
-          mix-blend-mode: multiply;
-          filter: blur(3px) contrast(1.3) brightness(0.75);
+          mix-blend-mode: overlay;
+          filter: blur(3px) contrast(1.15) brightness(0.94);
           opacity: ${opacity.deep};
         }
 
-        /* Mid layer - darken for balanced tones */
+        /* Mid layer - soft-lightで柔らかく、少し濃く */
         .tree-shadow-mid :global(.tree-shadow-image) {
-          mix-blend-mode: darken;
-          filter: blur(5px) contrast(1.15) brightness(0.85);
+          mix-blend-mode: soft-light;
+          filter: blur(5px) contrast(1.08) brightness(0.95);
           opacity: ${opacity.mid};
         }
 
-        /* Light layer - soft-light for gentle dappled effect */
+        /* Light layer - 微妙に濃く */
         .tree-shadow-light :global(.tree-shadow-image) {
           mix-blend-mode: soft-light;
-          filter: blur(8px) brightness(0.92) saturate(0.9);
+          filter: blur(8px) brightness(0.97) saturate(0.95);
           opacity: ${opacity.light};
         }
 
@@ -289,9 +290,9 @@ export default function TreeShadowBackground({
           border-radius: 50%;
           background: radial-gradient(
             circle at center,
-            rgba(252, 248, 242, 0.85) 0%,
-            rgba(250, 246, 238, 0.55) 30%,
-            rgba(248, 244, 234, 0.28) 60%,
+            rgba(253, 249, 243, 0.85) 0%,
+            rgba(250, 246, 240, 0.55) 30%,
+            rgba(247, 243, 237, 0.28) 60%,
             transparent 100%
           );
           filter: blur(8px);
@@ -341,7 +342,7 @@ export default function TreeShadowBackground({
           height: 400px;
           background: radial-gradient(
             circle at center,
-            rgba(252, 248, 240, 0.38) 0%,
+            rgba(253, 249, 243, 0.38) 0%,
             transparent 70%
           );
           animation-delay: 0s;
@@ -354,7 +355,7 @@ export default function TreeShadowBackground({
           height: 350px;
           background: radial-gradient(
             circle at center,
-            rgba(250, 246, 236, 0.32) 0%,
+            rgba(250, 246, 240, 0.32) 0%,
             transparent 70%
           );
           animation-delay: -6s;
@@ -367,7 +368,7 @@ export default function TreeShadowBackground({
           height: 450px;
           background: radial-gradient(
             circle at center,
-            rgba(252, 249, 242, 0.28) 0%,
+            rgba(254, 250, 244, 0.28) 0%,
             transparent 70%
           );
           animation-delay: -12s;

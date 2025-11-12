@@ -4,8 +4,14 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Washi Background Colors - 和紙背景色（一元管理）*/
+  /* より明るく柔らかい黄色味のクリーム色 */
+  /* 注意：他の変数より先に定義する必要があります */
+  --washi-bg-color: #fcf6e3;
+
   /* Base Colors */
-  --background: oklch(0.98 0.005 85);
+  /* 和紙背景色を参照 - 一元管理された--washi-bg-colorを使用 */
+  --background: var(--washi-bg-color);
   --foreground: oklch(0.145 0 0);
 
   /* Card */
@@ -208,63 +214,17 @@
     overflow-x: hidden;
   }
 
+  html {
+    /* 和紙背景色をhtml要素にも適用 - 確実に全体に反映 */
+    background-color: var(--washi-bg-color) !important;
+  }
+
   body {
     @apply text-foreground;
     position: relative;
 
-    /* 参考サイトhachi.buttersand.comの和紙質感を極めて忠実に再現 - より強力で視覚的に明確な実装 */
-    /* ベースカラーを明るいオフホワイトに調整 */
-    background-color: #faf8f4;
-
-    /* 超強力な和紙の粒子感 - 参考サイトの質感を完全再現（ざらざら感は維持） */
-    /* 超微細な粒子レイヤー1 - 最も目立つ質感 */
-    /* 粒子の明度を上げて品のある雰囲気に調整 */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='12' seed='1'/%3E%3CfeColorMatrix values='0 0 0 0 0.32, 0 0 0 0 0.30, 0 0 0 0 0.26, 0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain1)' opacity='0.35'/%3E%3C/svg%3E"),
-      /* 粗めの粒子レイヤー2 */
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='grain2'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.8' numOctaves='10' seed='17'/%3E%3CfeColorMatrix values='0 0 0 0 0.28, 0 0 0 0 0.26, 0 0 0 0 0.22, 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23grain2)' opacity='0.30'/%3E%3C/svg%3E"),
-      /* 和紙繊維の方向性レイヤー3 */
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='fiber'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 2.1' numOctaves='8' seed='33'/%3E%3CfeColorMatrix values='0 0 0 0 0.30, 0 0 0 0 0.28, 0 0 0 0 0.24, 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23fiber)' opacity='0.28'/%3E%3C/svg%3E"),
-      /* 中粒度の質感レイヤー4 */
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='medium'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.3' numOctaves='9' seed='51'/%3E%3CfeColorMatrix values='0 0 0 0 0.33, 0 0 0 0 0.31, 0 0 0 0 0.27, 0 0 0 0.24 0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23medium)' opacity='0.32'/%3E%3C/svg%3E"),
-      /* 極細質感レイヤー5 */
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='ultra'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.2' numOctaves='14' seed='71'/%3E%3CfeColorMatrix values='0 0 0 0 0.35, 0 0 0 0 0.33, 0 0 0 0 0.29, 0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23ultra)' opacity='0.38'/%3E%3C/svg%3E"),
-      /* 紙の厚みと深さレイヤー6 */
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='depth'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='6' seed='89'/%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.97, 0 0 0 0 0.96, 0 0 0 0 0.94, 0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23depth)' opacity='0.32'/%3E%3C/svg%3E"),
-      /* 光のグラデーションをクリームトーンに調整 */
-      radial-gradient(ellipse 1400px 1200px at 15% 10%, rgba(252, 248, 242, 0.85) 0%, transparent 45%),
-      radial-gradient(ellipse 1200px 1400px at 85% 45%, rgba(250, 246, 238, 0.72) 0%, transparent 50%),
-      radial-gradient(ellipse 1500px 1000px at 50% 85%, rgba(251, 247, 240, 0.78) 0%, transparent 45%),
-      radial-gradient(ellipse 800px 900px at 25% 60%, rgba(252, 248, 243, 0.62) 0%, transparent 55%),
-      /* ベースグラデーションを淡いクリームトーンに調整 */
-      linear-gradient(
-        135deg,
-        #fcfaf6 0%,
-        #faf8f4 10%,
-        #fcfbf7 20%,
-        #f9f7f3 30%,
-        #fbf9f5 40%,
-        #f8f6f2 50%,
-        #faf8f4 60%,
-        #f7f5f1 70%,
-        #faf8f4 80%,
-        #f9f7f3 90%,
-        #fcfaf6 100%
-      );
-
-    /* サイズを最適化してより明確な質感に */
-    background-size: 100px 100px, /* 超微細な粒子 */ 150px 150px, /* 粗めの粒子 */ 280px 280px, /* 和紙繊維 */ 120px
-      120px, /* 中粒度 */ 80px 80px, /* 極細質感 */ 400px 400px, /* 紙の厚み */ 100% 100%, /* 光1 */ 100% 100%, /* 光2 */
-      100% 100%, /* 光3 */ 100% 100%, /* 光4 */ 100% 100%; /* ベース */
-
-    /* 位置をずらして自然な重なり */
-    background-position: 0 0, /* 超微細な粒子 */ 25px 25px, /* 粗めの粒子 */ 0 0, /* 和紙繊維 */ 50px 50px, /* 中粒度 */
-      12px 12px, /* 極細質感 */ 75px 75px, /* 紙の厚み */ center, /* 光1 */ center, /* 光2 */ center, /* 光3 */ center, /* 光4 */
-      center; /* ベース */
-
-    /* ブレンドモードを最適化 */
-    background-blend-mode: multiply, /* 超微細な粒子 */ overlay, /* 粗めの粒子 */ soft-light, /* 和紙繊維 */ multiply, /* 中粒度 */
-      overlay, /* 極細質感 */ soft-light, /* 紙の厚み */ normal, /* 光1 */ normal, /* 光2 */ normal, /* 光3 */ normal, /* 光4 */
-      normal; /* ベース */
+    /* 和紙背景色を適用 - CSS変数--washi-bg-colorで一元管理 */
+    background-color: var(--washi-bg-color) !important;
 
     font-feature-settings: "palt" 1, "pkna" 1;
     -webkit-font-smoothing: antialiased;
@@ -272,54 +232,23 @@
     letter-spacing: 0.03em;
   }
 
+  /* main要素にも和紙背景色を適用 - デスクトップで確実に反映 */
+  main {
+    background-color: var(--washi-bg-color) !important;
+  }
+
   /* .post-parallax-contentにも同じ強化された和紙背景を適用 */
   .post-parallax-content {
     position: relative;
-    /* ベースカラーを明るいオフホワイトに調整 */
-    background-color: #faf8f4;
+    /* 和紙背景色を適用 - CSS変数--washi-bg-colorで一元管理 */
+    background-color: var(--washi-bg-color) !important;
   }
 
-  .post-parallax-content::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-
-    /* post-parallax-content背景も明るく上品に調整（bodyと同様） */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='12' seed='1'/%3E%3CfeColorMatrix values='0 0 0 0 0.32, 0 0 0 0 0.30, 0 0 0 0 0.26, 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain1)' opacity='0.75'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='grain2'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.8' numOctaves='10' seed='17'/%3E%3CfeColorMatrix values='0 0 0 0 0.28, 0 0 0 0 0.26, 0 0 0 0 0.22, 0 0 0 0.35 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23grain2)' opacity='0.7'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='fiber'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 2.1' numOctaves='8' seed='33'/%3E%3CfeColorMatrix values='0 0 0 0 0.30, 0 0 0 0 0.28, 0 0 0 0 0.24, 0 0 0 0.32 0'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23fiber)' opacity='0.65'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='medium'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.3' numOctaves='9' seed='51'/%3E%3CfeColorMatrix values='0 0 0 0 0.33, 0 0 0 0 0.31, 0 0 0 0 0.27, 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23medium)' opacity='0.68'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='ultra'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.2' numOctaves='14' seed='71'/%3E%3CfeColorMatrix values='0 0 0 0 0.35, 0 0 0 0 0.33, 0 0 0 0 0.29, 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23ultra)' opacity='0.8'/%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='depth'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='6' seed='89'/%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.95, 0 0 0 0 0.93, 0 0 0 0 0.90, 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23depth)' opacity='0.6'/%3E%3C/svg%3E"),
-      radial-gradient(ellipse 1400px 1200px at 15% 10%, rgba(255, 254, 250, 0.98) 0%, transparent 45%),
-      radial-gradient(ellipse 1200px 1400px at 85% 45%, rgba(255, 252, 248, 0.85) 0%, transparent 50%),
-      radial-gradient(ellipse 1500px 1000px at 50% 85%, rgba(255, 253, 249, 0.92) 0%, transparent 45%),
-      radial-gradient(ellipse 800px 900px at 25% 60%, rgba(255, 253, 250, 0.7) 0%, transparent 55%),
-      linear-gradient(
-        135deg,
-        #fcfaf5 0%,
-        #f9f7f3 10%,
-        #fdfbf7 20%,
-        #f8f6f2 30%,
-        #fbf9f5 40%,
-        #f7f5f1 50%,
-        #faf8f4 60%,
-        #f6f4f0 70%,
-        #f9f7f3 80%,
-        #f8f6f2 90%,
-        #fbf9f5 100%
-      );
-
-    background-size: 100px 100px, 150px 150px, 280px 280px, 120px 120px, 80px 80px, 400px 400px, 100% 100%, 100% 100%,
-      100% 100%, 100% 100%, 100% 100%;
-    background-position: 0 0, 25px 25px, 0 0, 50px 50px, 12px 12px, 75px 75px, center, center, center, center, center;
-    background-blend-mode: multiply, overlay, soft-light, multiply, overlay, soft-light, normal, normal, normal, normal,
-      normal;
+  /* post-parallax-contentの背景色設定 */
+  .post-parallax-content {
+    position: relative;
+    /* 和紙背景色を適用 - CSS変数--washi-bg-colorで一元管理 */
+    background-color: var(--washi-bg-color) !important;
   }
 
   /* 微妙なアニメーション定義 */
