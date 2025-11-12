@@ -138,9 +138,9 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "overlay",
               filter: isMobile
-                ? "brightness(1.9) contrast(1.2) blur(8px)"
+                ? "brightness(1.7) contrast(1.3) blur(8px)"
                 : "brightness(2.1) contrast(1.3) blur(10px) saturate(1.2)",
-              opacity: isMobile ? 0.6 : 0.7,
+              opacity: isMobile ? 0.75 : 0.7,
             }}
             quality={isMobile ? 60 : 75}
             priority
@@ -167,9 +167,9 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "multiply",
               filter: isMobile
-                ? "brightness(0.25) contrast(1.6) blur(0.5px)"
+                ? "brightness(0.2) contrast(1.8) blur(0.5px)"
                 : "brightness(0.2) contrast(1.8) blur(1px) saturate(0.8)",
-              opacity: isMobile ? 0.7 : 0.85,
+              opacity: isMobile ? 0.85 : 0.85,
               transform: "scale(1.03)",
             }}
             quality={isMobile ? 60 : 75}
@@ -196,9 +196,9 @@ export function TreeShadowAnimation() {
             style={{
               mixBlendMode: "multiply",
               filter: isMobile
-                ? "brightness(0.4) contrast(1.4) blur(6px)"
+                ? "brightness(0.3) contrast(1.6) blur(6px)"
                 : "brightness(0.35) contrast(1.5) blur(10px) saturate(0.75)",
-              opacity: isMobile ? 0.6 : 0.7,
+              opacity: isMobile ? 0.75 : 0.7,
               transform: "scale(1.1) rotate(-1.5deg)",
             }}
             quality={isMobile ? 60 : 75}
