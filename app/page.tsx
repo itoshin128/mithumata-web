@@ -1,8 +1,7 @@
 import { getSeasonalTheme } from "@/lib/seasonal-theme"
 import { HeroParallaxSection } from "@/components/hero/hero-parallax-section"
 import { LodgeStorySection } from "@/components/lodges/lodge-story-section"
-import { LatestPostsSection } from "@/components/blog/latest-posts-section"
-import { FAQSection } from "@/components/faq/faq-section"
+import { InformationHub } from "@/components/information-hub/information-hub"
 import { SeasonalBanner } from "@/components/ui/seasonal-banner"
 import { WashiBackground } from "@/components/effects/washi-background"
 import TreeShadowBackground from "@/components/effects/tree-shadow-background"
@@ -33,14 +32,9 @@ export default function HomePage() {
           <LodgeStorySection />
         </div>
 
-        {/* 最新情報セクション */}
+        {/* インフォメーションハブ（お知らせ + FAQ統合セクション） */}
         <div className="relative z-10">
-          <LatestPostsSection />
-        </div>
-
-        {/* FAQセクション */}
-        <div className="relative z-10">
-          <FAQSection />
+          <InformationHub />
         </div>
       </div>
     </main>
