@@ -69,55 +69,70 @@ export function Header() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          {/* トランスペアレント ボタン */}
+          {/* エレガント サークル ボタン */}
           <motion.div
-            className="relative overflow-hidden rounded-2xl backdrop-blur-sm"
+            className="relative overflow-hidden rounded-full backdrop-blur-md"
             animate={{
-              width: isHovered ? 52 : 48,
-              height: isHovered ? 52 : 48,
-              backgroundColor: isHovered ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.08)",
+              width: isHovered ? 64 : 60,
+              height: isHovered ? 64 : 60,
+              backgroundColor: isHovered ? "rgba(255, 255, 255, 0.15)" : "rgba(255, 255, 255, 0.10)",
             }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
             style={{
-              border: "1px solid rgba(255, 255, 255, 0.2)",
+              border: "1.5px solid rgba(255, 255, 255, 0.25)",
               boxShadow: `
-                0 2px 8px rgba(0, 0, 0, 0.06),
-                0 0 0 1px rgba(0, 0, 0, 0.04),
-                inset 0 1px 1px rgba(255, 255, 255, 0.3)
+                0 4px 16px rgba(0, 0, 0, 0.08),
+                0 1px 3px rgba(0, 0, 0, 0.12),
+                0 0 0 1px rgba(0, 0, 0, 0.03),
+                inset 0 1px 2px rgba(255, 255, 255, 0.4),
+                inset 0 -1px 1px rgba(0, 0, 0, 0.02)
               `,
             }}
           >
-            {/* サブタルなグラデーション */}
+            {/* 外側の装飾リング */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none"
-              animate={{ opacity: isHovered ? 0.8 : 0.5 }}
+              className="absolute -inset-[2px] rounded-full pointer-events-none"
+              animate={{
+                opacity: isHovered ? 0.4 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+              style={{
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+              }}
+            />
+
+            {/* グラデーション オーバーレイ */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-white/15 via-white/5 to-transparent pointer-events-none"
+              animate={{ opacity: isHovered ? 1 : 0.7 }}
               transition={{ duration: 0.3 }}
             />
 
             {/* アイコン コンテナ */}
             <div className="relative w-full h-full flex items-center justify-center">
-              {/* エレガント ハンバーガーアイコン - 細い線 */}
+              {/* リファインド ハンバーガーアイコン */}
               <motion.div
                 className="flex flex-col"
-                animate={{ gap: isHovered ? "7px" : "6px" }}
-                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                animate={{ gap: isHovered ? "7px" : "6.5px" }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
                 {[0, 1, 2].map((index) => (
                   <motion.span
                     key={index}
-                    className="bg-gray-900 rounded-full"
+                    className="rounded-full"
                     animate={{
-                      width: isHovered ? [20, 18, 20][index] : [18, 16, 18][index],
-                      height: 1.5,
-                      opacity: isHovered ? 0.95 : 0.85,
+                      width: isHovered ? [24, 20, 24][index] : [22, 18, 22][index],
+                      height: isHovered ? 2 : 1.75,
+                      opacity: isHovered ? 0.95 : 0.88,
+                      backgroundColor: isHovered ? "rgba(30, 30, 30, 0.95)" : "rgba(30, 30, 30, 0.88)",
                     }}
                     transition={{
-                      duration: 0.25,
-                      delay: index * 0.03,
+                      duration: 0.3,
+                      delay: index * 0.035,
                       ease: [0.4, 0, 0.2, 1],
                     }}
                     style={{
-                      boxShadow: "0 0.5px 1px rgba(0, 0, 0, 0.2)",
+                      boxShadow: "0 0.5px 1.5px rgba(0, 0, 0, 0.25)",
                     }}
                   />
                 ))}
@@ -125,18 +140,18 @@ export function Header() {
             </div>
           </motion.div>
 
-          {/* ホバー時の控えめなラベル */}
+          {/* ホバー時の洗練されたラベル */}
           <AnimatePresence>
             {isHovered && (
               <motion.span
                 initial={{ opacity: 0, x: 8 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 8 }}
-                transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full mr-3 px-2.5 py-1 rounded-lg bg-white/90 backdrop-blur-md text-gray-900 text-[10px] font-medium tracking-wider whitespace-nowrap"
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full mr-3.5 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-md text-gray-900 text-[9px] font-semibold tracking-[0.15em] whitespace-nowrap"
                 style={{
-                  border: "1px solid rgba(0, 0, 0, 0.06)",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
+                  border: "1px solid rgba(0, 0, 0, 0.08)",
+                  boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06)",
                 }}
               >
                 MENU
