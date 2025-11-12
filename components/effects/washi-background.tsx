@@ -54,7 +54,7 @@ export function WashiBackground({ className = "", intensity = "medium", animated
       className={`absolute inset-0 pointer-events-none ${intensityStyles[intensity]} ${className}`}
       style={{
         zIndex: 0,
-        backgroundColor: "#fdf9f3",
+        backgroundColor: "var(--washi-bg-color)",
         backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain1b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='12' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.35, 0 0 0 0 0.33, 0 0 0 0 0.29, 0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain1b)' opacity='0.25'/%3E%3C/svg%3E"),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='grain2b'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.8' numOctaves='10' seed='27'/%3E%3CfeColorMatrix values='0 0 0 0 0.32, 0 0 0 0 0.30, 0 0 0 0 0.26, 0 0 0 0.24 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23grain2b)' opacity='0.22'/%3E%3C/svg%3E"),

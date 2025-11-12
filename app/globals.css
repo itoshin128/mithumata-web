@@ -5,8 +5,8 @@
 
 :root {
   /* Base Colors */
-  /* テスト：CSS変数--backgroundを直接変更して反映確認 */
-  --background: #f5e6e0;
+  /* 和紙背景色を参照 - 一元管理された--washi-bg-colorを使用 */
+  --background: var(--washi-bg-color);
   --foreground: oklch(0.145 0 0);
 
   /* Card */
@@ -61,6 +61,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Washi Background Colors - 和紙背景色（一元管理）*/
+  /* テスト用：濃いベージュで反映確認 - 最終的には淡いクリーム色に変更 */
+  --washi-bg-color: #d4a373;
 
   /* Mountain Lodge Colors - 三俣山荘グループ */
   --mitsumata-primary: #2d5016;
@@ -209,13 +213,17 @@
     overflow-x: hidden;
   }
 
+  html {
+    /* 和紙背景色をhtml要素にも適用 - 確実に全体に反映 */
+    background-color: var(--washi-bg-color) !important;
+  }
+
   body {
     @apply text-foreground;
     position: relative;
 
-    /* 参考サイトhachi.buttersand.comの和紙質感を極めて忠実に再現 - より強力で視覚的に明確な実装 */
-    /* テスト用：淡いピンクベージュに変更して反映を確認 + !importantで強制適用 */
-    background-color: #f5e6e0 !important;
+    /* 和紙背景色を適用 - CSS変数--washi-bg-colorで一元管理 */
+    background-color: var(--washi-bg-color) !important;
 
     /* 超強力な和紙の粒子感 - 参考サイトの質感を完全再現（ざらざら感は維持） */
     /* 一時的に無効化して背景色を確認 */
@@ -263,11 +271,16 @@
     letter-spacing: 0.03em;
   }
 
+  /* main要素にも和紙背景色を適用 - デスクトップで確実に反映 */
+  main {
+    background-color: var(--washi-bg-color) !important;
+  }
+
   /* .post-parallax-contentにも同じ強化された和紙背景を適用 */
   .post-parallax-content {
     position: relative;
-    /* テスト用：淡いピンクベージュに変更して反映を確認 + !importantで強制適用 */
-    background-color: #f5e6e0 !important;
+    /* 和紙背景色を適用 - CSS変数--washi-bg-colorで一元管理 */
+    background-color: var(--washi-bg-color) !important;
   }
 
   /* 一時的に無効化して背景色を確認 */
