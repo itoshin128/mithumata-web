@@ -128,9 +128,9 @@ export function FAQSection() {
           <Button
             size="lg"
             variant="outline"
-            className="px-8 py-6 text-base bg-transparent border-2 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md transition-all duration-300 group"
+            className="px-6 py-3 sm:px-8 sm:py-6 text-base font-semibold bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-gray-500 shadow-sm hover:shadow-lg active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
           >
-            <span className="flex items-center gap-3">
+            <span className="flex items-center gap-3 justify-center">
               <Mail className="w-5 h-5" />
               お問い合わせ
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

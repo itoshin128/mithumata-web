@@ -292,12 +292,12 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="px-8 py-6 text-lg text-white hover:shadow-lg hover:scale-[1.02] transition-all duration-300 group"
+                className="px-6 py-3 sm:px-8 sm:py-6 text-base sm:text-lg text-white font-semibold shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
                 style={{
                   background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.primary}dd 100%)`,
                 }}
               >
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-2 justify-center">
                   <Phone className="w-5 h-5" />
                   予約する
                 </span>
@@ -305,9 +305,9 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
               <Button
                 size="lg"
                 variant="outline"
-                className="px-8 py-6 text-lg bg-transparent border-2 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md transition-all duration-300 group"
+                className="px-6 py-3 sm:px-8 sm:py-6 text-base sm:text-lg font-semibold bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-gray-500 shadow-sm hover:shadow-lg active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
               >
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-2 justify-center">
                   <Mail className="w-5 h-5" />
                   お問い合わせ
                 </span>

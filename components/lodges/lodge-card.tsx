@@ -93,22 +93,25 @@ export function LodgeCard({ lodge, elevation, capacity, location, description, f
         {/* CTAボタン */}
         <div className="flex gap-3">
           <Button
-            className="flex-1 text-white hover:shadow-lg hover:scale-[1.02] transition-all duration-300 group/detail"
+            className="flex-1 text-white font-semibold shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group/detail min-h-[44px] py-3"
             style={{
               background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.primary}dd 100%)`,
             }}
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 justify-center">
               詳細を見る
               <ArrowRight className="w-4 h-4 group-hover/detail:translate-x-1 transition-transform" />
             </span>
           </Button>
           <Button
             variant="outline"
-            className="flex-1 hover:bg-gray-50 bg-transparent border-2 hover:border-gray-300 transition-all duration-300 group/reserve"
-            style={{ borderColor: `${theme.primary}40` }}
+            className="flex-1 font-semibold bg-white hover:bg-gray-50 border-2 hover:border-gray-400 shadow-sm hover:shadow-md active:scale-[0.98] transition-all duration-300 group/reserve min-h-[44px] py-3"
+            style={{
+              borderColor: theme.primary,
+              color: theme.primary
+            }}
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 justify-center">
               <Phone className="w-4 h-4" />
               予約する
             </span>
