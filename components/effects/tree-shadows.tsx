@@ -172,7 +172,7 @@ export function TreeShadows() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse 850px 650px at 30% 20%, rgba(255, 250, 240, 0.95) 0%, transparent 70%)",
+                "radial-gradient(ellipse 850px 650px at 30% 20%, rgba(254, 250, 244, 0.95) 0%, transparent 70%)",
               mixBlendMode: "soft-light",
             }}
           />
@@ -193,12 +193,12 @@ export function TreeShadows() {
               height: `${Math.random() * 4 + 2}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              background: "rgba(255, 248, 220, 0.8)",
+              background: "rgba(253, 249, 243, 0.8)",
               animation: `floatLight ${Math.random() * 25 + 35}s ease-in-out infinite`,
               animationDelay: `${Math.random() * 12}s`,
               willChange: "transform",
               transform: "translate3d(0, 0, 0)",
-              boxShadow: isMobile ? "0 0 8px rgba(255, 248, 200, 0.6)" : "0 0 12px rgba(255, 248, 200, 0.75)",
+              boxShadow: isMobile ? "0 0 8px rgba(250, 246, 240, 0.6)" : "0 0 12px rgba(250, 246, 240, 0.75)",
             }}
           />
         ))}

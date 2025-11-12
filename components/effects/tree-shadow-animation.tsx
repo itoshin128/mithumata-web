@@ -223,10 +223,10 @@ export function TreeShadowAnimation() {
               top: `${particle.y}%`,
               width: `${particle.size}px`,
               height: `${particle.size}px`,
-              background: "radial-gradient(circle, rgba(255, 250, 235, 0.9) 0%, rgba(255, 248, 220, 0.6) 40%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(255, 251, 245, 0.9) 0%, rgba(253, 249, 243, 0.6) 40%, transparent 70%)",
               boxShadow: isMobile
-                ? "0 0 8px rgba(255, 248, 200, 0.6)"
-                : "0 0 15px rgba(255, 248, 200, 0.8), 0 0 30px rgba(255, 250, 220, 0.4)",
+                ? "0 0 8px rgba(250, 246, 240, 0.6)"
+                : "0 0 15px rgba(250, 246, 240, 0.8), 0 0 30px rgba(254, 250, 244, 0.4)",
               mixBlendMode: "screen",
               filter: "blur(2px)",
               willChange: "transform, opacity",
@@ -262,8 +262,8 @@ export function TreeShadowAnimation() {
             className="relative w-full h-full"
             style={{
               background: `
-                radial-gradient(ellipse 900px 700px at 25% 20%, rgba(255, 255, 235, 0.08) 0%, transparent 55%),
-                radial-gradient(ellipse 700px 1000px at 75% 55%, rgba(250, 248, 225, 0.06) 0%, transparent 50%)
+                radial-gradient(ellipse 900px 700px at 25% 20%, rgba(255, 251, 245, 0.08) 0%, transparent 55%),
+                radial-gradient(ellipse 700px 1000px at 75% 55%, rgba(253, 249, 243, 0.06) 0%, transparent 50%)
               `,
               mixBlendMode: "screen",
               filter: "blur(25px)",
