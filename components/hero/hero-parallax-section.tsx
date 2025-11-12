@@ -11,51 +11,46 @@ import { useEffect, useRef, useState } from "react"
 const heroImagesDesktop = [
   {
     id: 1,
-    url: "/images/hero/washibadake-ridgeline.jpg",
-    alt: "鷲羽岳の美しい稜線と北アルプスの山々",
+    url: "/images/hero/01.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
   },
   {
     id: 2,
-    url: "/images/lodges/mitsumata-2.jpg",
-    alt: "三俣山荘と美しい山の稜線を見下ろす景色",
+    url: "/images/hero/02.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
   },
   {
     id: 3,
-    url: "/images/lodges/yumata-1.jpg",
-    alt: "湯俣渓谷のエメラルドグリーンの川と迫力ある岩壁",
+    url: "/images/hero/03.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
   },
   {
     id: 4,
-    url: "/images/lodges/suisho-2.jpg",
-    alt: "水晶小屋と高山の雄大な景色",
+    url: "/images/hero/04.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
   },
   {
     id: 5,
-    url: "/images/lodges/mitsumata-3.jpg",
-    alt: "三俣山荘の外観、雲海と山々が背景",
-  },
-  {
-    id: 6,
-    url: "/images/lodges/yumata-2.jpg",
-    alt: "湯俣山荘周辺の自然豊かな景色",
+    url: "/images/hero/05.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
   },
 ]
 
 const heroImagesMobile = [
   {
     id: 1,
-    url: "/images/hero/washibadake-ridgeline.jpg",
-    alt: "鷲羽岳の美しい稜線と北アルプスの山々",
+    url: "/images/hero/01_mobile.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
   },
   {
     id: 2,
-    url: "/images/lodges/mitsumata-1.jpg",
-    alt: "三俣山荘と山の稜線を見下ろす景色",
+    url: "/images/hero/03_mobile.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
   },
   {
     id: 3,
-    url: "/images/lodges/yumata-1.jpg",
-    alt: "湯俣渓谷のエメラルドグリーンの川と岩壁",
+    url: "/images/hero/04_mobile.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
   },
 ]
 
