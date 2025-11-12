@@ -131,7 +131,7 @@ export function TreeShadowAnimation() {
       >
         <div className="relative w-full h-full">
           <Image
-            src="/images/tree-shadow.jpg"
+            src={isMobile ? "/images/treeshadow_mobile.png" : "/images/tree-shadow.jpg"}
             alt=""
             fill
             className="object-cover"
@@ -160,7 +160,7 @@ export function TreeShadowAnimation() {
       >
         <div className="relative w-full h-full">
           <Image
-            src="/images/tree-shadow.jpg"
+            src={isMobile ? "/images/treeshadow_mobile.png" : "/images/tree-shadow.jpg"}
             alt=""
             fill
             className="object-cover"
@@ -189,7 +189,7 @@ export function TreeShadowAnimation() {
       >
         <div className="relative w-full h-full">
           <Image
-            src="/images/tree-shadow.jpg"
+            src={isMobile ? "/images/treeshadow_mobile.png" : "/images/tree-shadow.jpg"}
             alt=""
             fill
             className="object-cover"
