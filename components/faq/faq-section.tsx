@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-
+import Link from "next/link"
+import { motion } from "framer-motion"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Calendar, Utensils, Home, MapPin, Mail, ArrowRight } from "lucide-react"
@@ -69,73 +69,136 @@ const faqData = [
   },
 ]
 
+function SectionDivider() {
+  return (
+    <div className="flex items-center justify-center my-16 md:my-20 lg:my-24">
+      <div className="flex items-center gap-4">
+        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
+        <div className="flex gap-2">
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-40"></div>
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-60"></div>
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-80"></div>
+        </div>
+        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
+      </div>
+    </div>
+  )
+}
+
 export function FAQSection() {
   return (
-    <section className="relative z-20 py-20 lg:py-24">
-      <div className="container mx-auto px-4 max-w-4xl">
-        {/* セクションヘッダー */}
-        <FadeInSection className="text-center mb-16">
-          <h2 className="text-5xl md:text-4xl sm:text-3xl font-bold mb-6 text-gray-900 text-balance">よくあるご質問</h2>
-          <p className="text-xl md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            お問い合わせの多いご質問をまとめました。
-            <br className="hidden md:block" />
-            その他のご質問は、お気軽にお問い合わせください。
-          </p>
+    <section className="relative py-20 md:py-32 lg:py-40">
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
+        {/* Section Header - Centered */}
+        <FadeInSection delay={0.1}>
+          <div className="text-center mb-16 md:mb-20 lg:mb-24 max-w-3xl mx-auto">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance">
+              よくあるご質問
+            </h2>
+            <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
+              お問い合わせの多いご質問をまとめました。
+              <br className="hidden md:block" />
+              その他のご質問は、お気軽にお問い合わせください。
+            </p>
+          </div>
         </FadeInSection>
 
-        {/* FAQ アコーディオン */}
-        <FadeInSection delay={0.2}>
-          <div className="space-y-8">
-            {faqData.map((category, categoryIndex) => {
-              const Icon = category.icon
-              return (
-                <div key={categoryIndex} className="bg-gray-50 rounded-2xl p-6 md:p-8">
-                  {/* カテゴリヘッダー */}
-                  <div className="flex items-center gap-3 mb-6">
-                    <div
-                      className="w-10 h-10 rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: `${category.color}20` }}
+        {/* FAQ Categories - Centered Simple Layout */}
+        <div className="space-y-12 md:space-y-16 lg:space-y-20">
+          {faqData.map((category, categoryIndex) => {
+            const Icon = category.icon
+
+            return (
+              <FadeInSection key={categoryIndex} delay={categoryIndex * 0.1 + 0.2}>
+                <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 md:p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow duration-300">
+                  {/* Category Header */}
+                  <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 360 }}
+                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                      className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-md"
+                      style={{
+                        backgroundColor: `${category.color}15`,
+                        borderColor: category.color,
+                        borderWidth: "2px",
+                      }}
                     >
-                      <Icon className="w-5 h-5" style={{ color: category.color }} />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900">{category.category}</h3>
+                      <Icon className="w-5 h-5 md:w-6 md:h-6" style={{ color: category.color }} />
+                    </motion.div>
+
+                    <h3
+                      className="text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.06em] leading-[1.6]"
+                      style={{ color: category.color }}
+                    >
+                      {category.category}
+                    </h3>
                   </div>
 
-                  {/* 質問リスト */}
-                  <Accordion type="single" collapsible className="space-y-4">
+                  {/* Questions Accordion */}
+                  <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
                     {category.questions.map((item, questionIndex) => (
                       <AccordionItem
                         key={questionIndex}
                         value={`${categoryIndex}-${questionIndex}`}
-                        className="bg-white rounded-lg px-6 border-none shadow-sm"
+                        className="border-none"
                       >
-                        <AccordionTrigger className="text-left font-medium text-gray-900 hover:no-underline py-4">
-                          {item.q}
+                        <AccordionTrigger
+                          className="
+                            text-left font-serif font-light text-sm md:text-base lg:text-lg
+                            tracking-[0.04em] leading-[1.6]
+                            text-gray-900 hover:no-underline
+                            py-4 md:py-5
+                            border-b border-gray-200
+                            hover:border-gray-400
+                            transition-all duration-300
+                          "
+                        >
+                          <span className="pr-4">{item.q}</span>
                         </AccordionTrigger>
-                        <AccordionContent className="text-gray-700 leading-relaxed pb-4">{item.a}</AccordionContent>
+                        <AccordionContent className="text-sm md:text-base text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
+                          {item.a}
+                        </AccordionContent>
                       </AccordionItem>
                     ))}
                   </Accordion>
                 </div>
-              )
-            })}
-          </div>
-        </FadeInSection>
+              </FadeInSection>
+            )
+          })}
+        </div>
 
-        {/* お問い合わせCTA */}
-        <FadeInSection delay={0.4} className="text-center mt-12">
-          <p className="text-gray-600 mb-6">その他のご質問がございましたら、お気軽にお問い合わせください。</p>
-          <Button
-            size="lg"
-            variant="outline"
-            className="px-6 py-3 sm:px-8 sm:py-6 text-base font-semibold bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-gray-500 shadow-sm hover:shadow-lg active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
-          >
-            <span className="flex items-center gap-3 justify-center">
-              <Mail className="w-5 h-5" />
-              お問い合わせ
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </Button>
+        <SectionDivider />
+
+        {/* Contact CTA */}
+        <FadeInSection delay={0.5}>
+          <div className="text-center mt-12 md:mt-16">
+            <p className="text-sm md:text-base text-gray-700 mb-8 md:mb-10 font-serif font-light tracking-[0.04em] leading-[1.9]">
+              その他のご質問がございましたら、お気軽にお問い合わせください。
+            </p>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05, backgroundColor: "rgb(17, 24, 39)" }}
+                whileTap={{ scale: 0.95 }}
+                className="
+                  group
+                  inline-flex items-center gap-3
+                  px-10 py-5
+                  border border-gray-900
+                  rounded-full
+                  text-gray-900
+                  font-light
+                  tracking-[0.2em]
+                  transition-all duration-500
+                  hover:text-white
+                  hover:shadow-xl
+                "
+              >
+                <Mail className="w-4 h-4" />
+                <span className="text-sm">お問い合わせ</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
+              </motion.button>
+            </Link>
+          </div>
         </FadeInSection>
       </div>
     </section>

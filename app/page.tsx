@@ -33,7 +33,7 @@ export default function HomePage() {
           <LodgeStorySection />
         </div>
 
-        {/* 最新情報セクション */}
+        {/* お知らせセクション */}
         <div className="relative z-10">
           <LatestPostsSection />
         </div>
