@@ -433,34 +433,175 @@ export function HeroParallaxSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 z-50"
+        className="fixed bottom-6 right-6 md:right-0 md:top-1/2 md:-translate-y-1/2 z-50"
       >
+        {/* デスクトップ版 - エレガントな縦書きデザイン */}
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.3 }}
-          className="bg-white/95 hover:bg-white text-black px-8 py-3 md:px-5 md:py-12 backdrop-blur-md group shadow-2xl border border-black/5 md:border-l md:border-t-0 md:border-b-0 md:border-r-0 rounded-full md:rounded-none"
+          whileHover={{ scale: 1.05, x: -4 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="
+            hidden md:block
+            relative
+            bg-gradient-to-br from-white/98 via-white/95 to-white/92
+            hover:from-white hover:via-white/98 hover:to-white/95
+            text-black
+            px-6 py-16
+            backdrop-blur-xl
+            group
+            shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)]
+            hover:shadow-[0_12px_48px_rgba(0,0,0,0.16),0_4px_16px_rgba(0,0,0,0.12)]
+            border-l-2 border-black/8
+            overflow-hidden
+            transition-all duration-500
+          "
         >
-          <span className="flex items-center gap-2 md:flex-col md:items-center md:gap-3 text-xs font-serif font-light tracking-[0.15em] md:tracking-[0.2em] md:[writing-mode:vertical-rl]">
+          {/* 背景グラデーションアニメーション */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-b from-transparent via-black/[0.02] to-transparent opacity-0 group-hover:opacity-100"
+            animate={{
+              y: ["-100%", "200%"],
+            }}
+            transition={{
+              repeat: Number.POSITIVE_INFINITY,
+              duration: 3,
+              ease: "linear",
+            }}
+          />
+
+          {/* 左端のアクセントライン */}
+          <motion.div
+            className="absolute left-0 top-0 w-[2px] h-0 bg-gradient-to-b from-mitsumata-primary via-mitsumata-light to-mitsumata-primary group-hover:h-full transition-all duration-700"
+            initial={{ height: 0 }}
+            whileHover={{ height: "100%" }}
+          />
+
+          <span className="relative z-10 flex flex-col items-center gap-4 [writing-mode:vertical-rl]">
+            {/* メインテキスト */}
             <motion.span
-              whileHover={{ letterSpacing: "0.25em" }}
-              transition={{ duration: 0.3 }}
-              className="inline-block"
+              whileHover={{ letterSpacing: "0.3em" }}
+              transition={{ duration: 0.4 }}
+              className="inline-block text-sm font-serif font-light tracking-[0.25em]"
             >
               予約する
             </motion.span>
+
+            {/* 装飾的な区切り線 */}
             <motion.span
-              animate={{ x: [0, 4, 0] }}
+              className="w-[1px] h-6 bg-gradient-to-b from-transparent via-black/30 to-transparent"
+              animate={{
+                opacity: [0.3, 0.8, 0.3],
+              }}
               transition={{
                 duration: 2,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-              className="text-[10px] opacity-40 group-hover:opacity-100 transition-opacity md:rotate-90"
+            />
+
+            {/* サブテキスト */}
+            <span className="text-[9px] font-sans font-light tracking-[0.2em] opacity-50 group-hover:opacity-80 transition-opacity duration-500">
+              RESERVE
+            </span>
+
+            {/* アニメーション矢印 */}
+            <motion.span
+              animate={{ y: [0, 6, 0] }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+              className="text-xs opacity-40 group-hover:opacity-100 transition-opacity rotate-90 mt-2"
             >
               →
             </motion.span>
           </span>
+
+          {/* ホバー時のシャイン効果 */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100"
+            initial={{ x: "-100%", y: "-100%" }}
+            whileHover={{ x: "100%", y: "100%" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
+        </motion.button>
+
+        {/* モバイル版 - 右下のコンパクトFABデザイン */}
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          transition={{ duration: 0.3 }}
+          className="
+            md:hidden
+            relative
+            w-16 h-16
+            bg-gradient-to-br from-white/98 via-white/95 to-white/92
+            hover:from-white hover:via-white/98 hover:to-white/95
+            text-black
+            rounded-2xl
+            backdrop-blur-xl
+            group
+            shadow-[0_8px_32px_rgba(0,0,0,0.15),0_2px_12px_rgba(0,0,0,0.1)]
+            active:shadow-[0_4px_16px_rgba(0,0,0,0.2)]
+            border-2 border-white/40
+            overflow-hidden
+            flex items-center justify-center
+            transition-all duration-300
+          "
+        >
+          {/* 背景パルス効果 */}
+          <motion.div
+            className="absolute inset-0 bg-black/[0.03] rounded-2xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.5, 0, 0.5],
+            }}
+            transition={{
+              repeat: Number.POSITIVE_INFINITY,
+              duration: 2.5,
+              ease: "easeInOut",
+            }}
+          />
+
+          {/* アイコンコンテンツ */}
+          <div className="relative z-10 flex flex-col items-center justify-center gap-0.5">
+            <motion.span
+              className="text-[11px] font-serif font-medium tracking-[0.15em]"
+              animate={{ opacity: [0.9, 1, 0.9] }}
+              transition={{
+                duration: 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+            >
+              予約
+            </motion.span>
+            <motion.span
+              animate={{ x: [0, 2, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+              className="text-[8px] opacity-40"
+            >
+              →
+            </motion.span>
+          </div>
+
+          {/* タップ時のリップル効果 */}
+          <motion.div
+            className="absolute inset-0 bg-black/10 rounded-2xl opacity-0"
+            whileTap={{ opacity: [0, 0.3, 0], scale: [0.8, 1.2] }}
+            transition={{ duration: 0.5 }}
+          />
+
+          {/* 角の装飾 */}
+          <div className="absolute top-1 right-1 w-2 h-2 border-t-2 border-r-2 border-black/10 rounded-tr-sm" />
+          <div className="absolute bottom-1 left-1 w-2 h-2 border-b-2 border-l-2 border-black/10 rounded-bl-sm" />
+
+          {/* グロー効果 */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/10 opacity-0 group-active:opacity-100 transition-opacity rounded-2xl" />
         </motion.button>
       </motion.div>
 
