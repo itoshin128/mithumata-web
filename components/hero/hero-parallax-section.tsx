@@ -143,7 +143,6 @@ export function HeroParallaxSection() {
                   <div className="relative h-full w-full overflow-hidden">
                     <motion.div
                       className="relative h-full w-full"
-                      key={`mobile-${image.id}-${activeSliderMobile === index ? "active" : "inactive"}`}
                       initial={{
                         scale: image.animation.scale[0],
                         x: image.animation.x[0],
@@ -156,15 +155,11 @@ export function HeroParallaxSection() {
                               x: image.animation.x[1],
                               y: image.animation.y[1],
                             }
-                          : {
-                              scale: image.animation.scale[0],
-                              x: image.animation.x[0],
-                              y: image.animation.y[0],
-                            }
+                          : undefined
                       }
                       transition={{
-                        duration: 6,
-                        delay: 2.5,
+                        duration: 4,
+                        delay: activeSliderMobile === index ? 2.5 : 0,
                         ease: "easeInOut",
                       }}
                     >
@@ -207,7 +202,6 @@ export function HeroParallaxSection() {
                 <div className="relative h-full w-full overflow-hidden">
                   <motion.div
                     className="relative h-full w-full"
-                    key={`desktop-${image.id}-${activeSlideDesktop === index ? "active" : "inactive"}`}
                     initial={{
                       scale: image.animation.scale[0],
                       x: image.animation.x[0],
@@ -220,15 +214,11 @@ export function HeroParallaxSection() {
                             x: image.animation.x[1],
                             y: image.animation.y[1],
                           }
-                        : {
-                            scale: image.animation.scale[0],
-                            x: image.animation.x[0],
-                            y: image.animation.y[0],
-                          }
+                        : undefined
                     }
                     transition={{
-                      duration: 6,
-                      delay: 2.5,
+                      duration: 4,
+                      delay: activeSlideDesktop === index ? 2.5 : 0,
                       ease: "easeInOut",
                     }}
                   >
