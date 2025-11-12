@@ -63,8 +63,8 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* Washi Background Colors - 和紙背景色（一元管理）*/
-  /* テスト用：濃いベージュで反映確認 - 最終的には淡いクリーム色に変更 */
-  --washi-bg-color: #d4a373;
+  /* 品のある、淡めのクリーム色 */
+  --washi-bg-color: #fdf9f3;
 
   /* Mountain Lodge Colors - 三俣山荘グループ */
   --mitsumata-primary: #2d5016;
