@@ -8,31 +8,43 @@ import "swiper/css"
 import "swiper/css/effect-fade"
 import { useEffect, useRef, useState } from "react"
 
+// Ken Burns効果のアニメーションパターン
+type AnimationPattern = {
+  scale: [number, number]
+  x: [string, string]
+  y: [string, string]
+}
+
 const heroImagesDesktop = [
   {
     id: 1,
     url: "/images/hero/01.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1, 1.15], x: ["0%", "3%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 2,
     url: "/images/hero/02.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.15, 1], x: ["3%", "-3%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 3,
     url: "/images/hero/03.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1, 1.12], x: ["2%", "-2%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 4,
     url: "/images/hero/04.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1, 1.18], x: ["0%", "0%"], y: ["2%", "-2%"] } as AnimationPattern,
   },
   {
     id: 5,
     url: "/images/hero/05.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1, 1.14], x: ["0%", "0%"], y: ["-2%", "3%"] } as AnimationPattern,
   },
 ]
 
@@ -41,16 +53,19 @@ const heroImagesMobile = [
     id: 1,
     url: "/images/hero/01_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1, 1.12], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 2,
     url: "/images/hero/03_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.12, 1], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 3,
     url: "/images/hero/04_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1, 1.15], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
 ]
 
@@ -122,7 +137,25 @@ export function HeroParallaxSection() {
             >
               {heroImagesMobile.map((image) => (
                 <SwiperSlide key={image.id}>
-                  <div className="relative h-full w-full">
+                  <motion.div
+                    className="relative h-full w-full"
+                    initial={{
+                      scale: image.animation.scale[0],
+                      x: image.animation.x[0],
+                      y: image.animation.y[0],
+                    }}
+                    animate={{
+                      scale: image.animation.scale[1],
+                      x: image.animation.x[1],
+                      y: image.animation.y[1],
+                    }}
+                    transition={{
+                      duration: 10,
+                      ease: "easeInOut",
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                    }}
+                  >
                     <Image
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
@@ -132,7 +165,7 @@ export function HeroParallaxSection() {
                       quality={100}
                       sizes="100vw"
                     />
-                  </div>
+                  </motion.div>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -157,7 +190,25 @@ export function HeroParallaxSection() {
           >
             {heroImagesDesktop.map((image) => (
               <SwiperSlide key={image.id}>
-                <div className="relative h-full w-full">
+                <motion.div
+                  className="relative h-full w-full"
+                  initial={{
+                    scale: image.animation.scale[0],
+                    x: image.animation.x[0],
+                    y: image.animation.y[0],
+                  }}
+                  animate={{
+                    scale: image.animation.scale[1],
+                    x: image.animation.x[1],
+                    y: image.animation.y[1],
+                  }}
+                  transition={{
+                    duration: 10,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                  }}
+                >
                   <Image
                     src={image.url || "/placeholder.svg"}
                     alt={image.alt}
@@ -167,7 +218,7 @@ export function HeroParallaxSection() {
                     quality={100}
                     sizes="100vw"
                   />
-                </div>
+                </motion.div>
               </SwiperSlide>
             ))}
           </Swiper>
