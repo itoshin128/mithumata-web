@@ -153,6 +153,24 @@ export default function TreeShadowBackground({
       className={`tree-shadow-background ${className}`}
       aria-hidden="true"
     >
+      {/* Deep shadow layer - 最も濃い影 */}
+      <div
+        className="tree-shadow-layer tree-shadow-deep"
+        style={{
+          ...getParallaxStyle(0.3),
+        }}
+      >
+        <Image
+          src="/images/tree-shadow.jpg"
+          alt=""
+          fill
+          className="tree-shadow-image"
+          priority
+          quality={90}
+          sizes="100vw"
+        />
+      </div>
+
       {/* Mid shadow layer - 中間の影 */}
       <div
         className="tree-shadow-layer tree-shadow-mid"
@@ -222,6 +240,7 @@ export default function TreeShadowBackground({
           overflow: hidden;
           pointer-events: none;
           z-index: 1;
+          background-color: var(--washi-bg-color);
         }
 
         .tree-shadow-layer {
@@ -236,6 +255,13 @@ export default function TreeShadowBackground({
         :global(.tree-shadow-image) {
           object-fit: cover;
           object-position: center;
+        }
+
+        /* Deep shadow layer - 明るい背景色を保つためにoverlayに変更 */
+        .tree-shadow-deep :global(.tree-shadow-image) {
+          mix-blend-mode: overlay;
+          filter: blur(3px) contrast(1.1) brightness(0.98);
+          opacity: ${opacity.deep};
         }
 
         /* Mid layer - soft-lightで柔らかく */
