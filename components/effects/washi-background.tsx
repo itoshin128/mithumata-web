@@ -54,7 +54,7 @@ export function WashiBackground({ className = "", intensity = "medium", animated
       className={`absolute inset-0 pointer-events-none ${intensityStyles[intensity]} ${className}`}
       style={{
         zIndex: 0,
-        backgroundColor: "#fffef9",
+        backgroundColor: "#fdf9f3",
         backgroundImage: `
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='grain1b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='12' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.35, 0 0 0 0 0.33, 0 0 0 0 0.29, 0 0 0 0.28 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23grain1b)' opacity='0.25'/%3E%3C/svg%3E"),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='grain2b'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.8' numOctaves='10' seed='27'/%3E%3CfeColorMatrix values='0 0 0 0 0.32, 0 0 0 0 0.30, 0 0 0 0 0.26, 0 0 0 0.24 0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23grain2b)' opacity='0.22'/%3E%3C/svg%3E"),
@@ -62,23 +62,23 @@ export function WashiBackground({ className = "", intensity = "medium", animated
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='mediumb'%3E%3CfeTurbulence type='turbulence' baseFrequency='1.3' numOctaves='9' seed='61'/%3E%3CfeColorMatrix values='0 0 0 0 0.37, 0 0 0 0 0.35, 0 0 0 0 0.31, 0 0 0 0.26 0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23mediumb)' opacity='0.23'/%3E%3C/svg%3E"),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='ultrab'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.2' numOctaves='14' seed='81'/%3E%3CfeColorMatrix values='0 0 0 0 0.39, 0 0 0 0 0.37, 0 0 0 0 0.33, 0 0 0 0.3 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23ultrab)' opacity='0.28'/%3E%3C/svg%3E"),
           url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='depthb'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.025' numOctaves='6' seed='99'/%3E%3CfeGaussianBlur stdDeviation='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.98, 0 0 0 0 0.97, 0 0 0 0 0.95, 0 0 0 0.32 0'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23depthb)' opacity='0.22'/%3E%3C/svg%3E"),
-          radial-gradient(ellipse 1400px 1200px at 15% 10%, rgba(255, 254, 251, 0.45) 0%, transparent 45%),
-          radial-gradient(ellipse 1200px 1400px at 85% 45%, rgba(255, 253, 249, 0.38) 0%, transparent 50%),
-          radial-gradient(ellipse 1500px 1000px at 50% 85%, rgba(255, 254, 250, 0.42) 0%, transparent 45%),
-          radial-gradient(ellipse 800px 900px at 25% 60%, rgba(255, 254, 251, 0.32) 0%, transparent 55%),
+          radial-gradient(ellipse 1400px 1200px at 15% 10%, rgba(253, 249, 243, 0.45) 0%, transparent 45%),
+          radial-gradient(ellipse 1200px 1400px at 85% 45%, rgba(250, 246, 240, 0.38) 0%, transparent 50%),
+          radial-gradient(ellipse 1500px 1000px at 50% 85%, rgba(254, 250, 244, 0.42) 0%, transparent 45%),
+          radial-gradient(ellipse 800px 900px at 25% 60%, rgba(253, 249, 243, 0.32) 0%, transparent 55%),
           linear-gradient(
             135deg,
-            #fffefa 0%,
-            #fffef9 10%,
-            #fffdf8 20%,
-            #fffdf7 30%,
-            #fffcf6 40%,
-            #fffcf5 50%,
-            #fffdf8 60%,
-            #fffef9 70%,
-            #fffefa 80%,
-            #fffdf7 90%,
-            #fffcf6 100%
+            #fffbf5 0%,
+            #fdf9f3 10%,
+            #fcf8f2 20%,
+            #faf6f0 30%,
+            #f9f5ef 40%,
+            #f7f3ed 50%,
+            #f9f5ef 60%,
+            #faf6f0 70%,
+            #fcf8f2 80%,
+            #fdf9f3 90%,
+            #fffbf5 100%
           )
         `,
         backgroundSize: `
