@@ -11,7 +11,6 @@ const faqData = [
     category: "予約・キャンセル",
     icon: Calendar,
     color: "#2d5016",
-    align: "left" as const,
     questions: [
       {
         q: "予約はいつから可能ですか?",
@@ -27,7 +26,6 @@ const faqData = [
     category: "食事・喫茶",
     icon: Utensils,
     color: "#b8604a",
-    align: "right" as const,
     questions: [
       {
         q: "ジビエシチューは予約が必要ですか?",
@@ -43,7 +41,6 @@ const faqData = [
     category: "設備・トイレ",
     icon: Home,
     color: "#5ba4cf",
-    align: "left" as const,
     questions: [
       {
         q: "水は購入できますか?",
@@ -59,7 +56,6 @@ const faqData = [
     category: "アクセス・装備",
     icon: MapPin,
     color: "#f9a825",
-    align: "right" as const,
     questions: [
       {
         q: "初心者でも行けますか?",
@@ -75,7 +71,7 @@ const faqData = [
 
 function SectionDivider() {
   return (
-    <div className="flex items-center justify-center my-20 md:my-24 lg:my-32">
+    <div className="flex items-center justify-center my-16 md:my-20 lg:my-24">
       <div className="flex items-center gap-4">
         <div className="w-12 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
         <div className="flex gap-2">
@@ -92,65 +88,54 @@ function SectionDivider() {
 export function FAQSection() {
   return (
     <section className="relative py-20 md:py-32 lg:py-40">
-      <div className="container mx-auto px-0 md:px-6 max-w-7xl">
-        {/* Section Header */}
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
+        {/* Section Header - Centered */}
         <FadeInSection delay={0.1}>
-          <div className="flex justify-end mb-20 md:mb-24 lg:mb-32">
-            <div className="max-w-xl text-right mr-6 md:mr-12 lg:mr-20 ml-auto">
-              <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-serif font-light mb-8 md:mb-10 tracking-[0.08em] leading-[1.6] text-balance">
-                よくあるご質問
-              </h2>
-              <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
-                お問い合わせの多いご質問をまとめました。
-                <br className="hidden md:block" />
-                その他のご質問は、お気軽にお問い合わせください。
-              </p>
-            </div>
+          <div className="text-center mb-16 md:mb-20 lg:mb-24 max-w-3xl mx-auto">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance">
+              よくあるご質問
+            </h2>
+            <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
+              お問い合わせの多いご質問をまとめました。
+              <br className="hidden md:block" />
+              その他のご質問は、お気軽にお問い合わせください。
+            </p>
           </div>
         </FadeInSection>
 
-        {/* FAQ Categories */}
-        {faqData.map((category, categoryIndex) => {
-          const Icon = category.icon
-          const isLeft = category.align === "left"
+        {/* FAQ Categories - Centered Simple Layout */}
+        <div className="space-y-12 md:space-y-16 lg:space-y-20">
+          {faqData.map((category, categoryIndex) => {
+            const Icon = category.icon
 
-          return (
-            <div key={categoryIndex}>
-              <FadeInSection delay={categoryIndex * 0.1 + 0.2}>
-                <div
-                  className={`mb-20 md:mb-24 lg:mb-28 max-w-[340px] md:max-w-lg lg:max-w-3xl ${
-                    isLeft ? "ml-6 md:ml-12 lg:ml-20 mr-auto" : "mr-6 md:mr-12 lg:mr-20 ml-auto"
-                  }`}
-                >
+            return (
+              <FadeInSection key={categoryIndex} delay={categoryIndex * 0.1 + 0.2}>
+                <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 md:p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow duration-300">
                   {/* Category Header */}
-                  <div className={`flex items-center gap-4 mb-8 md:mb-10 ${
-                    isLeft ? "" : "flex-row-reverse"
-                  }`}>
+                  <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 360 }}
                       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                      className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-lg"
+                      className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-md"
                       style={{
                         backgroundColor: `${category.color}15`,
                         borderColor: category.color,
                         borderWidth: "2px",
                       }}
                     >
-                      <Icon className="w-6 h-6 md:w-7 md:h-7" style={{ color: category.color }} />
+                      <Icon className="w-5 h-5 md:w-6 md:h-6" style={{ color: category.color }} />
                     </motion.div>
 
-                    <div className={isLeft ? "text-left" : "text-right"}>
-                      <h3
-                        className="text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.06em] leading-[1.6]"
-                        style={{ color: category.color }}
-                      >
-                        {category.category}
-                      </h3>
-                    </div>
+                    <h3
+                      className="text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.06em] leading-[1.6]"
+                      style={{ color: category.color }}
+                    >
+                      {category.category}
+                    </h3>
                   </div>
 
                   {/* Questions Accordion */}
-                  <Accordion type="single" collapsible className="space-y-4 md:space-y-5">
+                  <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
                     {category.questions.map((item, questionIndex) => (
                       <AccordionItem
                         key={questionIndex}
@@ -158,15 +143,15 @@ export function FAQSection() {
                         className="border-none"
                       >
                         <AccordionTrigger
-                          className={`
+                          className="
                             text-left font-serif font-light text-sm md:text-base lg:text-lg
                             tracking-[0.04em] leading-[1.6]
                             text-gray-900 hover:no-underline
-                            py-5 md:py-6
+                            py-4 md:py-5
                             border-b border-gray-200
                             hover:border-gray-400
                             transition-all duration-300
-                          `}
+                          "
                         >
                           <span className="pr-4">{item.q}</span>
                         </AccordionTrigger>
@@ -178,25 +163,15 @@ export function FAQSection() {
                   </Accordion>
                 </div>
               </FadeInSection>
-
-              {categoryIndex < faqData.length - 1 && (
-                <div className="my-16 md:my-20 lg:my-24">
-                  <div className={`flex ${
-                    isLeft ? "justify-end mr-6 md:mr-20" : "justify-start ml-6 md:ml-20"
-                  }`}>
-                    <div className="w-12 md:w-20 h-[1px]" style={{ backgroundColor: `${category.color}40` }}></div>
-                  </div>
-                </div>
-              )}
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
 
         <SectionDivider />
 
         {/* Contact CTA */}
         <FadeInSection delay={0.5}>
-          <div className="text-center mt-24 md:mt-28 lg:mt-32">
+          <div className="text-center mt-12 md:mt-16">
             <p className="text-sm md:text-base text-gray-700 mb-8 md:mb-10 font-serif font-light tracking-[0.04em] leading-[1.9]">
               その他のご質問がございましたら、お気軽にお問い合わせください。
             </p>

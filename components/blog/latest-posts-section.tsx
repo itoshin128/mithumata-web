@@ -41,15 +41,12 @@ const latestPosts = [
   },
 ]
 
-interface InteractiveBlogCardProps {
+interface BlogCardProps {
   post: typeof latestPosts[0]
-  aspectRatio: string
-  sizes: string
   delay?: number
-  align?: "left" | "right" | "center"
 }
 
-function InteractiveBlogCard({ post, aspectRatio, sizes, delay = 0, align = "left" }: InteractiveBlogCardProps) {
+function BlogCard({ post, delay = 0 }: BlogCardProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
 
@@ -62,7 +59,7 @@ function InteractiveBlogCard({ post, aspectRatio, sizes, delay = 0, align = "lef
 
   return (
     <FadeInSection delay={delay}>
-      <article className="group">
+      <article className="group h-full flex flex-col">
         {/* Image with 3D Effect */}
         <motion.div
           whileHover={{ scale: 1.02 }}
@@ -71,23 +68,23 @@ function InteractiveBlogCard({ post, aspectRatio, sizes, delay = 0, align = "lef
           onMouseLeave={() => setIsHovering(false)}
           onMouseMove={handleMouseMove}
           style={{
-            rotateY: isHovering ? mousePosition.x * 5 : 0,
-            rotateX: isHovering ? -mousePosition.y * 5 : 0,
+            rotateY: isHovering ? mousePosition.x * 3 : 0,
+            rotateX: isHovering ? -mousePosition.y * 3 : 0,
           }}
           className="mb-6 md:mb-8"
         >
-          <div className={`relative ${aspectRatio} overflow-hidden shadow-2xl`}>
+          <div className="relative aspect-[4/3] overflow-hidden shadow-lg">
             <Image
               src={post.imageUrl || "/placeholder.svg"}
               alt={post.title}
               fill
               className="object-cover"
-              sizes={sizes}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             />
-            {/* Category Badge Overlay */}
+            {/* Category Badge */}
             <div className="absolute top-4 left-4 md:top-6 md:left-6">
               <span
-                className="inline-block px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-serif tracking-wider bg-white/95 backdrop-blur-sm shadow-lg"
+                className="inline-block px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-serif tracking-wider bg-white/95 backdrop-blur-sm shadow-md"
                 style={{ color: post.categoryColor }}
               >
                 {post.category}
@@ -97,23 +94,19 @@ function InteractiveBlogCard({ post, aspectRatio, sizes, delay = 0, align = "lef
         </motion.div>
 
         {/* Content */}
-        <div className={`space-y-3 md:space-y-4 ${
-          align === "right" ? "text-right" : align === "center" ? "text-center" : "text-left"
-        }`}>
+        <div className="flex-1 flex flex-col space-y-3 md:space-y-4">
           {/* Title */}
           <h3 className="text-base md:text-lg lg:text-xl font-serif font-light tracking-[0.04em] leading-[1.6] text-gray-900 text-balance">
             {post.title}
           </h3>
 
           {/* Excerpt */}
-          <p className="text-sm md:text-base text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty line-clamp-2">
+          <p className="flex-1 text-sm md:text-base text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty line-clamp-3">
             {post.excerpt}
           </p>
 
           {/* Meta Info */}
-          <div className={`flex items-center gap-4 text-xs md:text-sm text-gray-500 ${
-            align === "right" ? "justify-end" : align === "center" ? "justify-center" : "justify-start"
-          }`}>
+          <div className="flex items-center gap-4 text-xs md:text-sm text-gray-500">
             <div className="flex items-center gap-1.5">
               <Calendar className="w-3 h-3 md:w-4 md:h-4" />
               <time className="font-serif font-light tracking-wider">{post.date}</time>
@@ -125,18 +118,15 @@ function InteractiveBlogCard({ post, aspectRatio, sizes, delay = 0, align = "lef
           </div>
 
           {/* Read More Link */}
-          <div className={`pt-2 ${
-            align === "right" ? "flex justify-end" : align === "center" ? "flex justify-center" : ""
-          }`}>
+          <div className="pt-2">
             <Link href={post.href}>
               <motion.span
-                whileHover={{ x: align === "right" ? -4 : 4 }}
+                whileHover={{ x: 4 }}
                 className="inline-flex items-center gap-2 text-sm md:text-base font-serif font-light tracking-[0.1em] transition-colors duration-300"
                 style={{ color: post.categoryColor }}
               >
-                {align === "right" && <ArrowRight className="w-4 h-4 rotate-180" />}
                 続きを読む
-                {align !== "right" && <ArrowRight className="w-4 h-4" />}
+                <ArrowRight className="w-4 h-4" />
               </motion.span>
             </Link>
           </div>
@@ -148,7 +138,7 @@ function InteractiveBlogCard({ post, aspectRatio, sizes, delay = 0, align = "lef
 
 function SectionDivider() {
   return (
-    <div className="flex items-center justify-center my-20 md:my-24 lg:my-32">
+    <div className="flex items-center justify-center my-16 md:my-20 lg:my-24">
       <div className="flex items-center gap-4">
         <div className="w-12 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
         <div className="flex gap-2">
@@ -165,61 +155,33 @@ function SectionDivider() {
 export function LatestPostsSection() {
   return (
     <section className="relative py-20 md:py-32 lg:py-40">
-      <div className="container mx-auto px-0 md:px-6 max-w-7xl">
-        {/* Section Header */}
+      <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
+        {/* Section Header - Centered */}
         <FadeInSection delay={0.1}>
-          <div className="flex justify-start mb-20 md:mb-24 lg:mb-32">
-            <div className="max-w-xl text-left ml-6 md:ml-12 lg:ml-20 mr-auto">
-              <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-serif font-light mb-8 md:mb-10 tracking-[0.08em] leading-[1.6] text-balance">
-                お知らせ
-              </h2>
-              <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
-                山小屋の今を伝える、コラムとお知らせ。
-                <br className="hidden md:block" />
-                道直し活動、高山植物、山の楽しみ方など、様々な情報を発信しています。
-              </p>
-            </div>
+          <div className="text-center mb-16 md:mb-20 lg:mb-24 max-w-3xl mx-auto">
+            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance">
+              お知らせ
+            </h2>
+            <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
+              山小屋の今を伝える、コラムとお知らせ。
+              <br className="hidden md:block" />
+              道直し活動、高山植物、山の楽しみ方など、様々な情報を発信しています。
+            </p>
           </div>
         </FadeInSection>
 
-        {/* Post 1 - Large, Right Aligned */}
-        <div className="mb-28 md:mb-32 lg:mb-40 max-w-[340px] md:max-w-lg lg:max-w-3xl mr-6 md:mr-12 lg:mr-20 ml-auto">
-          <InteractiveBlogCard
-            post={latestPosts[0]}
-            aspectRatio="aspect-[4/3]"
-            sizes="(max-width: 640px) 80vw, (max-width: 768px) 70vw, 60vw"
-            delay={0.2}
-            align="right"
-          />
-        </div>
-
-        {/* Post 2 - Medium, Left Aligned */}
-        <div className="mb-24 md:mb-28 lg:mb-32 max-w-[300px] md:max-w-md lg:max-w-2xl ml-6 md:ml-12 lg:ml-20 mr-auto">
-          <InteractiveBlogCard
-            post={latestPosts[1]}
-            aspectRatio="aspect-[3/2]"
-            sizes="(max-width: 640px) 75vw, (max-width: 768px) 65vw, 50vw"
-            delay={0.3}
-            align="left"
-          />
-        </div>
-
-        {/* Post 3 - Small, Center Aligned */}
-        <div className="mb-20 md:mb-24 max-w-[280px] md:max-w-sm lg:max-w-xl mx-auto">
-          <InteractiveBlogCard
-            post={latestPosts[2]}
-            aspectRatio="aspect-[3/4]"
-            sizes="(max-width: 640px) 70vw, (max-width: 768px) 55vw, 40vw"
-            delay={0.4}
-            align="center"
-          />
+        {/* Blog Grid - Simple 3-column layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 mb-12 md:mb-16">
+          {latestPosts.map((post, index) => (
+            <BlogCard key={index} post={post} delay={0.2 + index * 0.1} />
+          ))}
         </div>
 
         <SectionDivider />
 
         {/* View All Button */}
         <FadeInSection delay={0.5}>
-          <div className="flex justify-center mt-24 md:mt-28 lg:mt-32">
+          <div className="flex justify-center mt-12 md:mt-16">
             <Link href="/blog">
               <motion.button
                 whileHover={{ scale: 1.05, backgroundColor: "rgb(17, 24, 39)" }}
