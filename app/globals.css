@@ -243,20 +243,18 @@
         #fffbf5 100%
       ); */
 
-    /* サイズを最適化してより明確な質感に */
-    background-size: 100px 100px, /* 超微細な粒子 */ 150px 150px, /* 粗めの粒子 */ 280px 280px, /* 和紙繊維 */ 120px
-      120px, /* 中粒度 */ 80px 80px, /* 極細質感 */ 400px 400px, /* 紙の厚み */ 100% 100%, /* 光1 */ 100% 100%, /* 光2 */
-      100% 100%, /* 光3 */ 100% 100%, /* 光4 */ 100% 100%; /* ベース */
+    /* 一時的に無効化 */
+    /* background-size: 100px 100px, 150px 150px, 280px 280px, 120px
+      120px, 80px 80px, 400px 400px, 100% 100%, 100% 100%,
+      100% 100%, 100% 100%, 100% 100%;
 
-    /* 位置をずらして自然な重なり */
-    background-position: 0 0, /* 超微細な粒子 */ 25px 25px, /* 粗めの粒子 */ 0 0, /* 和紙繊維 */ 50px 50px, /* 中粒度 */
-      12px 12px, /* 極細質感 */ 75px 75px, /* 紙の厚み */ center, /* 光1 */ center, /* 光2 */ center, /* 光3 */ center, /* 光4 */
-      center; /* ベース */
+    background-position: 0 0, 25px 25px, 0 0, 50px 50px,
+      12px 12px, 75px 75px, center, center, center, center,
+      center;
 
-    /* ブレンドモードを最適化 */
-    background-blend-mode: multiply, /* 超微細な粒子 */ overlay, /* 粗めの粒子 */ soft-light, /* 和紙繊維 */ multiply, /* 中粒度 */
-      overlay, /* 極細質感 */ soft-light, /* 紙の厚み */ normal, /* 光1 */ normal, /* 光2 */ normal, /* 光3 */ normal, /* 光4 */
-      normal; /* ベース */
+    background-blend-mode: multiply, overlay, soft-light, multiply,
+      overlay, soft-light, normal, normal, normal, normal,
+      normal; */
 
     font-feature-settings: "palt" 1, "pkna" 1;
     -webkit-font-smoothing: antialiased;
