@@ -148,8 +148,12 @@ export function LodgeStorySection() {
                 </div>
               </FadeInSection>
 
-              {/* 写真1: 縦構図 - 左寄せ配置 */}
-              <div className={`mb-24 md:mb-28 lg:mb-32 max-w-[260px] md:max-w-sm lg:max-w-xl ml-6 md:ml-12 lg:ml-20 mr-auto`}>
+              {/* 写真1: 縦構図 - 水晶小屋は右寄せ、他は左寄せ */}
+              <div className={`mb-24 md:mb-28 lg:mb-32 max-w-[260px] md:max-w-sm lg:max-w-xl ${
+                lodge.id === "suisho"
+                  ? "mr-6 md:mr-12 lg:mr-20 ml-auto"
+                  : "ml-6 md:ml-12 lg:ml-20 mr-auto"
+              }`}>
                 <InteractivePhoto
                   src={lodge.photos.portrait1}
                   alt={`${lodge.name} 風景1`}
@@ -159,8 +163,12 @@ export function LodgeStorySection() {
                 />
               </div>
 
-              {/* 写真2: 横構図 - 右寄せ配置 */}
-              <div className={`mb-28 md:mb-32 lg:mb-36 max-w-[300px] md:max-w-md lg:max-w-2xl mr-6 md:mr-12 lg:mr-20 ml-auto`}>
+              {/* 写真2: 横構図 - 水晶小屋は左寄せ、他は右寄せ */}
+              <div className={`mb-28 md:mb-32 lg:mb-36 max-w-[300px] md:max-w-md lg:max-w-2xl ${
+                lodge.id === "suisho"
+                  ? "ml-6 md:ml-12 lg:ml-20 mr-auto"
+                  : "mr-6 md:mr-12 lg:mr-20 ml-auto"
+              }`}>
                 <InteractivePhoto
                   src={lodge.photos.landscape}
                   alt={`${lodge.name} 風景2`}
