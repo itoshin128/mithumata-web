@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Mountain, Users, MapPin } from "lucide-react"
+import { Mountain, Users, MapPin, ArrowRight, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getLodgeTheme } from "@/lib/seasonal-theme"
 
@@ -93,13 +93,25 @@ export function LodgeCard({ lodge, elevation, capacity, location, description, f
         {/* CTAボタン */}
         <div className="flex gap-3">
           <Button
-            className="flex-1 text-white hover:opacity-90 transition-opacity"
-            style={{ backgroundColor: theme.primary }}
+            className="flex-1 text-white hover:shadow-lg hover:scale-[1.02] transition-all duration-300 group/detail"
+            style={{
+              background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.primary}dd 100%)`,
+            }}
           >
-            詳細を見る
+            <span className="flex items-center gap-2">
+              詳細を見る
+              <ArrowRight className="w-4 h-4 group-hover/detail:translate-x-1 transition-transform" />
+            </span>
           </Button>
-          <Button variant="outline" className="flex-1 hover:bg-gray-50 bg-transparent">
-            予約する
+          <Button
+            variant="outline"
+            className="flex-1 hover:bg-gray-50 bg-transparent border-2 hover:border-gray-300 transition-all duration-300 group/reserve"
+            style={{ borderColor: `${theme.primary}40` }}
+          >
+            <span className="flex items-center gap-2">
+              <Phone className="w-4 h-4" />
+              予約する
+            </span>
           </Button>
         </div>
       </div>

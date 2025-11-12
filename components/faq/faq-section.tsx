@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Calendar, Utensils, Home, MapPin } from "lucide-react"
+import { Calendar, Utensils, Home, MapPin, Mail, ArrowRight } from "lucide-react"
 
 const faqData = [
   {
@@ -125,8 +125,16 @@ export function FAQSection() {
         {/* お問い合わせCTA */}
         <FadeInSection delay={0.4} className="text-center mt-12">
           <p className="text-gray-600 mb-6">その他のご質問がございましたら、お気軽にお問い合わせください。</p>
-          <Button size="lg" variant="outline" className="px-8 py-6 text-base bg-transparent">
-            お問い合わせ
+          <Button
+            size="lg"
+            variant="outline"
+            className="px-8 py-6 text-base bg-transparent border-2 hover:bg-gray-50 hover:border-gray-400 hover:shadow-md transition-all duration-300 group"
+          >
+            <span className="flex items-center gap-3">
+              <Mail className="w-5 h-5" />
+              お問い合わせ
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </span>
           </Button>
         </FadeInSection>
       </div>
