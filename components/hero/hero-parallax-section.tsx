@@ -20,31 +20,31 @@ const heroImagesDesktop = [
     id: 1,
     url: "/images/hero/01.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1, 1.15], x: ["0%", "3%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.08, 1.18], x: ["0%", "3%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 2,
     url: "/images/hero/02.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1], x: ["3%", "-3%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.18, 1.08], x: ["2%", "-2%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 3,
     url: "/images/hero/03.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1, 1.12], x: ["2%", "-2%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.1, 1.2], x: ["1%", "-1%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 4,
     url: "/images/hero/04.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1, 1.18], x: ["0%", "0%"], y: ["2%", "-2%"] } as AnimationPattern,
+    animation: { scale: [1.12, 1.22], x: ["0%", "0%"], y: ["1%", "-1%"] } as AnimationPattern,
   },
   {
     id: 5,
     url: "/images/hero/05.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1, 1.14], x: ["0%", "0%"], y: ["-2%", "3%"] } as AnimationPattern,
+    animation: { scale: [1.15, 1.08], x: ["0%", "0%"], y: ["-1%", "2%"] } as AnimationPattern,
   },
 ]
 
@@ -53,19 +53,19 @@ const heroImagesMobile = [
     id: 1,
     url: "/images/hero/01_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1, 1.12], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.08, 1.18], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 2,
     url: "/images/hero/03_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.12, 1], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.15, 1.08], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 3,
     url: "/images/hero/04_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1, 1.15], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.1, 1.2], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
 ]
 
