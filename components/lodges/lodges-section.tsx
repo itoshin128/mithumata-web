@@ -46,7 +46,7 @@ export function LodgesSection() {
   return (
     <section className="relative py-24 lg:py-32">
       <div className="absolute inset-0 -z-10">
-        <TreeShadowBackground intensity="medium" enableParallax={true} />
+        {/* <TreeShadowBackground intensity="medium" enableParallax={true} /> */}
         <WashiBackground intensity="strong" animated={false} />
       </div>
 
