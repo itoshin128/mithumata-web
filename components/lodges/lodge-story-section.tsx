@@ -114,15 +114,15 @@ function InteractivePhoto({
 
 function SectionDivider() {
   return (
-    <div className="flex items-center justify-center my-32 lg:my-48">
+    <div className="flex items-center justify-center my-24 md:my-32 lg:my-48">
       <div className="flex items-center gap-4">
-        <div className="w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
+        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
         <div className="flex gap-2">
           <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-40"></div>
           <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-60"></div>
           <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-80"></div>
         </div>
-        <div className="w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
+        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
       </div>
     </div>
   )
@@ -130,15 +130,15 @@ function SectionDivider() {
 
 export function LodgeStorySection() {
   return (
-    <section className="relative py-32 lg:py-40">
+    <section className="relative py-16 md:py-32 lg:py-40">
       {lodgeStories.map((lodge, storyIndex) => {
         return (
           <div key={lodge.id} className="relative z-10">
-            <div className="container mx-auto px-6 max-w-7xl">
+            <div className="container mx-auto px-4 md:px-6 max-w-7xl">
               <FadeInSection delay={0.1}>
-                <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-16 lg:mb-24`}>
-                  <div className={`max-w-xl ${lodge.id === "suisho" ? "text-left" : "text-right"}`}>
-                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-serif font-light mb-6 tracking-[0.08em] leading-[1.6] text-balance">
+                <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-16 md:mb-20 lg:mb-28`}>
+                  <div className={`max-w-xl px-4 md:px-0 ${lodge.id === "suisho" ? "text-left" : "text-right"}`}>
+                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-serif font-light mb-8 md:mb-6 tracking-[0.08em] leading-[1.6] text-balance">
                       {lodge.title}
                     </h2>
                     <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
@@ -148,24 +148,24 @@ export function LodgeStorySection() {
                 </div>
               </FadeInSection>
 
-              {/* 写真1: 縦構図 */}
-              <div className={`mb-16 lg:mb-24 max-w-2xl ${lodge.id === "suisho" ? "ml-auto" : ""}`}>
+              {/* 写真1: 縦構図 - モバイルで約50%幅 */}
+              <div className={`mb-20 md:mb-24 lg:mb-28 mx-auto px-8 md:px-0 max-w-xs md:max-w-md lg:max-w-2xl ${lodge.id === "suisho" ? "md:ml-auto md:mr-0" : "md:mr-auto md:ml-0"}`}>
                 <InteractivePhoto
                   src={lodge.photos.portrait1}
                   alt={`${lodge.name} 風景1`}
                   aspectRatio="aspect-[3/4]"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 60vw, 50vw"
                   delay={0.2}
                 />
               </div>
 
-              {/* 写真2: 横構図 */}
-              <div className={`mb-16 lg:mb-24 max-w-3xl ${lodge.id === "suisho" ? "" : "ml-auto"}`}>
+              {/* 写真2: 横構図 - モバイルで約60%幅 */}
+              <div className={`mb-20 md:mb-24 lg:mb-28 mx-auto px-6 md:px-0 max-w-sm md:max-w-lg lg:max-w-3xl ${lodge.id === "suisho" ? "md:mr-auto md:ml-0" : "md:ml-auto md:mr-0"}`}>
                 <InteractivePhoto
                   src={lodge.photos.landscape}
                   alt={`${lodge.name} 風景2`}
                   aspectRatio="aspect-[3/2]"
-                  sizes="(max-width: 768px) 100vw, 66vw"
+                  sizes="(max-width: 640px) 60vw, (max-width: 768px) 70vw, 66vw"
                   delay={0.3}
                 />
               </div>
@@ -173,29 +173,29 @@ export function LodgeStorySection() {
               {/* 水晶小屋の追加写真 */}
               {lodge.id === "suisho" && lodge.photos.landscape2 && lodge.photos.landscape3 ? (
                 <>
-                  <div className="mb-16 lg:mb-24 max-w-4xl mx-auto">
+                  <div className="mb-20 md:mb-24 lg:mb-28 mx-auto px-6 md:px-0 max-w-sm md:max-w-lg lg:max-w-4xl">
                     <InteractivePhoto
                       src={lodge.photos.landscape2}
                       alt={`${lodge.name} 風景3`}
                       aspectRatio="aspect-[4/3]"
-                      sizes="(max-width: 768px) 100vw, 80vw"
+                      sizes="(max-width: 640px) 60vw, (max-width: 768px) 70vw, 80vw"
                       delay={0.4}
                     />
                   </div>
 
-                  <div className="mb-12 max-w-4xl mx-auto">
+                  <div className="mb-16 md:mb-20 w-full px-0">
                     <InteractivePhoto
                       src={lodge.photos.landscape3}
                       alt={`${lodge.name} 風景4`}
                       aspectRatio="aspect-[4/3]"
-                      sizes="(max-width: 768px) 100vw, 80vw"
+                      sizes="100vw"
                       delay={0.5}
                     />
                   </div>
                 </>
               ) : (
                 lodge.photos.portrait2 && (
-                  <div className="mb-12">
+                  <div className="mb-16 md:mb-20 w-full px-0">
                     <InteractivePhoto
                       src={lodge.photos.portrait2}
                       alt={`${lodge.name} 風景3`}
@@ -208,7 +208,7 @@ export function LodgeStorySection() {
               )}
 
               <FadeInSection delay={0.5}>
-                <div className="flex justify-center mt-16">
+                <div className="flex justify-center mt-20 md:mt-24 lg:mt-28 mb-8 md:mb-12">
                   <Link href={lodge.link}>
                     <motion.button
                       whileHover={{ scale: 1.05, backgroundColor: "rgb(17, 24, 39)" }}
