@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { BlogCard } from "./blog-card"
 import { Button } from "@/components/ui/button"
+import { ArrowRight, BookOpen } from "lucide-react"
 
 const latestPosts = [
   {
@@ -96,9 +97,13 @@ export function LatestPostsSection() {
           <Button
             size="lg"
             variant="outline"
-            className="px-8 py-6 text-base hover:bg-gray-100 transition-colors bg-transparent"
+            className="px-6 py-3 sm:px-8 sm:py-6 text-base font-semibold bg-white hover:bg-gray-50 transition-all duration-300 border-2 border-gray-300 hover:border-gray-500 shadow-sm hover:shadow-lg active:scale-[0.98] group min-h-[44px]"
           >
-            すべての記事を見る
+            <span className="flex items-center gap-3 justify-center">
+              <BookOpen className="w-5 h-5" />
+              すべての記事を見る
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </span>
           </Button>
         </FadeInSection>
       </div>

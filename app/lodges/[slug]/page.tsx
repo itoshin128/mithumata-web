@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import Image from "next/image"
-import { Mountain, Users, MapPin, Utensils, Home, Droplet, Calendar } from "lucide-react"
+import { Mountain, Users, MapPin, Utensils, Home, Droplet, Calendar, Phone, Mail } from "lucide-react"
 import { getLodgeTheme } from "@/lib/seasonal-theme"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { Button } from "@/components/ui/button"
@@ -290,11 +290,27 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
               {lodge.name}へのご予約、ご質問はお気軽にお問い合わせください。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8 py-6 text-lg text-white" style={{ backgroundColor: theme.primary }}>
-                予約する
+              <Button
+                size="lg"
+                className="px-6 py-3 sm:px-8 sm:py-6 text-base sm:text-lg text-white font-semibold shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
+                style={{
+                  background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.primary}dd 100%)`,
+                }}
+              >
+                <span className="flex items-center gap-2 justify-center">
+                  <Phone className="w-5 h-5" />
+                  予約する
+                </span>
               </Button>
-              <Button size="lg" variant="outline" className="px-8 py-6 text-lg bg-transparent">
-                お問い合わせ
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-6 py-3 sm:px-8 sm:py-6 text-base sm:text-lg font-semibold bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-gray-500 shadow-sm hover:shadow-lg active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
+              >
+                <span className="flex items-center gap-2 justify-center">
+                  <Mail className="w-5 h-5" />
+                  お問い合わせ
+                </span>
               </Button>
             </div>
           </FadeInSection>
