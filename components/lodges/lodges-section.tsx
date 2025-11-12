@@ -45,10 +45,11 @@ const lodgesData = [
 export function LodgesSection() {
   return (
     <section className="relative py-24 lg:py-32">
-      <div className="absolute inset-0 -z-10">
+      {/* 一時的に無効化して背景色を確認 */}
+      {/* <div className="absolute inset-0 -z-10">
         <TreeShadowBackground intensity="medium" enableParallax={true} />
         <WashiBackground intensity="strong" animated={false} />
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-6 max-w-7xl">
         {/* セクションヘッダー */}

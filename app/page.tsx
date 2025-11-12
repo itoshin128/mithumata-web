@@ -16,10 +16,11 @@ export default function HomePage() {
 
       <div className="post-parallax-content relative z-20">
         {/* post-parallax-content全体に和紙背景と木の影を適用 */}
-        <div className="absolute inset-0 z-0">
+        {/* 一時的に無効化して背景色を確認 */}
+        {/* <div className="absolute inset-0 z-0">
           <WashiBackground intensity="strong" animated={false} />
           <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
+        </div> */}
 
         {seasonalTheme.banner?.show && (
           <div className="relative z-10">
