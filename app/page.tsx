@@ -15,10 +15,10 @@ export default function HomePage() {
       <HeroParallaxSection />
 
       <div className="post-parallax-content relative z-20">
-        {/* post-parallax-content全体に和紙背景を適用（木の影は一時停止） */}
+        {/* post-parallax-content全体に和紙背景と木の影を適用 */}
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="strong" animated={false} />
-          {/* <TreeShadowBackground intensity="subtle" enableParallax={true} /> */}
+          <TreeShadowBackground intensity="subtle" enableParallax={true} />
         </div>
 
         {seasonalTheme.banner?.show && (

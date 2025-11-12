@@ -256,24 +256,24 @@ export default function TreeShadowBackground({
           object-position: center;
         }
 
-        /* Deep shadow layer - multiply for dark shadows */
+        /* Deep shadow layer - 明るい背景色を保つためにoverlayに変更 */
         .tree-shadow-deep :global(.tree-shadow-image) {
-          mix-blend-mode: multiply;
-          filter: blur(3px) contrast(1.3) brightness(0.75);
+          mix-blend-mode: overlay;
+          filter: blur(3px) contrast(1.1) brightness(0.98);
           opacity: ${opacity.deep};
         }
 
-        /* Mid layer - darken for balanced tones */
+        /* Mid layer - soft-lightで柔らかく */
         .tree-shadow-mid :global(.tree-shadow-image) {
-          mix-blend-mode: darken;
-          filter: blur(5px) contrast(1.15) brightness(0.85);
+          mix-blend-mode: soft-light;
+          filter: blur(5px) contrast(1.05) brightness(0.98);
           opacity: ${opacity.mid};
         }
 
-        /* Light layer - soft-light for gentle dappled effect */
+        /* Light layer - さらに明るく */
         .tree-shadow-light :global(.tree-shadow-image) {
           mix-blend-mode: soft-light;
-          filter: blur(8px) brightness(0.92) saturate(0.9);
+          filter: blur(8px) brightness(1.0) saturate(0.95);
           opacity: ${opacity.light};
         }
 
