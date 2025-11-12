@@ -45,17 +45,16 @@ export function Header() {
 
   return (
     <>
-      {/* モダンミニマリスト ハンバーガーボタン */}
+      {/* トランスペアレント エレガンス ハンバーガーボタン */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.6, type: "spring", stiffness: 200 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 150, damping: 20 }}
         className="fixed z-50 pointer-events-none"
         style={{
-          // デスクトップ: 右下
-          // モバイル: 右下（セーフエリア考慮）
-          right: "clamp(20px, 4vw, 40px)",
-          bottom: "clamp(20px, 4vw, 40px)",
+          // デスクトップ・モバイル共通: 右上
+          top: "clamp(20px, 4vh, 32px)",
+          right: "clamp(20px, 4vw, 32px)",
         }}
       >
         <motion.button
@@ -67,82 +66,77 @@ export function Header() {
           aria-label="メニューを開く"
           aria-expanded={isMenuOpen}
           aria-controls="main-menu"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
-          {/* ニューモーフィズム + グラスモーフィズム ボタン */}
+          {/* トランスペアレント ボタン */}
           <motion.div
-            className="relative overflow-hidden rounded-full bg-white/90 backdrop-blur-xl"
+            className="relative overflow-hidden rounded-2xl backdrop-blur-sm"
             animate={{
-              width: isHovered ? 80 : 64,
-              height: isHovered ? 80 : 64,
+              width: isHovered ? 52 : 48,
+              height: isHovered ? 52 : 48,
+              backgroundColor: isHovered ? "rgba(255, 255, 255, 0.12)" : "rgba(255, 255, 255, 0.08)",
             }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
             style={{
+              border: "1px solid rgba(255, 255, 255, 0.2)",
               boxShadow: `
-                8px 8px 20px rgba(0, 0, 0, 0.12),
-                -8px -8px 20px rgba(255, 255, 255, 0.95),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.6),
-                inset 4px 4px 8px rgba(255, 255, 255, 0.5),
-                inset -4px -4px 8px rgba(0, 0, 0, 0.05)
+                0 2px 8px rgba(0, 0, 0, 0.06),
+                0 0 0 1px rgba(0, 0, 0, 0.04),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3)
               `,
             }}
           >
-            {/* グラデーション オーバーレイ */}
+            {/* サブタルなグラデーション */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-gray-100/20"
-              animate={{ opacity: isHovered ? 1 : 0.6 }}
+              className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none"
+              animate={{ opacity: isHovered ? 0.8 : 0.5 }}
               transition={{ duration: 0.3 }}
             />
 
             {/* アイコン コンテナ */}
             <div className="relative w-full h-full flex items-center justify-center">
-              {/* ミニマリスト ハンバーガーアイコン */}
+              {/* エレガント ハンバーガーアイコン - 細い線 */}
               <motion.div
                 className="flex flex-col"
-                animate={{ gap: isHovered ? "8px" : "6px" }}
-                transition={{ duration: 0.2 }}
+                animate={{ gap: isHovered ? "7px" : "6px" }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
               >
                 {[0, 1, 2].map((index) => (
                   <motion.span
                     key={index}
-                    className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-full"
+                    className="bg-gray-900 rounded-full"
                     animate={{
-                      width: isHovered ? [22, 26, 22][index] : 20,
-                      height: isHovered ? 3 : 2.5,
-                      opacity: isHovered ? 1 : 0.85,
+                      width: isHovered ? [20, 18, 20][index] : [18, 16, 18][index],
+                      height: 1.5,
+                      opacity: isHovered ? 0.95 : 0.85,
                     }}
                     transition={{
-                      duration: 0.3,
-                      delay: index * 0.05,
+                      duration: 0.25,
+                      delay: index * 0.03,
                       ease: [0.4, 0, 0.2, 1],
+                    }}
+                    style={{
+                      boxShadow: "0 0.5px 1px rgba(0, 0, 0, 0.2)",
                     }}
                   />
                 ))}
               </motion.div>
             </div>
-
-            {/* リップル エフェクト（クリック時） */}
-            <motion.div
-              className="absolute inset-0 rounded-full bg-gray-300/40"
-              initial={{ scale: 0, opacity: 0.5 }}
-              animate={{ scale: 0, opacity: 0 }}
-              whileTap={{ scale: 2.5, opacity: 0 }}
-              transition={{ duration: 0.5 }}
-            />
           </motion.div>
 
-          {/* ホバー時のラベル */}
+          {/* ホバー時の控えめなラベル */}
           <AnimatePresence>
             {isHovered && (
               <motion.span
-                initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                animate={{ opacity: 1, y: -14, scale: 1 }}
-                exit={{ opacity: 0, y: 10, scale: 0.9 }}
-                transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
-                className="absolute bottom-full left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-gray-900/95 backdrop-blur-sm text-white text-[10px] font-semibold tracking-[0.15em] whitespace-nowrap shadow-lg"
+                initial={{ opacity: 0, x: 8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 8 }}
+                transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full mr-3 px-2.5 py-1 rounded-lg bg-white/90 backdrop-blur-md text-gray-900 text-[10px] font-medium tracking-wider whitespace-nowrap"
                 style={{
-                  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+                  border: "1px solid rgba(0, 0, 0, 0.06)",
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.08)",
                 }}
               >
                 MENU
