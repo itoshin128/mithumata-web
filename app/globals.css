@@ -4,6 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  /* Washi Background Colors - 和紙背景色（一元管理）*/
+  /* 品のある、淡めのクリーム色 */
+  /* 注意：他の変数より先に定義する必要があります */
+  --washi-bg-color: #fdf9f3;
+
   /* Base Colors */
   /* 和紙背景色を参照 - 一元管理された--washi-bg-colorを使用 */
   --background: var(--washi-bg-color);
@@ -61,10 +66,6 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-
-  /* Washi Background Colors - 和紙背景色（一元管理）*/
-  /* 品のある、淡めのクリーム色 */
-  --washi-bg-color: #fdf9f3;
 
   /* Mountain Lodge Colors - 三俣山荘グループ */
   --mitsumata-primary: #2d5016;
