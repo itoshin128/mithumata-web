@@ -72,6 +72,8 @@ const heroImagesMobile = [
 export function HeroParallaxSection() {
   const [showFixedBg, setShowFixedBg] = useState(true)
   const [bgOpacity, setBgOpacity] = useState(1)
+  const [activeSlideDesktop, setActiveSlideDesktop] = useState(0)
+  const [activeSliderMobile, setActiveSliderMobile] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -123,7 +125,7 @@ export function HeroParallaxSection() {
           className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
           style={{ opacity: bgOpacity }}
         >
-          <div className="h-full w-full">
+          <div className="h-full w-full overflow-hidden">
             <Swiper
               modules={[Autoplay, EffectFade]}
               effect="fade"
@@ -134,36 +136,48 @@ export function HeroParallaxSection() {
               loop={true}
               speed={2500}
               className="h-full w-full"
+              onSlideChange={(swiper) => setActiveSliderMobile(swiper.realIndex)}
             >
-              {heroImagesMobile.map((image) => (
+              {heroImagesMobile.map((image, index) => (
                 <SwiperSlide key={image.id}>
-                  <motion.div
-                    className="relative h-full w-full"
-                    initial={{
-                      scale: image.animation.scale[0],
-                      x: image.animation.x[0],
-                      y: image.animation.y[0],
-                    }}
-                    animate={{
-                      scale: image.animation.scale[1],
-                      x: image.animation.x[1],
-                      y: image.animation.y[1],
-                    }}
-                    transition={{
-                      duration: 7,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <Image
-                      src={image.url || "/placeholder.svg"}
-                      alt={image.alt}
-                      fill
-                      className="object-cover object-center"
-                      priority={image.id === 1}
-                      quality={100}
-                      sizes="100vw"
-                    />
-                  </motion.div>
+                  <div className="relative h-full w-full overflow-hidden">
+                    <motion.div
+                      className="relative h-full w-full"
+                      key={`mobile-${image.id}-${activeSliderMobile === index ? "active" : "inactive"}`}
+                      initial={{
+                        scale: image.animation.scale[0],
+                        x: image.animation.x[0],
+                        y: image.animation.y[0],
+                      }}
+                      animate={
+                        activeSliderMobile === index
+                          ? {
+                              scale: image.animation.scale[1],
+                              x: image.animation.x[1],
+                              y: image.animation.y[1],
+                            }
+                          : {
+                              scale: image.animation.scale[0],
+                              x: image.animation.x[0],
+                              y: image.animation.y[0],
+                            }
+                      }
+                      transition={{
+                        duration: 7,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <Image
+                        src={image.url || "/placeholder.svg"}
+                        alt={image.alt}
+                        fill
+                        className="object-cover object-center"
+                        priority={image.id === 1}
+                        quality={100}
+                        sizes="100vw"
+                      />
+                    </motion.div>
+                  </div>
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -185,36 +199,48 @@ export function HeroParallaxSection() {
             loop={true}
             speed={2500}
             className="h-full w-full"
+            onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
           >
-            {heroImagesDesktop.map((image) => (
+            {heroImagesDesktop.map((image, index) => (
               <SwiperSlide key={image.id}>
-                <motion.div
-                  className="relative h-full w-full"
-                  initial={{
-                    scale: image.animation.scale[0],
-                    x: image.animation.x[0],
-                    y: image.animation.y[0],
-                  }}
-                  animate={{
-                    scale: image.animation.scale[1],
-                    x: image.animation.x[1],
-                    y: image.animation.y[1],
-                  }}
-                  transition={{
-                    duration: 7,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <Image
-                    src={image.url || "/placeholder.svg"}
-                    alt={image.alt}
-                    fill
-                    className="object-cover object-center"
-                    priority={image.id === 1}
-                    quality={100}
-                    sizes="100vw"
-                  />
-                </motion.div>
+                <div className="relative h-full w-full overflow-hidden">
+                  <motion.div
+                    className="relative h-full w-full"
+                    key={`desktop-${image.id}-${activeSlideDesktop === index ? "active" : "inactive"}`}
+                    initial={{
+                      scale: image.animation.scale[0],
+                      x: image.animation.x[0],
+                      y: image.animation.y[0],
+                    }}
+                    animate={
+                      activeSlideDesktop === index
+                        ? {
+                            scale: image.animation.scale[1],
+                            x: image.animation.x[1],
+                            y: image.animation.y[1],
+                          }
+                        : {
+                            scale: image.animation.scale[0],
+                            x: image.animation.x[0],
+                            y: image.animation.y[0],
+                          }
+                    }
+                    transition={{
+                      duration: 7,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <Image
+                      src={image.url || "/placeholder.svg"}
+                      alt={image.alt}
+                      fill
+                      className="object-cover object-center"
+                      priority={image.id === 1}
+                      quality={100}
+                      sizes="100vw"
+                    />
+                  </motion.div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
