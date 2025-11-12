@@ -150,10 +150,8 @@ export function HeroParallaxSection() {
                       y: image.animation.y[1],
                     }}
                     transition={{
-                      duration: 10,
+                      duration: 7,
                       ease: "easeInOut",
-                      repeat: Infinity,
-                      repeatType: "reverse",
                     }}
                   >
                     <Image
@@ -203,10 +201,8 @@ export function HeroParallaxSection() {
                     y: image.animation.y[1],
                   }}
                   transition={{
-                    duration: 10,
+                    duration: 7,
                     ease: "easeInOut",
-                    repeat: Infinity,
-                    repeatType: "reverse",
                   }}
                 >
                   <Image
