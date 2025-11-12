@@ -164,6 +164,7 @@ export function HeroParallaxSection() {
                       }
                       transition={{
                         duration: 6,
+                        delay: 2.5,
                         ease: "easeInOut",
                       }}
                     >
@@ -227,6 +228,7 @@ export function HeroParallaxSection() {
                     }
                     transition={{
                       duration: 6,
+                      delay: 2.5,
                       ease: "easeInOut",
                     }}
                   >
