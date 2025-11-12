@@ -8,6 +8,97 @@ import "swiper/css"
 import "swiper/css/effect-fade"
 import { useEffect, useRef, useState } from "react"
 
+// 予約ボタンコンポーネント
+const ReservationButton = () => {
+  const handleClick = () => {
+    window.location.href = "/reservations"
+  }
+
+  return (
+    <>
+      {/* デスクトップ版 - 右側中央のシンプル縦書きボタン */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="hidden md:block fixed right-0 top-1/2 -translate-y-1/2 z-50"
+      >
+        <motion.button
+          whileHover={{ scale: 1.05, x: -4 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ duration: 0.3 }}
+          onClick={handleClick}
+          className="
+            relative group
+            bg-white hover:bg-white/98
+            text-black
+            px-6 py-16
+            backdrop-blur-sm
+            shadow-[0_4px_24px_rgba(0,0,0,0.1)]
+            hover:shadow-[0_8px_40px_rgba(0,0,0,0.15)]
+            border-l-4 border-l-mitsumata-primary
+            transition-all duration-300
+          "
+        >
+          {/* 縦書きテキスト */}
+          <span className="flex flex-col items-center gap-2 [writing-mode:vertical-rl]">
+            <span className="text-base font-serif font-medium tracking-[0.2em] text-black">
+              予約する
+            </span>
+            <motion.span
+              animate={{ y: [0, 4, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+              }}
+              className="text-sm opacity-50 group-hover:opacity-100 transition-opacity rotate-90"
+            >
+              →
+            </motion.span>
+          </span>
+
+          {/* ホバー時の背景 */}
+          <div className="absolute inset-0 bg-mitsumata-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </motion.button>
+      </motion.div>
+
+      {/* モバイル版 - 右下の固定ボタン */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="md:hidden fixed bottom-6 right-6 z-50"
+      >
+        <motion.button
+          whileTap={{ scale: 0.94 }}
+          transition={{ duration: 0.2 }}
+          onClick={handleClick}
+          className="
+            bg-white
+            text-black
+            px-6 py-4
+            rounded-full
+            backdrop-blur-sm
+            shadow-[0_4px_24px_rgba(0,0,0,0.15)]
+            active:shadow-[0_2px_16px_rgba(0,0,0,0.2)]
+            border-2 border-mitsumata-primary/20
+            transition-shadow duration-200
+            flex items-center gap-2
+          "
+        >
+          <span className="text-sm font-serif font-medium tracking-wider">
+            予約
+          </span>
+          <span className="text-xs opacity-60">
+            →
+          </span>
+        </motion.button>
+      </motion.div>
+    </>
+  )
+}
+
 // Ken Burns効果のアニメーションパターン
 type AnimationPattern = {
   scale: [number, number]
@@ -429,40 +520,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* 予約ボタン - 固定表示 */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed bottom-4 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:top-1/2 md:-translate-y-1/2 md:translate-x-0 z-50"
-      >
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.3 }}
-          className="bg-white/95 hover:bg-white text-black px-8 py-3 md:px-5 md:py-12 backdrop-blur-md group shadow-2xl border border-black/5 md:border-l md:border-t-0 md:border-b-0 md:border-r-0 rounded-full md:rounded-none"
-        >
-          <span className="flex items-center gap-2 md:flex-col md:items-center md:gap-3 text-xs font-serif font-light tracking-[0.15em] md:tracking-[0.2em] md:[writing-mode:vertical-rl]">
-            <motion.span
-              whileHover={{ letterSpacing: "0.25em" }}
-              transition={{ duration: 0.3 }}
-              className="inline-block"
-            >
-              予約する
-            </motion.span>
-            <motion.span
-              animate={{ x: [0, 4, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              className="text-[10px] opacity-40 group-hover:opacity-100 transition-opacity md:rotate-90"
-            >
-              →
-            </motion.span>
-          </span>
-        </motion.button>
-      </motion.div>
+      <ReservationButton />
 
       {/* スクロールインジケーター */}
       <motion.div
