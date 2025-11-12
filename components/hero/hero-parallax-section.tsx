@@ -8,248 +8,91 @@ import "swiper/css"
 import "swiper/css/effect-fade"
 import { useEffect, useRef, useState } from "react"
 
-// 山の稜線SVGパス
-const MountainRidgePath = () => (
-  <svg
-    className="absolute -top-6 left-0 w-full h-8 opacity-0 group-hover:opacity-60 transition-all duration-700"
-    viewBox="0 0 100 20"
-    preserveAspectRatio="none"
-  >
-    <motion.path
-      d="M0,15 L15,10 L25,5 L35,8 L50,3 L65,7 L80,5 L90,8 L100,12 L100,20 L0,20 Z"
-      fill="currentColor"
-      className="text-mitsumata-primary/20"
-      initial={{ pathLength: 0 }}
-      animate={{ pathLength: 1 }}
-      transition={{ duration: 2, ease: "easeInOut" }}
-    />
-  </svg>
-)
-
 // 予約ボタンコンポーネント
 const ReservationButton = () => {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const { scrollY } = useScroll()
-
-  // デスクトップ版: スクロールに連動した微妙な浮遊感
-  const floatY = useTransform(scrollY, [0, 1000], [0, -10])
-
   const handleClick = () => {
-    if (window.innerWidth < 768) {
-      // モバイル: 1回目のタップで展開、2回目で遷移
-      if (!isExpanded) {
-        setIsExpanded(true)
-        setTimeout(() => setIsExpanded(false), 3000)
-        return
-      }
-    }
     window.location.href = "/reservations"
   }
 
   return (
     <>
-      {/* デスクトップ版 - 右側中央の和紙風縦書きボタン */}
+      {/* デスクトップ版 - 右側中央のシンプル縦書きボタン */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
-        style={{ y: floatY }}
         transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
         className="hidden md:block fixed right-0 top-1/2 -translate-y-1/2 z-50"
       >
         <motion.button
-          whileHover={{ scale: 1.03, x: -3 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={{ scale: 1.05, x: -4 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ duration: 0.3 }}
           onClick={handleClick}
           className="
             relative group
-            bg-white/96 hover:bg-white/99
+            bg-white hover:bg-white/98
             text-black
-            px-5 py-14
+            px-6 py-16
             backdrop-blur-sm
-            shadow-[0_2px_16px_rgba(0,0,0,0.06),0_8px_32px_rgba(0,0,0,0.04)]
-            hover:shadow-[0_4px_24px_rgba(0,0,0,0.08),0_12px_48px_rgba(0,0,0,0.06)]
-            border-l-[3px] border-l-transparent
-            hover:border-l-mitsumata-primary
-            overflow-hidden
-            transition-all duration-500
+            shadow-[0_4px_24px_rgba(0,0,0,0.1)]
+            hover:shadow-[0_8px_40px_rgba(0,0,0,0.15)]
+            border-l-4 border-l-mitsumata-primary
+            transition-all duration-300
           "
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px),
-              repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px)
-            `,
-          }}
         >
-          {/* 和紙風テクスチャ背景 */}
-          <div
-            className="absolute inset-0 opacity-30 pointer-events-none mix-blend-overlay"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            }}
-          />
-
-          {/* 山の稜線（ホバー時に出現） */}
-          <MountainRidgePath />
-
           {/* 縦書きテキスト */}
-          <span className="relative z-10 flex flex-col items-center gap-3 [writing-mode:vertical-rl]">
-            <motion.span
-              whileHover={{ letterSpacing: "0.28em" }}
-              transition={{ duration: 0.4 }}
-              className="text-sm font-serif font-light tracking-[0.22em] text-black/90"
-            >
+          <span className="flex flex-col items-center gap-2 [writing-mode:vertical-rl]">
+            <span className="text-base font-serif font-medium tracking-[0.2em] text-black">
               予約する
-            </motion.span>
-
-            {/* 装飾的な点 */}
+            </span>
             <motion.span
-              animate={{
-                opacity: [0.3, 0.7, 0.3],
-                scale: [1, 1.2, 1],
-              }}
+              animate={{ y: [0, 4, 0] }}
               transition={{
-                duration: 3,
+                duration: 1.5,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-              className="text-[6px] text-mitsumata-primary"
-            >
-              ●
-            </motion.span>
-
-            {/* アニメーション矢印 */}
-            <motion.span
-              animate={{ y: [0, 5, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              className="text-[11px] opacity-30 group-hover:opacity-60 transition-opacity rotate-90"
+              className="text-sm opacity-50 group-hover:opacity-100 transition-opacity rotate-90"
             >
               →
             </motion.span>
           </span>
 
-          {/* ホバー時の光の流れ */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-b from-transparent via-mitsumata-primary/5 to-transparent opacity-0 group-hover:opacity-100"
-            animate={{
-              y: ["-100%", "200%"],
-            }}
-            transition={{
-              repeat: Number.POSITIVE_INFINITY,
-              duration: 3,
-              ease: "linear",
-            }}
-          />
+          {/* ホバー時の背景 */}
+          <div className="absolute inset-0 bg-mitsumata-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </motion.button>
       </motion.div>
 
-      {/* モバイル版 - 右下の展開式ボタン */}
+      {/* モバイル版 - 右下の固定ボタン */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 1, ease: [0.22, 1, 0.36, 1] }}
         className="md:hidden fixed bottom-6 right-6 z-50"
       >
         <motion.button
-          whileTap={{ scale: 0.92 }}
-          animate={
-            isExpanded
-              ? {
-                  width: "auto",
-                  borderRadius: "28px",
-                }
-              : {
-                  width: "56px",
-                  borderRadius: "28px",
-                }
-          }
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          whileTap={{ scale: 0.94 }}
+          transition={{ duration: 0.2 }}
           onClick={handleClick}
           className="
-            relative
-            h-14
-            bg-white/96
+            bg-white
             text-black
+            px-6 py-4
+            rounded-full
             backdrop-blur-sm
-            shadow-[0_4px_20px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)]
-            active:shadow-[0_2px_12px_rgba(0,0,0,0.16)]
-            border-2 border-black/5
-            overflow-hidden
-            flex items-center justify-center
-            transition-shadow duration-300
+            shadow-[0_4px_24px_rgba(0,0,0,0.15)]
+            active:shadow-[0_2px_16px_rgba(0,0,0,0.2)]
+            border-2 border-mitsumata-primary/20
+            transition-shadow duration-200
+            flex items-center gap-2
           "
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px),
-              repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.01) 2px, rgba(0,0,0,0.01) 4px)
-            `,
-          }}
         >
-          {/* 和紙風テクスチャ */}
-          <div
-            className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            }}
-          />
-
-          {/* パルスアニメーション */}
-          <motion.div
-            className="absolute inset-0 bg-mitsumata-primary/5 rounded-[28px]"
-            animate={{
-              scale: [1, 1.15, 1],
-              opacity: [0.3, 0, 0.3],
-            }}
-            transition={{
-              repeat: Number.POSITIVE_INFINITY,
-              duration: 2.5,
-              ease: "easeInOut",
-            }}
-          />
-
-          {/* コンテンツ */}
-          <div className="relative z-10 flex items-center gap-2 px-5">
-            {!isExpanded ? (
-              // 縮小状態: 「予」の一文字
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-base font-serif font-medium tracking-wider"
-              >
-                予
-              </motion.span>
-            ) : (
-              // 展開状態: 全文
-              <motion.div
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "auto" }}
-                exit={{ opacity: 0, width: 0 }}
-                className="flex items-center gap-2 whitespace-nowrap"
-              >
-                <span className="text-sm font-serif font-light tracking-[0.15em]">
-                  予約する
-                </span>
-                <motion.span
-                  animate={{ x: [0, 3, 0] }}
-                  transition={{
-                    repeat: Number.POSITIVE_INFINITY,
-                    duration: 1.5,
-                    ease: "easeInOut",
-                  }}
-                  className="text-xs opacity-50"
-                >
-                  →
-                </motion.span>
-              </motion.div>
-            )}
-          </div>
-
-          {/* 左端のアクセントライン */}
-          <div className="absolute left-0 top-2 bottom-2 w-[2px] bg-gradient-to-b from-transparent via-mitsumata-primary/40 to-transparent" />
+          <span className="text-sm font-serif font-medium tracking-wider">
+            予約
+          </span>
+          <span className="text-xs opacity-60">
+            →
+          </span>
         </motion.button>
       </motion.div>
     </>
