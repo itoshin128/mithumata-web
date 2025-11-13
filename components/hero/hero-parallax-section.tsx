@@ -298,16 +298,18 @@ export function HeroParallaxSection() {
         const optimalVh = Math.min(aspectRatio * 100, 220)
         height = `${Math.round(optimalVh)}vh`
       } else {
-        // 16:10画像の場合（元の設定に戻す）
+        // 16:10画像の場合
         if (aspectRatio < 1.4) {
           height = "140vh"
         } else if (aspectRatio < 1.5) {
           height = "150vh"
-        } else if (aspectRatio < 1.65) {
+        } else if (aspectRatio < 1.6) {
           height = "160vh"
+        } else if (aspectRatio < 1.65) {
+          height = "175vh"
         } else {
           // 1.65-1.7の範囲
-          height = "170vh"
+          height = "185vh"
         }
       }
 

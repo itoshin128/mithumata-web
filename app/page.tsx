@@ -19,7 +19,7 @@ export default function HomePage() {
       <main className="min-h-screen">
         <HeroParallaxSection />
 
-        <div className="post-parallax-content relative z-20 -mt-[20vh] md:-mt-[30vh]">
+        <div className="post-parallax-content relative z-20">
           {/* post-parallax-content全体に和紙背景と木の影を適用 */}
           <div className="absolute inset-0 z-0">
             <WashiBackground intensity="strong" animated={false} />
