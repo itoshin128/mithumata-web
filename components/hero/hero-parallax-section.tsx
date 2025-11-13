@@ -106,10 +106,63 @@ type AnimationPattern = {
   y: [string, string]
 }
 
+// タブレット用：16:10横長画像
 const heroImagesDesktop = [
   {
     id: 1,
-    url: "/images/hero/main01_test2.jpg",
+    url: "/images/hero/main01.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 2,
+    url: "/images/hero/main02.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 3,
+    url: "/images/hero/main03.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 4,
+    url: "/images/hero/main04.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 5,
+    url: "/images/hero/main05.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 6,
+    url: "/images/hero/main06.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 7,
+    url: "/images/hero/main07.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 8,
+    url: "/images/hero/main08.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+]
+
+// MacBook用：縦長4:5画像
+const heroImagesMacBook = [
+  {
+    id: 1,
+    url: "/images/hero/main001.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
@@ -152,6 +205,57 @@ const heroImagesDesktop = [
   {
     id: 8,
     url: "/images/hero/main008.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+]
+
+const heroImagesDesktopWide = [
+  {
+    id: 1,
+    url: "/images/hero/hero01.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 2,
+    url: "/images/hero/hero02.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 3,
+    url: "/images/hero/hero03.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 4,
+    url: "/images/hero/hero04.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 5,
+    url: "/images/hero/hero05.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 6,
+    url: "/images/hero/hero06.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 7,
+    url: "/images/hero/hero07.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 8,
+    url: "/images/hero/hero08.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
@@ -213,10 +317,63 @@ export function HeroParallaxSection() {
   const [bgOpacity, setBgOpacity] = useState(1)
   const [activeSlideDesktop, setActiveSlideDesktop] = useState(0)
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
+  const [dynamicHeight, setDynamicHeight] = useState("200vh")
+  const [isDesktop, setIsDesktop] = useState(false)
+  const [imageSetType, setImageSetType] = useState<'tablet' | 'macbook' | 'wide'>('wide')
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
   const y = useTransform(scrollY, [0, 2000], [0, 400])
+
+  useEffect(() => {
+    const updateHeightBasedOnAspectRatio = () => {
+      const isDesktopSize = window.innerWidth >= 768
+      setIsDesktop(isDesktopSize)
+
+      // モバイル（768px未満）では固定
+      if (!isDesktopSize) {
+        return
+      }
+
+      const aspectRatio = window.innerWidth / window.innerHeight
+
+      // アスペクト比に基づいて画像セットを選択
+      // ratio < 1.5: 16:10横長画像（タブレット等）
+      // ratio 1.5-2.0: 4:5縦長画像（MacBook）
+      // ratio >= 2.0: 1:1スクエア画像（大画面モニター）
+      let imageType: 'tablet' | 'macbook' | 'wide'
+      let height: string
+
+      if (aspectRatio < 1.5) {
+        // タブレット：16:10横長画像
+        imageType = 'tablet'
+        if (aspectRatio < 1.4) {
+          height = "140vh"
+        } else {
+          height = "150vh"
+        }
+      } else if (aspectRatio < 2.0) {
+        // MacBook：4:5縦長画像
+        imageType = 'macbook'
+        height = "220vh"
+      } else {
+        // 大画面モニター：1:1スクエア画像
+        imageType = 'wide'
+        const optimalVh = Math.min(aspectRatio * 100, 220)
+        height = `${Math.round(optimalVh)}vh`
+      }
+
+      setImageSetType(imageType)
+      setDynamicHeight(height)
+    }
+
+    updateHeightBasedOnAspectRatio()
+    window.addEventListener("resize", updateHeightBasedOnAspectRatio)
+
+    return () => {
+      window.removeEventListener("resize", updateHeightBasedOnAspectRatio)
+    }
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -321,8 +478,11 @@ export function HeroParallaxSection() {
         </div>
       )}
 
-      {/* デスクトップ用パララックス背景 */}
-      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-10 overflow-hidden bg-black">
+      {/* デスクトップ用パララックス背景 - アスペクト比に応じて画像セットを切り替え */}
+      <div
+        className="hidden md:block absolute top-0 left-0 w-full z-10 overflow-hidden bg-black"
+        style={{ height: dynamicHeight }}
+      >
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -335,8 +495,9 @@ export function HeroParallaxSection() {
             speed={2500}
             className="h-full w-full"
             onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
+            key={imageSetType}
           >
-            {heroImagesDesktop.map((image, index) => (
+            {(imageSetType === 'tablet' ? heroImagesDesktop : imageSetType === 'macbook' ? heroImagesMacBook : heroImagesDesktopWide).map((image, index) => (
               <SwiperSlide key={image.id}>
                 <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
@@ -365,7 +526,7 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className="object-contain object-center"
+                      className="object-cover object-center"
                       priority={image.id === 1}
                       quality={100}
                       sizes="100vw"
@@ -380,7 +541,10 @@ export function HeroParallaxSection() {
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className="relative z-30 min-h-[180vh] md:min-h-[200vh]">
+      <div
+        className="relative z-30"
+        style={{ minHeight: isDesktop ? dynamicHeight : "180vh" }}
+      >
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
