@@ -106,59 +106,7 @@ type AnimationPattern = {
   y: [string, string]
 }
 
-// タブレット用：16:10横長画像
-const heroImagesDesktop = [
-  {
-    id: 1,
-    url: "/images/hero/main01.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 2,
-    url: "/images/hero/main02.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 3,
-    url: "/images/hero/main03.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 4,
-    url: "/images/hero/main04.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 5,
-    url: "/images/hero/main05.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 6,
-    url: "/images/hero/main06.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 7,
-    url: "/images/hero/main07.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 8,
-    url: "/images/hero/main08.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-]
-
-// MacBook用：縦長4:5画像
+// タブレット + MacBook用：縦長4:5画像
 const heroImagesMacBook = [
   {
     id: 1,
@@ -319,7 +267,7 @@ export function HeroParallaxSection() {
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
   const [dynamicHeight, setDynamicHeight] = useState("200vh")
   const [isDesktop, setIsDesktop] = useState(false)
-  const [imageSetType, setImageSetType] = useState<'tablet' | 'macbook' | 'wide'>('wide')
+  const [imageSetType, setImageSetType] = useState<'macbook' | 'wide'>('wide')
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -340,7 +288,7 @@ export function HeroParallaxSection() {
       // アスペクト比に基づいて画像セットを選択
       // ratio < 2.0: 4:5縦長画像（タブレット + MacBook）
       // ratio >= 2.0: 1:1スクエア画像（大画面モニター）
-      let imageType: 'tablet' | 'macbook' | 'wide'
+      let imageType: 'macbook' | 'wide'
       let height: string
 
       if (aspectRatio < 2.0) {
@@ -488,7 +436,7 @@ export function HeroParallaxSection() {
             onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
             key={imageSetType}
           >
-            {(imageSetType === 'tablet' ? heroImagesDesktop : imageSetType === 'macbook' ? heroImagesMacBook : heroImagesDesktopWide).map((image, index) => (
+            {(imageSetType === 'macbook' ? heroImagesMacBook : heroImagesDesktopWide).map((image, index) => (
               <SwiperSlide key={image.id}>
                 <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
@@ -517,7 +465,7 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className="object-cover object-top"
+                      className={imageSetType === 'wide' ? 'object-cover object-center' : 'object-cover object-top'}
                       priority={image.id === 1}
                       quality={100}
                       sizes="100vw"
