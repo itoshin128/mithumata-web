@@ -109,49 +109,49 @@ type AnimationPattern = {
 const heroImagesDesktop = [
   {
     id: 1,
-    url: "/images/hero/main001.jpg",
+    url: "/images/hero/main01.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.1, 1.15], x: ["-1%", "1%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 2,
-    url: "/images/hero/main002.jpg",
+    url: "/images/hero/main02.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.15, 1.1], x: ["1%", "-1%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 3,
-    url: "/images/hero/main003.jpg",
+    url: "/images/hero/main03.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.1, 1.15], x: ["0%", "0%"], y: ["-1%", "1%"] } as AnimationPattern,
   },
   {
     id: 4,
-    url: "/images/hero/main004.jpg",
+    url: "/images/hero/main04.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.15, 1.1], x: ["0%", "0%"], y: ["1%", "-1%"] } as AnimationPattern,
   },
   {
     id: 5,
-    url: "/images/hero/main005.jpg",
+    url: "/images/hero/main05.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.1, 1.15], x: ["1%", "-1%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 6,
-    url: "/images/hero/main006.jpg",
+    url: "/images/hero/main06.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.15, 1.1], x: ["-1%", "1%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 7,
-    url: "/images/hero/main007.jpg",
+    url: "/images/hero/main07.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.1, 1.15], x: ["0%", "0%"], y: ["1%", "-1%"] } as AnimationPattern,
   },
   {
     id: 8,
-    url: "/images/hero/main008.jpg",
+    url: "/images/hero/main08.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.15, 1.1], x: ["1%", "-1%"], y: ["0%", "0%"] } as AnimationPattern,
   },
@@ -365,7 +365,7 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className="object-cover object-center"
+                      className="object-contain object-center"
                       priority={image.id === 1}
                       quality={100}
                       sizes="100vw"
