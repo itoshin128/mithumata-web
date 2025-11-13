@@ -109,51 +109,51 @@ type AnimationPattern = {
 const heroImagesDesktop = [
   {
     id: 1,
-    url: "/images/hero/main01.jpg",
+    url: "/images/hero/main01_test2.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["-1%", "1%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 2,
-    url: "/images/hero/main02.jpg",
+    url: "/images/hero/main002.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1.1], x: ["1%", "-1%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 3,
-    url: "/images/hero/main03.jpg",
+    url: "/images/hero/main003.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["0%", "0%"], y: ["-1%", "1%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 4,
-    url: "/images/hero/main04.jpg",
+    url: "/images/hero/main004.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1.1], x: ["0%", "0%"], y: ["1%", "-1%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 5,
-    url: "/images/hero/main05.jpg",
+    url: "/images/hero/main005.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["1%", "-1%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 6,
-    url: "/images/hero/main06.jpg",
+    url: "/images/hero/main006.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1.1], x: ["-1%", "1%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 7,
-    url: "/images/hero/main07.jpg",
+    url: "/images/hero/main007.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["0%", "0%"], y: ["1%", "-1%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 8,
-    url: "/images/hero/main08.jpg",
+    url: "/images/hero/main008.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1.1], x: ["1%", "-1%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
 ]
 
@@ -322,7 +322,7 @@ export function HeroParallaxSection() {
       )}
 
       {/* デスクトップ用パララックス背景 */}
-      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-10 overflow-hidden">
+      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-10 overflow-hidden bg-black">
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -338,9 +338,9 @@ export function HeroParallaxSection() {
           >
             {heroImagesDesktop.map((image, index) => (
               <SwiperSlide key={image.id}>
-                <div className="relative h-full w-full overflow-hidden">
+                <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
-                    className="relative h-full w-full"
+                    className="relative w-full h-full"
                     initial={{
                       scale: image.animation.scale[0],
                       x: image.animation.x[0],
@@ -365,7 +365,7 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className="object-cover object-center"
+                      className="object-contain object-center"
                       priority={image.id === 1}
                       quality={100}
                       sizes="100vw"
