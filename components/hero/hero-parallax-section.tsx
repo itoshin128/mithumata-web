@@ -322,7 +322,7 @@ export function HeroParallaxSection() {
       )}
 
       {/* デスクトップ用パララックス背景 */}
-      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-10 overflow-hidden bg-black">
+      <div className="hidden md:block absolute top-0 left-0 w-full md:h-[160vh] lg:h-[180vh] xl:h-[200vh] z-10 overflow-hidden bg-black">
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -380,7 +380,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className="relative z-30 min-h-[180vh] md:min-h-[200vh]">
+      <div className="relative z-30 min-h-[180vh] md:min-h-[160vh] lg:min-h-[180vh] xl:min-h-[200vh]">
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
