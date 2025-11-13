@@ -340,7 +340,7 @@ export function HeroParallaxSection() {
               <SwiperSlide key={image.id}>
                 <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
-                    className="relative h-full aspect-[16/10]"
+                    className="relative w-full h-full"
                     initial={{
                       scale: image.animation.scale[0],
                       x: image.animation.x[0],
