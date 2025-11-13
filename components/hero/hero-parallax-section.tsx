@@ -353,8 +353,8 @@ export function HeroParallaxSection() {
           height = "150vh"
         }
       } else if (aspectRatio < 1.7) {
-        // MacBook：16:10横長画像（十分な高さで表示）
-        imageType = 'tablet'
+        // MacBook：4:5縦長画像
+        imageType = 'macbook'
         height = "200vh"
       } else {
         // 大画面モニター：1:1スクエア画像
@@ -526,7 +526,7 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className="object-contain object-center"
+                      className="object-cover object-center"
                       priority={image.id === 1}
                       quality={100}
                       sizes="100vw"
