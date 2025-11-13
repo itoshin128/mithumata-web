@@ -214,49 +214,49 @@ const heroImagesMobile = [
     id: 1,
     url: "/images/hero/main01_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 2,
     url: "/images/hero/main02_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1.1], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 3,
     url: "/images/hero/main03_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 4,
     url: "/images/hero/main04_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1.1], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 5,
     url: "/images/hero/main05_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 6,
     url: "/images/hero/main06_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1.1], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 7,
     url: "/images/hero/main07_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 8,
     url: "/images/hero/main08_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.15, 1.1], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
 ]
 
@@ -611,14 +611,14 @@ export function HeroParallaxSection() {
                 <motion.div
                   whileHover={{ scale: 1.05, rotate: 360 }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-full border-2 border-dashed border-white/40 flex items-center justify-center relative overflow-hidden"
+                  className="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 xl:w-56 xl:h-56 rounded-full border-2 border-dashed border-white/40 flex items-center justify-center relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
 
                   <motion.span
                     whileHover={{ scale: 1.08 }}
                     transition={{ duration: 0.3 }}
-                    className="text-white text-xs sm:text-xs md:text-sm font-serif font-light tracking-[0.1em] sm:tracking-[0.12em] text-center px-4 sm:px-5 relative z-10"
+                    className="text-white text-xs sm:text-sm md:text-base font-serif font-light tracking-[0.1em] sm:tracking-[0.12em] text-center px-5 sm:px-6 relative z-10"
                   >
                     三俣山荘
                     <br />
