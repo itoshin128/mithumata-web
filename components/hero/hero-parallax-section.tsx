@@ -111,7 +111,7 @@ const heroImagesDesktop = [
     id: 1,
     url: "/images/hero/main01_test.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.1, 1.15], x: ["-1%", "1%"], y: ["0%", "0%"] } as AnimationPattern,
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
     id: 2,
