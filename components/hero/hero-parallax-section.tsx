@@ -338,9 +338,9 @@ export function HeroParallaxSection() {
           >
             {heroImagesDesktop.map((image, index) => (
               <SwiperSlide key={image.id}>
-                <div className="relative h-full w-full overflow-hidden bg-black">
+                <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
-                    className="relative h-full w-full"
+                    className="relative h-full aspect-[16/10]"
                     initial={{
                       scale: image.animation.scale[0],
                       x: image.animation.x[0],
