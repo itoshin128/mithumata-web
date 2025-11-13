@@ -339,8 +339,8 @@ export function HeroParallaxSection() {
 
       // アスペクト比に基づいて画像セットを選択
       // ratio < 1.5: 16:10横長画像（タブレット等）
-      // ratio 1.5-1.7: 4:5縦長画像（MacBook）
-      // ratio >= 1.7: 1:1スクエア画像（大画面モニター）
+      // ratio 1.5-2.0: 4:5縦長画像（MacBook）
+      // ratio >= 2.0: 1:1スクエア画像（大画面モニター）
       let imageType: 'tablet' | 'macbook' | 'wide'
       let height: string
 
@@ -352,10 +352,10 @@ export function HeroParallaxSection() {
         } else {
           height = "150vh"
         }
-      } else if (aspectRatio < 1.7) {
+      } else if (aspectRatio < 2.0) {
         // MacBook：4:5縦長画像
         imageType = 'macbook'
-        height = "200vh"
+        height = "220vh"
       } else {
         // 大画面モニター：1:1スクエア画像
         imageType = 'wide'
