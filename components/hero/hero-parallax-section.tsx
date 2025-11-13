@@ -266,6 +266,7 @@ export function HeroParallaxSection() {
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
   const [dynamicHeight, setDynamicHeight] = useState("200vh")
   const [isDesktop, setIsDesktop] = useState(false)
+  const [useSquareImages, setUseSquareImages] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -283,13 +284,17 @@ export function HeroParallaxSection() {
 
       const aspectRatio = window.innerWidth / window.innerHeight
 
-      // アスペクト比に基づいて動的に高さを調整（より細かく）
-      // 1280px以上では1:1スクエア画像、それ以下では16:10画像を使用
+      // アスペクト比に基づいて画像セットを選択
+      // ratio < 1.7: 16:10画像（MacBook等）
+      // ratio >= 1.7: 1:1スクエア画像（一般的なモニター）
+      const shouldUseSquare = aspectRatio >= 1.7
+      setUseSquareImages(shouldUseSquare)
+
+      // 高さの計算
       let height: string
 
-      if (window.innerWidth >= 1280) {
+      if (shouldUseSquare) {
         // 1:1スクエア画像の場合：横幅に合わせて高さを計算
-        // ratio = width/height なので、1:1画像が収まる高さ = ratio * 100vh
         const optimalVh = Math.min(aspectRatio * 100, 220)
         height = `${Math.round(optimalVh)}vh`
       } else {
@@ -300,10 +305,9 @@ export function HeroParallaxSection() {
           height = "150vh"
         } else if (aspectRatio < 1.65) {
           height = "160vh"
-        } else if (aspectRatio < 1.75) {
-          height = "170vh"
         } else {
-          height = "180vh"
+          // 1.65-1.7の範囲
+          height = "170vh"
         }
       }
 
@@ -421,9 +425,9 @@ export function HeroParallaxSection() {
         </div>
       )}
 
-      {/* デスクトップ用パララックス背景 - 16:10画像（768px-1279px） */}
+      {/* デスクトップ用パララックス背景 - アスペクト比に応じて画像セットを切り替え */}
       <div
-        className="hidden md:block xl:hidden absolute top-0 left-0 w-full z-10 overflow-hidden bg-black"
+        className="hidden md:block absolute top-0 left-0 w-full z-10 overflow-hidden bg-black"
         style={{ height: dynamicHeight }}
       >
         <motion.div style={{ y }} className="relative w-full h-full">
@@ -438,69 +442,9 @@ export function HeroParallaxSection() {
             speed={2500}
             className="h-full w-full"
             onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
+            key={useSquareImages ? "square" : "wide"}
           >
-            {heroImagesDesktop.map((image, index) => (
-              <SwiperSlide key={image.id}>
-                <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
-                  <motion.div
-                    className="relative w-full h-full"
-                    initial={{
-                      scale: image.animation.scale[0],
-                      x: image.animation.x[0],
-                      y: image.animation.y[0],
-                    }}
-                    animate={
-                      activeSlideDesktop === index
-                        ? {
-                            scale: image.animation.scale[1],
-                            x: image.animation.x[1],
-                            y: image.animation.y[1],
-                          }
-                        : undefined
-                    }
-                    transition={{
-                      duration: 4,
-                      delay: activeSlideDesktop === index ? 2.5 : 0,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <Image
-                      src={image.url || "/placeholder.svg"}
-                      alt={image.alt}
-                      fill
-                      className="object-contain object-center"
-                      priority={image.id === 1}
-                      quality={100}
-                      sizes="100vw"
-                    />
-                  </motion.div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
-        </motion.div>
-      </div>
-
-      {/* デスクトップ用パララックス背景 - 1:1スクエア画像（1280px以上） */}
-      <div
-        className="hidden xl:block absolute top-0 left-0 w-full z-10 overflow-hidden bg-black"
-        style={{ height: dynamicHeight }}
-      >
-        <motion.div style={{ y }} className="relative w-full h-full">
-          <Swiper
-            modules={[Autoplay, EffectFade]}
-            effect="fade"
-            autoplay={{
-              delay: 7000,
-              disableOnInteraction: false,
-            }}
-            loop={true}
-            speed={2500}
-            className="h-full w-full"
-            onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
-          >
-            {heroImagesDesktopWide.map((image, index) => (
+            {(useSquareImages ? heroImagesDesktopWide : heroImagesDesktop).map((image, index) => (
               <SwiperSlide key={image.id}>
                 <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
