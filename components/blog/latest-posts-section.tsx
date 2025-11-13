@@ -144,79 +144,90 @@ function BlogCard({ post, delay = 0 }: BlogCardProps) {
 
   return (
     <FadeInSection delay={delay}>
-      <article className="group h-full flex flex-col">
-        {/* Image with 3D Effect */}
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-          onMouseMove={handleMouseMove}
-          style={{
-            rotateY: isHovering ? mousePosition.x * 3 : 0,
-            rotateX: isHovering ? -mousePosition.y * 3 : 0,
-          }}
-          className="mb-6 md:mb-8"
-        >
-          <div className="relative aspect-[4/3] overflow-hidden shadow-lg">
-            <Image
-              src={post.imageUrl || "/placeholder.svg"}
-              alt={post.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-            {/* Category Badge */}
-            <div className="absolute top-4 left-4 md:top-6 md:left-6">
-              <span
-                className="inline-block px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-serif tracking-wider bg-white/95 backdrop-blur-sm shadow-md"
-                style={{ color: post.categoryColor }}
-              >
-                {post.category}
-              </span>
+      <Link
+        href={post.href}
+        className="block h-full focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf6e3] rounded-lg transition-all"
+        style={{
+          // @ts-ignore
+          '--focus-color': post.categoryColor,
+        } as React.CSSProperties}
+        aria-label={`${post.title} - ${post.category} - ${post.date}`}
+      >
+        <article className="group h-full flex flex-col" role="article">
+          {/* Image with 3D Effect */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            onMouseMove={handleMouseMove}
+            style={{
+              rotateY: isHovering ? mousePosition.x * 3 : 0,
+              rotateX: isHovering ? -mousePosition.y * 3 : 0,
+            }}
+            className="mb-6 md:mb-8"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden shadow-lg">
+              <Image
+                src={post.imageUrl || "/placeholder.svg"}
+                alt={post.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+              {/* Category Badge */}
+              <div className="absolute top-4 left-4 md:top-6 md:left-6">
+                <span
+                  className="inline-block px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-serif tracking-wider bg-white/95 backdrop-blur-sm shadow-md"
+                  style={{ color: post.categoryColor }}
+                  role="text"
+                  aria-label={`カテゴリ: ${post.category}`}
+                >
+                  {post.category}
+                </span>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        {/* Content */}
-        <div className="flex-1 flex flex-col space-y-3 md:space-y-4">
-          {/* Title */}
-          <h3 className="text-base md:text-lg lg:text-xl font-serif font-light tracking-[0.04em] leading-[1.6] text-gray-900 text-balance">
-            {post.title}
-          </h3>
+          {/* Content */}
+          <div className="flex-1 flex flex-col space-y-3 md:space-y-4">
+            {/* Title */}
+            <h3 className="text-base md:text-lg lg:text-xl font-serif font-light tracking-[0.04em] leading-[1.6] text-gray-900 text-balance">
+              {post.title}
+            </h3>
 
-          {/* Excerpt */}
-          <p className="flex-1 text-sm md:text-base text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty line-clamp-3">
-            {post.excerpt}
-          </p>
+            {/* Excerpt */}
+            <p className="flex-1 text-sm md:text-base text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty line-clamp-3">
+              {post.excerpt}
+            </p>
 
-          {/* Meta Info */}
-          <div className="flex items-center gap-4 text-xs md:text-sm text-gray-500">
-            <div className="flex items-center gap-1.5">
-              <Calendar className="w-3 h-3 md:w-4 md:h-4" />
-              <time className="font-serif font-light tracking-wider">{post.date}</time>
+            {/* Meta Info */}
+            <div className="flex items-center gap-4 text-xs md:text-sm text-gray-500">
+              <div className="flex items-center gap-1.5">
+                <Calendar className="w-3 h-3 md:w-4 md:h-4" aria-hidden="true" />
+                <time className="font-serif font-light tracking-wider" dateTime={post.date}>{post.date}</time>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <User className="w-3 h-3 md:w-4 md:h-4" aria-hidden="true" />
+                <span className="font-serif font-light tracking-wider">{post.author}</span>
+              </div>
             </div>
-            <div className="flex items-center gap-1.5">
-              <User className="w-3 h-3 md:w-4 md:h-4" />
-              <span className="font-serif font-light tracking-wider">{post.author}</span>
-            </div>
-          </div>
 
-          {/* Read More Link */}
-          <div className="pt-2">
-            <Link href={post.href}>
+            {/* Read More Link */}
+            <div className="pt-2">
               <motion.span
                 whileHover={{ x: 4 }}
                 className="inline-flex items-center gap-2 text-sm md:text-base font-serif font-light tracking-[0.1em] transition-colors duration-300"
                 style={{ color: post.categoryColor }}
+                aria-hidden="true"
               >
                 続きを読む
                 <ArrowRight className="w-4 h-4" />
               </motion.span>
-            </Link>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </Link>
     </FadeInSection>
   )
 }

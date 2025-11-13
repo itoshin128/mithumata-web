@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { EnhancedBlogCard } from "@/components/blog/enhanced-blog-card"
 import { Button } from "@/components/ui/button"
@@ -119,43 +119,78 @@ type TabType = "notices" | "faq"
 
 export function InformationHub() {
   const [activeTab, setActiveTab] = useState<TabType>("notices")
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  // モーション設定の検知
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  // タブ切り替えのキーボード対応
+  const handleTabKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      e.preventDefault()
+      setActiveTab(activeTab === "notices" ? "faq" : "notices")
+    }
+  }
 
   return (
-    <section className="relative z-20 py-20 lg:py-32">
+    <section className="relative z-20 py-20 lg:py-32" aria-labelledby="info-hub-heading">
       <div className="container mx-auto px-4 max-w-[1600px]">
         {/* Mobile Tab Interface */}
         <div className="lg:hidden mb-12">
           <FadeInSection className="text-center mb-8">
-            <h2 className="font-serif text-3xl font-bold mb-4 text-gray-900">インフォメーション</h2>
+            <h2 id="info-hub-heading" className="font-serif text-3xl font-bold mb-4 text-gray-900">インフォメーション</h2>
             <p className="text-base text-gray-700 leading-relaxed">山小屋の最新情報とよくあるご質問</p>
           </FadeInSection>
 
           {/* Tab Switcher */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
+            animate={prefersReducedMotion ? {} : { opacity: 1, y: 0 }}
             className="flex gap-3 p-2 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg mb-8 max-w-md mx-auto"
+            role="tablist"
+            aria-label="インフォメーションタブ"
+            onKeyDown={handleTabKeyDown}
           >
             <button
               onClick={() => setActiveTab("notices")}
-              className={`flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold transition-all duration-300 ${
+              className={`flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#2d5016]/30 focus-visible:ring-offset-2 ${
                 activeTab === "notices"
                   ? "bg-gradient-to-br from-[#2d5016] to-[#5ba4cf] text-white shadow-lg scale-105"
                   : "bg-transparent text-gray-600 hover:bg-gray-100"
               }`}
+              role="tab"
+              aria-selected={activeTab === "notices"}
+              aria-controls="notices-panel"
+              id="notices-tab"
+              tabIndex={activeTab === "notices" ? 0 : -1}
             >
-              <Newspaper className="w-5 h-5" />
+              <Newspaper className="w-5 h-5" aria-hidden="true" />
               <span className="text-sm">お知らせ</span>
             </button>
             <button
               onClick={() => setActiveTab("faq")}
-              className={`flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold transition-all duration-300 ${
+              className={`flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#b8604a]/30 focus-visible:ring-offset-2 ${
                 activeTab === "faq"
                   ? "bg-gradient-to-br from-[#b8604a] to-[#f9a825] text-white shadow-lg scale-105"
                   : "bg-transparent text-gray-600 hover:bg-gray-100"
               }`}
+              role="tab"
+              aria-selected={activeTab === "faq"}
+              aria-controls="faq-panel"
+              id="faq-tab"
+              tabIndex={activeTab === "faq" ? 0 : -1}
             >
-              <HelpCircle className="w-5 h-5" />
+              <HelpCircle className="w-5 h-5" aria-hidden="true" />
               <span className="text-sm">FAQ</span>
             </button>
           </motion.div>
@@ -165,20 +200,26 @@ export function InformationHub() {
             {activeTab === "notices" ? (
               <motion.div
                 key="notices"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.3 }}
+                initial={prefersReducedMotion ? {} : { opacity: 0, x: -20 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
+                exit={prefersReducedMotion ? {} : { opacity: 0, x: 20 }}
+                transition={prefersReducedMotion ? {} : { duration: 0.3 }}
+                role="tabpanel"
+                id="notices-panel"
+                aria-labelledby="notices-tab"
               >
-                <NoticesContent />
+                <NoticesContent prefersReducedMotion={prefersReducedMotion} />
               </motion.div>
             ) : (
               <motion.div
                 key="faq"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.3 }}
+                initial={prefersReducedMotion ? {} : { opacity: 0, x: -20 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
+                exit={prefersReducedMotion ? {} : { opacity: 0, x: 20 }}
+                transition={prefersReducedMotion ? {} : { duration: 0.3 }}
+                role="tabpanel"
+                id="faq-panel"
+                aria-labelledby="faq-tab"
               >
                 <FAQContent />
               </motion.div>
@@ -259,27 +300,86 @@ export function InformationHub() {
   )
 }
 
-function NoticesContent() {
+function NoticesContent({ prefersReducedMotion = false }: { prefersReducedMotion?: boolean }) {
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  // スクロール位置の監視
+  useEffect(() => {
+    const carousel = carouselRef.current
+    if (!carousel) return
+
+    const handleScroll = () => {
+      const scrollLeft = carousel.scrollLeft
+      const cardWidth = carousel.scrollWidth / latestPosts.length
+      const newIndex = Math.round(scrollLeft / cardWidth)
+      setCurrentIndex(newIndex)
+    }
+
+    carousel.addEventListener('scroll', handleScroll)
+    return () => carousel.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // キーボードナビゲーション
+  const scrollToIndex = useCallback((index: number) => {
+    const carousel = carouselRef.current
+    if (!carousel) return
+
+    const cardWidth = carousel.scrollWidth / latestPosts.length
+    carousel.scrollTo({
+      left: cardWidth * index,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    })
+  }, [prefersReducedMotion])
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      const newIndex = Math.max(0, currentIndex - 1)
+      scrollToIndex(newIndex)
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      const newIndex = Math.min(latestPosts.length - 1, currentIndex + 1)
+      scrollToIndex(newIndex)
+    } else if (e.key === 'Home') {
+      e.preventDefault()
+      scrollToIndex(0)
+    } else if (e.key === 'End') {
+      e.preventDefault()
+      scrollToIndex(latestPosts.length - 1)
+    }
+  }, [currentIndex, scrollToIndex])
+
   return (
     <>
       {/* モバイル: 横スクロールカルーセル */}
       <div className="lg:hidden">
         <div className="relative -mx-4 px-4">
+          {/* スクリーンリーダー用の説明 */}
+          <div className="sr-only" aria-live="polite" aria-atomic="true">
+            お知らせ一覧。現在 {currentIndex + 1} / {latestPosts.length} 件目を表示中。矢印キーで前後に移動できます。
+          </div>
+
           {/* カルーセルコンテナ */}
           <div
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
+            ref={carouselRef}
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-mitsumata/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf6e3] rounded-2xl"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
               WebkitOverflowScrolling: "touch",
             }}
+            role="region"
+            aria-label="お知らせ記事カルーセル"
+            tabIndex={0}
+            onKeyDown={handleKeyDown}
           >
             {latestPosts.map((post, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
+                initial={prefersReducedMotion ? {} : { opacity: 0, x: 20 }}
+                animate={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
+                transition={prefersReducedMotion ? {} : { delay: index * 0.1 }}
                 className="flex-none w-[85vw] sm:w-[75vw] snap-start"
               >
                 <EnhancedBlogCard {...post} compact />
@@ -287,32 +387,38 @@ function NoticesContent() {
             ))}
           </div>
 
-          {/* スクロールヒント（初回のみ表示） */}
-          <motion.div
-            initial={{ opacity: 1, x: 0 }}
-            animate={{ opacity: 0, x: 10 }}
-            transition={{ delay: 2, duration: 1 }}
-            className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
-          >
-            <div className="w-12 h-12 rounded-full bg-gradient-to-l from-white/90 to-transparent flex items-center justify-end pr-2">
-              <ArrowRight className="w-5 h-5 text-gray-400 animate-pulse" />
-            </div>
-          </motion.div>
+          {/* スクロールヒント（初回のみ表示・モーション配慮） */}
+          {!prefersReducedMotion && (
+            <motion.div
+              initial={{ opacity: 1, x: 0 }}
+              animate={{ opacity: 0, x: 10 }}
+              transition={{ delay: 2, duration: 1 }}
+              className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+              aria-hidden="true"
+            >
+              <div className="w-12 h-12 rounded-full bg-gradient-to-l from-white/90 to-transparent flex items-center justify-end pr-2">
+                <ArrowRight className="w-5 h-5 text-gray-400 animate-pulse" />
+              </div>
+            </motion.div>
+          )}
         </div>
 
         {/* ページインジケーター */}
-        <div className="flex justify-center gap-2 mt-6">
-          {latestPosts.map((_, index) => (
-            <div
+        <nav aria-label="カルーセルページネーション" className="flex justify-center gap-2 mt-6">
+          {latestPosts.map((post, index) => (
+            <button
               key={index}
-              className="w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"
+              onClick={() => scrollToIndex(index)}
+              className="h-1.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf6e3]"
               style={{
-                backgroundColor: index === 0 ? "#2d5016" : undefined,
-                width: index === 0 ? "24px" : "8px",
+                backgroundColor: index === currentIndex ? post.categoryColor : '#d1d5db',
+                width: index === currentIndex ? "24px" : "8px",
               }}
+              aria-label={`${index + 1}件目の記事へ移動`}
+              aria-current={index === currentIndex ? 'true' : 'false'}
             />
           ))}
-        </div>
+        </nav>
       </div>
 
       {/* デスクトップ: 従来のレイアウト */}
