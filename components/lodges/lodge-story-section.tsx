@@ -130,7 +130,7 @@ function SectionDivider() {
 
 export function LodgeStorySection() {
   return (
-    <section className="relative py-20 md:py-32 lg:py-40">
+    <section className="relative py-16 md:py-32 lg:py-40">
       {lodgeStories.map((lodge, storyIndex) => {
         return (
           <div key={lodge.id} className="relative z-10">
@@ -227,8 +227,8 @@ export function LodgeStorySection() {
                       className="
                         group
                         inline-flex items-center gap-3
-                        px-10 py-5
-                        border border-gray-900
+                        px-12 py-6 md:px-10 md:py-5
+                        border-2 md:border border-gray-900
                         rounded-full
                         text-gray-900
                         font-light
@@ -236,10 +236,12 @@ export function LodgeStorySection() {
                         transition-all duration-500
                         hover:text-white
                         hover:shadow-xl
+                        min-w-[240px] md:min-w-0
+                        justify-center
                       "
                     >
-                      <span className="text-sm">{lodge.name}の詳細</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
+                      <span className="text-base md:text-sm">{lodge.name}の詳細</span>
+                      <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-2 transition-transform duration-500" />
                     </motion.button>
                   </Link>
                 </div>
