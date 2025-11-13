@@ -264,8 +264,8 @@ export function HeroParallaxSection() {
   const [bgOpacity, setBgOpacity] = useState(1)
   const [activeSlideDesktop, setActiveSlideDesktop] = useState(0)
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
-  const [desktopHeightClass, setDesktopHeightClass] = useState("xl:h-[200vh]")
-  const [desktopMinHeightClass, setDesktopMinHeightClass] = useState("xl:min-h-[200vh]")
+  const [dynamicHeight, setDynamicHeight] = useState("200vh")
+  const [isDesktop, setIsDesktop] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -273,22 +273,41 @@ export function HeroParallaxSection() {
 
   useEffect(() => {
     const updateHeightBasedOnAspectRatio = () => {
+      const isDesktopSize = window.innerWidth >= 768
+      setIsDesktop(isDesktopSize)
+
+      // モバイル（768px未満）では固定
+      if (!isDesktopSize) {
+        return
+      }
+
       const aspectRatio = window.innerWidth / window.innerHeight
 
-      // 16:10 ≈ 1.6, 16:9 ≈ 1.78
-      if (aspectRatio < 1.65) {
-        // 16:10 or narrower (MacBook等)
-        setDesktopHeightClass("xl:h-[160vh]")
-        setDesktopMinHeightClass("xl:min-h-[160vh]")
+      // アスペクト比に基づいて動的に高さを調整
+      // 4:3（タブレット） ≈ 1.33, 16:10（MacBook） ≈ 1.6, 16:9 ≈ 1.78, 21:9 ≈ 2.33
+      let height: string
+
+      if (aspectRatio < 1.4) {
+        // 4:3またはそれより狭い（縦長に近い）
+        height = "140vh"
+      } else if (aspectRatio < 1.5) {
+        // 4:3と16:10の間
+        height = "150vh"
+      } else if (aspectRatio < 1.65) {
+        // 16:10付近
+        height = "160vh"
       } else if (aspectRatio < 1.75) {
-        // Between 16:10 and 16:9
-        setDesktopHeightClass("xl:h-[180vh]")
-        setDesktopMinHeightClass("xl:min-h-[180vh]")
+        // 16:10と16:9の間
+        height = "180vh"
+      } else if (aspectRatio < 2.0) {
+        // 16:9付近
+        height = "200vh"
       } else {
-        // 16:9 or wider (一般的なモニター)
-        setDesktopHeightClass("xl:h-[200vh]")
-        setDesktopMinHeightClass("xl:min-h-[200vh]")
+        // 21:9などのウルトラワイド
+        height = "220vh"
       }
+
+      setDynamicHeight(height)
     }
 
     updateHeightBasedOnAspectRatio()
@@ -403,7 +422,10 @@ export function HeroParallaxSection() {
       )}
 
       {/* デスクトップ用パララックス背景 - 16:10画像（768px-1279px） */}
-      <div className="hidden md:block xl:hidden absolute top-0 left-0 w-full md:h-[160vh] lg:h-[180vh] z-10 overflow-hidden bg-black">
+      <div
+        className="hidden md:block xl:hidden absolute top-0 left-0 w-full z-10 overflow-hidden bg-black"
+        style={{ height: dynamicHeight }}
+      >
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -461,7 +483,10 @@ export function HeroParallaxSection() {
       </div>
 
       {/* デスクトップ用パララックス背景 - 1:1スクエア画像（1280px以上） */}
-      <div className={`hidden xl:block absolute top-0 left-0 w-full ${desktopHeightClass} z-10 overflow-hidden bg-black`}>
+      <div
+        className="hidden xl:block absolute top-0 left-0 w-full z-10 overflow-hidden bg-black"
+        style={{ height: dynamicHeight }}
+      >
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -519,7 +544,10 @@ export function HeroParallaxSection() {
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className={`relative z-30 min-h-[180vh] md:min-h-[160vh] lg:min-h-[180vh] ${desktopMinHeightClass}`}>
+      <div
+        className="relative z-30"
+        style={{ minHeight: isDesktop ? dynamicHeight : "180vh" }}
+      >
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
