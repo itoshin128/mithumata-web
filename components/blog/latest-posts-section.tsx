@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import type React from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
@@ -47,12 +47,23 @@ interface BlogCardProps {
   compact?: boolean
 }
 
-function CompactBlogCard({ post }: { post: typeof latestPosts[0] }) {
+function CompactBlogCard({ post, index, total }: { post: typeof latestPosts[0]; index: number; total: number }) {
   return (
-    <Link href={post.href} className="block h-full">
+    <Link
+      href={post.href}
+      className="block h-full focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf6e3] rounded-2xl transition-all"
+      style={{
+        // @ts-ignore
+        '--focus-color': post.categoryColor,
+      } as React.CSSProperties}
+      aria-label={`${post.title} - ${post.category} - ${post.date}`}
+    >
       <motion.article
         whileTap={{ scale: 0.98 }}
-        className="relative bg-white rounded-2xl overflow-hidden shadow-lg active:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col"
+        className="relative bg-white rounded-2xl overflow-hidden shadow-lg active:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col focus-ring-wafuu"
+        role="article"
+        aria-posinset={index + 1}
+        aria-setsize={total}
       >
         {/* 画像セクション */}
         <div className="relative h-[200px] overflow-hidden flex-shrink-0">
@@ -72,6 +83,8 @@ function CompactBlogCard({ post }: { post: typeof latestPosts[0] }) {
                 backgroundColor: `${post.categoryColor}ee`,
                 color: "white",
               }}
+              role="text"
+              aria-label={`カテゴリ: ${post.category}`}
             >
               {post.category}
             </span>
@@ -93,18 +106,18 @@ function CompactBlogCard({ post }: { post: typeof latestPosts[0] }) {
           {/* メタ情報 */}
           <div className="flex items-center gap-3 text-xs text-gray-500 pt-3 border-t border-gray-100">
             <div className="flex items-center gap-1.5">
-              <Calendar className="w-3 h-3" />
-              <time className="font-serif font-light tracking-wider">{post.date}</time>
+              <Calendar className="w-3 h-3" aria-hidden="true" />
+              <time className="font-serif font-light tracking-wider" dateTime={post.date}>{post.date}</time>
             </div>
             <div className="flex items-center gap-1.5">
-              <User className="w-3 h-3" />
+              <User className="w-3 h-3" aria-hidden="true" />
               <span className="font-serif font-light tracking-wider">{post.author}</span>
             </div>
           </div>
         </div>
 
         {/* 読むインジケーター */}
-        <div className="absolute bottom-5 right-5">
+        <div className="absolute bottom-5 right-5" aria-hidden="true">
           <motion.div
             whileHover={{ scale: 1.1 }}
             className="w-10 h-10 rounded-full flex items-center justify-center shadow-md"
@@ -225,13 +238,83 @@ function SectionDivider() {
 }
 
 export function LatestPostsSection() {
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  // モーション設定の検知
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches)
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  // スクロール位置の監視
+  useEffect(() => {
+    const carousel = carouselRef.current
+    if (!carousel) return
+
+    const handleScroll = () => {
+      const scrollLeft = carousel.scrollLeft
+      const cardWidth = carousel.scrollWidth / latestPosts.length
+      const newIndex = Math.round(scrollLeft / cardWidth)
+      setCurrentIndex(newIndex)
+    }
+
+    carousel.addEventListener('scroll', handleScroll)
+    return () => carousel.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // キーボードナビゲーション
+  const scrollToIndex = useCallback((index: number) => {
+    const carousel = carouselRef.current
+    if (!carousel) return
+
+    const cardWidth = carousel.scrollWidth / latestPosts.length
+    carousel.scrollTo({
+      left: cardWidth * index,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    })
+  }, [prefersReducedMotion])
+
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      const newIndex = Math.max(0, currentIndex - 1)
+      scrollToIndex(newIndex)
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      const newIndex = Math.min(latestPosts.length - 1, currentIndex + 1)
+      scrollToIndex(newIndex)
+    } else if (e.key === 'Home') {
+      e.preventDefault()
+      scrollToIndex(0)
+    } else if (e.key === 'End') {
+      e.preventDefault()
+      scrollToIndex(latestPosts.length - 1)
+    }
+  }, [currentIndex, scrollToIndex])
+
   return (
-    <section className="relative py-16 md:py-32 lg:py-40">
+    <section
+      className="relative py-16 md:py-32 lg:py-40"
+      aria-labelledby="news-section-heading"
+      id="news-section"
+    >
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
         {/* Section Header - Centered */}
         <FadeInSection delay={0.1}>
           <div className="text-center mb-16 md:mb-20 lg:mb-24 max-w-3xl mx-auto">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance">
+            <h2
+              id="news-section-heading"
+              className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance"
+            >
               お知らせ
             </h2>
             <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
@@ -245,55 +328,73 @@ export function LatestPostsSection() {
         {/* モバイル: 横スクロールカルーセル */}
         <div className="lg:hidden mb-12">
           <div className="relative -mx-6 px-6">
+            {/* スクリーンリーダー用の説明 */}
+            <div className="sr-only" aria-live="polite" aria-atomic="true">
+              お知らせ一覧。現在 {currentIndex + 1} / {latestPosts.length} 件目を表示中。矢印キーで前後に移動できます。
+            </div>
+
             {/* カルーセルコンテナ */}
             <div
-              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
+              ref={carouselRef}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-mitsumata/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf6e3] rounded-2xl"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
                 WebkitOverflowScrolling: "touch",
               }}
+              role="region"
+              aria-label="お知らせ記事カルーセル"
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
             >
               {latestPosts.map((post, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={prefersReducedMotion ? {} : { opacity: 0, x: 20 }}
+                  whileInView={prefersReducedMotion ? {} : { opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={prefersReducedMotion ? {} : { delay: index * 0.1 }}
                   className="flex-none w-[85vw] sm:w-[70vw] snap-start"
                 >
-                  <CompactBlogCard post={post} />
+                  <CompactBlogCard post={post} index={index} total={latestPosts.length} />
                 </motion.div>
               ))}
             </div>
 
-            {/* スクロールヒント（初回のみ表示） */}
-            <motion.div
-              initial={{ opacity: 1, x: 0 }}
-              animate={{ opacity: 0, x: 10 }}
-              transition={{ delay: 2.5, duration: 1 }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
-            >
-              <div className="w-12 h-12 rounded-full bg-gradient-to-l from-white/90 to-transparent flex items-center justify-end pr-2">
-                <ArrowRight className="w-5 h-5 text-gray-400 animate-pulse" />
-              </div>
-            </motion.div>
+            {/* スクロールヒント（初回のみ表示・モーション配慮） */}
+            {!prefersReducedMotion && (
+              <motion.div
+                initial={{ opacity: 1, x: 0 }}
+                animate={{ opacity: 0, x: 10 }}
+                transition={{ delay: 2.5, duration: 1 }}
+                className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+                aria-hidden="true"
+              >
+                <div className="w-12 h-12 rounded-full bg-gradient-to-l from-white/90 to-transparent flex items-center justify-end pr-2">
+                  <ArrowRight className="w-5 h-5 text-gray-400 animate-pulse" />
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* ページインジケーター */}
-          <div className="flex justify-center gap-2 mt-8">
+          <nav aria-label="カルーセルページネーション" className="flex justify-center gap-2 mt-8">
             {latestPosts.map((post, index) => (
-              <div
+              <button
                 key={index}
-                className="h-1.5 rounded-full bg-gray-300 transition-all duration-300"
+                onClick={() => scrollToIndex(index)}
+                className="h-1.5 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fcf6e3]"
                 style={{
-                  backgroundColor: index === 0 ? post.categoryColor : undefined,
-                  width: index === 0 ? "28px" : "8px",
-                }}
+                  backgroundColor: index === currentIndex ? post.categoryColor : '#d1d5db',
+                  width: index === currentIndex ? "28px" : "8px",
+                  // @ts-ignore
+                  '--focus-color': post.categoryColor,
+                } as React.CSSProperties}
+                aria-label={`${index + 1}件目の記事へ移動`}
+                aria-current={index === currentIndex ? 'true' : 'false'}
               />
             ))}
-          </div>
+          </nav>
         </div>
 
         {/* デスクトップ: 従来の3カラムグリッド */}
