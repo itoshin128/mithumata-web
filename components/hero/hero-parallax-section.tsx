@@ -106,6 +106,7 @@ type AnimationPattern = {
   y: [string, string]
 }
 
+// タブレット用：16:10横長画像
 const heroImagesDesktop = [
   {
     id: 1,
@@ -152,6 +153,58 @@ const heroImagesDesktop = [
   {
     id: 8,
     url: "/images/hero/main08.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+]
+
+// MacBook用：縦長4:5画像
+const heroImagesMacBook = [
+  {
+    id: 1,
+    url: "/images/hero/main001.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 2,
+    url: "/images/hero/main002.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 3,
+    url: "/images/hero/main003.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 4,
+    url: "/images/hero/main004.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 5,
+    url: "/images/hero/main005.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 6,
+    url: "/images/hero/main006.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 7,
+    url: "/images/hero/main007.jpg",
+    alt: "北アルプス黒部源流の雄大な景色",
+    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
+  },
+  {
+    id: 8,
+    url: "/images/hero/main008.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
@@ -266,7 +319,7 @@ export function HeroParallaxSection() {
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
   const [dynamicHeight, setDynamicHeight] = useState("200vh")
   const [isDesktop, setIsDesktop] = useState(false)
-  const [useSquareImages, setUseSquareImages] = useState(false)
+  const [imageSetType, setImageSetType] = useState<'tablet' | 'macbook' | 'wide'>('wide')
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -285,27 +338,32 @@ export function HeroParallaxSection() {
       const aspectRatio = window.innerWidth / window.innerHeight
 
       // アスペクト比に基づいて画像セットを選択
-      // ratio < 1.5: 16:10画像（小さいタブレット等）
-      // ratio >= 1.5: 1:1スクエア画像（MacBook + 大画面モニター）
-      const shouldUseSquare = aspectRatio >= 1.5
-      setUseSquareImages(shouldUseSquare)
-
-      // 高さの計算
+      // ratio < 1.5: 16:10横長画像（タブレット等）
+      // ratio 1.5-1.7: 4:5縦長画像（MacBook）
+      // ratio >= 1.7: 1:1スクエア画像（大画面モニター）
+      let imageType: 'tablet' | 'macbook' | 'wide'
       let height: string
 
-      if (shouldUseSquare) {
-        // 1:1スクエア画像の場合：横幅に合わせて高さを計算
-        const optimalVh = Math.min(aspectRatio * 100, 220)
-        height = `${Math.round(optimalVh)}vh`
-      } else {
-        // 16:10画像の場合（タブレット等の小さい画面のみ）
+      if (aspectRatio < 1.5) {
+        // タブレット：16:10横長画像
+        imageType = 'tablet'
         if (aspectRatio < 1.4) {
           height = "140vh"
         } else {
           height = "150vh"
         }
+      } else if (aspectRatio < 1.7) {
+        // MacBook：4:5縦長画像
+        imageType = 'macbook'
+        height = "160vh"
+      } else {
+        // 大画面モニター：1:1スクエア画像
+        imageType = 'wide'
+        const optimalVh = Math.min(aspectRatio * 100, 220)
+        height = `${Math.round(optimalVh)}vh`
       }
 
+      setImageSetType(imageType)
       setDynamicHeight(height)
     }
 
@@ -437,9 +495,9 @@ export function HeroParallaxSection() {
             speed={2500}
             className="h-full w-full"
             onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
-            key={useSquareImages ? "square" : "wide"}
+            key={imageSetType}
           >
-            {(useSquareImages ? heroImagesDesktopWide : heroImagesDesktop).map((image, index) => (
+            {(imageSetType === 'tablet' ? heroImagesDesktop : imageSetType === 'macbook' ? heroImagesMacBook : heroImagesDesktopWide).map((image, index) => (
               <SwiperSlide key={image.id}>
                 <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
