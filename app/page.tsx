@@ -2,7 +2,6 @@
 
 import { getSeasonalTheme } from "@/lib/seasonal-theme"
 import { HeroParallaxSection } from "@/components/hero/hero-parallax-section"
-import { LodgeQuickNav } from "@/components/lodges/lodge-quick-nav"
 import { LodgeStorySection } from "@/components/lodges/lodge-story-section"
 import { LatestPostsSection } from "@/components/blog/latest-posts-section"
 import { FAQSection } from "@/components/faq/faq-section"
@@ -34,11 +33,6 @@ export default function HomePage() {
               </div>
             </div>
           )}
-
-          {/* 山荘クイックナビゲーション */}
-          <div className="relative z-10">
-            <LodgeQuickNav />
-          </div>
 
           <div id="lodges-section" className="relative z-10">
             <LodgeStorySection />

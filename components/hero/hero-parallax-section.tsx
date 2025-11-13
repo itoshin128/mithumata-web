@@ -63,7 +63,7 @@ const ReservationButton = () => {
         </motion.button>
       </motion.div>
 
-      {/* モバイル版 - 右下の固定ボタン（サイズアップ、視認性向上） */}
+      {/* モバイル版 - 右下の固定ボタン */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -77,22 +77,20 @@ const ReservationButton = () => {
           className="
             bg-white
             text-black
-            px-8 py-5
+            px-6 py-4
             rounded-full
             backdrop-blur-sm
-            shadow-[0_6px_32px_rgba(0,0,0,0.2)]
-            active:shadow-[0_3px_20px_rgba(0,0,0,0.25)]
-            border-2 border-mitsumata-primary/30
+            shadow-[0_4px_24px_rgba(0,0,0,0.15)]
+            active:shadow-[0_2px_16px_rgba(0,0,0,0.2)]
+            border-2 border-mitsumata-primary/20
             transition-shadow duration-200
-            flex items-center gap-3
-            min-w-[140px]
-            justify-center
+            flex items-center gap-2
           "
         >
-          <span className="text-base font-serif font-medium tracking-[0.15em]">
-            予約する
+          <span className="text-sm font-serif font-medium tracking-wider">
+            予約
           </span>
-          <span className="text-sm opacity-70">
+          <span className="text-xs opacity-60">
             →
           </span>
         </motion.button>
@@ -484,62 +482,157 @@ export function HeroParallaxSection() {
       {/* スクロールするコンテンツレイヤー */}
       <div
         className="relative z-30"
-        style={{ minHeight: isDesktop ? dynamicHeight : "100vh" }}
+        style={{ minHeight: isDesktop ? dynamicHeight : "180vh" }}
       >
-        <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-16 sm:pb-16 md:pb-16 lg:pb-20">
+        <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-6 sm:space-y-7 md:space-y-8 max-w-2xl"
+              className="space-y-5 sm:space-y-6 md:space-y-7 max-w-2xl"
             >
-              <div className="space-y-3 sm:space-y-4 md:space-y-5">
+              <div className="space-y-3 sm:space-y-3 md:space-y-4">
                 <h1
-                  className={`text-white font-serif font-light leading-[1.5] tracking-[0.08em] transition-all duration-300 ${
+                  className={`text-white font-serif font-light leading-[1.6] tracking-[0.08em] transition-all duration-300 ${
                     imageSetType === 'wide'
-                      ? 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl'
-                      : 'text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
+                      ? 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
+                      : 'text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
                   }`}
-                  style={{ textShadow: "0 4px 20px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,1)" }}
+                  style={{ textShadow: "0 3px 16px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.95)" }}
                 >
                   北アルプス黒部源流
                 </h1>
 
                 <p
-                  className={`text-white/95 font-light font-sans uppercase tracking-[0.25em] sm:tracking-[0.3em] transition-all duration-300 ${
+                  className={`text-white/90 font-light font-sans uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all duration-300 ${
                     imageSetType === 'wide'
-                      ? 'text-xs sm:text-sm md:text-base lg:text-lg'
-                      : 'text-xs sm:text-xs md:text-sm lg:text-base'
+                      ? 'text-[11px] sm:text-xs md:text-sm lg:text-base'
+                      : 'text-[10px] sm:text-[10px] md:text-xs lg:text-sm'
                   }`}
-                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,1)" }}
+                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.9)" }}
                 >
                   Northern Alps Kurobe Genryu
                 </p>
               </div>
 
-              <div className="space-y-4 sm:space-y-4 md:space-y-5 pt-4 sm:pt-4 md:pt-5">
+              <div className="space-y-3 sm:space-y-3 md:space-y-4 pt-3 sm:pt-3 md:pt-4">
                 <p
-                  className={`text-white font-serif font-light leading-[1.9] tracking-[0.05em] sm:tracking-[0.06em] transition-all duration-300 ${
+                  className={`text-white/95 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
                     imageSetType === 'wide'
-                      ? 'text-lg sm:text-xl md:text-2xl lg:text-2xl'
-                      : 'text-base sm:text-lg md:text-xl lg:text-xl'
+                      ? 'text-base sm:text-base md:text-lg lg:text-xl'
+                      : 'text-sm sm:text-sm md:text-base lg:text-lg'
                   }`}
-                  style={{ textShadow: "0 3px 16px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,1)" }}
+                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   北アルプス最奥、黒部源流の三つの山荘
                 </p>
                 <p
-                  className={`text-white/95 font-serif font-light leading-[1.9] tracking-[0.05em] sm:tracking-[0.06em] transition-all duration-300 ${
+                  className={`text-white/90 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
                     imageSetType === 'wide'
-                      ? 'text-base sm:text-lg md:text-xl lg:text-xl'
-                      : 'text-sm sm:text-base md:text-lg lg:text-lg'
+                      ? 'text-sm sm:text-sm md:text-base lg:text-lg'
+                      : 'text-xs sm:text-xs md:text-sm lg:text-base'
                   }`}
-                  style={{ textShadow: "0 3px 16px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,1)" }}
+                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   原始と変わらぬ生態系が息づく場所。
                 </p>
               </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* わたしたちについてセクション */}
+        <div className="min-h-screen flex items-center px-4 sm:px-6 md:px-12 lg:px-20 py-16 sm:py-20 md:py-24">
+          <div className="w-full max-w-[1600px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 items-start">
+              {/* 左側 - 大きなキャッチコピー */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="space-y-5 sm:space-y-6"
+              >
+                <h2
+                  className="text-white text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-3xl font-serif font-light leading-[1.6] tracking-[0.06em] sm:tracking-[0.08em]"
+                  style={{ textShadow: "0 3px 16px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.95)" }}
+                >
+                  山の広さと深さへの、入口
+                </h2>
+
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "2.5rem" }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="h-[1px] bg-gradient-to-r from-white/60 to-white/10"
+                />
+              </motion.div>
+
+              {/* 右側 - 説明文 */}
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="space-y-4 sm:space-y-5"
+              >
+                <p
+                  className="text-white/95 text-sm sm:text-sm md:text-base lg:text-lg leading-[1.8] font-serif font-light tracking-[0.03em] sm:tracking-[0.04em]"
+                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
+                >
+                  三俣山荘グループは、北アルプス最奥の黒部源流域に位置する三つの山荘、三俣山荘・水晶小屋・湯俣山荘を運営しています。
+                </p>
+                <p
+                  className="text-white/95 text-sm sm:text-sm md:text-base lg:text-lg leading-[1.8] font-serif font-light tracking-[0.03em] sm:tracking-[0.04em]"
+                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
+                >
+                  私たちが目指すのは、単なる宿泊施設ではありません。訪れる人々が「山の広さと深さ」と出会い、新たな山の楽しみ方を発見する入口となる場所です。
+                </p>
+                <p
+                  className="text-white/95 text-sm sm:text-sm md:text-base lg:text-lg leading-[1.8] font-serif font-light tracking-[0.03em] sm:tracking-[0.04em]"
+                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
+                >
+                  道直し活動を通じた登山道の保全、湯俣川ネイチャーフィールドでの「面」としての山の楽しみ方の提案。山小屋の公共的役割を果たしながら、山との深いかかわりを大切にしています。
+                </p>
+              </motion.div>
+            </div>
+
+            {/* CTAボタン */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true }}
+              className="flex justify-center mt-12 sm:mt-16 md:mt-20"
+            >
+              <button className="group relative">
+                <motion.div
+                  whileHover={{ scale: 1.05, rotate: 360 }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 xl:w-56 xl:h-56 rounded-full border-2 border-dashed border-white/40 flex items-center justify-center relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
+
+                  <motion.span
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-white text-xs sm:text-sm md:text-base font-serif font-light tracking-[0.1em] sm:tracking-[0.12em] text-center px-5 sm:px-6 relative z-10"
+                  >
+                    三俣山荘
+                    <br />
+                    グループについて
+                  </motion.span>
+                </motion.div>
+
+                <motion.div
+                  className="absolute inset-0 rounded-full border border-white/15"
+                  initial={{ scale: 1, opacity: 0 }}
+                  whileHover={{ scale: 1.15, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                />
+              </button>
             </motion.div>
           </div>
         </div>
@@ -548,12 +641,12 @@ export function HeroParallaxSection() {
       {/* 予約ボタン - 固定表示 */}
       <ReservationButton />
 
-      {/* スクロールインジケーター（モバイルでは左下、デスクトップでは右下） */}
+      {/* スクロールインジケーター */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.6 }}
-        className="fixed bottom-6 left-6 sm:bottom-8 sm:left-8 md:bottom-10 md:left-auto md:right-16 lg:right-20 z-40"
+        className="fixed bottom-6 sm:bottom-8 md:bottom-10 right-6 sm:right-8 md:right-16 lg:right-20 z-40"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
@@ -562,7 +655,7 @@ export function HeroParallaxSection() {
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
-          className="flex flex-col items-center gap-2 sm:gap-2.5 cursor-pointer group opacity-50 hover:opacity-100 transition-opacity duration-500"
+          className="flex flex-col items-center gap-2 sm:gap-2.5 cursor-pointer group opacity-40 hover:opacity-100 transition-opacity duration-500"
           onClick={() => {
             window.scrollTo({
               top: window.innerHeight,
@@ -570,7 +663,7 @@ export function HeroParallaxSection() {
             })
           }}
         >
-          <div className="w-6 h-10 sm:w-6 sm:h-10 border-2 border-white/50 group-hover:border-white rounded-full flex items-start justify-center p-1.5 transition-colors duration-300">
+          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/40 group-hover:border-white rounded-full flex items-start justify-center p-1.5 transition-colors duration-300">
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{
@@ -578,10 +671,10 @@ export function HeroParallaxSection() {
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-              className="w-1.5 h-1.5 bg-white/70 group-hover:bg-white rounded-full transition-colors duration-300"
+              className="w-1 h-1 bg-white/60 group-hover:bg-white rounded-full transition-colors duration-300"
             />
           </div>
-          <span className="text-white/70 group-hover:text-white text-[8px] sm:text-[8px] font-serif font-light tracking-[0.25em] sm:tracking-[0.25em] uppercase transition-colors duration-300">
+          <span className="text-white/60 group-hover:text-white text-[7px] sm:text-[8px] font-serif font-light tracking-[0.2em] sm:tracking-[0.25em] uppercase transition-colors duration-300">
             Scroll
           </span>
         </motion.div>
