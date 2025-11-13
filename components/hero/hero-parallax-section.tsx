@@ -344,15 +344,9 @@ export function HeroParallaxSection() {
       let height: string
 
       if (aspectRatio < 2.0) {
-        // タブレット + MacBook：4:5縦長画像
+        // タブレット + MacBook：4:5縦長画像、200vhで統一
         imageType = 'macbook'
-        if (aspectRatio < 1.5) {
-          // タブレット
-          height = "200vh"
-        } else {
-          // MacBook（ratio 1.5-2.0）
-          height = "220vh"
-        }
+        height = "200vh"
       } else {
         // 大画面モニター：1:1スクエア画像
         imageType = 'wide'
