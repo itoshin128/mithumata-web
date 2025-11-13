@@ -321,66 +321,64 @@ export function HeroParallaxSection() {
         </div>
       )}
 
-      {/* デスクトップ用パララックス背景 */}
-      <div className="hidden md:block absolute top-0 left-0 w-full md:h-[160vh] lg:h-[180vh] xl:h-[200vh] z-10 overflow-hidden bg-black">
-        <motion.div style={{ y }} className="relative w-full h-full">
-          <Swiper
-            modules={[Autoplay, EffectFade]}
-            effect="fade"
-            autoplay={{
-              delay: 7000,
-              disableOnInteraction: false,
-            }}
-            loop={true}
-            speed={2500}
-            className="h-full w-full"
-            onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
-          >
-            {heroImagesDesktop.map((image, index) => (
-              <SwiperSlide key={image.id}>
-                <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
-                  <motion.div
-                    className="relative w-full h-full"
-                    initial={{
-                      scale: image.animation.scale[0],
-                      x: image.animation.x[0],
-                      y: image.animation.y[0],
-                    }}
-                    animate={
-                      activeSlideDesktop === index
-                        ? {
-                            scale: image.animation.scale[1],
-                            x: image.animation.x[1],
-                            y: image.animation.y[1],
-                          }
-                        : undefined
-                    }
-                    transition={{
-                      duration: 4,
-                      delay: activeSlideDesktop === index ? 2.5 : 0,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <Image
-                      src={image.url || "/placeholder.svg"}
-                      alt={image.alt}
-                      fill
-                      className="object-contain object-center"
-                      priority={image.id === 1}
-                      quality={100}
-                      sizes="100vw"
-                    />
-                  </motion.div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
-        </motion.div>
+      {/* デスクトップ用固定背景 */}
+      <div className="hidden md:block fixed top-0 left-0 w-full h-screen z-10 overflow-hidden bg-black">
+        <Swiper
+          modules={[Autoplay, EffectFade]}
+          effect="fade"
+          autoplay={{
+            delay: 7000,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          speed={2500}
+          className="h-full w-full"
+          onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
+        >
+          {heroImagesDesktop.map((image, index) => (
+            <SwiperSlide key={image.id}>
+              <div className="relative h-full w-full overflow-hidden bg-black">
+                <motion.div
+                  className="relative w-full h-full"
+                  initial={{
+                    scale: image.animation.scale[0],
+                    x: image.animation.x[0],
+                    y: image.animation.y[0],
+                  }}
+                  animate={
+                    activeSlideDesktop === index
+                      ? {
+                          scale: image.animation.scale[1],
+                          x: image.animation.x[1],
+                          y: image.animation.y[1],
+                        }
+                      : undefined
+                  }
+                  transition={{
+                    duration: 4,
+                    delay: activeSlideDesktop === index ? 2.5 : 0,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Image
+                    src={image.url || "/placeholder.svg"}
+                    alt={image.alt}
+                    fill
+                    className="object-cover object-center"
+                    priority={image.id === 1}
+                    quality={100}
+                    sizes="100vw"
+                  />
+                </motion.div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className="relative z-30 min-h-[180vh] md:min-h-[160vh] lg:min-h-[180vh] xl:min-h-[200vh]">
+      <div className="relative z-30 min-h-[180vh] md:min-h-[200vh]">
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
