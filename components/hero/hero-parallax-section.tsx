@@ -285,9 +285,9 @@ export function HeroParallaxSection() {
       const aspectRatio = window.innerWidth / window.innerHeight
 
       // アスペクト比に基づいて画像セットを選択
-      // ratio < 1.7: 16:10画像（MacBook等）
-      // ratio >= 1.7: 1:1スクエア画像（一般的なモニター）
-      const shouldUseSquare = aspectRatio >= 1.7
+      // ratio < 1.5: 16:10画像（小さいタブレット等）
+      // ratio >= 1.5: 1:1スクエア画像（MacBook + 大画面モニター）
+      const shouldUseSquare = aspectRatio >= 1.5
       setUseSquareImages(shouldUseSquare)
 
       // 高さの計算
@@ -298,18 +298,11 @@ export function HeroParallaxSection() {
         const optimalVh = Math.min(aspectRatio * 100, 220)
         height = `${Math.round(optimalVh)}vh`
       } else {
-        // 16:10画像の場合
+        // 16:10画像の場合（タブレット等の小さい画面のみ）
         if (aspectRatio < 1.4) {
           height = "140vh"
-        } else if (aspectRatio < 1.5) {
-          height = "150vh"
-        } else if (aspectRatio < 1.6) {
-          height = "160vh"
-        } else if (aspectRatio < 1.65) {
-          height = "175vh"
         } else {
-          // 1.65-1.7の範囲
-          height = "185vh"
+          height = "150vh"
         }
       }
 
