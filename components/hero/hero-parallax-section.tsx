@@ -283,28 +283,28 @@ export function HeroParallaxSection() {
 
       const aspectRatio = window.innerWidth / window.innerHeight
 
-      // アスペクト比に基づいて動的に高さを調整
-      // 4:3（タブレット） ≈ 1.33, 16:10（MacBook） ≈ 1.6, 16:9 ≈ 1.78, 21:9 ≈ 2.33
+      // アスペクト比に基づいて動的に高さを調整（より細かく）
+      // 1280px以上では1:1スクエア画像、それ以下では16:10画像を使用
       let height: string
 
-      if (aspectRatio < 1.4) {
-        // 4:3またはそれより狭い（縦長に近い）
-        height = "140vh"
-      } else if (aspectRatio < 1.5) {
-        // 4:3と16:10の間
-        height = "150vh"
-      } else if (aspectRatio < 1.65) {
-        // 16:10付近
-        height = "160vh"
-      } else if (aspectRatio < 1.75) {
-        // 16:10と16:9の間
-        height = "180vh"
-      } else if (aspectRatio < 2.0) {
-        // 16:9付近
-        height = "200vh"
+      if (window.innerWidth >= 1280) {
+        // 1:1スクエア画像の場合：横幅に合わせて高さを計算
+        // ratio = width/height なので、1:1画像が収まる高さ = ratio * 100vh
+        const optimalVh = Math.min(aspectRatio * 100, 220)
+        height = `${Math.round(optimalVh)}vh`
       } else {
-        // 21:9などのウルトラワイド
-        height = "220vh"
+        // 16:10画像の場合
+        if (aspectRatio < 1.4) {
+          height = "140vh"
+        } else if (aspectRatio < 1.5) {
+          height = "150vh"
+        } else if (aspectRatio < 1.65) {
+          height = "160vh"
+        } else if (aspectRatio < 1.75) {
+          height = "170vh"
+        } else {
+          height = "180vh"
+        }
       }
 
       setDynamicHeight(height)
