@@ -166,10 +166,6 @@ export function Footer() {
                 サイトマップ
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-stone-900 transition-all duration-300 group-hover:w-full" />
               </Link>
-              <p className="flex items-center gap-2 text-stone-500 font-sans">
-                <span>Design by</span>
-                <span className="text-stone-700 font-medium">Shinya</span>
-              </p>
             </div>
           </div>
         </div>
