@@ -109,7 +109,7 @@ type AnimationPattern = {
 const heroImagesDesktop = [
   {
     id: 1,
-    url: "/images/hero/main01.jpg",
+    url: "/images/hero/main01_test.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.1, 1.15], x: ["-1%", "1%"], y: ["0%", "0%"] } as AnimationPattern,
   },
