@@ -322,7 +322,7 @@ export function HeroParallaxSection() {
       )}
 
       {/* デスクトップ用パララックス背景 */}
-      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-10 overflow-hidden">
+      <div className="hidden md:block absolute top-0 left-0 w-full h-[200vh] z-10 overflow-hidden bg-black">
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -338,7 +338,7 @@ export function HeroParallaxSection() {
           >
             {heroImagesDesktop.map((image, index) => (
               <SwiperSlide key={image.id}>
-                <div className="relative h-full w-full overflow-hidden">
+                <div className="relative h-full w-full overflow-hidden bg-black">
                   <motion.div
                     className="relative h-full w-full"
                     initial={{
