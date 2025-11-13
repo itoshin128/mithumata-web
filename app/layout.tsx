@@ -61,8 +61,16 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${notoSerifJP.variable} ${notoSansJP.variable}`}>
       <body className="font-serif antialiased">
+        {/* アクセシビリティ: スキップリンク */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-8 focus:py-4 focus:bg-white focus:shadow-2xl focus:border-2 focus:border-[var(--mitsumata-primary)] focus:rounded-xl font-serif tracking-[0.2em] text-sm focus:text-gray-900 transition-all"
+        >
+          本文へスキップ
+        </a>
+
         <Header />
-        {children}
+        <main id="main-content">{children}</main>
         <Footer />
         <FloatingReservationButton />
         <Analytics />

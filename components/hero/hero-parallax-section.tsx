@@ -63,7 +63,7 @@ const ReservationButton = () => {
         </motion.button>
       </motion.div>
 
-      {/* モバイル版 - 右下の固定ボタン */}
+      {/* モバイル版 - 右下の固定ボタン（最適化：44x44pt以上のタップエリア確保） */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -77,20 +77,21 @@ const ReservationButton = () => {
           className="
             bg-white
             text-black
-            px-6 py-4
+            px-8 py-5
             rounded-full
             backdrop-blur-sm
             shadow-[0_4px_24px_rgba(0,0,0,0.15)]
             active:shadow-[0_2px_16px_rgba(0,0,0,0.2)]
             border-2 border-mitsumata-primary/20
             transition-shadow duration-200
-            flex items-center gap-2
+            flex items-center justify-center gap-2.5
+            min-w-[140px]
           "
         >
-          <span className="text-sm font-serif font-medium tracking-wider">
-            予約
+          <span className="text-base font-serif font-medium tracking-wider">
+            予約する
           </span>
-          <span className="text-xs opacity-60">
+          <span className="text-sm opacity-60">
             →
           </span>
         </motion.button>
@@ -493,47 +494,51 @@ export function HeroParallaxSection() {
               className="space-y-5 sm:space-y-6 md:space-y-7 max-w-2xl"
             >
               <div className="space-y-3 sm:space-y-3 md:space-y-4">
+                {/* モバイル最適化: text-3xl（30px）に拡大、テキストシャドウ強化 */}
                 <h1
                   className={`text-white font-serif font-light leading-[1.6] tracking-[0.08em] transition-all duration-300 ${
                     imageSetType === 'wide'
-                      ? 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
-                      : 'text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
+                      ? 'text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
+                      : 'text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
                   }`}
-                  style={{ textShadow: "0 3px 16px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.95)" }}
+                  style={{ textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)" }}
                 >
                   北アルプス黒部源流
                 </h1>
 
+                {/* モバイル最適化: text-xs（12px）に拡大、テキストシャドウ強化 */}
                 <p
-                  className={`text-white/90 font-light font-sans uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all duration-300 ${
+                  className={`text-white/95 font-light font-sans uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all duration-300 ${
                     imageSetType === 'wide'
-                      ? 'text-[11px] sm:text-xs md:text-sm lg:text-base'
-                      : 'text-[10px] sm:text-[10px] md:text-xs lg:text-sm'
+                      ? 'text-xs sm:text-xs md:text-sm lg:text-base'
+                      : 'text-xs sm:text-[10px] md:text-xs lg:text-sm'
                   }`}
-                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.9)" }}
+                  style={{ textShadow: "0 2px 14px rgba(0,0,0,0.75), 0 1px 4px rgba(0,0,0,1)" }}
                 >
                   Northern Alps Kurobe Genryu
                 </p>
               </div>
 
               <div className="space-y-3 sm:space-y-3 md:space-y-4 pt-3 sm:pt-3 md:pt-4">
+                {/* モバイル最適化: text-base（16px）に拡大、テキストシャドウ強化 */}
                 <p
-                  className={`text-white/95 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
+                  className={`text-white font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
                     imageSetType === 'wide'
                       ? 'text-base sm:text-base md:text-lg lg:text-xl'
-                      : 'text-sm sm:text-sm md:text-base lg:text-lg'
+                      : 'text-base sm:text-sm md:text-base lg:text-lg'
                   }`}
-                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
+                  style={{ textShadow: "0 3px 16px rgba(0,0,0,0.75), 0 2px 6px rgba(0,0,0,1)" }}
                 >
                   北アルプス最奥、黒部源流の三つの山荘
                 </p>
+                {/* モバイル最適化: text-sm（14px）に拡大、テキストシャドウ強化 */}
                 <p
-                  className={`text-white/90 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
+                  className={`text-white/95 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
                     imageSetType === 'wide'
                       ? 'text-sm sm:text-sm md:text-base lg:text-lg'
-                      : 'text-xs sm:text-xs md:text-sm lg:text-base'
+                      : 'text-sm sm:text-xs md:text-sm lg:text-base'
                   }`}
-                  style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
+                  style={{ textShadow: "0 3px 16px rgba(0,0,0,0.75), 0 2px 6px rgba(0,0,0,1)" }}
                 >
                   原始と変わらぬ生態系が息づく場所。
                 </p>
@@ -641,7 +646,7 @@ export function HeroParallaxSection() {
       {/* 予約ボタン - 固定表示 */}
       <ReservationButton />
 
-      {/* スクロールインジケーター */}
+      {/* スクロールインジケーター - モバイル最適化 */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -655,7 +660,7 @@ export function HeroParallaxSection() {
             repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
           }}
-          className="flex flex-col items-center gap-2 sm:gap-2.5 cursor-pointer group opacity-40 hover:opacity-100 transition-opacity duration-500"
+          className="flex flex-col items-center gap-2 sm:gap-2.5 cursor-pointer group opacity-50 hover:opacity-100 transition-opacity duration-500"
           onClick={() => {
             window.scrollTo({
               top: window.innerHeight,
@@ -663,7 +668,7 @@ export function HeroParallaxSection() {
             })
           }}
         >
-          <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-white/40 group-hover:border-white rounded-full flex items-start justify-center p-1.5 transition-colors duration-300">
+          <div className="w-6 h-10 sm:w-6 sm:h-10 border-2 border-white/50 group-hover:border-white rounded-full flex items-start justify-center p-1.5 transition-colors duration-300">
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{
@@ -671,10 +676,10 @@ export function HeroParallaxSection() {
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "easeInOut",
               }}
-              className="w-1 h-1 bg-white/60 group-hover:bg-white rounded-full transition-colors duration-300"
+              className="w-1.5 h-1.5 bg-white/70 group-hover:bg-white rounded-full transition-colors duration-300"
             />
           </div>
-          <span className="text-white/60 group-hover:text-white text-[7px] sm:text-[8px] font-serif font-light tracking-[0.2em] sm:tracking-[0.25em] uppercase transition-colors duration-300">
+          <span className="text-white/70 group-hover:text-white text-[8px] sm:text-[8px] font-serif font-light tracking-[0.2em] sm:tracking-[0.25em] uppercase transition-colors duration-300">
             Scroll
           </span>
         </motion.div>

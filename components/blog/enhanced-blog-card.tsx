@@ -15,6 +15,7 @@ interface EnhancedBlogCardProps {
   imageUrl: string
   href: string
   featured?: boolean
+  compact?: boolean
   className?: string
 }
 
@@ -28,9 +29,84 @@ export function EnhancedBlogCard({
   imageUrl,
   href,
   featured = false,
+  compact = false,
   className = "",
 }: EnhancedBlogCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
+
+  // モバイル用コンパクトカード
+  if (compact) {
+    return (
+      <a href={href} className={`block ${className}`}>
+        <motion.article
+          whileTap={{ scale: 0.98 }}
+          className="relative bg-white rounded-2xl overflow-hidden shadow-lg active:shadow-xl transition-shadow duration-300 h-[340px] flex flex-col"
+        >
+          {/* 画像セクション */}
+          <div className="relative h-[180px] overflow-hidden flex-shrink-0">
+            <Image
+              src={imageUrl || "/placeholder.svg"}
+              alt={title}
+              fill
+              className="object-cover"
+            />
+            {/* グラデーションオーバーレイ */}
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
+            />
+            {/* カテゴリバッジ */}
+            <div className="absolute top-3 left-3">
+              <span
+                className="inline-block px-3 py-1 rounded-full text-xs font-medium backdrop-blur-md"
+                style={{
+                  backgroundColor: `${categoryColor}ee`,
+                  color: "white",
+                }}
+              >
+                {category}
+              </span>
+            </div>
+          </div>
+
+          {/* コンテンツセクション */}
+          <div className="flex-1 p-4 flex flex-col">
+            {/* タイトル */}
+            <h3 className="text-base font-bold text-gray-900 line-clamp-2 mb-2 leading-snug">
+              {title}
+            </h3>
+
+            {/* 抜粋 */}
+            <p className="text-xs text-gray-600 line-clamp-2 mb-3 leading-relaxed flex-1">
+              {excerpt}
+            </p>
+
+            {/* メタ情報 */}
+            <div className="flex items-center gap-3 text-xs text-gray-500 pt-2 border-t border-gray-100">
+              <div className="flex items-center gap-1">
+                <Calendar className="w-3 h-3" />
+                <time>{date}</time>
+              </div>
+              <div className="flex items-center gap-1">
+                <User className="w-3 h-3" />
+                <span className="truncate">{author}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 読むインジケーター */}
+          <div className="absolute bottom-4 right-4">
+            <motion.div
+              whileHover={{ scale: 1.1 }}
+              className="w-10 h-10 rounded-full flex items-center justify-center shadow-md"
+              style={{ backgroundColor: categoryColor }}
+            >
+              <ArrowRight className="w-4 h-4 text-white" />
+            </motion.div>
+          </div>
+        </motion.article>
+      </a>
+    )
+  }
 
   if (featured) {
     return (
