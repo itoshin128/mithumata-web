@@ -346,11 +346,9 @@ export function HeroParallaxSection() {
       if (aspectRatio < 2.0) {
         // タブレット + MacBook：4:5縦長画像
         imageType = 'macbook'
-        // タブレット（ratio < 1.5）はvhを抑えてCTAがはみ出ないようにする
-        if (aspectRatio < 1.4) {
-          height = "170vh"
-        } else if (aspectRatio < 1.5) {
-          height = "180vh"
+        if (aspectRatio < 1.5) {
+          // タブレット
+          height = "200vh"
         } else {
           // MacBook（ratio 1.5-2.0）
           height = "220vh"
