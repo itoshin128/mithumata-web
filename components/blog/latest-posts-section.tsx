@@ -44,6 +44,78 @@ const latestPosts = [
 interface BlogCardProps {
   post: typeof latestPosts[0]
   delay?: number
+  compact?: boolean
+}
+
+function CompactBlogCard({ post }: { post: typeof latestPosts[0] }) {
+  return (
+    <Link href={post.href} className="block h-full">
+      <motion.article
+        whileTap={{ scale: 0.98 }}
+        className="relative bg-white rounded-2xl overflow-hidden shadow-lg active:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col"
+      >
+        {/* 画像セクション */}
+        <div className="relative h-[200px] overflow-hidden flex-shrink-0">
+          <Image
+            src={post.imageUrl || "/placeholder.svg"}
+            alt={post.title}
+            fill
+            className="object-cover"
+          />
+          {/* グラデーションオーバーレイ */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+          {/* カテゴリバッジ */}
+          <div className="absolute top-4 left-4">
+            <span
+              className="inline-block px-3 py-1.5 text-xs font-serif tracking-wider backdrop-blur-md"
+              style={{
+                backgroundColor: `${post.categoryColor}ee`,
+                color: "white",
+              }}
+            >
+              {post.category}
+            </span>
+          </div>
+        </div>
+
+        {/* コンテンツセクション */}
+        <div className="flex-1 p-5 flex flex-col">
+          {/* タイトル */}
+          <h3 className="text-base font-serif font-light text-gray-900 line-clamp-2 mb-3 leading-snug tracking-[0.04em]">
+            {post.title}
+          </h3>
+
+          {/* 抜粋 */}
+          <p className="text-xs text-gray-700 font-serif font-light line-clamp-2 mb-3 leading-relaxed flex-1 tracking-[0.04em]">
+            {post.excerpt}
+          </p>
+
+          {/* メタ情報 */}
+          <div className="flex items-center gap-3 text-xs text-gray-500 pt-3 border-t border-gray-100">
+            <div className="flex items-center gap-1.5">
+              <Calendar className="w-3 h-3" />
+              <time className="font-serif font-light tracking-wider">{post.date}</time>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <User className="w-3 h-3" />
+              <span className="font-serif font-light tracking-wider">{post.author}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* 読むインジケーター */}
+        <div className="absolute bottom-5 right-5">
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            className="w-10 h-10 rounded-full flex items-center justify-center shadow-md"
+            style={{ backgroundColor: post.categoryColor }}
+          >
+            <ArrowRight className="w-4 h-4 text-white" />
+          </motion.div>
+        </div>
+      </motion.article>
+    </Link>
+  )
 }
 
 function BlogCard({ post, delay = 0 }: BlogCardProps) {
@@ -170,8 +242,62 @@ export function LatestPostsSection() {
           </div>
         </FadeInSection>
 
-        {/* Blog Grid - Simple 3-column layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 mb-12 md:mb-16">
+        {/* モバイル: 横スクロールカルーセル */}
+        <div className="lg:hidden mb-12">
+          <div className="relative -mx-6 px-6">
+            {/* カルーセルコンテナ */}
+            <div
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
+              style={{
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+                WebkitOverflowScrolling: "touch",
+              }}
+            >
+              {latestPosts.map((post, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex-none w-[85vw] sm:w-[70vw] snap-start"
+                >
+                  <CompactBlogCard post={post} />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* スクロールヒント（初回のみ表示） */}
+            <motion.div
+              initial={{ opacity: 1, x: 0 }}
+              animate={{ opacity: 0, x: 10 }}
+              transition={{ delay: 2.5, duration: 1 }}
+              className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+            >
+              <div className="w-12 h-12 rounded-full bg-gradient-to-l from-white/90 to-transparent flex items-center justify-end pr-2">
+                <ArrowRight className="w-5 h-5 text-gray-400 animate-pulse" />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ページインジケーター */}
+          <div className="flex justify-center gap-2 mt-8">
+            {latestPosts.map((post, index) => (
+              <div
+                key={index}
+                className="h-1.5 rounded-full bg-gray-300 transition-all duration-300"
+                style={{
+                  backgroundColor: index === 0 ? post.categoryColor : undefined,
+                  width: index === 0 ? "28px" : "8px",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* デスクトップ: 従来の3カラムグリッド */}
+        <div className="hidden lg:grid grid-cols-3 gap-8 md:gap-10 lg:gap-12 mb-12 md:mb-16">
           {latestPosts.map((post, index) => (
             <BlogCard key={index} post={post} delay={0.2 + index * 0.1} />
           ))}
