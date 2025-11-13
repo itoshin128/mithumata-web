@@ -7,15 +7,15 @@ export function LoadingScreen() {
   const [fadeOut, setFadeOut] = useState(false)
 
   useEffect(() => {
-    // ローディング画面を4秒表示してからフェードアウト開始
+    // ローディング画面を3.5秒表示してからフェードアウト開始
     const fadeTimer = setTimeout(() => {
       setFadeOut(true)
-    }, 4000)
+    }, 3500)
 
     // フェードアウト完了後に非表示
     const hideTimer = setTimeout(() => {
       setIsVisible(false)
-    }, 5500)
+    }, 5000)
 
     return () => {
       clearTimeout(fadeTimer)
@@ -27,110 +27,83 @@ export function LoadingScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center transition-opacity duration-1500 ${
+      className={`fixed inset-0 z-[9999] transition-opacity duration-1500 ${
         fadeOut ? 'opacity-0' : 'opacity-100'
       }`}
       style={{
-        background: 'linear-gradient(180deg, #f0f3f6 0%, #f8fafb 50%, #ffffff 100%)',
+        background: 'linear-gradient(180deg, #f5f7f9 0%, #fafbfc 50%, #ffffff 100%)',
       }}
     >
-      {/* シンプルな霧レイヤー1 */}
-      <div
-        className="absolute inset-0 overflow-hidden"
-        style={{
-          animation: 'simpleMistFade 4s ease-out forwards',
-        }}
-      >
+      {/* 背景の控えめな霧 - テキストより絶対に下 */}
+      <div className="absolute inset-0 z-0">
         <div
           className="absolute inset-0"
           style={{
             background:
-              'radial-gradient(ellipse 110% 90% at 50% 50%, rgba(200, 210, 220, 0.6) 0%, rgba(220, 230, 240, 0.4) 40%, transparent 70%)',
-            filter: 'blur(80px)',
+              'radial-gradient(ellipse 100% 80% at 50% 50%, rgba(220, 228, 235, 0.3) 0%, transparent 60%)',
+            filter: 'blur(100px)',
+            animation: 'backgroundMistFade 3.5s ease-out forwards',
           }}
         />
       </div>
 
-      {/* シンプルな霧レイヤー2 */}
-      <div
-        className="absolute inset-0 overflow-hidden"
-        style={{
-          animation: 'simpleMistFade 3.5s ease-out forwards',
-          animationDelay: '0.3s',
-        }}
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 100% 80% at 50% 50%, rgba(190, 200, 210, 0.5) 0%, rgba(210, 220, 230, 0.3) 40%, transparent 65%)',
-            filter: 'blur(60px)',
-          }}
-        />
-      </div>
-
-      {/* メインコンテンツ - 確実に最前面 */}
-      <div className="relative z-[100] text-center space-y-8 px-8">
-        {/* 日本語テキスト */}
-        <div>
+      {/* テキストコンテンツ - 絶対に最前面 */}
+      <div className="absolute inset-0 z-50 flex items-center justify-center">
+        <div className="text-center space-y-6 px-8">
+          {/* 日本語テキスト */}
           <h1
             className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-wider"
             style={{
               fontFamily: 'var(--font-noto-serif)',
-              color: '#4a5a6a',
-              animation: 'textSimpleFade 2.5s ease-out forwards',
-              animationDelay: '0.5s',
+              color: '#3a4a5a',
+              animation: 'textFadeIn 2s ease-out forwards',
               opacity: 0,
             }}
           >
             北アルプス黒部源流
           </h1>
-        </div>
 
-        {/* 装飾ライン */}
-        <div className="flex items-center justify-center gap-6">
+          {/* 装飾 */}
           <div
+            className="flex items-center justify-center gap-4"
             style={{
-              width: '80px',
-              height: '1px',
-              background: 'rgba(130, 140, 150, 0.4)',
-              animation: 'lineSimpleFade 2s ease-out forwards',
-              animationDelay: '1.5s',
+              animation: 'textFadeIn 2s ease-out forwards',
+              animationDelay: '0.8s',
               opacity: 0,
             }}
-          />
-          <div
-            style={{
-              width: '3px',
-              height: '3px',
-              borderRadius: '50%',
-              background: 'rgba(120, 130, 140, 0.5)',
-              animation: 'lineSimpleFade 2s ease-out forwards',
-              animationDelay: '1.8s',
-              opacity: 0,
-            }}
-          />
-          <div
-            style={{
-              width: '80px',
-              height: '1px',
-              background: 'rgba(130, 140, 150, 0.4)',
-              animation: 'lineSimpleFade 2s ease-out forwards',
-              animationDelay: '1.5s',
-              opacity: 0,
-            }}
-          />
-        </div>
+          >
+            <div
+              style={{
+                width: '60px',
+                height: '1px',
+                background: 'rgba(120, 130, 140, 0.3)',
+              }}
+            />
+            <div
+              style={{
+                width: '2px',
+                height: '2px',
+                borderRadius: '50%',
+                background: 'rgba(110, 120, 130, 0.4)',
+              }}
+            />
+            <div
+              style={{
+                width: '60px',
+                height: '1px',
+                background: 'rgba(120, 130, 140, 0.3)',
+              }}
+            />
+          </div>
 
-        {/* 英語テキスト */}
-        <div>
+          {/* 英語テキスト */}
           <p
-            className="text-xl md:text-2xl lg:text-3xl tracking-[0.25em] font-light"
+            className="text-lg md:text-xl lg:text-2xl tracking-[0.2em] font-light"
             style={{
               fontFamily: 'var(--font-noto-sans)',
-              color: '#6a7a8a',
-              animation: 'textSimpleFade 2.5s ease-out forwards',
-              animationDelay: '0.8s',
+              color: '#5a6a7a',
+              animation: 'textFadeIn 2s ease-out forwards',
+              animationDelay: '0.4s',
               opacity: 0,
             }}
           >
@@ -140,7 +113,7 @@ export function LoadingScreen() {
       </div>
 
       <style jsx>{`
-        @keyframes simpleMistFade {
+        @keyframes backgroundMistFade {
           0% {
             opacity: 1;
           }
@@ -149,21 +122,14 @@ export function LoadingScreen() {
           }
         }
 
-        @keyframes textSimpleFade {
+        @keyframes textFadeIn {
           0% {
             opacity: 0;
+            transform: translateY(10px);
           }
           100% {
             opacity: 1;
-          }
-        }
-
-        @keyframes lineSimpleFade {
-          0% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 1;
+            transform: translateY(0);
           }
         }
       `}</style>
