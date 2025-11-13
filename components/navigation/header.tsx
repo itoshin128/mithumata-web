@@ -176,7 +176,7 @@ export function Header() {
               aria-hidden="true"
             />
 
-            {/* メニューパネル - モダンミニマリスト */}
+            {/* メニューパネル - シンプル & エレガント */}
             <motion.div
               id="main-menu"
               role="dialog"
@@ -191,7 +191,7 @@ export function Header() {
                 stiffness: 300,
                 opacity: { duration: 0.2 },
               }}
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-[440px] bg-white/95 backdrop-blur-2xl z-[70] overflow-hidden"
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-[480px] md:w-[520px] bg-[#fcf6e3]/98 backdrop-blur-2xl z-[70] overflow-hidden"
               style={{
                 boxShadow: `
                   -12px 0 48px rgba(0, 0, 0, 0.12),
@@ -199,26 +199,32 @@ export function Header() {
                 `,
               }}
             >
-              {/* グラデーション バックグラウンド */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-gray-50/20 to-white/40 pointer-events-none" />
+              {/* 和紙テクスチャ背景 */}
+              <div
+                className="absolute inset-0 opacity-30 pointer-events-none"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E")`,
+                  backgroundRepeat: "repeat",
+                }}
+              />
 
               <div className="relative flex flex-col h-full">
-                {/* ヘッダー - ミニマル */}
-                <div className="flex items-center justify-between px-8 py-6 border-b border-gray-200/60">
+                {/* ヘッダー */}
+                <div className="flex items-center justify-between px-6 md:px-8 py-6 border-b border-gray-900/10">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
                     className="flex items-center gap-3"
                   >
-                    <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-mitsumata to-mitsumata-dark flex items-center justify-center shadow-lg">
-                      <Mountain className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#2d5016]/10 to-[#5ba4cf]/10 flex items-center justify-center">
+                      <Mountain className="w-5 h-5 md:w-6 md:h-6 text-[#2d5016]" />
                     </div>
                     <div>
-                      <span className="block font-serif font-bold text-lg text-gray-900 tracking-tight">
+                      <span className="block font-serif font-light text-lg md:text-xl text-gray-900 tracking-[0.06em] leading-[1.6]">
                         三俣山荘グループ
                       </span>
-                      <span className="block text-[10px] text-gray-500 mt-0.5 tracking-[0.1em] uppercase font-medium">
+                      <span className="block text-[10px] md:text-xs text-gray-600 mt-0.5 tracking-wide uppercase font-medium">
                         Kita Alps
                       </span>
                     </div>
@@ -229,27 +235,27 @@ export function Header() {
                     animate={{ opacity: 1, rotate: 0 }}
                     transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
                     onClick={() => setIsMenuOpen(false)}
-                    className="w-11 h-11 rounded-2xl hover:bg-gray-100/80 flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:ring-offset-2"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full hover:bg-gray-900/5 flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:ring-offset-2"
                     aria-label="メニューを閉じる"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <X className="w-5 h-5 text-gray-900" />
+                    <X className="w-5 h-5 md:w-6 md:h-6 text-gray-900" />
                   </motion.button>
                 </div>
 
-                {/* ナビゲーション - ミニマリストスタイル */}
-                <nav className="flex-1 overflow-y-auto px-6 py-8" aria-label="メインナビゲーション">
-                  <ul className="space-y-2.5" role="list">
+                {/* ナビゲーション */}
+                <nav className="flex-1 overflow-y-auto px-6 md:px-8 py-10 md:py-12" aria-label="メインナビゲーション">
+                  <ul className="space-y-3 md:space-y-4" role="list">
                     {navigationItems.map((item, index) => (
                       <motion.li
                         key={item.href}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
-                          delay: 0.15 + index * 0.08,
+                          delay: 0.2 + index * 0.1,
                           type: "spring",
-                          stiffness: 300,
+                          stiffness: 200,
                           damping: 25,
                         }}
                       >
@@ -257,19 +263,20 @@ export function Header() {
                           href={item.href}
                           onClick={() => setIsMenuOpen(false)}
                           className={`
-                            group block relative py-4 px-6 text-base font-medium rounded-2xl transition-all duration-300
+                            group block relative py-5 md:py-6 px-6 md:px-8 text-lg md:text-xl font-serif font-light rounded-2xl transition-all duration-500
+                            tracking-[0.04em] leading-[1.6]
                             focus:outline-none focus:ring-2 focus:ring-offset-2
                             ${
                               item.highlight
-                                ? "bg-gradient-to-r from-mitsumata to-mitsumata-dark text-white hover:shadow-lg hover:shadow-mitsumata/30 hover:scale-[1.02] focus:ring-mitsumata"
-                                : "text-gray-700 hover:text-gray-900 hover:bg-gray-100/70 focus:ring-gray-900/20"
+                                ? "bg-gradient-to-r from-mitsumata via-mitsumata-light to-mitsumata-dark text-white hover:shadow-xl hover:scale-[1.02] focus:ring-mitsumata"
+                                : "text-gray-800 hover:text-gray-900 hover:bg-white/60 focus:ring-gray-900/20"
                             }
                           `}
                         >
-                          <span className="relative z-10">{item.label}</span>
+                          <span className="relative z-10 block">{item.label}</span>
                           {!item.highlight && (
                             <motion.div
-                              className="absolute inset-0 rounded-2xl bg-gradient-to-r from-gray-50 to-gray-100/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                              className="absolute inset-0 rounded-2xl bg-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-sm"
                               initial={false}
                             />
                           )}
@@ -278,46 +285,50 @@ export function Header() {
                     ))}
                   </ul>
 
-                  {/* 山荘リンク - カード形式 */}
-                  <div className="mt-10 pt-8 border-t border-gray-200/60">
+                  {/* 山荘リンク */}
+                  <div className="mt-12 pt-10 border-t border-gray-900/10">
                     <motion.h3
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5 }}
-                      className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.15em] mb-4 px-2"
+                      transition={{ delay: 0.7 }}
+                      className="text-xs font-bold text-gray-600 uppercase tracking-[0.2em] mb-6 px-2"
                     >
                       山荘
                     </motion.h3>
-                    <ul className="space-y-3" role="list">
+                    <ul className="space-y-4" role="list">
                       {[
-                        { name: "三俣山荘", href: "/lodges/mitsumata", color: "mitsumata" },
-                        { name: "水晶小屋", href: "/lodges/suisho", color: "suisho" },
-                        { name: "湯俣山荘", href: "/lodges/yumata", color: "yumata" },
+                        { name: "三俣山荘", href: "/lodges/mitsumata", color: "#2d5016" },
+                        { name: "水晶小屋", href: "/lodges/suisho", color: "#5ba4cf" },
+                        { name: "湯俣山荘", href: "/lodges/yumata", color: "#b8604a" },
                       ].map((lodge, index) => (
                         <motion.li
                           key={lodge.href}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{
-                            delay: 0.5 + index * 0.08,
+                            delay: 0.8 + index * 0.1,
                             type: "spring",
-                            stiffness: 300,
+                            stiffness: 200,
                             damping: 25,
                           }}
                         >
                           <Link
                             href={lodge.href}
                             onClick={() => setIsMenuOpen(false)}
-                            className="group block relative p-4 rounded-xl bg-white/70 backdrop-blur-sm border border-gray-200/60 hover:border-gray-300/80 hover:shadow-md hover:scale-[1.01] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:ring-offset-2"
+                            className="group block relative p-5 md:p-6 rounded-2xl bg-white/60 backdrop-blur-sm hover:bg-white/80 hover:shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:ring-offset-2"
                           >
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-4">
                               <div
-                                className={`w-2.5 h-2.5 rounded-full shadow-sm`}
+                                className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-md"
                                 style={{
-                                  backgroundColor: `var(--${lodge.color}-primary)`,
+                                  backgroundColor: `${lodge.color}15`,
+                                  borderColor: lodge.color,
+                                  borderWidth: "2px",
                                 }}
-                              />
-                              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 transition-colors">
+                              >
+                                <Mountain className="w-5 h-5 md:w-6 md:h-6" style={{ color: lodge.color }} />
+                              </div>
+                              <span className="text-base md:text-lg font-serif font-light text-gray-800 group-hover:text-gray-900 transition-colors tracking-[0.04em] leading-[1.6]">
                                 {lodge.name}
                               </span>
                             </div>
@@ -328,17 +339,17 @@ export function Header() {
                   </div>
                 </nav>
 
-                {/* フッター - ミニマル */}
+                {/* フッター */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="px-8 py-6 border-t border-gray-200/60 bg-gradient-to-b from-transparent to-gray-50/40"
+                  transition={{ delay: 1.1 }}
+                  className="px-6 md:px-8 py-6 md:py-8 border-t border-gray-900/10 bg-gradient-to-b from-transparent to-white/30"
                 >
-                  <p className="text-xs text-gray-600 leading-relaxed font-medium">
+                  <p className="text-xs md:text-sm text-gray-700 leading-[1.9] font-serif font-light tracking-[0.04em]">
                     北アルプス最奥、黒部源流の三つの山荘
                   </p>
-                  <p className="text-[10px] text-gray-500 mt-2 tracking-wide">
+                  <p className="text-[10px] md:text-xs text-gray-500 mt-2 tracking-wider">
                     営業期間: 7月〜11月
                   </p>
                 </motion.div>
