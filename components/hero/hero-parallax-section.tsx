@@ -365,7 +365,7 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className="object-contain object-center"
+                      className="object-cover object-center"
                       priority={image.id === 1}
                       quality={100}
                       sizes="100vw"
