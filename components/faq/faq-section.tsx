@@ -89,7 +89,7 @@ export function FAQSection() {
   return (
     <section className="relative py-20 md:py-32 lg:py-40">
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
-        {/* Section Header - Centered */}
+        {/* セクション見出し - 中央揃え */}
         <FadeInSection delay={0.1}>
           <div className="text-center mb-16 md:mb-20 lg:mb-24 max-w-3xl mx-auto">
             <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance">
@@ -103,20 +103,20 @@ export function FAQSection() {
           </div>
         </FadeInSection>
 
-        {/* FAQ Categories - Centered Simple Layout */}
-        <div className="space-y-12 md:space-y-16 lg:space-y-20">
+        {/* FAQカテゴリー - シンプルレイアウト */}
+        <div className="space-y-10 md:space-y-12 lg:space-y-16">
           {faqData.map((category, categoryIndex) => {
             const Icon = category.icon
 
             return (
               <FadeInSection key={categoryIndex} delay={categoryIndex * 0.1 + 0.2}>
                 <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 md:p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow duration-300">
-                  {/* Category Header */}
-                  <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+                  {/* カテゴリーヘッダー */}
+                  <div className="flex items-center gap-4 mb-6 md:mb-8">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 360 }}
                       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                      className="flex-shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-md"
+                      className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-md"
                       style={{
                         backgroundColor: `${category.color}15`,
                         borderColor: category.color,
@@ -127,14 +127,14 @@ export function FAQSection() {
                     </motion.div>
 
                     <h3
-                      className="text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.06em] leading-[1.6]"
+                      className="text-base md:text-lg lg:text-xl font-serif font-light tracking-[0.06em] leading-[1.6]"
                       style={{ color: category.color }}
                     >
                       {category.category}
                     </h3>
                   </div>
 
-                  {/* Questions Accordion */}
+                  {/* 質問アコーディオン */}
                   <Accordion type="single" collapsible className="space-y-3 md:space-y-4">
                     {category.questions.map((item, questionIndex) => (
                       <AccordionItem
@@ -142,17 +142,7 @@ export function FAQSection() {
                         value={`${categoryIndex}-${questionIndex}`}
                         className="border-none"
                       >
-                        <AccordionTrigger
-                          className="
-                            text-left font-serif font-light text-sm md:text-base lg:text-lg
-                            tracking-[0.04em] leading-[1.6]
-                            text-gray-900 hover:no-underline
-                            py-4 md:py-5
-                            border-b border-gray-200
-                            hover:border-gray-400
-                            transition-all duration-300
-                          "
-                        >
+                        <AccordionTrigger className="text-left font-serif font-light text-sm md:text-base lg:text-lg tracking-[0.04em] leading-[1.6] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
                           <span className="pr-4">{item.q}</span>
                         </AccordionTrigger>
                         <AccordionContent className="text-sm md:text-base text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
@@ -169,9 +159,9 @@ export function FAQSection() {
 
         <SectionDivider />
 
-        {/* Contact CTA */}
+        {/* お問い合わせCTA */}
         <FadeInSection delay={0.5}>
-          <div className="text-center mt-12 md:mt-16">
+          <div className="text-center">
             <p className="text-sm md:text-base text-gray-700 mb-8 md:mb-10 font-serif font-light tracking-[0.04em] leading-[1.9]">
               その他のご質問がございましたら、お気軽にお問い合わせください。
             </p>
@@ -179,19 +169,7 @@ export function FAQSection() {
               <motion.button
                 whileHover={{ scale: 1.05, backgroundColor: "rgb(17, 24, 39)" }}
                 whileTap={{ scale: 0.95 }}
-                className="
-                  group
-                  inline-flex items-center gap-3
-                  px-10 py-5
-                  border border-gray-900
-                  rounded-full
-                  text-gray-900
-                  font-light
-                  tracking-[0.2em]
-                  transition-all duration-500
-                  hover:text-white
-                  hover:shadow-xl
-                "
+                className="group inline-flex items-center gap-3 px-10 py-5 border border-gray-900 rounded-full text-gray-900 font-light tracking-[0.2em] transition-all duration-500 hover:text-white hover:shadow-xl"
               >
                 <Mail className="w-4 h-4" />
                 <span className="text-sm">お問い合わせ</span>
