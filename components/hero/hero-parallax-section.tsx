@@ -106,59 +106,7 @@ type AnimationPattern = {
   y: [string, string]
 }
 
-// タブレット用：16:10横長画像
-const heroImagesDesktop = [
-  {
-    id: 1,
-    url: "/images/hero/main01.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 2,
-    url: "/images/hero/main02.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 3,
-    url: "/images/hero/main03.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 4,
-    url: "/images/hero/main04.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 5,
-    url: "/images/hero/main05.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 6,
-    url: "/images/hero/main06.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 7,
-    url: "/images/hero/main07.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 8,
-    url: "/images/hero/main08.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-]
-
-// MacBook用：縦長4:5画像
+// タブレット + MacBook用：縦長4:5画像
 const heroImagesMacBook = [
   {
     id: 1,
@@ -319,7 +267,7 @@ export function HeroParallaxSection() {
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
   const [dynamicHeight, setDynamicHeight] = useState("200vh")
   const [isDesktop, setIsDesktop] = useState(false)
-  const [imageSetType, setImageSetType] = useState<'tablet' | 'macbook' | 'wide'>('wide')
+  const [imageSetType, setImageSetType] = useState<'macbook' | 'wide'>('wide')
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -338,24 +286,15 @@ export function HeroParallaxSection() {
       const aspectRatio = window.innerWidth / window.innerHeight
 
       // アスペクト比に基づいて画像セットを選択
-      // ratio < 1.5: 16:10横長画像（タブレット等）
-      // ratio 1.5-2.0: 4:5縦長画像（MacBook）
+      // ratio < 2.0: 4:5縦長画像（タブレット + MacBook）
       // ratio >= 2.0: 1:1スクエア画像（大画面モニター）
-      let imageType: 'tablet' | 'macbook' | 'wide'
+      let imageType: 'macbook' | 'wide'
       let height: string
 
-      if (aspectRatio < 1.5) {
-        // タブレット：16:10横長画像
-        imageType = 'tablet'
-        if (aspectRatio < 1.4) {
-          height = "140vh"
-        } else {
-          height = "150vh"
-        }
-      } else if (aspectRatio < 2.0) {
-        // MacBook：4:5縦長画像
+      if (aspectRatio < 2.0) {
+        // タブレット + MacBook：4:5縦長画像、200vhで統一
         imageType = 'macbook'
-        height = "220vh"
+        height = "200vh"
       } else {
         // 大画面モニター：1:1スクエア画像
         imageType = 'wide'
@@ -497,7 +436,7 @@ export function HeroParallaxSection() {
             onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
             key={imageSetType}
           >
-            {(imageSetType === 'tablet' ? heroImagesDesktop : imageSetType === 'macbook' ? heroImagesMacBook : heroImagesDesktopWide).map((image, index) => (
+            {(imageSetType === 'macbook' ? heroImagesMacBook : heroImagesDesktopWide).map((image, index) => (
               <SwiperSlide key={image.id}>
                 <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
@@ -526,8 +465,8 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className="object-cover object-center"
-                      priority={image.id === 1}
+                      className={imageSetType === 'wide' ? 'object-cover object-center' : 'object-cover object-top'}
+                      priority={image.id === 1 || image.id === 2}
                       quality={100}
                       sizes="100vw"
                     />
@@ -555,14 +494,22 @@ export function HeroParallaxSection() {
             >
               <div className="space-y-3 sm:space-y-3 md:space-y-4">
                 <h1
-                  className="text-white text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light leading-[1.6] tracking-[0.08em]"
+                  className={`text-white font-serif font-light leading-[1.6] tracking-[0.08em] transition-all duration-300 ${
+                    imageSetType === 'wide'
+                      ? 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
+                      : 'text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
+                  }`}
                   style={{ textShadow: "0 3px 16px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.95)" }}
                 >
                   北アルプス黒部源流
                 </h1>
 
                 <p
-                  className="text-white/90 text-[10px] sm:text-[10px] md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-light font-sans uppercase"
+                  className={`text-white/90 font-light font-sans uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all duration-300 ${
+                    imageSetType === 'wide'
+                      ? 'text-[11px] sm:text-xs md:text-sm lg:text-base'
+                      : 'text-[10px] sm:text-[10px] md:text-xs lg:text-sm'
+                  }`}
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.9)" }}
                 >
                   Northern Alps Kurobe Genryu
@@ -571,13 +518,21 @@ export function HeroParallaxSection() {
 
               <div className="space-y-3 sm:space-y-3 md:space-y-4 pt-3 sm:pt-3 md:pt-4">
                 <p
-                  className="text-white/95 text-sm sm:text-sm md:text-base lg:text-lg leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]"
+                  className={`text-white/95 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
+                    imageSetType === 'wide'
+                      ? 'text-base sm:text-base md:text-lg lg:text-xl'
+                      : 'text-sm sm:text-sm md:text-base lg:text-lg'
+                  }`}
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   北アルプス最奥、黒部源流の三つの山荘
                 </p>
                 <p
-                  className="text-white/90 text-xs sm:text-xs md:text-sm lg:text-base leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]"
+                  className={`text-white/90 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
+                    imageSetType === 'wide'
+                      ? 'text-sm sm:text-sm md:text-base lg:text-lg'
+                      : 'text-xs sm:text-xs md:text-sm lg:text-base'
+                  }`}
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   原始と変わらぬ生態系が息づく場所。
