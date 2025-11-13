@@ -264,10 +264,40 @@ export function HeroParallaxSection() {
   const [bgOpacity, setBgOpacity] = useState(1)
   const [activeSlideDesktop, setActiveSlideDesktop] = useState(0)
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
+  const [desktopHeightClass, setDesktopHeightClass] = useState("xl:h-[200vh]")
+  const [desktopMinHeightClass, setDesktopMinHeightClass] = useState("xl:min-h-[200vh]")
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
   const y = useTransform(scrollY, [0, 2000], [0, 400])
+
+  useEffect(() => {
+    const updateHeightBasedOnAspectRatio = () => {
+      const aspectRatio = window.innerWidth / window.innerHeight
+
+      // 16:10 ≈ 1.6, 16:9 ≈ 1.78
+      if (aspectRatio < 1.65) {
+        // 16:10 or narrower (MacBook等)
+        setDesktopHeightClass("xl:h-[160vh]")
+        setDesktopMinHeightClass("xl:min-h-[160vh]")
+      } else if (aspectRatio < 1.75) {
+        // Between 16:10 and 16:9
+        setDesktopHeightClass("xl:h-[180vh]")
+        setDesktopMinHeightClass("xl:min-h-[180vh]")
+      } else {
+        // 16:9 or wider (一般的なモニター)
+        setDesktopHeightClass("xl:h-[200vh]")
+        setDesktopMinHeightClass("xl:min-h-[200vh]")
+      }
+    }
+
+    updateHeightBasedOnAspectRatio()
+    window.addEventListener("resize", updateHeightBasedOnAspectRatio)
+
+    return () => {
+      window.removeEventListener("resize", updateHeightBasedOnAspectRatio)
+    }
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -431,7 +461,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* デスクトップ用パララックス背景 - 1:1スクエア画像（1280px以上） */}
-      <div className="hidden xl:block absolute top-0 left-0 w-full xl:h-[200vh] z-10 overflow-hidden bg-black">
+      <div className={`hidden xl:block absolute top-0 left-0 w-full ${desktopHeightClass} z-10 overflow-hidden bg-black`}>
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
             modules={[Autoplay, EffectFade]}
@@ -489,7 +519,7 @@ export function HeroParallaxSection() {
       </div>
 
       {/* スクロールするコンテンツレイヤー */}
-      <div className="relative z-30 min-h-[180vh] md:min-h-[160vh] lg:min-h-[180vh] xl:min-h-[200vh]">
+      <div className={`relative z-30 min-h-[180vh] md:min-h-[160vh] lg:min-h-[180vh] ${desktopMinHeightClass}`}>
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
             <motion.div
