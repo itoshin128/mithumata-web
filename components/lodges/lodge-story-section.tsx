@@ -130,44 +130,44 @@ function SectionDivider() {
 
 export function LodgeStorySection() {
   return (
-    <section className="relative py-20 md:py-32 lg:py-40">
+    <section className="relative py-16 sm:py-20 md:py-32 lg:py-40">
       {lodgeStories.map((lodge, storyIndex) => {
         return (
           <div key={lodge.id} className="relative z-10">
-            <div className="container mx-auto px-0 md:px-6 max-w-7xl">
+            <div className="container mx-auto px-4 sm:px-6 md:px-6 max-w-7xl">
               <FadeInSection delay={0.1}>
-                <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-20 md:mb-24 lg:mb-32`}>
-                  <div className={`max-w-xl ${lodge.id === "suisho" ? "text-left ml-6 md:ml-12 lg:ml-20 mr-auto" : "text-right mr-6 md:mr-12 lg:mr-20 ml-auto"}`}>
-                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-serif font-light mb-8 md:mb-10 tracking-[0.08em] leading-[1.6] text-balance">
+                <div className={`flex justify-center md:${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-16 sm:mb-18 md:mb-24 lg:mb-32`}>
+                  <div className={`max-w-xl text-center md:${lodge.id === "suisho" ? "text-left md:ml-12 lg:ml-20" : "text-right md:mr-12 lg:mr-20"} px-4 md:px-0`}>
+                    <h2 className="text-2xl sm:text-2xl md:text-xl lg:text-2xl xl:text-3xl font-serif font-light mb-6 sm:mb-7 md:mb-10 tracking-[0.08em] leading-[1.6] text-balance">
                       {lodge.title}
                     </h2>
-                    <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
+                    <p className="text-base sm:text-base md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
                       {lodge.description}
                     </p>
                   </div>
                 </div>
               </FadeInSection>
 
-              {/* 写真1: 縦構図 - 水晶小屋は右寄せ、他は左寄せ */}
-              <div className={`mb-24 md:mb-28 lg:mb-32 max-w-[260px] md:max-w-sm lg:max-w-xl ${
+              {/* 写真1: 縦構図 - モバイルは中央揃え、デスクトップは水晶小屋は右寄せ、他は左寄せ */}
+              <div className={`mb-20 sm:mb-22 md:mb-28 lg:mb-32 max-w-[280px] sm:max-w-[320px] md:max-w-sm lg:max-w-xl mx-auto ${
                 lodge.id === "suisho"
-                  ? "mr-6 md:mr-12 lg:mr-20 ml-auto"
-                  : "ml-6 md:ml-12 lg:ml-20 mr-auto"
+                  ? "md:mr-12 lg:mr-20 md:ml-auto"
+                  : "md:ml-12 lg:ml-20 md:mr-auto"
               }`}>
                 <InteractivePhoto
                   src={lodge.photos.portrait1}
                   alt={`${lodge.name} 風景1`}
                   aspectRatio="aspect-[3/4]"
-                  sizes="(max-width: 640px) 45vw, (max-width: 768px) 50vw, 40vw"
+                  sizes="(max-width: 640px) 70vw, (max-width: 768px) 60vw, 40vw"
                   delay={0.2}
                 />
               </div>
 
-              {/* 写真2: 横構図 - 水晶小屋は左寄せ、他は右寄せ */}
-              <div className={`mb-28 md:mb-32 lg:mb-36 max-w-[300px] md:max-w-md lg:max-w-2xl ${
+              {/* 写真2: 横構図 - モバイルは中央揃え、デスクトップは水晶小屋は左寄せ、他は右寄せ */}
+              <div className={`mb-24 sm:mb-26 md:mb-32 lg:mb-36 max-w-[340px] sm:max-w-[380px] md:max-w-md lg:max-w-2xl mx-auto ${
                 lodge.id === "suisho"
-                  ? "ml-6 md:ml-12 lg:ml-20 mr-auto"
-                  : "mr-6 md:mr-12 lg:mr-20 ml-auto"
+                  ? "md:ml-12 lg:ml-20 md:mr-auto"
+                  : "md:mr-12 lg:mr-20 md:ml-auto"
               }`}>
                 <InteractivePhoto
                   src={lodge.photos.landscape}
@@ -181,19 +181,19 @@ export function LodgeStorySection() {
               {/* 水晶小屋の追加写真 */}
               {lodge.id === "suisho" && lodge.photos.landscape2 && lodge.photos.landscape3 ? (
                 <>
-                  {/* 水晶小屋3枚目 - 左寄せ */}
-                  <div className="mb-24 md:mb-28 lg:mb-32 max-w-[340px] md:max-w-lg lg:max-w-3xl ml-8 md:ml-16 lg:ml-24 mr-auto">
+                  {/* 水晶小屋3枚目 - モバイルは中央揃え、デスクトップは左寄せ */}
+                  <div className="mb-20 sm:mb-22 md:mb-28 lg:mb-32 max-w-[360px] sm:max-w-[400px] md:max-w-lg lg:max-w-3xl mx-auto md:ml-16 lg:ml-24 md:mr-auto">
                     <InteractivePhoto
                       src={lodge.photos.landscape2}
                       alt={`${lodge.name} 風景3`}
                       aspectRatio="aspect-[4/3]"
-                      sizes="(max-width: 640px) 60vw, (max-width: 768px) 65vw, 60vw"
+                      sizes="(max-width: 640px) 85vw, (max-width: 768px) 75vw, 60vw"
                       delay={0.4}
                     />
                   </div>
 
                   {/* 水晶小屋4枚目 - 全幅 */}
-                  <div className="mb-20 md:mb-24 w-full px-0">
+                  <div className="mb-16 sm:mb-18 md:mb-24 w-full px-0">
                     <InteractivePhoto
                       src={lodge.photos.landscape3}
                       alt={`${lodge.name} 風景4`}
@@ -206,7 +206,7 @@ export function LodgeStorySection() {
               ) : (
                 lodge.photos.portrait2 && (
                   /* 3枚目の縦写真 - 全幅 */
-                  <div className="mb-20 md:mb-24 w-full px-0">
+                  <div className="mb-16 sm:mb-18 md:mb-24 w-full px-0">
                     <InteractivePhoto
                       src={lodge.photos.portrait2}
                       alt={`${lodge.name} 風景3`}
@@ -219,7 +219,7 @@ export function LodgeStorySection() {
               )}
 
               <FadeInSection delay={0.5}>
-                <div className="flex justify-center mt-24 md:mt-28 lg:mt-32 mb-8 md:mb-12">
+                <div className="flex justify-center mt-20 sm:mt-24 md:mt-28 lg:mt-32 mb-6 sm:mb-8 md:mb-12">
                   <Link href={lodge.link}>
                     <motion.button
                       whileHover={{ scale: 1.05, backgroundColor: "rgb(17, 24, 39)" }}
@@ -228,7 +228,9 @@ export function LodgeStorySection() {
                         group
                         inline-flex items-center gap-3
                         px-10 py-5
-                        border border-gray-900
+                        sm:px-12 sm:py-6
+                        md:px-10 md:py-5
+                        border-2 border-gray-900
                         rounded-full
                         text-gray-900
                         font-light
@@ -236,10 +238,12 @@ export function LodgeStorySection() {
                         transition-all duration-500
                         hover:text-white
                         hover:shadow-xl
+                        min-w-[240px]
+                        justify-center
                       "
                     >
-                      <span className="text-sm">{lodge.name}の詳細</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
+                      <span className="text-base sm:text-base md:text-sm">{lodge.name}の詳細</span>
+                      <ArrowRight className="w-5 h-5 sm:w-5 sm:h-5 md:w-4 md:h-4 group-hover:translate-x-2 transition-transform duration-500" />
                     </motion.button>
                   </Link>
                 </div>
