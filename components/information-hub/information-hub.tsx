@@ -262,24 +262,80 @@ export function InformationHub() {
 function NoticesContent() {
   return (
     <>
-      {/* Featured Post */}
-      <div className="mb-8 lg:mb-12">
-        <EnhancedBlogCard {...latestPosts[0]} featured />
+      {/* モバイル: 横スクロールカルーセル */}
+      <div className="lg:hidden">
+        <div className="relative -mx-4 px-4">
+          {/* カルーセルコンテナ */}
+          <div
+            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-2"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            {latestPosts.map((post, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="flex-none w-[85vw] sm:w-[75vw] snap-start"
+              >
+                <EnhancedBlogCard {...post} compact />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* スクロールヒント（初回のみ表示） */}
+          <motion.div
+            initial={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 0, x: 10 }}
+            transition={{ delay: 2, duration: 1 }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+          >
+            <div className="w-12 h-12 rounded-full bg-gradient-to-l from-white/90 to-transparent flex items-center justify-end pr-2">
+              <ArrowRight className="w-5 h-5 text-gray-400 animate-pulse" />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ページインジケーター */}
+        <div className="flex justify-center gap-2 mt-6">
+          {latestPosts.map((_, index) => (
+            <div
+              key={index}
+              className="w-2 h-2 rounded-full bg-gray-300 transition-all duration-300"
+              style={{
+                backgroundColor: index === 0 ? "#2d5016" : undefined,
+                width: index === 0 ? "24px" : "8px",
+              }}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* Masonry Grid for Regular Posts */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 mb-8">
-        {latestPosts.slice(1).map((post, index) => (
-          <EnhancedBlogCard key={index} {...post} />
-        ))}
+      {/* デスクトップ: 従来のレイアウト */}
+      <div className="hidden lg:block">
+        {/* Featured Post */}
+        <div className="mb-8 lg:mb-12">
+          <EnhancedBlogCard {...latestPosts[0]} featured />
+        </div>
+
+        {/* Masonry Grid for Regular Posts */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8 mb-8">
+          {latestPosts.slice(1).map((post, index) => (
+            <EnhancedBlogCard key={index} {...post} />
+          ))}
+        </div>
       </div>
 
       {/* CTA Button */}
-      <FadeInSection delay={0.4} className="text-center">
+      <FadeInSection delay={0.4} className="text-center mt-8">
         <Button
           size="lg"
           variant="outline"
-          className="px-8 py-6 text-base font-semibold bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-300 border-2 border-gray-300 hover:border-[#2d5016] shadow-lg hover:shadow-xl active:scale-[0.98] group min-h-[44px]"
+          className="px-12 py-6 md:px-8 md:py-6 text-base font-semibold bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-300 border-2 border-gray-300 hover:border-[#2d5016] shadow-lg hover:shadow-xl active:scale-[0.98] group min-h-[44px] min-w-[240px] md:min-w-0"
         >
           <span className="flex items-center gap-3 justify-center">
             <BookOpen className="w-5 h-5" />
