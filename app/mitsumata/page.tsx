@@ -13,6 +13,35 @@ import 'swiper/css/free-mode'
 import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus } from 'lucide-react'
 import * as Accordion from '@radix-ui/react-accordion'
 
+// デザインシステム - 一貫性のあるスタイルガイド
+const STYLES = {
+  // セクションタイトルの階層
+  title: {
+    hero: "text-8xl md:text-9xl lg:text-[12rem] font-serif font-light tracking-[0.15em]",
+    major: "text-6xl md:text-7xl lg:text-8xl font-serif font-light tracking-[0.15em]",
+    standard: "text-4xl md:text-5xl lg:text-6xl font-serif font-light tracking-[0.08em]",
+    minor: "text-3xl md:text-4xl font-serif font-light tracking-[0.08em]",
+    label: "text-xs md:text-sm font-sans font-light uppercase tracking-[0.3em]",
+  },
+  // 装飾線の種類
+  divider: {
+    title: "h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent",
+    overlay: "h-[1px] bg-gradient-to-r from-transparent via-white/70 to-transparent",
+  },
+  // セクション余白
+  spacing: {
+    standard: "py-24 md:py-32 lg:py-40",
+    emphasis: "py-32 md:py-40 lg:py-48",
+  },
+  // テキストスタイル
+  text: {
+    body: "text-base md:text-lg font-serif font-light leading-[2] tracking-[0.04em]",
+    bodySecondary: "text-sm md:text-base font-serif font-light leading-[2] tracking-[0.04em]",
+    caption: "text-sm md:text-base font-serif font-light text-stone-600 tracking-[0.05em] leading-[2]",
+    poetic: "text-lg md:text-xl font-serif font-light leading-[2.2] tracking-[0.04em]",
+  }
+} as const
+
 export default function MitsumataPage() {
   const heroRef = useRef<HTMLDivElement>(null)
   const kurobeRef = useRef<HTMLDivElement>(null)
@@ -122,6 +151,15 @@ export default function MitsumataPage() {
             }}
             className="flex flex-col items-center gap-2 cursor-pointer group opacity-70 hover:opacity-100 transition-opacity"
             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
+              }
+            }}
+            role="button"
+            aria-label="次のセクションへスクロール"
+            tabIndex={0}
           >
             <div className="w-6 h-10 border-2 border-white/60 group-hover:border-white rounded-full flex items-start justify-center p-1.5 transition-colors">
               <motion.div
@@ -846,18 +884,35 @@ export default function MitsumataPage() {
         </div>
       </section>
 
-      {/* グッズセクション - ミニマル展示 */}
-      <section className="relative py-32 md:py-40 lg:py-48 bg-[#F8F8F6]">
-        <div className="container mx-auto px-4 max-w-7xl">
+      {/* グッズセクション - 山荘の記憶を持ち帰る */}
+      <section className={`relative ${STYLES.spacing.standard} bg-stone-50`}>
+        <div className="absolute inset-0 z-0">
+          <WashiBackground intensity="subtle" animated={false} />
+        </div>
+
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
           {/* セクションタイトル */}
           <FadeInSection>
-            <div className="text-center mb-20 md:mb-28">
-              <h2
-                className="text-sm md:text-base font-sans font-extralight text-stone-500 uppercase tracking-[0.3em]"
-                style={{ letterSpacing: '0.3em' }}
-              >
-                Original Goods
+            <div className="text-center mb-24 md:mb-32 space-y-6">
+              <h2 className={`${STYLES.title.standard} text-stone-800`}>
+                山荘の記憶を
+                <br className="md:hidden" />
+                持ち帰る
               </h2>
+
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "4rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className={STYLES.divider.title + " mx-auto"}
+              />
+
+              <p className={`${STYLES.text.caption} text-stone-600 max-w-2xl mx-auto`}>
+                三俣山荘での時間を、日常へ。
+                <br />
+                ひとつひとつに宿る、黒部源流の物語。
+              </p>
             </div>
           </FadeInSection>
 
@@ -1420,7 +1475,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 情報セクション - ミニマル表現 */}
-      <section className="relative bg-stone-50 py-20 md:py-28">
+      <section className={`relative bg-stone-50 ${STYLES.spacing.standard}`}>
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
             <FadeInSection delay={0.1}>
@@ -1482,15 +1537,15 @@ export default function MitsumataPage() {
         <div className="relative h-full flex items-center justify-center z-10">
           <FadeInSection>
             <div className="text-center space-y-6">
-              <h2 className="text-7xl md:text-8xl lg:text-9xl font-serif font-light text-white tracking-[0.2em]">
+              <h2 className={`${STYLES.title.major} text-white`}>
                 Access
               </h2>
               <motion.div
                 initial={{ width: 0 }}
-                whileInView={{ width: "5rem" }}
-                transition={{ duration: 1, delay: 0.3 }}
+                whileInView={{ width: "4rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="h-[1px] bg-gradient-to-r from-transparent via-white/70 to-transparent mx-auto"
+                className={STYLES.divider.overlay + " mx-auto"}
               />
             </div>
           </FadeInSection>
@@ -1498,7 +1553,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* ルート詳細 - アコーディオン形式 */}
-      <section className="relative py-32 md:py-40 bg-white">
+      <section className={`relative ${STYLES.spacing.standard} bg-white`}>
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="subtle" animated={false} />
         </div>
@@ -1506,8 +1561,8 @@ export default function MitsumataPage() {
         <div className="container mx-auto px-4 max-w-6xl relative z-10">
           {/* イントロテキスト */}
           <FadeInSection>
-            <div className="text-center mb-20 md:mb-28 space-y-6">
-              <p className="text-base md:text-lg font-serif font-light text-stone-600 tracking-[0.05em] leading-[2]">
+            <div className="text-center mb-24 md:mb-32 space-y-6">
+              <p className={`${STYLES.text.caption} max-w-2xl mx-auto`}>
                 三俣山荘へは、3つの主要ルートからアクセスできます。
                 <br />
                 それぞれの道のりには、独自の景色と魅力があります。
@@ -1536,15 +1591,10 @@ export default function MitsumataPage() {
                         </div>
                       </div>
                     </div>
-                    <motion.div
-                      className="text-stone-400"
-                      whileHover={{ rotate: 180 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="6 9 12 15 18 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </motion.div>
+                    <div className="relative w-6 h-6 flex-shrink-0">
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1.5} />
+                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1.5} />
+                    </div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
@@ -1647,15 +1697,10 @@ export default function MitsumataPage() {
                         </div>
                       </div>
                     </div>
-                    <motion.div
-                      className="text-stone-400"
-                      whileHover={{ rotate: 180 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="6 9 12 15 18 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </motion.div>
+                    <div className="relative w-6 h-6 flex-shrink-0">
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1.5} />
+                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1.5} />
+                    </div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
@@ -1758,15 +1803,10 @@ export default function MitsumataPage() {
                         </div>
                       </div>
                     </div>
-                    <motion.div
-                      className="text-stone-400"
-                      whileHover={{ rotate: 180 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="6 9 12 15 18 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </motion.div>
+                    <div className="relative w-6 h-6 flex-shrink-0">
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1.5} />
+                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1.5} />
+                    </div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
@@ -1866,17 +1906,25 @@ export default function MitsumataPage() {
       </section>
 
       {/* よくある質問セクション - 超ミニマル */}
-      <section className="relative py-32 md:py-40 bg-white">
+      <section className={`relative ${STYLES.spacing.standard} bg-white`}>
         <div className="container mx-auto px-4 max-w-3xl">
           {/* セクション導入 */}
           <FadeInSection>
-            <div className="text-center mb-24 md:mb-32 space-y-3">
-              <p className="text-xs md:text-sm font-sans font-light text-stone-400 uppercase tracking-[0.3em]">
+            <div className="text-center mb-24 md:mb-32 space-y-6">
+              <p className={`${STYLES.title.label} text-stone-400`}>
                 FAQ
               </p>
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em]">
+              <h2 className={`${STYLES.title.standard} text-stone-800`}>
                 よくある質問
               </h2>
+
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "4rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className={STYLES.divider.title + " mx-auto"}
+              />
             </div>
           </FadeInSection>
 
