@@ -9,6 +9,7 @@ import { SeasonalBanner } from "@/components/ui/seasonal-banner"
 import { WashiBackground } from "@/components/effects/washi-background"
 import TreeShadowBackground from "@/components/effects/tree-shadow-background"
 import { LoadingScreen } from "@/components/loading/loading-screen"
+import { SeasonalGradientTransition } from "@/components/effects/seasonal-gradient-transition"
 
 export default function HomePage() {
   const seasonalTheme = getSeasonalTheme()
@@ -24,6 +25,11 @@ export default function HomePage() {
           <div className="absolute inset-0 z-0">
             <WashiBackground intensity="strong" animated={false} />
             <TreeShadowBackground intensity="subtle" enableParallax={true} />
+          </div>
+
+          {/* ヒーローセクションから季節バナーへの美しいグラデーション遷移 */}
+          <div className="absolute inset-x-0 top-0 z-10 pointer-events-none">
+            <SeasonalGradientTransition seasonalTheme={seasonalTheme} />
           </div>
 
           {seasonalTheme.banner?.show && (
