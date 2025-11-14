@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
-import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin } from 'lucide-react'
+import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus } from 'lucide-react'
 import * as Accordion from '@radix-ui/react-accordion'
 
 export default function MitsumataPage() {
@@ -1862,6 +1862,156 @@ export default function MitsumataPage() {
               </div>
             </div>
           </FadeInSection>
+        </div>
+      </section>
+
+      {/* よくある質問セクション - 超ミニマル */}
+      <section className="relative py-32 md:py-40 bg-white">
+        <div className="container mx-auto px-4 max-w-3xl">
+          {/* セクション導入 */}
+          <FadeInSection>
+            <div className="text-center mb-24 md:mb-32 space-y-3">
+              <p className="text-xs md:text-sm font-sans font-light text-stone-400 uppercase tracking-[0.3em]">
+                FAQ
+              </p>
+              <h2 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em]">
+                よくある質問
+              </h2>
+            </div>
+          </FadeInSection>
+
+          {/* 質問リスト */}
+          <Accordion.Root type="single" collapsible className="space-y-20">
+            {/* Q1: 予約について */}
+            <FadeInSection delay={0.1}>
+              <Accordion.Item value="faq-1" className="group">
+                <Accordion.Header>
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
+                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                      予約は必要ですか？
+                    </h3>
+                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
+                    </div>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <div className="pt-6">
+                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                      宿泊の予約は必須です。電話またはウェブサイトからご予約ください。
+                      特に週末や連休は混雑が予想されるため、お早めのご予約をおすすめします。
+                      テント泊の場合も、スペースに限りがあるため事前予約をお願いしています。
+                    </p>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </FadeInSection>
+
+            {/* Q2: キャンセルポリシー */}
+            <FadeInSection delay={0.2}>
+              <Accordion.Item value="faq-2" className="group">
+                <Accordion.Header>
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
+                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                      キャンセル料はかかりますか？
+                    </h3>
+                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
+                    </div>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <div className="pt-6">
+                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                      前日キャンセルは50%、当日キャンセルは100%のキャンセル料が発生します。
+                      天候不良による登山中止の場合は、キャンセル料はいただきません。
+                      変更がある場合は、お早めにご連絡ください。
+                    </p>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </FadeInSection>
+
+            {/* Q3: 営業期間 */}
+            <FadeInSection delay={0.3}>
+              <Accordion.Item value="faq-3" className="group">
+                <Accordion.Header>
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
+                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                      営業期間を教えてください
+                    </h3>
+                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
+                    </div>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <div className="pt-6">
+                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                      7月上旬から11月上旬まで営業しています。
+                      積雪状況により、営業開始日と終了日は前後する可能性があります。
+                      詳しい営業日程は、毎年6月頃にウェブサイトで発表いたします。
+                    </p>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </FadeInSection>
+
+            {/* Q4: 装備について */}
+            <FadeInSection delay={0.4}>
+              <Accordion.Item value="faq-4" className="group">
+                <Accordion.Header>
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
+                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                      必要な装備は何ですか？
+                    </h3>
+                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
+                    </div>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <div className="pt-6">
+                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                      登山靴、レインウェア、ヘッドランプは必須です。
+                      標高2,600m以上のため、夏でも防寒着をご持参ください。
+                      宿泊の場合、寝具は山荘でご用意しますが、インナーシーツをお持ちいただくと快適です。
+                    </p>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </FadeInSection>
+
+            {/* Q5: 支払い方法 */}
+            <FadeInSection delay={0.5}>
+              <Accordion.Item value="faq-5" className="group">
+                <Accordion.Header>
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
+                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                      支払い方法を教えてください
+                    </h3>
+                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
+                    </div>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <div className="pt-6">
+                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                      現金のみのお取り扱いとなります。
+                      クレジットカードや電子マネーはご利用いただけませんので、
+                      必要な現金を事前にご用意ください。山荘にATMはございません。
+                    </p>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </FadeInSection>
+          </Accordion.Root>
         </div>
       </section>
 
