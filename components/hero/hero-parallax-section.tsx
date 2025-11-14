@@ -270,7 +270,7 @@ export function HeroParallaxSection() {
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
   const [dynamicHeight, setDynamicHeight] = useState("200vh")
   const [isDesktop, setIsDesktop] = useState(false)
-  const [imageSetType, setImageSetType] = useState<'macbook' | 'wide'>('wide')
+  const [imageSetType, setImageSetType] = useState<'macbook' | 'wide'>('macbook')
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -286,26 +286,13 @@ export function HeroParallaxSection() {
         return
       }
 
-      const aspectRatio = window.innerWidth / window.innerHeight
+      // 画面の高さに基づいてvh値を調整
+      // Windowsノートパソコン（高さが低い）では365vh
+      // MacBook等では200vh
+      const viewportHeight = window.innerHeight
+      const height = viewportHeight < 800 ? "365vh" : "200vh"
 
-      // アスペクト比に基づいて画像セットを選択
-      // ratio < 2.5: 4:5縦長画像（タブレット + MacBook + Windowsノート）
-      // ratio >= 2.5: 1:1スクエア画像（ウルトラワイドモニター等）
-      let imageType: 'macbook' | 'wide'
-      let height: string
-
-      if (aspectRatio < 2.5) {
-        // タブレット + MacBook + Windowsノート：4:5縦長画像、200vhで統一
-        imageType = 'macbook'
-        height = "200vh"
-      } else {
-        // ウルトラワイドモニター：1:1スクエア画像
-        imageType = 'wide'
-        const optimalVh = Math.min(aspectRatio * 100, 220)
-        height = `${Math.round(optimalVh)}vh`
-      }
-
-      setImageSetType(imageType)
+      setImageSetType('macbook')
       setDynamicHeight(height)
     }
 
@@ -436,7 +423,7 @@ export function HeroParallaxSection() {
         </div>
       )}
 
-      {/* デスクトップ用パララックス背景 - アスペクト比に応じて画像セットを切り替え */}
+      {/* デスクトップ用パララックス背景 - すべてのデバイスで4:5縦長画像 */}
       <div
         className="hidden md:block absolute top-0 left-0 w-full z-10 overflow-hidden bg-black"
         style={{ height: dynamicHeight }}
@@ -455,7 +442,7 @@ export function HeroParallaxSection() {
             onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
             key={imageSetType}
           >
-            {(imageSetType === 'macbook' ? heroImagesMacBook : heroImagesDesktopWide).map((image, index) => (
+            {heroImagesMacBook.map((image, index) => (
               <SwiperSlide key={image.id}>
                 <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
@@ -484,7 +471,7 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className={imageSetType === 'wide' ? 'object-cover object-center' : 'object-cover object-top'}
+                      className="object-cover object-top"
                       priority={image.id === 1 || image.id === 2}
                       quality={85}
                       sizes="100vw"
@@ -514,11 +501,7 @@ export function HeroParallaxSection() {
               <div className="space-y-3 sm:space-y-3 md:space-y-4">
                 {/* モバイル最適化: text-3xl（30px）に拡大、テキストシャドウ強化 */}
                 <h1
-                  className={`text-white font-serif font-light leading-[1.6] tracking-[0.08em] transition-all duration-300 ${
-                    imageSetType === 'wide'
-                      ? 'text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
-                      : 'text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
-                  }`}
+                  className="text-white text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light leading-[1.6] tracking-[0.08em]"
                   style={{ textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)" }}
                 >
                   北アルプス黒部源流
@@ -526,11 +509,7 @@ export function HeroParallaxSection() {
 
                 {/* モバイル最適化: text-xs（12px）に拡大、テキストシャドウ強化 */}
                 <p
-                  className={`text-white/95 font-light font-sans uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all duration-300 ${
-                    imageSetType === 'wide'
-                      ? 'text-xs sm:text-xs md:text-sm lg:text-base'
-                      : 'text-xs sm:text-[10px] md:text-xs lg:text-sm'
-                  }`}
+                  className="text-white/95 text-xs sm:text-[10px] md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-light font-sans uppercase"
                   style={{ textShadow: "0 2px 14px rgba(0,0,0,0.75), 0 1px 4px rgba(0,0,0,1)" }}
                 >
                   Northern Alps Kurobe Genryu
@@ -540,22 +519,14 @@ export function HeroParallaxSection() {
               <div className="space-y-3 sm:space-y-3 md:space-y-4 pt-3 sm:pt-3 md:pt-4">
                 {/* モバイル最適化: text-base（16px）に拡大、テキストシャドウ強化 */}
                 <p
-                  className={`text-white font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
-                    imageSetType === 'wide'
-                      ? 'text-base sm:text-base md:text-lg lg:text-xl'
-                      : 'text-base sm:text-sm md:text-base lg:text-lg'
-                  }`}
+                  className="text-white text-base sm:text-sm md:text-base lg:text-lg leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]"
                   style={{ textShadow: "0 3px 16px rgba(0,0,0,0.75), 0 2px 6px rgba(0,0,0,1)" }}
                 >
                   北アルプス最奥、黒部源流の三つの山荘
                 </p>
                 {/* モバイル最適化: text-sm（14px）に拡大、テキストシャドウ強化 */}
                 <p
-                  className={`text-white/95 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
-                    imageSetType === 'wide'
-                      ? 'text-sm sm:text-sm md:text-base lg:text-lg'
-                      : 'text-sm sm:text-xs md:text-sm lg:text-base'
-                  }`}
+                  className="text-white/95 text-sm sm:text-xs md:text-sm lg:text-base leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]"
                   style={{ textShadow: "0 3px 16px rgba(0,0,0,0.75), 0 2px 6px rgba(0,0,0,1)" }}
                 >
                   原始と変わらぬ生態系が息づく場所。
