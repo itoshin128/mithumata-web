@@ -93,7 +93,7 @@ const ReservationButton = memo(() => {
           }}
         >
           <span className="text-base font-serif font-medium tracking-wider">
-            予約
+            予約する
           </span>
         </motion.button>
       </motion.div>
