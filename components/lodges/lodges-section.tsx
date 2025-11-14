@@ -71,7 +71,6 @@ export function LodgesSection() {
                     group relative
                     bg-white
                     overflow-hidden
-                    rounded-lg
                     shadow-lg hover:shadow-2xl
                     transition-all duration-500
                     h-full

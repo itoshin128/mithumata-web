@@ -105,7 +105,7 @@ function InteractivePhoto({
           rotateX: isHovering ? -mousePosition.y * 3 : 0,
         }}
       >
-        <div className={`relative ${aspectRatio} overflow-hidden rounded-sm shadow-xl hover:shadow-2xl transition-shadow duration-500`}>
+        <div className={`relative ${aspectRatio} overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500`}>
           <Image
             src={src || "/placeholder.svg"}
             alt={alt}
