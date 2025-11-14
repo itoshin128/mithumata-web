@@ -28,7 +28,7 @@ export default function HomePage() {
 
           {seasonalTheme.banner?.show && (
             <div className="relative z-10">
-              <div className="container mx-auto px-4 max-w-7xl py-8">
+              <div className="container mx-auto px-4 max-w-7xl py-6 md:py-10 lg:py-12">
                 <SeasonalBanner text={seasonalTheme.banner.text} type={seasonalTheme.banner.type} />
               </div>
             </div>
