@@ -5,8 +5,36 @@ import { useEffect, useState } from 'react'
 export function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true)
   const [fadeOut, setFadeOut] = useState(false)
+  const [fontsLoaded, setFontsLoaded] = useState(false)
 
   useEffect(() => {
+    // フォントの読み込みを待機
+    const loadFonts = async () => {
+      try {
+        // document.fonts.ready でフォント読み込み完了を待つ
+        await document.fonts.ready
+
+        // さらに特定のフォントが確実に読み込まれているか確認
+        await Promise.all([
+          document.fonts.load('400 1em "Noto Serif JP"'),
+          document.fonts.load('300 1em "Noto Sans JP"'),
+        ])
+
+        setFontsLoaded(true)
+      } catch (error) {
+        // エラーが発生してもテキストを表示
+        console.error('Font loading error:', error)
+        setFontsLoaded(true)
+      }
+    }
+
+    loadFonts()
+  }, [])
+
+  useEffect(() => {
+    // フォント読み込み完了後にタイマーを開始
+    if (!fontsLoaded) return
+
     // ローディング画面を3.5秒表示してからフェードアウト開始
     const fadeTimer = setTimeout(() => {
       setFadeOut(true)
@@ -21,7 +49,7 @@ export function LoadingScreen() {
       clearTimeout(fadeTimer)
       clearTimeout(hideTimer)
     }
-  }, [])
+  }, [fontsLoaded])
 
   if (!isVisible) return null
 
@@ -126,8 +154,8 @@ export function LoadingScreen() {
             style={{
               fontFamily: 'var(--font-noto-serif)',
               color: '#3a4a5a',
-              animation: 'textFadeIn 2s ease-out forwards',
-              opacity: 0,
+              animation: fontsLoaded ? 'textFadeIn 2s ease-out forwards' : 'none',
+              opacity: fontsLoaded ? 0 : 0,
             }}
           >
             北アルプス黒部源流
@@ -137,9 +165,9 @@ export function LoadingScreen() {
           <div
             className="flex items-center justify-center gap-4"
             style={{
-              animation: 'textFadeIn 2s ease-out forwards',
-              animationDelay: '0.8s',
-              opacity: 0,
+              animation: fontsLoaded ? 'textFadeIn 2s ease-out forwards' : 'none',
+              animationDelay: fontsLoaded ? '0.8s' : '0s',
+              opacity: fontsLoaded ? 0 : 0,
             }}
           >
             <div
@@ -172,9 +200,9 @@ export function LoadingScreen() {
             style={{
               fontFamily: 'var(--font-noto-sans)',
               color: '#5a6a7a',
-              animation: 'textFadeIn 2s ease-out forwards',
-              animationDelay: '0.4s',
-              opacity: 0,
+              animation: fontsLoaded ? 'textFadeIn 2s ease-out forwards' : 'none',
+              animationDelay: fontsLoaded ? '0.4s' : '0s',
+              opacity: fontsLoaded ? 0 : 0,
             }}
           >
             Northern Alps Kurobe Genryu
