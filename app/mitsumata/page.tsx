@@ -202,7 +202,7 @@ export default function MitsumataPage() {
         </div>
 
         {/* イントロダクションセクション - 詩的なテキスト、大きな余白 */}
-        <section className="relative">
+        <section className="relative py-20 md:py-32 lg:py-40">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
             {/* 左側 - 大きな余白とキャッチコピー */}
@@ -235,7 +235,7 @@ export default function MitsumataPage() {
             {/* 右側 - 詩的な説明文 */}
             <div className="lg:col-span-7">
               <FadeInSection delay={0.2}>
-                <div className="space-y-8 text-stone-700">
+                <div className="space-y-8 text-stone-700 max-w-prose">
                   <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
                     北アルプスの最奥、黒部の源流域。
                     <br />
@@ -266,8 +266,13 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* Section Divider - Transition to visual content */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* 写真セクション1 - 左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-0">
+      <section className="relative py-12 md:py-20 lg:py-28">{/* Photo section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* 写真 - 70% */}
@@ -287,6 +292,7 @@ export default function MitsumataPage() {
                     fill
                     className="object-cover"
                     quality={90}
+                    loading="lazy"
                   />
                 </motion.div>
               </FadeInSection>
@@ -295,8 +301,8 @@ export default function MitsumataPage() {
             {/* テキスト - 30% */}
             <div className="lg:col-span-5">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6">
-                  <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em]">
+                <div className="space-y-6 max-w-prose">
+                  <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
                     槍ヶ岳を望む
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
@@ -315,14 +321,14 @@ export default function MitsumataPage() {
       </section>
 
       {/* 写真セクション2 - 右寄せ大判写真 + 左側テキスト */}
-      <section className="relative py-0">
+      <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* テキスト - 30% (モバイルでは写真の下) */}
             <div className="lg:col-span-5 order-2 lg:order-1">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6">
-                  <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em]">
+                <div className="space-y-6 max-w-prose">
+                  <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
                     黒部源流の恵み
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
@@ -353,6 +359,7 @@ export default function MitsumataPage() {
                     fill
                     className="object-cover"
                     quality={90}
+                    loading="lazy"
                   />
                 </motion.div>
               </FadeInSection>
@@ -361,13 +368,18 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* Section Divider - Transition to pricing */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* 宿泊料金セクション */}
-      <section className="relative py-0">
+      <section className="relative py-16 md:py-24 lg:py-32">{/* Major section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           {/* セクションタイトル */}
           <FadeInSection>
             <div className="text-center mb-20 md:mb-24 space-y-6">
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.08em]">
+              <h2 className={`${STYLES.title.section} text-stone-800`}>
                 宿泊料金
               </h2>
 
@@ -379,7 +391,7 @@ export default function MitsumataPage() {
                 className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
               />
 
-              <p className="text-base md:text-lg font-serif font-light text-stone-600 tracking-[0.05em] leading-[2]">
+              <p className="text-base md:text-lg font-serif font-light text-stone-600 tracking-[0.04em] leading-[2]">
                 2025年シーズン料金
               </p>
             </div>
@@ -390,17 +402,24 @@ export default function MitsumataPage() {
             {/* 一泊二食付きカード */}
             <FadeInSection delay={0.1}>
               <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="relative bg-white rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group"
+                whileHover={{ y: -12, scale: 1.02 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
+                tabIndex={0}
+                role="article"
+                aria-label="一泊二食付きプラン 12,000円"
               >
                 {/* アクセント線 */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-mitsumata-primary/80 via-mitsumata-primary to-mitsumata-primary/80" />
+                <motion.div
+                  className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-mitsumata-primary/80 via-mitsumata-primary to-mitsumata-primary/80"
+                  whileHover={{ height: '2px' }}
+                  transition={{ duration: 0.3 }}
+                />
 
                 <div className="p-8 md:p-10 space-y-8">
                   {/* カードタイトル */}
                   <div className="space-y-4">
-                    <h3 className="text-2xl md:text-3xl font-serif font-medium text-stone-800 tracking-[0.08em] text-center">
+                    <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
                       一泊二食付き
                     </h3>
 
@@ -458,17 +477,24 @@ export default function MitsumataPage() {
             {/* 素泊まりカード */}
             <FadeInSection delay={0.2}>
               <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="relative bg-white rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group"
+                whileHover={{ y: -12, scale: 1.02 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
+                tabIndex={0}
+                role="article"
+                aria-label="素泊まりプラン 8,000円"
               >
                 {/* アクセント線 */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-400/80 via-stone-400 to-stone-400/80" />
+                <motion.div
+                  className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-400/80 via-stone-400 to-stone-400/80"
+                  whileHover={{ height: '2px' }}
+                  transition={{ duration: 0.3 }}
+                />
 
                 <div className="p-8 md:p-10 space-y-8">
                   {/* カードタイトル */}
                   <div className="space-y-4">
-                    <h3 className="text-2xl md:text-3xl font-serif font-medium text-stone-800 tracking-[0.08em] text-center">
+                    <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
                       素泊まり
                     </h3>
 
@@ -526,17 +552,24 @@ export default function MitsumataPage() {
             {/* テント泊カード */}
             <FadeInSection delay={0.3}>
               <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="relative bg-white rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group"
+                whileHover={{ y: -12, scale: 1.02 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
+                tabIndex={0}
+                role="article"
+                aria-label="テント泊プラン 2,000円"
               >
                 {/* アクセント線 */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-300/80 via-stone-300 to-stone-300/80" />
+                <motion.div
+                  className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-300/80 via-stone-300 to-stone-300/80"
+                  whileHover={{ height: '2px' }}
+                  transition={{ duration: 0.3 }}
+                />
 
                 <div className="p-8 md:p-10 space-y-8">
                   {/* カードタイトル */}
                   <div className="space-y-4">
-                    <h3 className="text-2xl md:text-3xl font-serif font-medium text-stone-800 tracking-[0.08em] text-center">
+                    <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
                       テント泊
                     </h3>
 
@@ -607,6 +640,11 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* Section Divider - Transition to food experience */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* 食事セクション - ビジュアル重視 */}
       {/* 導入セクション（100vh） */}
       <section className="relative h-screen overflow-hidden">
@@ -619,6 +657,7 @@ export default function MitsumataPage() {
             className="object-cover"
             style={{ filter: 'brightness(0.6) saturate(0.9)' }}
             quality={90}
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
         </div>
@@ -669,7 +708,7 @@ export default function MitsumataPage() {
 
       {/* 料理ギャラリー - スクロール展開 */}
       {/* 1品目：左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-0">
+      <section className="relative py-12 md:py-20 lg:py-28">{/* Food gallery spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             {/* 写真 - 左寄せ */}
@@ -696,6 +735,7 @@ export default function MitsumataPage() {
                       className="object-cover"
                       style={{ filter: 'saturate(0.85) brightness(0.95)' }}
                       quality={95}
+                      loading="lazy"
                     />
                   </motion.div>
                 </motion.div>
@@ -741,7 +781,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 2品目：右寄せ大判写真 + 左側テキスト */}
-      <section className="relative py-0">
+      <section className="relative py-8 md:py-16 lg:py-20">{/* Tightly related content */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             {/* テキスト - 左側（モバイルでは下） */}
@@ -803,6 +843,7 @@ export default function MitsumataPage() {
                       className="object-cover"
                       style={{ filter: 'saturate(0.85) brightness(0.95)' }}
                       quality={95}
+                      loading="lazy"
                     />
                   </motion.div>
                 </motion.div>
@@ -813,7 +854,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 3品目：中央配置の正方形写真 */}
-      <section className="relative py-0">
+      <section className="relative py-8 md:py-16 lg:py-20">{/* Tightly related content */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
           <div className="space-y-16 md:space-y-20">
             {/* 写真 - 中央配置 */}
@@ -839,6 +880,7 @@ export default function MitsumataPage() {
                     className="object-cover"
                     style={{ filter: 'saturate(0.85) brightness(0.95)' }}
                     quality={95}
+                    loading="lazy"
                   />
                 </motion.div>
               </motion.div>
@@ -878,8 +920,13 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* Section Divider - Transition to goods */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* グッズセクション - 山荘の記憶を持ち帰る */}
-      <section className="relative py-0">
+      <section className="relative py-16 md:py-24 lg:py-32">{/* Major section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           {/* セクションタイトル */}
           <FadeInSection>
@@ -890,9 +937,15 @@ export default function MitsumataPage() {
                 持ち帰る
               </h2>
 
-              <SectionDivider />
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "4rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
+              />
 
-              <p className={`${STYLES.text.caption} text-stone-600 max-w-2xl mx-auto`}>
+              <p className="text-xs md:text-sm text-stone-600 font-serif font-light tracking-wider max-w-2xl mx-auto">
                 三俣山荘での時間を、日常へ。
                 <br />
                 ひとつひとつに宿る、黒部源流の物語。
@@ -916,32 +969,30 @@ export default function MitsumataPage() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -4 }}
                   transition={{ duration: 0.8, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="group relative aspect-square overflow-hidden bg-white cursor-pointer"
+                  className="group relative aspect-square overflow-hidden bg-white cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-300"
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`${item.name}の詳細を見る`}
                 >
                   {/* 商品画像 */}
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     style={{ filter: 'saturate(0.8) brightness(1.05)' }}
                     quality={85}
+                    loading="lazy"
                   />
 
                   {/* ホバー時のオーバーレイと商品名 */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      whileHover={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4 }}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    >
-                      <p className="text-white text-sm md:text-base font-serif font-light tracking-[0.1em]">
-                        {item.name}
-                      </p>
-                    </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-6">
+                    <p className="text-white text-sm md:text-base font-serif font-light tracking-[0.1em] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                      {item.name}
+                    </p>
                   </div>
                 </motion.div>
               </FadeInSection>
@@ -958,6 +1009,11 @@ export default function MitsumataPage() {
           </FadeInSection>
         </div>
       </section>
+
+      {/* Section Divider - Transition to Kurobe Genryu story */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
 
       {/* 黒部源流セクション - 壮大なストーリーテリング */}
       {/* オープニング（100vh） */}
@@ -1053,6 +1109,7 @@ export default function MitsumataPage() {
                       className="object-cover"
                       style={{ filter: 'saturate(0.9) brightness(0.92)' }}
                       quality={95}
+                      loading="lazy"
                     />
                   </motion.div>
 
@@ -1083,7 +1140,7 @@ export default function MitsumataPage() {
                   className="space-y-12 px-6 lg:px-12"
                 >
                   <div className="space-y-8">
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.1em] leading-[1.5]">
+                    <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
                       原始の
                       <br />
                       水景
@@ -1154,6 +1211,7 @@ export default function MitsumataPage() {
                     className="object-cover"
                     style={{ filter: 'saturate(0.95) brightness(0.9)' }}
                     quality={95}
+                    loading="lazy"
                   />
                 </motion.div>
 
@@ -1183,7 +1241,7 @@ export default function MitsumataPage() {
                 className="max-w-4xl mx-auto text-center space-y-12"
               >
                 <div className="space-y-6">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.1em]">
+                  <h3 className={`${STYLES.title.subsection} text-stone-800`}>
                     手つかずの森
                   </h3>
 
@@ -1231,7 +1289,7 @@ export default function MitsumataPage() {
                   className="space-y-12 px-6 lg:px-16"
                 >
                   <div className="space-y-8">
-                    <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.1em] leading-[1.5]">
+                    <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
                       透明度
                       <br />
                       100%の水
@@ -1299,6 +1357,7 @@ export default function MitsumataPage() {
                       className="object-cover"
                       style={{ filter: 'saturate(1.05) brightness(0.95)' }}
                       quality={95}
+                      loading="lazy"
                     />
                   </motion.div>
 
@@ -1322,6 +1381,11 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* Section Divider - Transition to Ito Shindo */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* 伊藤新道セクション - 歴史と冒険 */}
       {/* イントロ - 80vh */}
       <section className="relative h-[80vh] overflow-hidden">
@@ -1332,6 +1396,7 @@ export default function MitsumataPage() {
           className="object-cover object-center"
           style={{ filter: 'saturate(0.9) brightness(0.85)' }}
           quality={90}
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
 
@@ -1437,6 +1502,7 @@ export default function MitsumataPage() {
                           className="object-cover transition-all duration-700 group-hover:scale-105"
                           style={{ filter: 'saturate(0.88) brightness(0.92)' }}
                           quality={90}
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
@@ -1474,7 +1540,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 情報セクション - ミニマル表現 */}
-      <section className="relative py-0">
+      <section className="relative py-16 md:py-24 lg:py-32">{/* Major section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
             <FadeInSection delay={0.1}>
@@ -1483,12 +1549,12 @@ export default function MitsumataPage() {
                   <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
                     <Flower2 className="w-6 h-6 text-mitsumata-primary" />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-serif font-light tracking-[0.08em] text-stone-800">
+                  <h3 className={`${STYLES.title.subsection} text-stone-800`}>
                     高山植物
                   </h3>
                 </div>
                 <div className="pl-16">
-                  <p className="text-base md:text-lg leading-[2.2] font-light text-stone-600 tracking-[0.04em]">
+                  <p className="text-base md:text-lg leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     コマクサ、チングルマ、ハクサンイチゲ、イワギキョウなど、
                     200種を超える高山植物が季節ごとに彩りを添えます。
                   </p>
@@ -1502,15 +1568,15 @@ export default function MitsumataPage() {
                   <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
                     <Calendar className="w-6 h-6 text-mitsumata-primary" />
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-serif font-light tracking-[0.08em] text-stone-800">
+                  <h3 className={`${STYLES.title.subsection} text-stone-800`}>
                     ベストシーズン
                   </h3>
                 </div>
                 <div className="pl-16">
-                  <p className="text-base md:text-lg leading-[2.2] font-light text-stone-600 tracking-[0.04em]">
+                  <p className="text-base md:text-lg leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     7月上旬〜9月下旬
                   </p>
-                  <p className="text-sm md:text-base leading-[2] font-light text-stone-500 tracking-[0.04em] mt-4">
+                  <p className="text-sm md:text-base leading-[2] font-serif font-light text-stone-500 tracking-[0.04em] mt-4">
                     特に7月中旬から8月上旬は、高山植物が最も美しい季節です。
                   </p>
                 </div>
@@ -1519,6 +1585,11 @@ export default function MitsumataPage() {
           </div>
         </div>
       </section>
+
+      {/* Section Divider - Transition to access information */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
 
       {/* 交通・アクセスセクション */}
       {/* ヘッダー - 50vh */}
@@ -1530,6 +1601,7 @@ export default function MitsumataPage() {
           className="object-cover object-center"
           style={{ filter: 'saturate(0.7) brightness(0.8)' }}
           quality={90}
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
 
@@ -1539,19 +1611,25 @@ export default function MitsumataPage() {
               <h2 className={`${STYLES.title.section} text-white`}>
                 Access
               </h2>
-              <SectionDivider />
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "4rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="h-[1px] bg-gradient-to-r from-transparent via-white/60 to-transparent mx-auto"
+              />
             </div>
           </FadeInSection>
         </div>
       </section>
 
       {/* ルート詳細 - アコーディオン形式 */}
-      <section className="relative py-0">
+      <section className="relative py-16 md:py-24 lg:py-32">{/* Major section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
           {/* イントロテキスト */}
           <FadeInSection>
-            <div className="text-center mb-24 md:mb-32 space-y-6">
-              <p className={`${STYLES.text.caption} max-w-2xl mx-auto`}>
+            <div className="text-center mb-20 md:mb-24 space-y-6">
+              <p className="text-xs md:text-sm text-stone-600 font-serif font-light tracking-wider max-w-2xl mx-auto">
                 三俣山荘へは、3つの主要ルートからアクセスできます。
                 <br />
                 それぞれの道のりには、独自の景色と魅力があります。
@@ -1563,15 +1641,15 @@ export default function MitsumataPage() {
           <Accordion.Root type="single" collapsible className="space-y-6">
             {/* ルート1: 新穂高温泉から */}
             <FadeInSection delay={0.1}>
-              <Accordion.Item value="route-1" className="bg-white shadow-lg overflow-hidden group">
+              <Accordion.Item value="route-1" className="bg-white shadow-lg hover:shadow-xl overflow-hidden group transition-all duration-300">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300">
+                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary focus:ring-inset">
                     <div className="flex items-center gap-6 md:gap-8">
                       <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-mitsumata-primary/10 flex items-center justify-center flex-shrink-0">
                         <MapPin className="w-7 h-7 md:w-8 md:h-8 text-mitsumata-primary" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-2xl md:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] mb-2">
+                        <h3 className={`${STYLES.title.subsection} text-stone-800 mb-2`}>
                           新穂高温泉から
                         </h3>
                         <div className="flex items-center gap-3 text-mitsumata-primary">
@@ -1658,6 +1736,7 @@ export default function MitsumataPage() {
                             className="object-cover"
                             style={{ filter: 'saturate(0.85) brightness(0.95)' }}
                             quality={90}
+                            loading="lazy"
                           />
                         </motion.div>
                       </div>
@@ -1669,15 +1748,15 @@ export default function MitsumataPage() {
 
             {/* ルート2: 高瀬ダムから */}
             <FadeInSection delay={0.2}>
-              <Accordion.Item value="route-2" className="bg-white shadow-lg overflow-hidden group">
+              <Accordion.Item value="route-2" className="bg-white shadow-lg hover:shadow-xl overflow-hidden group transition-all duration-300">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300">
+                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary focus:ring-inset">
                     <div className="flex items-center gap-6 md:gap-8">
                       <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-mitsumata-primary/10 flex items-center justify-center flex-shrink-0">
                         <MapPin className="w-7 h-7 md:w-8 md:h-8 text-mitsumata-primary" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-2xl md:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] mb-2">
+                        <h3 className={`${STYLES.title.subsection} text-stone-800 mb-2`}>
                           高瀬ダムから
                         </h3>
                         <div className="flex items-center gap-3 text-mitsumata-primary">
@@ -1764,6 +1843,7 @@ export default function MitsumataPage() {
                             className="object-cover"
                             style={{ filter: 'saturate(0.85) brightness(0.95)' }}
                             quality={90}
+                            loading="lazy"
                           />
                         </motion.div>
                       </div>
@@ -1775,15 +1855,15 @@ export default function MitsumataPage() {
 
             {/* ルート3: 折立から */}
             <FadeInSection delay={0.3}>
-              <Accordion.Item value="route-3" className="bg-white shadow-lg overflow-hidden group">
+              <Accordion.Item value="route-3" className="bg-white shadow-lg hover:shadow-xl overflow-hidden group transition-all duration-300">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300">
+                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary focus:ring-inset">
                     <div className="flex items-center gap-6 md:gap-8">
                       <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-mitsumata-primary/10 flex items-center justify-center flex-shrink-0">
                         <MapPin className="w-7 h-7 md:w-8 md:h-8 text-mitsumata-primary" />
                       </div>
                       <div className="text-left">
-                        <h3 className="text-2xl md:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] mb-2">
+                        <h3 className={`${STYLES.title.subsection} text-stone-800 mb-2`}>
                           折立から
                         </h3>
                         <div className="flex items-center gap-3 text-mitsumata-primary">
@@ -1870,6 +1950,7 @@ export default function MitsumataPage() {
                             className="object-cover"
                             style={{ filter: 'saturate(0.85) brightness(0.95)' }}
                             quality={90}
+                            loading="lazy"
                           />
                         </motion.div>
                       </div>
@@ -1894,8 +1975,13 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* Section Divider - Transition to FAQ */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* よくある質問セクション - 超ミニマル */}
-      <section className="relative py-0">
+      <section className="relative py-20 md:py-32 lg:py-40">{/* FAQ importance spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-3xl relative z-10">
           {/* セクション導入 */}
           <FadeInSection>
@@ -1907,7 +1993,13 @@ export default function MitsumataPage() {
                 よくある質問
               </h2>
 
-              <SectionDivider />
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "4rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
+              />
             </div>
           </FadeInSection>
 
@@ -1915,21 +2007,21 @@ export default function MitsumataPage() {
           <Accordion.Root type="single" collapsible className="space-y-20">
             {/* Q1: 予約について */}
             <FadeInSection delay={0.1}>
-              <Accordion.Item value="faq-1" className="group">
+              <Accordion.Item value="faq-1" className="group border-b border-stone-200">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
-                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
+                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
                       予約は必要ですか？
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
                       <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
                     </div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
-                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
                       宿泊の予約は必須です。電話またはウェブサイトからご予約ください。
                       特に週末や連休は混雑が予想されるため、お早めのご予約をおすすめします。
                       テント泊の場合も、スペースに限りがあるため事前予約をお願いしています。
@@ -1941,21 +2033,21 @@ export default function MitsumataPage() {
 
             {/* Q2: キャンセルポリシー */}
             <FadeInSection delay={0.2}>
-              <Accordion.Item value="faq-2" className="group">
+              <Accordion.Item value="faq-2" className="group border-b border-stone-200">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
-                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
+                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
                       キャンセル料はかかりますか？
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
                       <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
                     </div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
-                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
                       前日キャンセルは50%、当日キャンセルは100%のキャンセル料が発生します。
                       天候不良による登山中止の場合は、キャンセル料はいただきません。
                       変更がある場合は、お早めにご連絡ください。
@@ -1967,21 +2059,21 @@ export default function MitsumataPage() {
 
             {/* Q3: 営業期間 */}
             <FadeInSection delay={0.3}>
-              <Accordion.Item value="faq-3" className="group">
+              <Accordion.Item value="faq-3" className="group border-b border-stone-200">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
-                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
+                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
                       営業期間を教えてください
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
                       <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
                     </div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
-                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
                       7月上旬から11月上旬まで営業しています。
                       積雪状況により、営業開始日と終了日は前後する可能性があります。
                       詳しい営業日程は、毎年6月頃にウェブサイトで発表いたします。
@@ -1993,21 +2085,21 @@ export default function MitsumataPage() {
 
             {/* Q4: 装備について */}
             <FadeInSection delay={0.4}>
-              <Accordion.Item value="faq-4" className="group">
+              <Accordion.Item value="faq-4" className="group border-b border-stone-200">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
-                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
+                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
                       必要な装備は何ですか？
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
                       <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
                     </div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
-                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
                       登山靴、レインウェア、ヘッドランプは必須です。
                       標高2,600m以上のため、夏でも防寒着をご持参ください。
                       宿泊の場合、寝具は山荘でご用意しますが、インナーシーツをお持ちいただくと快適です。
@@ -2019,21 +2111,21 @@ export default function MitsumataPage() {
 
             {/* Q5: 支払い方法 */}
             <FadeInSection delay={0.5}>
-              <Accordion.Item value="faq-5" className="group">
+              <Accordion.Item value="faq-5" className="group border-b border-stone-200">
                 <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group">
-                    <h3 className="text-xl font-serif font-normal text-[#2A2A2A] tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary">
+                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
+                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
                       支払い方法を教えてください
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90" strokeWidth={1} />
+                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
                       <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
                     </div>
                   </Accordion.Trigger>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
-                    <p className="text-base font-serif font-light text-[#666666] leading-[2] tracking-[0.04em]">
+                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
                       現金のみのお取り扱いとなります。
                       クレジットカードや電子マネーはご利用いただけませんので、
                       必要な現金を事前にご用意ください。山荘にATMはございません。
@@ -2047,7 +2139,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* CTAセクション - シンプルで余白たっぷり */}
-      <section className="relative py-0">
+      <section className="relative py-20 md:py-32 lg:py-40">{/* CTA importance spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl text-center relative z-10">
           <FadeInSection>
             <div className="space-y-12">
@@ -2073,17 +2165,26 @@ export default function MitsumataPage() {
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-12 py-5 bg-mitsumata-primary text-white font-serif tracking-[0.15em] text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="group relative px-12 py-5 bg-mitsumata-primary text-white font-serif tracking-[0.15em] text-base shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden focus:outline-none focus:ring-2 focus:ring-mitsumata-primary focus:ring-offset-2"
+                  aria-label="三俣山荘の予約ページへ移動"
                 >
-                  予約する
+                  <span className="relative z-10">予約する</span>
+                  {/* Subtle shine effect on hover */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
+                  />
                 </motion.button>
 
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-12 py-5 border-2 border-stone-300 text-stone-700 font-serif tracking-[0.15em] text-base hover:border-stone-400 hover:bg-stone-50 transition-all duration-300"
+                  className="px-12 py-5 border-2 border-stone-300 text-stone-700 font-serif tracking-[0.15em] text-base hover:border-mitsumata-primary/60 hover:bg-mitsumata-primary/5 hover:text-stone-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2"
+                  aria-label="三俣山荘の詳細情報を見る"
                 >
                   詳細を見る
                 </motion.button>
