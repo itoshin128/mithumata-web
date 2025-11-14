@@ -87,15 +87,15 @@ function SectionDivider() {
 
 export function FAQSection() {
   return (
-    <section className="relative py-20 md:py-32 lg:py-40">
+    <section className="relative py-16 md:py-32 lg:py-40">
       <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
         {/* Section Header - Centered */}
         <FadeInSection delay={0.1}>
           <div className="text-center mb-16 md:mb-20 lg:mb-24 max-w-3xl mx-auto">
-            <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance">
               よくあるご質問
             </h2>
-            <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
+            <p className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light text-pretty">
               お問い合わせの多いご質問をまとめました。
               <br className="hidden md:block" />
               その他のご質問は、お気軽にお問い合わせください。
@@ -127,7 +127,7 @@ export function FAQSection() {
                     </motion.div>
 
                     <h3
-                      className="text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.06em] leading-[1.6]"
+                      className="text-base md:text-lg lg:text-xl font-serif font-light tracking-[0.06em] leading-[1.6]"
                       style={{ color: category.color }}
                     >
                       {category.category}
@@ -144,8 +144,8 @@ export function FAQSection() {
                       >
                         <AccordionTrigger
                           className="
-                            text-left font-serif font-light text-sm md:text-base lg:text-lg
-                            tracking-[0.04em] leading-[1.6]
+                            text-left font-serif font-light text-sm md:text-base
+                            tracking-[0.04em] leading-[1.7]
                             text-gray-900 hover:no-underline
                             py-4 md:py-5
                             border-b border-gray-200
@@ -155,7 +155,7 @@ export function FAQSection() {
                         >
                           <span className="pr-4">{item.q}</span>
                         </AccordionTrigger>
-                        <AccordionContent className="text-sm md:text-base text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
+                        <AccordionContent className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                           {item.a}
                         </AccordionContent>
                       </AccordionItem>
@@ -182,8 +182,8 @@ export function FAQSection() {
                 className="
                   group
                   inline-flex items-center gap-3
-                  px-10 py-5
-                  border border-gray-900
+                  px-12 py-6 md:px-10 md:py-5
+                  border-2 md:border border-gray-900
                   rounded-full
                   text-gray-900
                   font-light
@@ -191,11 +191,13 @@ export function FAQSection() {
                   transition-all duration-500
                   hover:text-white
                   hover:shadow-xl
+                  min-w-[240px] md:min-w-0
+                  justify-center
                 "
               >
-                <Mail className="w-4 h-4" />
-                <span className="text-sm">お問い合わせ</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
+                <Mail className="w-5 h-5 md:w-4 md:h-4" />
+                <span className="text-base md:text-sm">お問い合わせ</span>
+                <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-2 transition-transform duration-500" />
               </motion.button>
             </Link>
           </div>

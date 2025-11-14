@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import type React from 'react'
+import { useEffect, useRef, useState, memo, useCallback } from 'react'
 import Image from 'next/image'
 
 interface TreeShadowBackgroundProps {
@@ -19,7 +20,7 @@ interface LightParticle {
   intensity: number
 }
 
-export default function TreeShadowBackground({
+const TreeShadowBackground = memo(function TreeShadowBackground({
   intensity = 'medium',
   enableParallax = true,
   className = '',
@@ -28,6 +29,7 @@ export default function TreeShadowBackground({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
   const [lightParticles, setLightParticles] = useState<LightParticle[]>([])
+  const [isMobile, setIsMobile] = useState(false)
   const animationFrameRef = useRef<number | undefined>(undefined)
 
   // Intensity settings - より控えめで上品な透明度に調整
@@ -38,6 +40,20 @@ export default function TreeShadowBackground({
   }
 
   const opacity = opacityLevels[intensity]
+
+  // モバイル判定
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    // 初期チェック
+    checkMobile()
+
+    // リサイズ時にチェック
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // 木漏れ日のパーティクルを生成
   useEffect(() => {
@@ -59,40 +75,75 @@ export default function TreeShadowBackground({
     setLightParticles(particles)
   }, [intensity])
 
-  // Mouse parallax effect
+  // Mouse parallax effect with throttling
   useEffect(() => {
     if (!enableParallax) return
 
+    let rafId: number | null = null
+    let lastMouseUpdate = 0
+    let lastScrollUpdate = 0
+    const throttleInterval = 16 // ~60fps
+
     const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 2 // -1 to 1
-      const y = (e.clientY / window.innerHeight - 0.5) * 2 // -1 to 1
-      setMousePosition({ x, y })
+      const now = Date.now()
+      if (now - lastMouseUpdate < throttleInterval) return
+      lastMouseUpdate = now
+
+      if (rafId !== null) return
+
+      rafId = requestAnimationFrame(() => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2 // -1 to 1
+        const y = (e.clientY / window.innerHeight - 0.5) * 2 // -1 to 1
+        setMousePosition({ x, y })
+        rafId = null
+      })
     }
 
     const handleScroll = () => {
+      const now = Date.now()
+      if (now - lastScrollUpdate < throttleInterval) return
+      lastScrollUpdate = now
+
       setScrollY(window.scrollY)
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('scroll', handleScroll)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
     }
   }, [enableParallax])
 
   // 風による揺れのアニメーション
   useEffect(() => {
-    let time = 0
     const layers = containerRef.current?.querySelectorAll('.tree-shadow-layer')
-    if (!layers) return
+    if (!layers || layers.length === 0) return
+
+    // パフォーマンス最適化: モバイルデバイスや低スペック環境では軽減
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (isMobile || reducedMotion) {
+      // モバイルやprefers-reduced-motionではアニメーションを無効化
+      return
+    }
+
+    let time = 0
+    let isActive = true
 
     const animate = () => {
+      if (!isActive) return
+
       time += 0.008 // アニメーション速度
 
       layers.forEach((layer, index) => {
         const element = layer as HTMLElement
+        if (!element) return
 
         // 各レイヤーで異なる揺れのパラメータ
         const baseSpeed = 0.3 + index * 0.15
@@ -122,30 +173,38 @@ export default function TreeShadowBackground({
         element.style.opacity = String(opacityFluctuation)
       })
 
-      animationFrameRef.current = requestAnimationFrame(animate)
+      if (isActive) {
+        animationFrameRef.current = requestAnimationFrame(animate)
+      }
     }
 
     animate()
 
     return () => {
-      if (animationFrameRef.current) {
+      isActive = false
+      if (animationFrameRef.current !== undefined) {
         cancelAnimationFrame(animationFrameRef.current)
+        animationFrameRef.current = undefined
       }
     }
   }, [])
 
   // Calculate parallax transforms
-  const getParallaxStyle = (depth: number) => {
+  const getParallaxStyle = (depth: number): React.CSSProperties => {
     if (!enableParallax) return {}
 
     const mouseX = mousePosition.x * depth * 20
     const mouseY = mousePosition.y * depth * 20
     const scrollOffset = scrollY * depth * 0.2
 
+    // Use 3D transform for GPU acceleration (fallback handled by autoprefixer)
     return {
       transform: `translate3d(${mouseX}px, ${mouseY + scrollOffset}px, 0)`,
     }
   }
+
+  // 使用する画像パス
+  const treeShadowImage = isMobile ? '/images/treeshadow_mobile.png' : '/images/tree-shadow.jpg'
 
   return (
     <div
@@ -161,12 +220,12 @@ export default function TreeShadowBackground({
         }}
       >
         <Image
-          src="/images/tree-shadow.jpg"
+          src={treeShadowImage}
           alt=""
           fill
           className="tree-shadow-image"
           priority
-          quality={90}
+          quality={85}
           sizes="100vw"
         />
       </div>
@@ -179,12 +238,12 @@ export default function TreeShadowBackground({
         }}
       >
         <Image
-          src="/images/tree-shadow.jpg"
+          src={treeShadowImage}
           alt=""
           fill
           className="tree-shadow-image"
           priority
-          quality={90}
+          quality={85}
           sizes="100vw"
         />
       </div>
@@ -197,12 +256,12 @@ export default function TreeShadowBackground({
         }}
       >
         <Image
-          src="/images/tree-shadow.jpg"
+          src={treeShadowImage}
           alt=""
           fill
           className="tree-shadow-image"
           priority
-          quality={90}
+          quality={85}
           sizes="100vw"
         />
       </div>
@@ -259,23 +318,41 @@ export default function TreeShadowBackground({
 
         /* Deep shadow layer - 少し濃くして存在感を強化 */
         .tree-shadow-deep :global(.tree-shadow-image) {
-          mix-blend-mode: overlay;
-          filter: blur(3px) contrast(1.15) brightness(0.94);
           opacity: ${opacity.deep};
+          -webkit-filter: blur(3px) contrast(1.15) brightness(0.94);
+          filter: blur(3px) contrast(1.15) brightness(0.94);
+        }
+
+        @supports (mix-blend-mode: overlay) {
+          .tree-shadow-deep :global(.tree-shadow-image) {
+            mix-blend-mode: overlay;
+          }
         }
 
         /* Mid layer - soft-lightで柔らかく、少し濃く */
         .tree-shadow-mid :global(.tree-shadow-image) {
-          mix-blend-mode: soft-light;
-          filter: blur(5px) contrast(1.08) brightness(0.95);
           opacity: ${opacity.mid};
+          -webkit-filter: blur(5px) contrast(1.08) brightness(0.95);
+          filter: blur(5px) contrast(1.08) brightness(0.95);
+        }
+
+        @supports (mix-blend-mode: soft-light) {
+          .tree-shadow-mid :global(.tree-shadow-image) {
+            mix-blend-mode: soft-light;
+          }
         }
 
         /* Light layer - 微妙に濃く */
         .tree-shadow-light :global(.tree-shadow-image) {
-          mix-blend-mode: soft-light;
-          filter: blur(8px) brightness(0.97) saturate(0.95);
           opacity: ${opacity.light};
+          -webkit-filter: blur(8px) brightness(0.97) saturate(0.95);
+          filter: blur(8px) brightness(0.97) saturate(0.95);
+        }
+
+        @supports (mix-blend-mode: soft-light) {
+          .tree-shadow-light :global(.tree-shadow-image) {
+            mix-blend-mode: soft-light;
+          }
         }
 
         /* 木漏れ日のパーティクル */
@@ -295,10 +372,23 @@ export default function TreeShadowBackground({
             rgba(247, 243, 237, 0.28) 60%,
             transparent 100%
           );
+          opacity: 0.6;
+          -webkit-filter: blur(8px);
           filter: blur(8px);
-          mix-blend-mode: screen;
           animation: sunlightFloat 12s ease-in-out infinite;
-          will-change: transform, opacity;
+        }
+
+        @supports (mix-blend-mode: screen) {
+          .sunlight-particle {
+            mix-blend-mode: screen;
+            opacity: 1;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .sunlight-particle {
+            will-change: transform, opacity;
+          }
         }
 
         @keyframes sunlightFloat {
@@ -330,9 +420,17 @@ export default function TreeShadowBackground({
         .sunlight-spot {
           position: absolute;
           border-radius: 50%;
+          opacity: 0.5;
+          -webkit-filter: blur(60px);
           filter: blur(60px);
-          mix-blend-mode: screen;
           animation: sunlightPulse 18s ease-in-out infinite;
+        }
+
+        @supports (mix-blend-mode: screen) {
+          .sunlight-spot {
+            mix-blend-mode: screen;
+            opacity: 1;
+          }
         }
 
         .sunlight-spot-1 {
@@ -397,7 +495,18 @@ export default function TreeShadowBackground({
             height: 110%;
           }
 
+          /* モバイルでは軽量化 */
+          .tree-shadow-deep :global(.tree-shadow-image),
+          .tree-shadow-mid :global(.tree-shadow-image),
+          .tree-shadow-light :global(.tree-shadow-image) {
+            /* モバイルではフィルターを軽減 */
+            -webkit-filter: blur(2px);
+            filter: blur(2px);
+            will-change: auto;
+          }
+
           .sunlight-spot {
+            -webkit-filter: blur(40px);
             filter: blur(40px);
           }
 
@@ -406,6 +515,11 @@ export default function TreeShadowBackground({
           .sunlight-spot-3 {
             width: 250px;
             height: 250px;
+          }
+
+          .sunlight-particle {
+            /* モバイルではパーティクルを軽減 */
+            display: none;
           }
         }
 
@@ -423,4 +537,6 @@ export default function TreeShadowBackground({
       `}</style>
     </div>
   )
-}
+})
+
+export default TreeShadowBackground

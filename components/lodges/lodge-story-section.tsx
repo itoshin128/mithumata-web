@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, memo, useCallback } from "react"
 
 import type React from "react"
 
@@ -68,7 +68,7 @@ const lodgeStories: LodgeStory[] = [
   },
 ]
 
-function InteractivePhoto({
+const InteractivePhoto = memo(function InteractivePhoto({
   src,
   alt,
   aspectRatio,
@@ -84,64 +84,88 @@ function InteractivePhoto({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
     const x = (e.clientX - rect.left) / rect.width - 0.5
     const y = (e.clientY - rect.top) / rect.height - 0.5
     setMousePosition({ x, y })
-  }
+  }, [])
+
+  const handleMouseEnter = useCallback(() => setIsHovering(true), [])
+  const handleMouseLeave = useCallback(() => setIsHovering(false), [])
 
   return (
     <FadeInSection delay={delay}>
       <motion.div
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
+        whileHover={{ scale: 1.015 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         style={{
-          rotateY: isHovering ? mousePosition.x * 5 : 0,
-          rotateX: isHovering ? -mousePosition.y * 5 : 0,
+          rotateY: isHovering ? mousePosition.x * 3 : 0,
+          rotateX: isHovering ? -mousePosition.y * 3 : 0,
         }}
       >
-        <div className={`relative ${aspectRatio} overflow-hidden shadow-2xl`}>
-          <Image src={src || "/placeholder.svg"} alt={alt} fill className="object-cover" sizes={sizes} />
+        <div className={`relative ${aspectRatio} overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500`}>
+          <Image
+            src={src || "/placeholder.svg"}
+            alt={alt}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            sizes={sizes}
+          />
         </div>
       </motion.div>
     </FadeInSection>
   )
-}
+})
 
 function SectionDivider() {
   return (
-    <div className="flex items-center justify-center my-24 md:my-32 lg:my-48">
-      <div className="flex items-center gap-4">
-        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
-        <div className="flex gap-2">
-          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-40"></div>
-          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-60"></div>
-          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-80"></div>
+    <FadeInSection>
+      <div className="flex items-center justify-center my-28 md:my-36 lg:my-48">
+        <div className="flex items-center gap-6">
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "3rem" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="h-px bg-gradient-to-r from-transparent to-gray-300 md:w-20"
+          />
+          <div className="flex gap-2">
+            <div className="w-1.5 h-1.5 rotate-45 bg-gray-400 opacity-50"></div>
+            <div className="w-1.5 h-1.5 rotate-45 bg-gray-400 opacity-70"></div>
+            <div className="w-1.5 h-1.5 rotate-45 bg-gray-400 opacity-50"></div>
+          </div>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: "3rem" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="h-px bg-gradient-to-l from-transparent to-gray-300 md:w-20"
+          />
         </div>
-        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
       </div>
-    </div>
+    </FadeInSection>
   )
 }
 
 export function LodgeStorySection() {
   return (
-    <section className="relative py-20 md:py-32 lg:py-40">
+    <section className="relative py-16 md:py-32 lg:py-40">
       {lodgeStories.map((lodge, storyIndex) => {
         return (
           <div key={lodge.id} className="relative z-10">
             <div className="container mx-auto px-0 md:px-6 max-w-7xl">
               <FadeInSection delay={0.1}>
-                <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-20 md:mb-24 lg:mb-32`}>
-                  <div className={`max-w-xl ${lodge.id === "suisho" ? "text-left ml-6 md:ml-12 lg:ml-20 mr-auto" : "text-right mr-6 md:mr-12 lg:mr-20 ml-auto"}`}>
-                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-serif font-light mb-8 md:mb-10 tracking-[0.08em] leading-[1.6] text-balance">
+                <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-20 md:mb-24 lg:mb-28`}>
+                  <div className={`max-w-xl px-6 md:px-0 ${lodge.id === "suisho" ? "text-left md:ml-12 lg:ml-20 mr-auto" : "text-right md:mr-12 lg:mr-20 ml-auto"}`}>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-light mb-8 md:mb-10 tracking-wide leading-[1.4] text-balance">
                       {lodge.title}
                     </h2>
-                    <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
+                    <p className="text-base md:text-lg text-gray-700 leading-relaxed font-serif font-light">
                       {lodge.description}
                     </p>
                   </div>
@@ -222,24 +246,25 @@ export function LodgeStorySection() {
                 <div className="flex justify-center mt-24 md:mt-28 lg:mt-32 mb-8 md:mb-12">
                   <Link href={lodge.link}>
                     <motion.button
-                      whileHover={{ scale: 1.05, backgroundColor: "rgb(17, 24, 39)" }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.02, backgroundColor: "rgb(17, 24, 39)" }}
+                      whileTap={{ scale: 0.98 }}
                       className="
                         group
                         inline-flex items-center gap-3
-                        px-10 py-5
-                        border border-gray-900
+                        px-10 py-4 md:px-9 md:py-4
+                        border border-gray-800
                         rounded-full
                         text-gray-900
-                        font-light
-                        tracking-[0.2em]
+                        font-serif font-light
+                        tracking-wider
                         transition-all duration-500
                         hover:text-white
-                        hover:shadow-xl
+                        hover:shadow-lg
+                        min-w-[220px] md:min-w-0
                       "
                     >
                       <span className="text-sm">{lodge.name}の詳細</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </motion.button>
                   </Link>
                 </div>
