@@ -138,10 +138,10 @@ export function LodgeStorySection() {
               <FadeInSection delay={0.1}>
                 <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-20 md:mb-24 lg:mb-32`}>
                   <div className={`max-w-xl ${lodge.id === "suisho" ? "text-left ml-6 md:ml-12 lg:ml-20 mr-auto" : "text-right mr-6 md:mr-12 lg:mr-20 ml-auto"}`}>
-                    <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-serif font-light mb-8 md:mb-10 tracking-[0.08em] leading-[1.6] text-balance">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light mb-10 md:mb-12 tracking-[0.08em] leading-[1.5] text-balance">
                       {lodge.title}
                     </h2>
-                    <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
+                    <p className="text-base md:text-lg text-gray-700 leading-[1.9] tracking-[0.04em] font-serif font-light text-pretty">
                       {lodge.description}
                     </p>
                   </div>
