@@ -6,6 +6,11 @@ import { useRef } from "react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { WashiBackground } from "@/components/effects/washi-background"
 import TreeShadowBackground from "@/components/effects/tree-shadow-background"
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { FreeMode, Mousewheel } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import { Calendar, Flower2 } from 'lucide-react'
 
 export default function MitsumataPage() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -1258,6 +1263,204 @@ export default function MitsumataPage() {
                 </motion.div>
               </FadeInSection>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 伊藤新道セクション - 歴史と冒険 */}
+      {/* イントロ - 80vh */}
+      <section className="relative h-[80vh] overflow-hidden">
+        <Image
+          src="/images/lodges/mitsumata-1.jpg"
+          alt="伊藤新道 稜線の朝焼け"
+          fill
+          className="object-cover object-center"
+          style={{ filter: 'saturate(0.9) brightness(0.85)' }}
+          quality={90}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+
+        <div className="relative h-full flex items-center justify-center z-10">
+          <FadeInSection>
+            <div className="text-center space-y-6">
+              <h2 className="text-6xl md:text-7xl lg:text-8xl font-serif font-light text-white tracking-[0.15em]">
+                伊藤新道
+              </h2>
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "6rem" }}
+                transition={{ duration: 1, delay: 0.3 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="h-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent mx-auto"
+              />
+              <p className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]">
+                稜線ルート
+              </p>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* 紹介テキスト - 横スクロールギャラリー */}
+      <section className="relative bg-white py-24 md:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <FadeInSection>
+            <div className="max-w-3xl mx-auto mb-16 space-y-8">
+              <p className="text-lg md:text-xl leading-[2.5] font-serif font-light text-stone-700 tracking-[0.04em]">
+                1962年、登山家・伊藤正一によって開拓された歴史ある登山道。三俣山荘から水晶岳へと続く稜線ルートは、
+                高山植物の宝庫として知られ、7月から9月にかけて色とりどりの花々が登山者を迎えます。
+              </p>
+              <p className="text-lg md:text-xl leading-[2.5] font-serif font-light text-stone-700 tracking-[0.04em]">
+                標高2,600mから3,000m近い高度を縦走するこのルートは、北アルプスの核心部を体感できる
+                冒険の道として、多くの登山者に愛されています。
+              </p>
+            </div>
+          </FadeInSection>
+
+          {/* 横スクロールギャラリー */}
+          <div className="relative mt-20">
+            <FadeInSection delay={0.2}>
+              <p className="text-sm font-light tracking-[0.2em] text-stone-500 mb-6 text-center">
+                TRAIL POINTS
+              </p>
+
+              <Swiper
+                modules={[FreeMode, Mousewheel]}
+                spaceBetween={24}
+                slidesPerView="auto"
+                freeMode={{
+                  enabled: true,
+                  momentum: true,
+                  momentumRatio: 0.5,
+                }}
+                mousewheel={{
+                  forceToAxis: true,
+                }}
+                className="!overflow-visible"
+                breakpoints={{
+                  640: { spaceBetween: 32 },
+                  1024: { spaceBetween: 40 },
+                }}
+              >
+                {[
+                  {
+                    image: '/images/lodges/mitsumata-2.jpg',
+                    title: '三俣山荘起点',
+                    elevation: '2,677m',
+                    description: '伊藤新道の始まり'
+                  },
+                  {
+                    image: '/images/lodges/mitsumata-3.jpg',
+                    title: '高山植物帯',
+                    elevation: '2,800m',
+                    description: 'コマクサ、チングルマの群生地'
+                  },
+                  {
+                    image: '/images/lodges/mitsumata-1.jpg',
+                    title: '稜線展望地',
+                    elevation: '2,900m',
+                    description: '槍ヶ岳を望む絶景ポイント'
+                  },
+                  {
+                    image: '/images/lodges/mitsumata-2.jpg',
+                    title: '水晶岳分岐',
+                    elevation: '2,950m',
+                    description: '水晶小屋へ続く道'
+                  },
+                ].map((point, index) => (
+                  <SwiperSlide key={index} className="!w-[85vw] md:!w-[600px] lg:!w-[700px]">
+                    <motion.div
+                      className="relative group cursor-grab active:cursor-grabbing"
+                      whileHover={{ y: -8 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
+                        <Image
+                          src={point.image}
+                          alt={point.title}
+                          fill
+                          className="object-cover transition-all duration-700 group-hover:scale-105"
+                          style={{ filter: 'saturate(0.88) brightness(0.92)' }}
+                          quality={90}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+                        {/* ホバー時の標高情報 */}
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileHover={{ opacity: 1, y: 0 }}
+                          className="absolute inset-0 flex flex-col items-center justify-center text-white"
+                        >
+                          <div className="text-5xl md:text-6xl font-serif font-light tracking-[0.1em] mb-2">
+                            {point.elevation}
+                          </div>
+                          <div className="text-sm font-light tracking-[0.3em] opacity-90">
+                            ELEVATION
+                          </div>
+                        </motion.div>
+
+                        {/* 常時表示の情報 */}
+                        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white z-10">
+                          <h3 className="text-2xl md:text-3xl font-serif font-light tracking-[0.08em] mb-2">
+                            {point.title}
+                          </h3>
+                          <p className="text-sm md:text-base font-light tracking-[0.05em] opacity-90">
+                            {point.description}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* 情報セクション - ミニマル表現 */}
+      <section className="relative bg-stone-50 py-20 md:py-28">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+            <FadeInSection delay={0.1}>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+                    <Flower2 className="w-6 h-6 text-mitsumata-primary" />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-serif font-light tracking-[0.08em] text-stone-800">
+                    高山植物
+                  </h3>
+                </div>
+                <div className="pl-16">
+                  <p className="text-base md:text-lg leading-[2.2] font-light text-stone-600 tracking-[0.04em]">
+                    コマクサ、チングルマ、ハクサンイチゲ、イワギキョウなど、
+                    200種を超える高山植物が季節ごとに彩りを添えます。
+                  </p>
+                </div>
+              </div>
+            </FadeInSection>
+
+            <FadeInSection delay={0.2}>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+                    <Calendar className="w-6 h-6 text-mitsumata-primary" />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-serif font-light tracking-[0.08em] text-stone-800">
+                    ベストシーズン
+                  </h3>
+                </div>
+                <div className="pl-16">
+                  <p className="text-base md:text-lg leading-[2.2] font-light text-stone-600 tracking-[0.04em]">
+                    7月上旬〜9月下旬
+                  </p>
+                  <p className="text-sm md:text-base leading-[2] font-light text-stone-500 tracking-[0.04em] mt-4">
+                    特に7月中旬から8月上旬は、高山植物が最も美しい季節です。
+                  </p>
+                </div>
+              </div>
+            </FadeInSection>
           </div>
         </div>
       </section>
