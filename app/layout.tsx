@@ -21,6 +21,17 @@ const notoSansJP = Noto_Sans_JP({
   display: "swap",
 })
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fcf6e3" },
+    { media: "(prefers-color-scheme: dark)", color: "#252525" },
+  ],
+}
+
 export const metadata: Metadata = {
   title: "三俣山荘グループ | 北アルプス最奥、黒部源流の三つの山荘",
   description:
