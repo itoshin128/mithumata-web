@@ -297,6 +297,257 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* 宿泊料金セクション */}
+      <section className="relative py-32 md:py-40 lg:py-48">
+        <div className="absolute inset-0 z-0">
+          <WashiBackground intensity="strong" animated={false} />
+          <TreeShadowBackground intensity="subtle" enableParallax={true} />
+        </div>
+
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          {/* セクションタイトル */}
+          <FadeInSection>
+            <div className="text-center mb-20 md:mb-24 space-y-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 tracking-[0.08em]">
+                宿泊料金
+              </h2>
+
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "4rem" }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
+              />
+
+              <p className="text-base md:text-lg font-serif font-light text-stone-600 tracking-[0.05em] leading-[2]">
+                2025年シーズン料金
+              </p>
+            </div>
+          </FadeInSection>
+
+          {/* 料金カード */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
+            {/* 一泊二食付きカード */}
+            <FadeInSection delay={0.1}>
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="relative bg-white rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group"
+              >
+                {/* アクセント線 */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-mitsumata-primary/80 via-mitsumata-primary to-mitsumata-primary/80" />
+
+                <div className="p-8 md:p-10 space-y-8">
+                  {/* カードタイトル */}
+                  <div className="space-y-4">
+                    <h3 className="text-2xl md:text-3xl font-serif font-medium text-stone-800 tracking-[0.08em] text-center">
+                      一泊二食付き
+                    </h3>
+
+                    {/* 価格 */}
+                    <div className="text-center space-y-2">
+                      <div className="flex items-baseline justify-center gap-1">
+                        <span className="text-sm md:text-base font-sans text-stone-500">¥</span>
+                        <span className="text-5xl md:text-6xl font-serif font-light text-mitsumata-primary tracking-tight">
+                          12,000
+                        </span>
+                      </div>
+                      <p className="text-sm font-sans text-stone-500 tracking-wide">
+                        1名様あたり
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 区切り線 */}
+                  <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
+
+                  {/* 含まれる内容 */}
+                  <ul className="space-y-4" role="list">
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        夕食・朝食付き
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        個室または相部屋
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        寝具・シーツ付き
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        展望食堂での食事
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* ホバー時の背景効果 */}
+                <div className="absolute inset-0 bg-mitsumata-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              </motion.div>
+            </FadeInSection>
+
+            {/* 素泊まりカード */}
+            <FadeInSection delay={0.2}>
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="relative bg-white rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group"
+              >
+                {/* アクセント線 */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-400/80 via-stone-400 to-stone-400/80" />
+
+                <div className="p-8 md:p-10 space-y-8">
+                  {/* カードタイトル */}
+                  <div className="space-y-4">
+                    <h3 className="text-2xl md:text-3xl font-serif font-medium text-stone-800 tracking-[0.08em] text-center">
+                      素泊まり
+                    </h3>
+
+                    {/* 価格 */}
+                    <div className="text-center space-y-2">
+                      <div className="flex items-baseline justify-center gap-1">
+                        <span className="text-sm md:text-base font-sans text-stone-500">¥</span>
+                        <span className="text-5xl md:text-6xl font-serif font-light text-stone-700 tracking-tight">
+                          8,000
+                        </span>
+                      </div>
+                      <p className="text-sm font-sans text-stone-500 tracking-wide">
+                        1名様あたり
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 区切り線 */}
+                  <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
+
+                  {/* 含まれる内容 */}
+                  <ul className="space-y-4" role="list">
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        宿泊のみ
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        個室または相部屋
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        寝具・シーツ付き
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        自炊スペース利用可
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* ホバー時の背景効果 */}
+                <div className="absolute inset-0 bg-stone-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              </motion.div>
+            </FadeInSection>
+
+            {/* テント泊カード */}
+            <FadeInSection delay={0.3}>
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="relative bg-white rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group"
+              >
+                {/* アクセント線 */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-300/80 via-stone-300 to-stone-300/80" />
+
+                <div className="p-8 md:p-10 space-y-8">
+                  {/* カードタイトル */}
+                  <div className="space-y-4">
+                    <h3 className="text-2xl md:text-3xl font-serif font-medium text-stone-800 tracking-[0.08em] text-center">
+                      テント泊
+                    </h3>
+
+                    {/* 価格 */}
+                    <div className="text-center space-y-2">
+                      <div className="flex items-baseline justify-center gap-1">
+                        <span className="text-sm md:text-base font-sans text-stone-500">¥</span>
+                        <span className="text-5xl md:text-6xl font-serif font-light text-stone-600 tracking-tight">
+                          2,000
+                        </span>
+                      </div>
+                      <p className="text-sm font-sans text-stone-500 tracking-wide">
+                        1名様あたり
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 区切り線 */}
+                  <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
+
+                  {/* 含まれる内容 */}
+                  <ul className="space-y-4" role="list">
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        テント場利用
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        トイレ・水場利用可
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        自炊スペース利用可
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
+                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
+                        テント・寝具持参
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* ホバー時の背景効果 */}
+                <div className="absolute inset-0 bg-stone-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              </motion.div>
+            </FadeInSection>
+          </div>
+
+          {/* 注意事項 */}
+          <FadeInSection delay={0.4}>
+            <div className="mt-16 md:mt-20 text-center space-y-4">
+              <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-300 to-transparent max-w-md mx-auto" />
+
+              <div className="space-y-2 text-sm md:text-base font-serif font-light text-stone-600 tracking-[0.04em] leading-[2]">
+                <p>※ 料金は税込です</p>
+                <p>※ 個室は空き状況により案内いたします</p>
+                <p>※ 営業期間：7月上旬〜11月上旬</p>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
       {/* CTAセクション - シンプルで余白たっぷり */}
       <section className="relative py-32 md:py-40">
         <div className="absolute inset-0 z-0">
