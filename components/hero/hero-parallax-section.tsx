@@ -6,13 +6,13 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, EffectFade } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/effect-fade"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, memo, useCallback } from "react"
 
 // 予約ボタンコンポーネント
-const ReservationButton = () => {
-  const handleClick = () => {
+const ReservationButton = memo(() => {
+  const handleClick = useCallback(() => {
     window.location.href = "/reservations"
-  }
+  }, [])
 
   return (
     <>
@@ -98,7 +98,9 @@ const ReservationButton = () => {
       </motion.div>
     </>
   )
-}
+})
+
+ReservationButton.displayName = 'ReservationButton'
 
 // Ken Burns効果のアニメーションパターン
 type AnimationPattern = {
@@ -316,30 +318,43 @@ export function HeroParallaxSection() {
   }, [])
 
   useEffect(() => {
+    let rafId: number | null = null
+    let lastUpdate = 0
+    const throttleInterval = 16 // ~60fps
+
     const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      const viewportHeight = window.innerHeight
+      const now = Date.now()
+      if (now - lastUpdate < throttleInterval) return
+      lastUpdate = now
 
-      // モバイルでは、ヒーローセクションの終わりに向けて固定背景をフェードアウト
-      if (window.innerWidth < 768) {
-        const fadeStartPoint = viewportHeight * 1.5 // 150vhから透明度変化開始
-        const fadeEndPoint = viewportHeight * 1.8 // 180vhで完全に消える
+      if (rafId !== null) return
 
-        if (scrollPosition < fadeStartPoint) {
-          // 150vhまでは完全に不透明
-          setBgOpacity(1)
-          setShowFixedBg(true)
-        } else if (scrollPosition < fadeEndPoint) {
-          // 150vh～180vhの間で透明度を1→0に変化
-          const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint)
-          setBgOpacity(1 - fadeProgress)
-          setShowFixedBg(true)
-        } else {
-          // 180vh以降は完全に非表示
-          setBgOpacity(0)
-          setShowFixedBg(false)
+      rafId = requestAnimationFrame(() => {
+        const scrollPosition = window.scrollY
+        const viewportHeight = window.innerHeight
+
+        // モバイルでは、ヒーローセクションの終わりに向けて固定背景をフェードアウト
+        if (window.innerWidth < 768) {
+          const fadeStartPoint = viewportHeight * 1.5 // 150vhから透明度変化開始
+          const fadeEndPoint = viewportHeight * 1.8 // 180vhで完全に消える
+
+          if (scrollPosition < fadeStartPoint) {
+            // 150vhまでは完全に不透明
+            setBgOpacity(1)
+            setShowFixedBg(true)
+          } else if (scrollPosition < fadeEndPoint) {
+            // 150vh～180vhの間で透明度を1→0に変化
+            const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint)
+            setBgOpacity(1 - fadeProgress)
+            setShowFixedBg(true)
+          } else {
+            // 180vh以降は完全に非表示
+            setBgOpacity(0)
+            setShowFixedBg(false)
+          }
         }
-      }
+        rafId = null
+      })
     }
 
     // 初回実行
@@ -351,6 +366,9 @@ export function HeroParallaxSection() {
     return () => {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", handleScroll)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
     }
   }, [])
 
@@ -405,7 +423,7 @@ export function HeroParallaxSection() {
                         fill
                         className="object-cover object-center"
                         priority={image.id === 1}
-                        quality={100}
+                        quality={85}
                         sizes="100vw"
                       />
                     </motion.div>
@@ -468,7 +486,7 @@ export function HeroParallaxSection() {
                       fill
                       className={imageSetType === 'wide' ? 'object-cover object-center' : 'object-cover object-top'}
                       priority={image.id === 1 || image.id === 2}
-                      quality={100}
+                      quality={85}
                       sizes="100vw"
                     />
                   </motion.div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, memo, useCallback } from "react"
 
 import type React from "react"
 
@@ -68,7 +68,7 @@ const lodgeStories: LodgeStory[] = [
   },
 ]
 
-function InteractivePhoto({
+const InteractivePhoto = memo(function InteractivePhoto({
   src,
   alt,
   aspectRatio,
@@ -84,12 +84,15 @@ function InteractivePhoto({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
     const x = (e.clientX - rect.left) / rect.width - 0.5
     const y = (e.clientY - rect.top) / rect.height - 0.5
     setMousePosition({ x, y })
-  }
+  }, [])
+
+  const handleMouseEnter = useCallback(() => setIsHovering(true), [])
+  const handleMouseLeave = useCallback(() => setIsHovering(false), [])
 
   return (
     <FadeInSection delay={delay}>
@@ -97,8 +100,8 @@ function InteractivePhoto({
         whileHover={{ scale: 1.015 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         style={{
           rotateY: isHovering ? mousePosition.x * 3 : 0,
@@ -117,7 +120,7 @@ function InteractivePhoto({
       </motion.div>
     </FadeInSection>
   )
-}
+})
 
 function SectionDivider() {
   return (

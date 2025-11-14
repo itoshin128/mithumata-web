@@ -1,7 +1,7 @@
 'use client'
 
 import type React from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, memo, useCallback } from 'react'
 import Image from 'next/image'
 
 interface TreeShadowBackgroundProps {
@@ -20,7 +20,7 @@ interface LightParticle {
   intensity: number
 }
 
-export default function TreeShadowBackground({
+const TreeShadowBackground = memo(function TreeShadowBackground({
   intensity = 'medium',
   enableParallax = true,
   className = '',
@@ -60,26 +60,47 @@ export default function TreeShadowBackground({
     setLightParticles(particles)
   }, [intensity])
 
-  // Mouse parallax effect
+  // Mouse parallax effect with throttling
   useEffect(() => {
     if (!enableParallax) return
 
+    let rafId: number | null = null
+    let lastMouseUpdate = 0
+    let lastScrollUpdate = 0
+    const throttleInterval = 16 // ~60fps
+
     const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 2 // -1 to 1
-      const y = (e.clientY / window.innerHeight - 0.5) * 2 // -1 to 1
-      setMousePosition({ x, y })
+      const now = Date.now()
+      if (now - lastMouseUpdate < throttleInterval) return
+      lastMouseUpdate = now
+
+      if (rafId !== null) return
+
+      rafId = requestAnimationFrame(() => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2 // -1 to 1
+        const y = (e.clientY / window.innerHeight - 0.5) * 2 // -1 to 1
+        setMousePosition({ x, y })
+        rafId = null
+      })
     }
 
     const handleScroll = () => {
+      const now = Date.now()
+      if (now - lastScrollUpdate < throttleInterval) return
+      lastScrollUpdate = now
+
       setScrollY(window.scrollY)
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
     window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('scroll', handleScroll)
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId)
+      }
     }
   }, [enableParallax])
 
@@ -186,7 +207,7 @@ export default function TreeShadowBackground({
           fill
           className="tree-shadow-image"
           priority
-          quality={90}
+          quality={85}
           sizes="100vw"
         />
       </div>
@@ -204,7 +225,7 @@ export default function TreeShadowBackground({
           fill
           className="tree-shadow-image"
           priority
-          quality={90}
+          quality={85}
           sizes="100vw"
         />
       </div>
@@ -222,7 +243,7 @@ export default function TreeShadowBackground({
           fill
           className="tree-shadow-image"
           priority
-          quality={90}
+          quality={85}
           sizes="100vw"
         />
       </div>
@@ -498,4 +519,6 @@ export default function TreeShadowBackground({
       `}</style>
     </div>
   )
-}
+})
+
+export default TreeShadowBackground

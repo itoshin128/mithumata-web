@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, memo } from "react"
 
 interface WashiBackgroundProps {
   className?: string
@@ -8,7 +8,7 @@ interface WashiBackgroundProps {
   animated?: boolean
 }
 
-export function WashiBackground({ className = "", intensity = "medium", animated = false }: WashiBackgroundProps) {
+export const WashiBackground = memo(function WashiBackground({ className = "", intensity = "medium", animated = false }: WashiBackgroundProps) {
   const grainLayerRef = useRef<HTMLDivElement>(null)
   const colorLayerRef = useRef<HTMLDivElement>(null)
 
@@ -162,4 +162,4 @@ export function WashiBackground({ className = "", intensity = "medium", animated
       />
     </div>
   )
-}
+})
