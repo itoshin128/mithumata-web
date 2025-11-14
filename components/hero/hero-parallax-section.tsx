@@ -283,11 +283,13 @@ export function HeroParallaxSection() {
         return
       }
 
-      // すべてのデバイスで4:5縦長画像を使用（シンプル化）
-      const imageType: 'macbook' = 'macbook'
-      const height = "200vh"
+      // 画面の高さに基づいてvh値を調整
+      // Windowsノートパソコン（高さが低い）では365vh
+      // MacBook等では200vh
+      const viewportHeight = window.innerHeight
+      const height = viewportHeight < 800 ? "365vh" : "200vh"
 
-      setImageSetType(imageType)
+      setImageSetType('macbook')
       setDynamicHeight(height)
     }
 
@@ -402,10 +404,10 @@ export function HeroParallaxSection() {
         </div>
       )}
 
-      {/* デスクトップ用パララックス背景 - すべてのデバイスで4:5縦長画像、200vh固定 */}
+      {/* デスクトップ用パララックス背景 - すべてのデバイスで4:5縦長画像 */}
       <div
         className="hidden md:block absolute top-0 left-0 w-full z-10 overflow-hidden bg-black"
-        style={{ height: "200vh" }}
+        style={{ height: dynamicHeight }}
       >
         <motion.div style={{ y }} className="relative w-full h-full">
           <Swiper
@@ -467,7 +469,7 @@ export function HeroParallaxSection() {
       {/* スクロールするコンテンツレイヤー */}
       <div
         className="relative z-30"
-        style={{ minHeight: isDesktop ? "200vh" : "180vh" }}
+        style={{ minHeight: isDesktop ? dynamicHeight : "180vh" }}
       >
         <div className="h-screen flex items-end px-4 sm:px-6 md:px-12 lg:px-20 pb-12 sm:pb-14 md:pb-16 lg:pb-20">
           <div className="w-full max-w-[1600px] mx-auto">
