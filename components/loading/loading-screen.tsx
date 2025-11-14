@@ -161,39 +161,6 @@ export function LoadingScreen() {
             北アルプス黒部源流
           </h1>
 
-          {/* 装飾 */}
-          <div
-            className="flex items-center justify-center gap-4"
-            style={{
-              animation: fontsLoaded ? 'textFadeIn 2s ease-out forwards' : 'none',
-              animationDelay: fontsLoaded ? '0.8s' : '0s',
-              opacity: fontsLoaded ? 0 : 0,
-            }}
-          >
-            <div
-              style={{
-                width: '60px',
-                height: '1px',
-                background: 'rgba(120, 130, 140, 0.3)',
-              }}
-            />
-            <div
-              style={{
-                width: '2px',
-                height: '2px',
-                borderRadius: '50%',
-                background: 'rgba(110, 120, 130, 0.4)',
-              }}
-            />
-            <div
-              style={{
-                width: '60px',
-                height: '1px',
-                background: 'rgba(120, 130, 140, 0.3)',
-              }}
-            />
-          </div>
-
           {/* 英語テキスト */}
           <p
             className="text-lg md:text-xl lg:text-2xl tracking-[0.2em] font-light"

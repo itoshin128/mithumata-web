@@ -49,7 +49,6 @@ const lodgeStories: LodgeStory[] = [
       portrait1: "/images/lodges/suisho-1.jpg",
       landscape: "/images/lodges/suisho-2.jpg",
       landscape2: "/images/lodges/suisho-3.jpg",
-      landscape3: "/images/lodges/suisho-4.jpg",
     },
     link: "/lodges/suisho",
   },
@@ -203,27 +202,16 @@ export function LodgeStorySection() {
               </div>
 
               {/* 水晶小屋の追加写真 */}
-              {lodge.id === "suisho" && lodge.photos.landscape2 && lodge.photos.landscape3 ? (
+              {lodge.id === "suisho" && lodge.photos.landscape2 ? (
                 <>
-                  {/* 水晶小屋3枚目 - 左寄せ */}
-                  <div className="mb-24 md:mb-28 lg:mb-32 max-w-[340px] md:max-w-lg lg:max-w-3xl ml-8 md:ml-16 lg:ml-24 mr-auto">
+                  {/* 水晶小屋3枚目 - 全幅 */}
+                  <div className="mb-20 md:mb-24 w-full px-0">
                     <InteractivePhoto
                       src={lodge.photos.landscape2}
                       alt={`${lodge.name} 風景3`}
                       aspectRatio="aspect-[4/3]"
-                      sizes="(max-width: 640px) 60vw, (max-width: 768px) 65vw, 60vw"
-                      delay={0.4}
-                    />
-                  </div>
-
-                  {/* 水晶小屋4枚目 - 全幅 */}
-                  <div className="mb-20 md:mb-24 w-full px-0">
-                    <InteractivePhoto
-                      src={lodge.photos.landscape3}
-                      alt={`${lodge.name} 風景4`}
-                      aspectRatio="aspect-[4/3]"
                       sizes="100vw"
-                      delay={0.5}
+                      delay={0.4}
                     />
                   </div>
                 </>
