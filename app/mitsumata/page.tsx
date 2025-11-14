@@ -10,7 +10,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
-import { Calendar, Flower2 } from 'lucide-react'
+import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin } from 'lucide-react'
+import * as Accordion from '@radix-ui/react-accordion'
 
 export default function MitsumataPage() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -1462,6 +1463,405 @@ export default function MitsumataPage() {
               </div>
             </FadeInSection>
           </div>
+        </div>
+      </section>
+
+      {/* 交通・アクセスセクション */}
+      {/* ヘッダー - 50vh */}
+      <section className="relative h-[50vh] overflow-hidden">
+        <Image
+          src="/images/lodges/mitsumata-2.jpg"
+          alt="登山道への道"
+          fill
+          className="object-cover object-center"
+          style={{ filter: 'saturate(0.7) brightness(0.8)' }}
+          quality={90}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+
+        <div className="relative h-full flex items-center justify-center z-10">
+          <FadeInSection>
+            <div className="text-center space-y-6">
+              <h2 className="text-7xl md:text-8xl lg:text-9xl font-serif font-light text-white tracking-[0.2em]">
+                Access
+              </h2>
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "5rem" }}
+                transition={{ duration: 1, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="h-[1px] bg-gradient-to-r from-transparent via-white/70 to-transparent mx-auto"
+              />
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* ルート詳細 - アコーディオン形式 */}
+      <section className="relative py-32 md:py-40 bg-white">
+        <div className="absolute inset-0 z-0">
+          <WashiBackground intensity="subtle" animated={false} />
+        </div>
+
+        <div className="container mx-auto px-4 max-w-6xl relative z-10">
+          {/* イントロテキスト */}
+          <FadeInSection>
+            <div className="text-center mb-20 md:mb-28 space-y-6">
+              <p className="text-base md:text-lg font-serif font-light text-stone-600 tracking-[0.05em] leading-[2]">
+                三俣山荘へは、3つの主要ルートからアクセスできます。
+                <br />
+                それぞれの道のりには、独自の景色と魅力があります。
+              </p>
+            </div>
+          </FadeInSection>
+
+          {/* アコーディオン */}
+          <Accordion.Root type="single" collapsible className="space-y-6">
+            {/* ルート1: 新穂高温泉から */}
+            <FadeInSection delay={0.1}>
+              <Accordion.Item value="route-1" className="bg-white shadow-lg overflow-hidden group">
+                <Accordion.Header>
+                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300">
+                    <div className="flex items-center gap-6 md:gap-8">
+                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-mitsumata-primary/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-7 h-7 md:w-8 md:h-8 text-mitsumata-primary" />
+                      </div>
+                      <div className="text-left">
+                        <h3 className="text-2xl md:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] mb-2">
+                          新穂高温泉から
+                        </h3>
+                        <div className="flex items-center gap-3 text-mitsumata-primary">
+                          <Clock className="w-5 h-5" />
+                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">8時間</span>
+                        </div>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="text-stone-400"
+                      whileHover={{ rotate: 180 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <polyline points="6 9 12 15 18 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </motion.div>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <div className="px-8 md:px-12 pb-10 pt-2">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+                      {/* タイムライン */}
+                      <div className="lg:col-span-7 space-y-8">
+                        {/* ステップ1 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center">
+                              <Train className="w-6 h-6 text-stone-600" />
+                            </div>
+                            <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
+                          </div>
+                          <div className="flex-1 pb-8">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">松本駅</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
+                              電車でJR松本駅下車
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* ステップ2 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center">
+                              <Bus className="w-6 h-6 text-stone-600" />
+                            </div>
+                            <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
+                          </div>
+                          <div className="flex-1 pb-8">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">バス移動</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
+                              アルピコ交通バスで新穂高温泉へ（約2時間30分）
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* ステップ3 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-mitsumata-primary/10 flex items-center justify-center">
+                              <Footprints className="w-6 h-6 text-mitsumata-primary" />
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">登山</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8] mb-3">
+                              わさび平小屋経由で三俣山荘へ（約8時間）
+                            </p>
+                            <div className="inline-block px-4 py-2 bg-stone-50 rounded-full">
+                              <span className="text-sm font-light text-stone-600">最も一般的なルート</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 写真 */}
+                      <div className="lg:col-span-5">
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                          viewport={{ once: true }}
+                          className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
+                        >
+                          <Image
+                            src="/images/lodges/mitsumata-1.jpg"
+                            alt="新穂高温泉からのルート"
+                            fill
+                            className="object-cover"
+                            style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                            quality={90}
+                          />
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </FadeInSection>
+
+            {/* ルート2: 高瀬ダムから */}
+            <FadeInSection delay={0.2}>
+              <Accordion.Item value="route-2" className="bg-white shadow-lg overflow-hidden group">
+                <Accordion.Header>
+                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300">
+                    <div className="flex items-center gap-6 md:gap-8">
+                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-mitsumata-primary/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-7 h-7 md:w-8 md:h-8 text-mitsumata-primary" />
+                      </div>
+                      <div className="text-left">
+                        <h3 className="text-2xl md:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] mb-2">
+                          高瀬ダムから
+                        </h3>
+                        <div className="flex items-center gap-3 text-mitsumata-primary">
+                          <Clock className="w-5 h-5" />
+                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">7時間</span>
+                        </div>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="text-stone-400"
+                      whileHover={{ rotate: 180 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <polyline points="6 9 12 15 18 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </motion.div>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <div className="px-8 md:px-12 pb-10 pt-2">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+                      {/* タイムライン */}
+                      <div className="lg:col-span-7 space-y-8">
+                        {/* ステップ1 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center">
+                              <Car className="w-6 h-6 text-stone-600" />
+                            </div>
+                            <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
+                          </div>
+                          <div className="flex-1 pb-8">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">七倉山荘</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
+                              タクシーで七倉山荘へ（信濃大町駅から約50分）
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* ステップ2 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center">
+                              <Bus className="w-6 h-6 text-stone-600" />
+                            </div>
+                            <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
+                          </div>
+                          <div className="flex-1 pb-8">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">高瀬ダム</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
+                              タクシーで高瀬ダムへ（約30分）
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* ステップ3 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-mitsumata-primary/10 flex items-center justify-center">
+                              <Footprints className="w-6 h-6 text-mitsumata-primary" />
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">登山</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8] mb-3">
+                              湯俣山荘経由で三俣山荘へ（約7時間）
+                            </p>
+                            <div className="inline-block px-4 py-2 bg-stone-50 rounded-full">
+                              <span className="text-sm font-light text-stone-600">静かな森林ルート</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 写真 */}
+                      <div className="lg:col-span-5">
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                          viewport={{ once: true }}
+                          className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
+                        >
+                          <Image
+                            src="/images/lodges/mitsumata-3.jpg"
+                            alt="高瀬ダムからのルート"
+                            fill
+                            className="object-cover"
+                            style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                            quality={90}
+                          />
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </FadeInSection>
+
+            {/* ルート3: 折立から */}
+            <FadeInSection delay={0.3}>
+              <Accordion.Item value="route-3" className="bg-white shadow-lg overflow-hidden group">
+                <Accordion.Header>
+                  <Accordion.Trigger className="w-full px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 hover:bg-stone-50 transition-colors duration-300">
+                    <div className="flex items-center gap-6 md:gap-8">
+                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-mitsumata-primary/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-7 h-7 md:w-8 md:h-8 text-mitsumata-primary" />
+                      </div>
+                      <div className="text-left">
+                        <h3 className="text-2xl md:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] mb-2">
+                          折立から
+                        </h3>
+                        <div className="flex items-center gap-3 text-mitsumata-primary">
+                          <Clock className="w-5 h-5" />
+                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">6時間</span>
+                        </div>
+                      </div>
+                    </div>
+                    <motion.div
+                      className="text-stone-400"
+                      whileHover={{ rotate: 180 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <polyline points="6 9 12 15 18 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </motion.div>
+                  </Accordion.Trigger>
+                </Accordion.Header>
+                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
+                  <div className="px-8 md:px-12 pb-10 pt-2">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+                      {/* タイムライン */}
+                      <div className="lg:col-span-7 space-y-8">
+                        {/* ステップ1 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center">
+                              <Train className="w-6 h-6 text-stone-600" />
+                            </div>
+                            <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
+                          </div>
+                          <div className="flex-1 pb-8">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">富山駅</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
+                              北陸新幹線で富山駅下車
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* ステップ2 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-stone-100 flex items-center justify-center">
+                              <Bus className="w-6 h-6 text-stone-600" />
+                            </div>
+                            <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
+                          </div>
+                          <div className="flex-1 pb-8">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">折立</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
+                              バスで折立登山口へ（約3時間）
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* ステップ3 */}
+                        <div className="flex gap-6">
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-12 rounded-full bg-mitsumata-primary/10 flex items-center justify-center">
+                              <Footprints className="w-6 h-6 text-mitsumata-primary" />
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">登山</h4>
+                            <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8] mb-3">
+                              太郎平小屋経由で三俣山荘へ（約6時間）
+                            </p>
+                            <div className="inline-block px-4 py-2 bg-stone-50 rounded-full">
+                              <span className="text-sm font-light text-stone-600">最短ルート</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 写真 */}
+                      <div className="lg:col-span-5">
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                          viewport={{ once: true }}
+                          className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
+                        >
+                          <Image
+                            src="/images/lodges/mitsumata-2.jpg"
+                            alt="折立からのルート"
+                            fill
+                            className="object-cover"
+                            style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                            quality={90}
+                          />
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </Accordion.Content>
+              </Accordion.Item>
+            </FadeInSection>
+          </Accordion.Root>
+
+          {/* 注意事項 */}
+          <FadeInSection delay={0.4}>
+            <div className="mt-20 md:mt-24 text-center space-y-6">
+              <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-300 to-transparent max-w-md mx-auto" />
+              <div className="space-y-3 text-sm md:text-base font-serif font-light text-stone-600 tracking-[0.04em] leading-[2]">
+                <p>※ 所要時間は一般的な登山者の目安です</p>
+                <p>※ 天候や体力により大きく変動します</p>
+                <p>※ 詳しいアクセス情報はお問い合わせください</p>
+              </div>
+            </div>
+          </FadeInSection>
         </div>
       </section>
 
