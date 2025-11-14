@@ -286,8 +286,11 @@ export function HeroParallaxSection() {
         return
       }
 
-      // すべてのデバイスで200vhに統一
-      const height = "200vh"
+      // Windowsの検出 (navigator.platformまたはuserAgentで判定)
+      const isWindows = /Win/i.test(navigator.platform) || /Windows/i.test(navigator.userAgent)
+
+      // Windowsは365vh、その他のデバイスは200vh
+      const height = isWindows ? "365vh" : "200vh"
 
       setImageSetType('macbook')
       setDynamicHeight(height)
