@@ -14,7 +14,9 @@ export function WashiBackground({ className = "", intensity = "medium", animated
 
   useEffect(() => {
     if (!animated) return
-    if (!grainLayerRef.current || !colorLayerRef.current) return
+    const grainLayer = grainLayerRef.current
+    const colorLayer = colorLayerRef.current
+    if (!grainLayer || !colorLayer) return
 
     // パフォーマンス最適化: モバイルデバイスではアニメーションを軽減
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
@@ -25,17 +27,20 @@ export function WashiBackground({ className = "", intensity = "medium", animated
       return
     }
 
-    let animationFrameId: number
+    let animationFrameId: number | undefined
     let time = 0
+    let isActive = true
 
     const animate = () => {
+      if (!isActive) return
+
       time += 0.004
 
       const breathingOpacity = 1 + Math.sin(time * 0.7) * 0.02
 
-      if (grainLayerRef.current) {
+      if (grainLayer) {
         const offset = time * 12
-        grainLayerRef.current.style.backgroundPosition = `
+        grainLayer.style.backgroundPosition = `
           ${offset * 0.8}px ${offset * 0.5}px,
           ${8 + offset * 0.6}px ${12 + offset * 0.55}px,
           ${offset * 0.5}px ${offset * 0.4}px,
@@ -47,27 +52,31 @@ export function WashiBackground({ className = "", intensity = "medium", animated
           ${offset * 0.25}px ${offset * 0.3}px,
           ${5 + offset * 0.55}px ${7 + offset * 0.6}px
         `
-        grainLayerRef.current.style.opacity = String(breathingOpacity)
+        grainLayer.style.opacity = String(breathingOpacity)
       }
 
-      if (colorLayerRef.current) {
+      if (colorLayer) {
         const colorOffset = time * 4
         const colorPulse = 1 + Math.sin(time * 0.5) * 0.08
-        colorLayerRef.current.style.backgroundPosition = `
+        colorLayer.style.backgroundPosition = `
           ${colorOffset * 0.2}px ${colorOffset * 0.15}px,
           ${40 + colorOffset * 0.15}px ${50 + colorOffset * 0.18}px
         `
-        colorLayerRef.current.style.opacity = String(colorPulse)
+        colorLayer.style.opacity = String(colorPulse)
       }
 
-      animationFrameId = requestAnimationFrame(animate)
+      if (isActive) {
+        animationFrameId = requestAnimationFrame(animate)
+      }
     }
 
     animate()
 
     return () => {
-      if (animationFrameId) {
+      isActive = false
+      if (animationFrameId !== undefined) {
         cancelAnimationFrame(animationFrameId)
+        animationFrameId = undefined
       }
     }
   }, [animated])
@@ -85,13 +94,9 @@ export function WashiBackground({ className = "", intensity = "medium", animated
       {/* グレインレイヤー - 明確に見えるよう強化 */}
       <div
         ref={grainLayerRef}
-        className="absolute inset-0"
+        className="absolute inset-0 washi-grain-layer"
         style={{
           opacity: config.grain,
-          // @ts-ignore - CSS cascade fallback for older browsers
-          mixBlendMode: "normal",
-          // Modern browsers
-          mixBlendMode: "multiply",
           backgroundImage: `
             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='ultrafine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.8' numOctaves='7' seed='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.06 0.12 0.20'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23ultrafine)' fill='%23000'/%3E%3C/svg%3E"),
             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='superfine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.8' numOctaves='6' seed='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.08 0.15 0.25'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23superfine)' fill='%23000'/%3E%3C/svg%3E"),
@@ -136,13 +141,9 @@ export function WashiBackground({ className = "", intensity = "medium", animated
       {/* 色調レイヤー - 温かみを強化 */}
       <div
         ref={colorLayerRef}
-        className="absolute inset-0"
+        className="absolute inset-0 washi-color-layer"
         style={{
           opacity: config.color,
-          // @ts-ignore - CSS cascade fallback for older browsers
-          mixBlendMode: "normal",
-          // Modern browsers
-          mixBlendMode: "overlay",
           backgroundImage: `
             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'%3E%3Cfilter id='warmth1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='4' seed='37'/%3E%3CfeGaussianBlur stdDeviation='30'/%3E%3CfeColorMatrix values='0 0 0 0 0.55, 0 0 0 0 0.45, 0 0 0 0 0.35, 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='1200' height='1200' filter='url(%23warmth1)' fill='%23d4a373'/%3E%3C/svg%3E"),
             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='warmth2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004' numOctaves='3' seed='41'/%3E%3CfeGaussianBlur stdDeviation='35'/%3E%3CfeColorMatrix values='0 0 0 0 0.98, 0 0 0 0 0.90, 0 0 0 0 0.72, 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='1400' height='1400' filter='url(%23warmth2)' fill='%23f5e0c8'/%3E%3C/svg%3E")

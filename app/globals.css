@@ -505,6 +505,28 @@
     display: none;
   }
 
+  /* 和紙背景のブレンドモード - v0環境対応 */
+  .washi-grain-layer {
+    mix-blend-mode: multiply;
+  }
+
+  .washi-color-layer {
+    mix-blend-mode: overlay;
+  }
+
+  /* フォールバック: ブレンドモード未サポート環境 */
+  @supports not (mix-blend-mode: multiply) {
+    .washi-grain-layer {
+      opacity: 0.8;
+    }
+  }
+
+  @supports not (mix-blend-mode: overlay) {
+    .washi-color-layer {
+      opacity: 0.6;
+    }
+  }
+
   /* 和風フォーカスリング - 墨のにじみエフェクト */
   .focus-ring-wafuu:focus-visible {
     outline: none;

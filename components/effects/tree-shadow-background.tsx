@@ -1,5 +1,6 @@
 'use client'
 
+import type React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
@@ -85,7 +86,7 @@ export default function TreeShadowBackground({
   // 風による揺れのアニメーション
   useEffect(() => {
     const layers = containerRef.current?.querySelectorAll('.tree-shadow-layer')
-    if (!layers) return
+    if (!layers || layers.length === 0) return
 
     // パフォーマンス最適化: モバイルデバイスや低スペック環境では軽減
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
@@ -97,12 +98,16 @@ export default function TreeShadowBackground({
     }
 
     let time = 0
+    let isActive = true
 
     const animate = () => {
+      if (!isActive) return
+
       time += 0.008 // アニメーション速度
 
       layers.forEach((layer, index) => {
         const element = layer as HTMLElement
+        if (!element) return
 
         // 各レイヤーで異なる揺れのパラメータ
         const baseSpeed = 0.3 + index * 0.15
@@ -132,31 +137,32 @@ export default function TreeShadowBackground({
         element.style.opacity = String(opacityFluctuation)
       })
 
-      animationFrameRef.current = requestAnimationFrame(animate)
+      if (isActive) {
+        animationFrameRef.current = requestAnimationFrame(animate)
+      }
     }
 
     animate()
 
     return () => {
-      if (animationFrameRef.current) {
+      isActive = false
+      if (animationFrameRef.current !== undefined) {
         cancelAnimationFrame(animationFrameRef.current)
+        animationFrameRef.current = undefined
       }
     }
   }, [])
 
   // Calculate parallax transforms
-  const getParallaxStyle = (depth: number) => {
+  const getParallaxStyle = (depth: number): React.CSSProperties => {
     if (!enableParallax) return {}
 
     const mouseX = mousePosition.x * depth * 20
     const mouseY = mousePosition.y * depth * 20
     const scrollOffset = scrollY * depth * 0.2
 
+    // Use 3D transform for GPU acceleration (fallback handled by autoprefixer)
     return {
-      // Fallback for older browsers (2D transform)
-      // @ts-ignore
-      transform: `translate(${mouseX}px, ${mouseY + scrollOffset}px)`,
-      // Modern browsers (3D transform with GPU acceleration)
       transform: `translate3d(${mouseX}px, ${mouseY + scrollOffset}px, 0)`,
     }
   }
@@ -273,36 +279,41 @@ export default function TreeShadowBackground({
 
         /* Deep shadow layer - 少し濃くして存在感を強化 */
         .tree-shadow-deep :global(.tree-shadow-image) {
-          /* Fallback for browsers without mix-blend-mode support */
-          opacity: ${opacity.deep * 0.8};
-          /* Modern browsers with mix-blend-mode */
-          mix-blend-mode: overlay;
           opacity: ${opacity.deep};
-          /* Safari/older WebKit prefix for filter */
           -webkit-filter: blur(3px) contrast(1.15) brightness(0.94);
           filter: blur(3px) contrast(1.15) brightness(0.94);
         }
 
+        @supports (mix-blend-mode: overlay) {
+          .tree-shadow-deep :global(.tree-shadow-image) {
+            mix-blend-mode: overlay;
+          }
+        }
+
         /* Mid layer - soft-lightで柔らかく、少し濃く */
         .tree-shadow-mid :global(.tree-shadow-image) {
-          /* Fallback */
-          opacity: ${opacity.mid * 0.8};
-          /* Modern browsers */
-          mix-blend-mode: soft-light;
           opacity: ${opacity.mid};
           -webkit-filter: blur(5px) contrast(1.08) brightness(0.95);
           filter: blur(5px) contrast(1.08) brightness(0.95);
         }
 
+        @supports (mix-blend-mode: soft-light) {
+          .tree-shadow-mid :global(.tree-shadow-image) {
+            mix-blend-mode: soft-light;
+          }
+        }
+
         /* Light layer - 微妙に濃く */
         .tree-shadow-light :global(.tree-shadow-image) {
-          /* Fallback */
-          opacity: ${opacity.light * 0.8};
-          /* Modern browsers */
-          mix-blend-mode: soft-light;
           opacity: ${opacity.light};
           -webkit-filter: blur(8px) brightness(0.97) saturate(0.95);
           filter: blur(8px) brightness(0.97) saturate(0.95);
+        }
+
+        @supports (mix-blend-mode: soft-light) {
+          .tree-shadow-light :global(.tree-shadow-image) {
+            mix-blend-mode: soft-light;
+          }
         }
 
         /* 木漏れ日のパーティクル */
@@ -322,16 +333,23 @@ export default function TreeShadowBackground({
             rgba(247, 243, 237, 0.28) 60%,
             transparent 100%
           );
-          /* Safari/older WebKit prefix for filter */
+          opacity: 0.6;
           -webkit-filter: blur(8px);
           filter: blur(8px);
-          /* Fallback blend mode for older browsers */
-          opacity: 0.6;
-          /* Modern browsers with mix-blend-mode */
-          mix-blend-mode: screen;
-          opacity: 1;
           animation: sunlightFloat 12s ease-in-out infinite;
-          will-change: transform, opacity;
+        }
+
+        @supports (mix-blend-mode: screen) {
+          .sunlight-particle {
+            mix-blend-mode: screen;
+            opacity: 1;
+          }
+        }
+
+        @media (min-width: 769px) {
+          .sunlight-particle {
+            will-change: transform, opacity;
+          }
         }
 
         @keyframes sunlightFloat {
@@ -363,15 +381,17 @@ export default function TreeShadowBackground({
         .sunlight-spot {
           position: absolute;
           border-radius: 50%;
-          /* Safari/older WebKit prefix for filter */
+          opacity: 0.5;
           -webkit-filter: blur(60px);
           filter: blur(60px);
-          /* Fallback for older browsers */
-          opacity: 0.5;
-          /* Modern browsers with mix-blend-mode */
-          mix-blend-mode: screen;
-          opacity: 1;
           animation: sunlightPulse 18s ease-in-out infinite;
+        }
+
+        @supports (mix-blend-mode: screen) {
+          .sunlight-spot {
+            mix-blend-mode: screen;
+            opacity: 1;
+          }
         }
 
         .sunlight-spot-1 {
