@@ -267,7 +267,7 @@ export function HeroParallaxSection() {
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
   const [dynamicHeight, setDynamicHeight] = useState("200vh")
   const [isDesktop, setIsDesktop] = useState(false)
-  const [imageSetType, setImageSetType] = useState<'macbook' | 'wide'>('wide')
+  const [imageSetType, setImageSetType] = useState<'macbook' | 'wide'>('macbook')
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
@@ -421,7 +421,7 @@ export function HeroParallaxSection() {
             onSlideChange={(swiper) => setActiveSlideDesktop(swiper.realIndex)}
             key={imageSetType}
           >
-            {(imageSetType === 'macbook' ? heroImagesMacBook : heroImagesDesktopWide).map((image, index) => (
+            {heroImagesMacBook.map((image, index) => (
               <SwiperSlide key={image.id}>
                 <div className="relative h-full w-full overflow-hidden bg-black flex items-center justify-center">
                   <motion.div
@@ -450,7 +450,7 @@ export function HeroParallaxSection() {
                       src={image.url || "/placeholder.svg"}
                       alt={image.alt}
                       fill
-                      className={imageSetType === 'wide' ? 'object-cover object-center' : 'object-cover object-top'}
+                      className="object-cover object-top"
                       priority={image.id === 1 || image.id === 2}
                       quality={100}
                       sizes="100vw"
@@ -479,22 +479,14 @@ export function HeroParallaxSection() {
             >
               <div className="space-y-3 sm:space-y-3 md:space-y-4">
                 <h1
-                  className={`text-white font-serif font-light leading-[1.6] tracking-[0.08em] transition-all duration-300 ${
-                    imageSetType === 'wide'
-                      ? 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl'
-                      : 'text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl'
-                  }`}
+                  className="text-white text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light leading-[1.6] tracking-[0.08em]"
                   style={{ textShadow: "0 3px 16px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.95)" }}
                 >
                   北アルプス黒部源流
                 </h1>
 
                 <p
-                  className={`text-white/90 font-light font-sans uppercase tracking-[0.2em] sm:tracking-[0.25em] transition-all duration-300 ${
-                    imageSetType === 'wide'
-                      ? 'text-[11px] sm:text-xs md:text-sm lg:text-base'
-                      : 'text-[10px] sm:text-[10px] md:text-xs lg:text-sm'
-                  }`}
+                  className="text-white/90 text-[10px] sm:text-[10px] md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-light font-sans uppercase"
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.9)" }}
                 >
                   Northern Alps Kurobe Genryu
@@ -503,21 +495,13 @@ export function HeroParallaxSection() {
 
               <div className="space-y-3 sm:space-y-3 md:space-y-4 pt-3 sm:pt-3 md:pt-4">
                 <p
-                  className={`text-white/95 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
-                    imageSetType === 'wide'
-                      ? 'text-base sm:text-base md:text-lg lg:text-xl'
-                      : 'text-sm sm:text-sm md:text-base lg:text-lg'
-                  }`}
+                  className="text-white/95 text-sm sm:text-sm md:text-base lg:text-lg leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]"
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   北アルプス最奥、黒部源流の三つの山荘
                 </p>
                 <p
-                  className={`text-white/90 font-serif font-light leading-[1.8] sm:leading-[1.8] tracking-[0.04em] sm:tracking-[0.05em] transition-all duration-300 ${
-                    imageSetType === 'wide'
-                      ? 'text-sm sm:text-sm md:text-base lg:text-lg'
-                      : 'text-xs sm:text-xs md:text-sm lg:text-base'
-                  }`}
+                  className="text-white/90 text-xs sm:text-xs md:text-sm lg:text-base leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]"
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   原始と変わらぬ生態系が息づく場所。
