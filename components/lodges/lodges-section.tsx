@@ -63,7 +63,7 @@ export function LodgesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {lodgesData.map((lodge, index) => (
             <FadeInSection key={lodge.lodge} delay={index * 0.2}>
-              <Link href={`/lodges/${lodge.lodge}`}>
+              <Link href={lodge.lodge === 'mitsumata' ? '/mitsumata' : `/lodges/${lodge.lodge}`}>
                 <motion.article
                   whileHover={{ y: -6 }}
                   whileTap={{ scale: 0.98 }}
