@@ -110,10 +110,9 @@ export default function MitsumataPage() {
               className="space-y-6"
             >
               <h1
-                className="text-7xl md:text-8xl lg:text-9xl font-serif font-light text-white tracking-[0.15em]"
+                className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light text-white tracking-[0.08em]"
                 style={{
-                  textShadow: "0 4px 30px rgba(0,0,0,0.9), 0 2px 10px rgba(0,0,0,1)",
-                  letterSpacing: "0.2em"
+                  textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
                 }}
               >
                 三俣山荘
@@ -194,14 +193,16 @@ export default function MitsumataPage() {
         </motion.div>
       </section>
 
-      {/* イントロダクションセクション - 詩的なテキスト、大きな余白 */}
-      <section className="relative py-16 md:py-32 lg:py-40">
-        {/* 背景エフェクト */}
+      {/* 全コンテンツセクションを包む統一背景レイヤー */}
+      <div className="post-hero-content relative">
+        {/* 統一背景エフェクト */}
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="strong" animated={false} />
           <TreeShadowBackground intensity="subtle" enableParallax={true} />
         </div>
 
+        {/* イントロダクションセクション - 詩的なテキスト、大きな余白 */}
+        <section className="relative">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
             {/* 左側 - 大きな余白とキャッチコピー */}
@@ -266,12 +267,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 写真セクション1 - 左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-20 md:py-32">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* 写真 - 70% */}
@@ -319,12 +315,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 写真セクション2 - 右寄せ大判写真 + 左側テキスト */}
-      <section className="relative py-20 md:py-32 bg-stone-100/50">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="medium" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* テキスト - 30% (モバイルでは写真の下) */}
@@ -371,12 +362,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 宿泊料金セクション */}
-      <section className="relative py-16 md:py-32 lg:py-40">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           {/* セクションタイトル */}
           <FadeInSection>
@@ -683,12 +669,7 @@ export default function MitsumataPage() {
 
       {/* 料理ギャラリー - スクロール展開 */}
       {/* 1品目：左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-16 md:py-32 lg:py-40">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="subtle" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             {/* 写真 - 左寄せ */}
@@ -760,12 +741,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 2品目：右寄せ大判写真 + 左側テキスト */}
-      <section className="relative py-16 md:py-32 lg:py-40 bg-stone-50">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="medium" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             {/* テキスト - 左側（モバイルでは下） */}
@@ -837,12 +813,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 3品目：中央配置の正方形写真 */}
-      <section className="relative py-16 md:py-32 lg:py-40">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="subtle" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
           <div className="space-y-16 md:space-y-20">
             {/* 写真 - 中央配置 */}
@@ -908,12 +879,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* グッズセクション - 山荘の記憶を持ち帰る */}
-      <section className={`relative ${STYLES.spacing.section} bg-stone-50`}>
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="subtle" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           {/* セクションタイトル */}
           <FadeInSection>
@@ -1391,12 +1357,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 紹介テキスト - 横スクロールギャラリー */}
-      <section className="relative bg-white py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0 overflow-hidden">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <FadeInSection>
             <div className="max-w-3xl mx-auto mb-16 space-y-8">
@@ -1513,12 +1474,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 情報セクション - ミニマル表現 */}
-      <section className={`relative bg-stone-50 ${STYLES.spacing.section}`}>
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
             <FadeInSection delay={0.1}>
@@ -1590,12 +1546,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* ルート詳細 - アコーディオン形式 */}
-      <section className={`relative ${STYLES.spacing.section} bg-white`}>
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="subtle" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
           {/* イントロテキスト */}
           <FadeInSection>
@@ -1944,12 +1895,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* よくある質問セクション - 超ミニマル */}
-      <section className={`relative ${STYLES.spacing.section} bg-white`}>
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-3xl relative z-10">
           {/* セクション導入 */}
           <FadeInSection>
@@ -2101,12 +2047,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* CTAセクション - シンプルで余白たっぷり */}
-      <section className="relative py-32 md:py-40">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={false} />
-        </div>
-
+      <section className="relative py-0">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl text-center relative z-10">
           <FadeInSection>
             <div className="space-y-12">
@@ -2151,6 +2092,7 @@ export default function MitsumataPage() {
           </FadeInSection>
         </div>
       </section>
+      </div>
     </main>
   )
 }
