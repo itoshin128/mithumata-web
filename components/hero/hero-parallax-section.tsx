@@ -286,11 +286,8 @@ export function HeroParallaxSection() {
         return
       }
 
-      // 画面の高さに基づいてvh値を調整
-      // Windowsノートパソコン（高さが低い）では365vh
-      // MacBook等では200vh
-      const viewportHeight = window.innerHeight
-      const height = viewportHeight < 800 ? "365vh" : "200vh"
+      // すべてのデバイスで200vhに統一
+      const height = "200vh"
 
       setImageSetType('macbook')
       setDynamicHeight(height)
