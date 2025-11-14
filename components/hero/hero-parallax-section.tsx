@@ -286,17 +286,21 @@ export function HeroParallaxSection() {
       const aspectRatio = window.innerWidth / window.innerHeight
 
       // アスペクト比に基づいて画像セットを選択
-      // ratio < 2.5: 4:5縦長画像（タブレット + MacBook + Windowsノート）
-      // ratio >= 2.5: 1:1スクエア画像（ウルトラワイドモニター等）
+      // 幅1920px未満: 4:5縦長画像（タブレット + ノートパソコン全般）
+      // 幅1920px以上 かつ ratio >= 3.0: 1:1スクエア画像（ウルトラワイドモニター等）
       let imageType: 'macbook' | 'wide'
       let height: string
 
-      if (aspectRatio < 2.5) {
-        // タブレット + MacBook + Windowsノート：4:5縦長画像、200vhで統一
+      if (window.innerWidth < 1920) {
+        // タブレット + 全てのノートパソコン：4:5縦長画像、200vhで統一
+        imageType = 'macbook'
+        height = "200vh"
+      } else if (aspectRatio < 3.0) {
+        // 一般的なデスクトップモニター（FHD, QHD等）：4:5縦長画像
         imageType = 'macbook'
         height = "200vh"
       } else {
-        // ウルトラワイドモニター：1:1スクエア画像
+        // ウルトラワイドモニター（21:9等）：1:1スクエア画像
         imageType = 'wide'
         const optimalVh = Math.min(aspectRatio * 100, 220)
         height = `${Math.round(optimalVh)}vh`
