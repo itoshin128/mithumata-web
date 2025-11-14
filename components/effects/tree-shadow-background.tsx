@@ -28,6 +28,7 @@ export default function TreeShadowBackground({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [scrollY, setScrollY] = useState(0)
   const [lightParticles, setLightParticles] = useState<LightParticle[]>([])
+  const [isMobile, setIsMobile] = useState(false)
   const animationFrameRef = useRef<number | undefined>(undefined)
 
   // Intensity settings - より控えめで上品な透明度に調整
@@ -38,6 +39,20 @@ export default function TreeShadowBackground({
   }
 
   const opacity = opacityLevels[intensity]
+
+  // モバイル判定
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    // 初期チェック
+    checkMobile()
+
+    // リサイズ時にチェック
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // 木漏れ日のパーティクルを生成
   useEffect(() => {
@@ -147,6 +162,9 @@ export default function TreeShadowBackground({
     }
   }
 
+  // 使用する画像パス
+  const treeShadowImage = isMobile ? '/images/treeshadow_mobile.png' : '/images/tree-shadow.jpg'
+
   return (
     <div
       ref={containerRef}
@@ -161,7 +179,7 @@ export default function TreeShadowBackground({
         }}
       >
         <Image
-          src="/images/tree-shadow.jpg"
+          src={treeShadowImage}
           alt=""
           fill
           className="tree-shadow-image"
@@ -179,7 +197,7 @@ export default function TreeShadowBackground({
         }}
       >
         <Image
-          src="/images/tree-shadow.jpg"
+          src={treeShadowImage}
           alt=""
           fill
           className="tree-shadow-image"
@@ -197,7 +215,7 @@ export default function TreeShadowBackground({
         }}
       >
         <Image
-          src="/images/tree-shadow.jpg"
+          src={treeShadowImage}
           alt=""
           fill
           className="tree-shadow-image"
