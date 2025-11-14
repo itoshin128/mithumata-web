@@ -12,59 +12,91 @@
   /* Base Colors */
   /* 和紙背景色を参照 - 一元管理された--washi-bg-colorを使用 */
   --background: var(--washi-bg-color);
+  /* RGB fallback for older browsers, then OKLCH for modern browsers */
+  --foreground: #252525;
   --foreground: oklch(0.145 0 0);
 
   /* Card */
+  --card: #ffffff;
   --card: oklch(1 0 0);
+  --card-foreground: #252525;
   --card-foreground: oklch(0.145 0 0);
 
   /* Popover */
+  --popover: #ffffff;
   --popover: oklch(1 0 0);
+  --popover-foreground: #252525;
   --popover-foreground: oklch(0.145 0 0);
 
   /* Primary */
+  --primary: #343434;
   --primary: oklch(0.205 0 0);
+  --primary-foreground: #fbfbfb;
   --primary-foreground: oklch(0.985 0 0);
 
   /* Secondary */
+  --secondary: #f7f7f7;
   --secondary: oklch(0.97 0 0);
+  --secondary-foreground: #343434;
   --secondary-foreground: oklch(0.205 0 0);
 
   /* Muted */
+  --muted: #f7f7f7;
   --muted: oklch(0.97 0 0);
+  --muted-foreground: #8e8e8e;
   --muted-foreground: oklch(0.556 0 0);
 
   /* Accent */
+  --accent: #f7f7f7;
   --accent: oklch(0.97 0 0);
+  --accent-foreground: #343434;
   --accent-foreground: oklch(0.205 0 0);
 
   /* Destructive */
+  --destructive: #dc2626;
   --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: #dc2626;
   --destructive-foreground: oklch(0.577 0.245 27.325);
 
   /* Border & Input */
+  --border: #ebebeb;
   --border: oklch(0.922 0 0);
+  --input: #ebebeb;
   --input: oklch(0.922 0 0);
+  --ring: #b5b5b5;
   --ring: oklch(0.708 0 0);
 
   /* Chart Colors */
+  --chart-1: #f59e0b;
   --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: #3b82f6;
   --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: #6366f1;
   --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: #84cc16;
   --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: #eab308;
   --chart-5: oklch(0.769 0.188 70.08);
 
   /* Radius */
   --radius: 0.625rem;
 
   /* Sidebar */
+  --sidebar: #fbfbfb;
   --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: #252525;
   --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #343434;
   --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: #fbfbfb;
   --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: #f7f7f7;
   --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: #343434;
   --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: #ebebeb;
   --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: #b5b5b5;
   --sidebar-ring: oklch(0.708 0 0);
 
   /* Mountain Lodge Colors - 三俣山荘グループ */
@@ -98,37 +130,69 @@
 }
 
 .dark {
+  --background: #252525;
   --background: oklch(0.145 0 0);
+  --foreground: #fbfbfb;
   --foreground: oklch(0.985 0 0);
+  --card: #252525;
   --card: oklch(0.145 0 0);
+  --card-foreground: #fbfbfb;
   --card-foreground: oklch(0.985 0 0);
+  --popover: #252525;
   --popover: oklch(0.145 0 0);
+  --popover-foreground: #fbfbfb;
   --popover-foreground: oklch(0.985 0 0);
+  --primary: #fbfbfb;
   --primary: oklch(0.985 0 0);
+  --primary-foreground: #343434;
   --primary-foreground: oklch(0.205 0 0);
+  --secondary: #444444;
   --secondary: oklch(0.269 0 0);
+  --secondary-foreground: #fbfbfb;
   --secondary-foreground: oklch(0.985 0 0);
+  --muted: #444444;
   --muted: oklch(0.269 0 0);
+  --muted-foreground: #b5b5b5;
   --muted-foreground: oklch(0.708 0 0);
+  --accent: #444444;
   --accent: oklch(0.269 0 0);
+  --accent-foreground: #fbfbfb;
   --accent-foreground: oklch(0.985 0 0);
+  --destructive: #b91c1c;
   --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: #fca5a5;
   --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: #444444;
   --border: oklch(0.269 0 0);
+  --input: #444444;
   --input: oklch(0.269 0 0);
+  --ring: #707070;
   --ring: oklch(0.439 0 0);
+  --chart-1: #8b5cf6;
   --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: #10b981;
   --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: #eab308;
   --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: #d946ef;
   --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: #f97316;
   --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: #343434;
   --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: #fbfbfb;
   --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: #8b5cf6;
   --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: #fbfbfb;
   --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: #444444;
   --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: #fbfbfb;
   --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: #444444;
   --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: #707070;
   --sidebar-ring: oklch(0.439 0 0);
 }
 
@@ -315,9 +379,19 @@
     letter-spacing: 0.04em;
   }
 
-  /* Smooth Scrolling */
-  html {
-    scroll-behavior: smooth;
+  /* Smooth Scrolling - with browser support check */
+  @supports (scroll-behavior: smooth) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* For browsers that don't support scroll-behavior, JavaScript fallback will be used */
+  @supports not (scroll-behavior: smooth) {
+    html {
+      /* Fallback: instant scrolling */
+      scroll-behavior: auto;
+    }
   }
 
   /* Selection */
@@ -329,11 +403,18 @@
 @layer utilities {
   /* Text Balance for Headings */
   .text-balance {
+    /* Fallback for browsers that don't support text-wrap */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
     text-wrap: balance;
   }
 
   /* Text Pretty for Body */
   .text-pretty {
+    /* Fallback for browsers that don't support text-wrap */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
     text-wrap: pretty;
   }
 
