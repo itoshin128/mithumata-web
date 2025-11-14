@@ -832,6 +832,80 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* グッズセクション - ミニマル展示 */}
+      <section className="relative py-32 md:py-40 lg:py-48 bg-[#F8F8F6]">
+        <div className="container mx-auto px-4 max-w-7xl">
+          {/* セクションタイトル */}
+          <FadeInSection>
+            <div className="text-center mb-20 md:mb-28">
+              <h2
+                className="text-sm md:text-base font-sans font-extralight text-stone-500 uppercase tracking-[0.3em]"
+                style={{ letterSpacing: '0.3em' }}
+              >
+                Original Goods
+              </h2>
+            </div>
+          </FadeInSection>
+
+          {/* グッズグリッド */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+            {[
+              { id: 1, name: 'オリジナルタオル', image: '/images/lodges/mitsumata-1.jpg' },
+              { id: 2, name: 'マグカップ', image: '/images/lodges/mitsumata-2.jpg' },
+              { id: 3, name: 'ステッカー', image: '/images/lodges/mitsumata-3.jpg' },
+              { id: 4, name: 'トートバッグ', image: '/images/lodges/mitsumata-1.jpg' },
+              { id: 5, name: 'バンダナ', image: '/images/lodges/mitsumata-2.jpg' },
+              { id: 6, name: '手ぬぐい', image: '/images/lodges/mitsumata-3.jpg' },
+              { id: 7, name: 'ピンバッジ', image: '/images/lodges/mitsumata-1.jpg' },
+              { id: 8, name: 'キーホルダー', image: '/images/lodges/mitsumata-2.jpg' },
+            ].map((item, index) => (
+              <FadeInSection key={item.id} delay={index * 0.05}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="group relative aspect-square overflow-hidden bg-white cursor-pointer"
+                >
+                  {/* 商品画像 */}
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    style={{ filter: 'saturate(0.8) brightness(1.05)' }}
+                    quality={85}
+                  />
+
+                  {/* ホバー時のオーバーレイと商品名 */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      whileHover={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    >
+                      <p className="text-white text-sm md:text-base font-serif font-light tracking-[0.1em]">
+                        {item.name}
+                      </p>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+            ))}
+          </div>
+
+          {/* 注釈 */}
+          <FadeInSection delay={0.5}>
+            <div className="mt-16 md:mt-20 text-center">
+              <p className="text-xs md:text-sm font-sans font-light text-stone-500 tracking-[0.15em]">
+                詳細はお問い合わせください
+              </p>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
       {/* CTAセクション - シンプルで余白たっぷり */}
       <section className="relative py-32 md:py-40">
         <div className="absolute inset-0 z-0">
