@@ -84,9 +84,19 @@ export default function TreeShadowBackground({
 
   // 風による揺れのアニメーション
   useEffect(() => {
-    let time = 0
     const layers = containerRef.current?.querySelectorAll('.tree-shadow-layer')
     if (!layers) return
+
+    // パフォーマンス最適化: モバイルデバイスや低スペック環境では軽減
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (isMobile || reducedMotion) {
+      // モバイルやprefers-reduced-motionではアニメーションを無効化
+      return
+    }
+
+    let time = 0
 
     const animate = () => {
       time += 0.008 // アニメーション速度
@@ -143,6 +153,10 @@ export default function TreeShadowBackground({
     const scrollOffset = scrollY * depth * 0.2
 
     return {
+      // Fallback for older browsers (2D transform)
+      // @ts-ignore
+      transform: `translate(${mouseX}px, ${mouseY + scrollOffset}px)`,
+      // Modern browsers (3D transform with GPU acceleration)
       transform: `translate3d(${mouseX}px, ${mouseY + scrollOffset}px, 0)`,
     }
   }
@@ -259,23 +273,36 @@ export default function TreeShadowBackground({
 
         /* Deep shadow layer - 少し濃くして存在感を強化 */
         .tree-shadow-deep :global(.tree-shadow-image) {
+          /* Fallback for browsers without mix-blend-mode support */
+          opacity: ${opacity.deep * 0.8};
+          /* Modern browsers with mix-blend-mode */
           mix-blend-mode: overlay;
-          filter: blur(3px) contrast(1.15) brightness(0.94);
           opacity: ${opacity.deep};
+          /* Safari/older WebKit prefix for filter */
+          -webkit-filter: blur(3px) contrast(1.15) brightness(0.94);
+          filter: blur(3px) contrast(1.15) brightness(0.94);
         }
 
         /* Mid layer - soft-lightで柔らかく、少し濃く */
         .tree-shadow-mid :global(.tree-shadow-image) {
+          /* Fallback */
+          opacity: ${opacity.mid * 0.8};
+          /* Modern browsers */
           mix-blend-mode: soft-light;
-          filter: blur(5px) contrast(1.08) brightness(0.95);
           opacity: ${opacity.mid};
+          -webkit-filter: blur(5px) contrast(1.08) brightness(0.95);
+          filter: blur(5px) contrast(1.08) brightness(0.95);
         }
 
         /* Light layer - 微妙に濃く */
         .tree-shadow-light :global(.tree-shadow-image) {
+          /* Fallback */
+          opacity: ${opacity.light * 0.8};
+          /* Modern browsers */
           mix-blend-mode: soft-light;
-          filter: blur(8px) brightness(0.97) saturate(0.95);
           opacity: ${opacity.light};
+          -webkit-filter: blur(8px) brightness(0.97) saturate(0.95);
+          filter: blur(8px) brightness(0.97) saturate(0.95);
         }
 
         /* 木漏れ日のパーティクル */
@@ -295,8 +322,14 @@ export default function TreeShadowBackground({
             rgba(247, 243, 237, 0.28) 60%,
             transparent 100%
           );
+          /* Safari/older WebKit prefix for filter */
+          -webkit-filter: blur(8px);
           filter: blur(8px);
+          /* Fallback blend mode for older browsers */
+          opacity: 0.6;
+          /* Modern browsers with mix-blend-mode */
           mix-blend-mode: screen;
+          opacity: 1;
           animation: sunlightFloat 12s ease-in-out infinite;
           will-change: transform, opacity;
         }
@@ -330,8 +363,14 @@ export default function TreeShadowBackground({
         .sunlight-spot {
           position: absolute;
           border-radius: 50%;
+          /* Safari/older WebKit prefix for filter */
+          -webkit-filter: blur(60px);
           filter: blur(60px);
+          /* Fallback for older browsers */
+          opacity: 0.5;
+          /* Modern browsers with mix-blend-mode */
           mix-blend-mode: screen;
+          opacity: 1;
           animation: sunlightPulse 18s ease-in-out infinite;
         }
 
@@ -397,7 +436,18 @@ export default function TreeShadowBackground({
             height: 110%;
           }
 
+          /* モバイルでは軽量化 */
+          .tree-shadow-deep :global(.tree-shadow-image),
+          .tree-shadow-mid :global(.tree-shadow-image),
+          .tree-shadow-light :global(.tree-shadow-image) {
+            /* モバイルではフィルターを軽減 */
+            -webkit-filter: blur(2px);
+            filter: blur(2px);
+            will-change: auto;
+          }
+
           .sunlight-spot {
+            -webkit-filter: blur(40px);
             filter: blur(40px);
           }
 
@@ -406,6 +456,11 @@ export default function TreeShadowBackground({
           .sunlight-spot-3 {
             width: 250px;
             height: 250px;
+          }
+
+          .sunlight-particle {
+            /* モバイルではパーティクルを軽減 */
+            display: none;
           }
         }
 

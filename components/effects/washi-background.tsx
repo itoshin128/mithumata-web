@@ -16,6 +16,15 @@ export function WashiBackground({ className = "", intensity = "medium", animated
     if (!animated) return
     if (!grainLayerRef.current || !colorLayerRef.current) return
 
+    // パフォーマンス最適化: モバイルデバイスではアニメーションを軽減
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+    const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (isMobile || reducedMotion) {
+      // モバイルやprefers-reduced-motionではアニメーションを無効化
+      return
+    }
+
     let animationFrameId: number
     let time = 0
 
@@ -79,6 +88,9 @@ export function WashiBackground({ className = "", intensity = "medium", animated
         className="absolute inset-0"
         style={{
           opacity: config.grain,
+          // @ts-ignore - CSS cascade fallback for older browsers
+          mixBlendMode: "normal",
+          // Modern browsers
           mixBlendMode: "multiply",
           backgroundImage: `
             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='ultrafine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.8' numOctaves='7' seed='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.06 0.12 0.20'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23ultrafine)' fill='%23000'/%3E%3C/svg%3E"),
@@ -127,6 +139,9 @@ export function WashiBackground({ className = "", intensity = "medium", animated
         className="absolute inset-0"
         style={{
           opacity: config.color,
+          // @ts-ignore - CSS cascade fallback for older browsers
+          mixBlendMode: "normal",
+          // Modern browsers
           mixBlendMode: "overlay",
           backgroundImage: `
             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'%3E%3Cfilter id='warmth1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='4' seed='37'/%3E%3CfeGaussianBlur stdDeviation='30'/%3E%3CfeColorMatrix values='0 0 0 0 0.55, 0 0 0 0 0.45, 0 0 0 0 0.35, 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='1200' height='1200' filter='url(%23warmth1)' fill='%23d4a373'/%3E%3C/svg%3E"),
