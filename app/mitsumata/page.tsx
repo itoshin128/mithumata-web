@@ -13,34 +13,49 @@ import 'swiper/css/free-mode'
 import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus } from 'lucide-react'
 import * as Accordion from '@radix-ui/react-accordion'
 
-// デザインシステム - 一貫性のあるスタイルガイド
+// デザインシステム - トップページ準拠の統一ルール
 const STYLES = {
-  // セクションタイトルの階層
+  // セクションタイトルの階層（トップページと完全統一）
   title: {
-    hero: "text-8xl md:text-9xl lg:text-[12rem] font-serif font-light tracking-[0.15em]",
-    major: "text-6xl md:text-7xl lg:text-8xl font-serif font-light tracking-[0.15em]",
-    standard: "text-4xl md:text-5xl lg:text-6xl font-serif font-light tracking-[0.08em]",
-    minor: "text-3xl md:text-4xl font-serif font-light tracking-[0.08em]",
-    label: "text-xs md:text-sm font-sans font-light uppercase tracking-[0.3em]",
+    hero: "text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light leading-[1.6] tracking-[0.08em]",
+    section: "text-xl md:text-2xl lg:text-3xl font-serif font-light tracking-[0.08em] leading-[1.6]",
+    subsection: "text-lg md:text-xl font-serif font-light tracking-[0.04em] leading-[1.6]",
+    card: "text-base md:text-lg lg:text-xl font-serif font-light tracking-[0.06em] leading-[1.6]",
+    label: "text-xs sm:text-[10px] md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-light font-sans uppercase",
   },
-  // 装飾線の種類
-  divider: {
-    title: "h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent",
-    overlay: "h-[1px] bg-gradient-to-r from-transparent via-white/70 to-transparent",
-  },
-  // セクション余白
+  // セクション余白（トップページと統一）
   spacing: {
-    standard: "py-24 md:py-32 lg:py-40",
-    emphasis: "py-32 md:py-40 lg:py-48",
+    section: "py-16 md:py-32 lg:py-40",
+    container: "px-6 md:px-12 lg:px-20",
+    mb: {
+      header: "mb-16 md:mb-20 lg:mb-24",
+      content: "mb-24 md:mb-28 lg:mb-32",
+    }
   },
-  // テキストスタイル
+  // テキストスタイル（トップページと統一）
   text: {
-    body: "text-base md:text-lg font-serif font-light leading-[2] tracking-[0.04em]",
-    bodySecondary: "text-sm md:text-base font-serif font-light leading-[2] tracking-[0.04em]",
-    caption: "text-sm md:text-base font-serif font-light text-stone-600 tracking-[0.05em] leading-[2]",
-    poetic: "text-lg md:text-xl font-serif font-light leading-[2.2] tracking-[0.04em]",
+    hero: "text-base sm:text-sm md:text-base lg:text-lg leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]",
+    body: "text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light",
+    caption: "text-xs md:text-sm text-gray-500 font-serif font-light tracking-wider",
   }
 } as const
+
+// 装飾線コンポーネント（トップページと統一）
+function SectionDivider() {
+  return (
+    <div className="flex items-center justify-center my-16 md:my-20 lg:my-24">
+      <div className="flex items-center gap-4">
+        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
+        <div className="flex gap-2">
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-40"></div>
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-60"></div>
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-80"></div>
+        </div>
+        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
+      </div>
+    </div>
+  )
+}
 
 export default function MitsumataPage() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -180,14 +195,14 @@ export default function MitsumataPage() {
       </section>
 
       {/* イントロダクションセクション - 詩的なテキスト、大きな余白 */}
-      <section className="relative py-32 md:py-40 lg:py-48">
+      <section className="relative py-16 md:py-32 lg:py-40">
         {/* 背景エフェクト */}
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="strong" animated={false} />
           <TreeShadowBackground intensity="subtle" enableParallax={true} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-6xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
             {/* 左側 - 大きな余白とキャッチコピー */}
             <div className="lg:col-span-5">
@@ -199,7 +214,7 @@ export default function MitsumataPage() {
                   viewport={{ once: true, margin: "-100px" }}
                   className="space-y-8"
                 >
-                  <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 leading-[1.5] tracking-[0.08em]">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 leading-[1.5] tracking-[0.08em]">
                     源流に
                     <br />
                     たたずむ
@@ -252,7 +267,7 @@ export default function MitsumataPage() {
 
       {/* 写真セクション1 - 左寄せ大判写真 + 右側テキスト */}
       <section className="relative py-20 md:py-32">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* 写真 - 70% */}
             <div className="lg:col-span-7">
@@ -304,7 +319,7 @@ export default function MitsumataPage() {
           <WashiBackground intensity="medium" animated={false} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* テキスト - 30% (モバイルでは写真の下) */}
             <div className="lg:col-span-5 order-2 lg:order-1">
@@ -350,17 +365,17 @@ export default function MitsumataPage() {
       </section>
 
       {/* 宿泊料金セクション */}
-      <section className="relative py-32 md:py-40 lg:py-48">
+      <section className="relative py-16 md:py-32 lg:py-40">
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="strong" animated={false} />
           <TreeShadowBackground intensity="subtle" enableParallax={true} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           {/* セクションタイトル */}
           <FadeInSection>
             <div className="text-center mb-20 md:mb-24 space-y-6">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 tracking-[0.08em]">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.08em]">
                 宿泊料金
               </h2>
 
@@ -662,12 +677,12 @@ export default function MitsumataPage() {
 
       {/* 料理ギャラリー - スクロール展開 */}
       {/* 1品目：左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-32 md:py-40 lg:py-48">
+      <section className="relative py-16 md:py-32 lg:py-40">
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="subtle" animated={false} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             {/* 写真 - 左寄せ */}
             <div className="lg:col-span-7">
@@ -738,13 +753,13 @@ export default function MitsumataPage() {
       </section>
 
       {/* 2品目：右寄せ大判写真 + 左側テキスト */}
-      <section className="relative py-32 md:py-40 lg:py-48 bg-stone-50">
+      <section className="relative py-16 md:py-32 lg:py-40 bg-stone-50">
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="medium" animated={false} />
           <TreeShadowBackground intensity="subtle" enableParallax={true} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             {/* テキスト - 左側（モバイルでは下） */}
             <div className="lg:col-span-5 order-2 lg:order-1">
@@ -815,12 +830,12 @@ export default function MitsumataPage() {
       </section>
 
       {/* 3品目：中央配置の正方形写真 */}
-      <section className="relative py-32 md:py-40 lg:py-48">
+      <section className="relative py-16 md:py-32 lg:py-40">
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="subtle" animated={false} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
           <div className="space-y-16 md:space-y-20">
             {/* 写真 - 中央配置 */}
             <FadeInSection>
@@ -885,28 +900,22 @@ export default function MitsumataPage() {
       </section>
 
       {/* グッズセクション - 山荘の記憶を持ち帰る */}
-      <section className={`relative ${STYLES.spacing.standard} bg-stone-50`}>
+      <section className={`relative ${STYLES.spacing.section} bg-stone-50`}>
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="subtle" animated={false} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           {/* セクションタイトル */}
           <FadeInSection>
             <div className="text-center mb-24 md:mb-32 space-y-6">
-              <h2 className={`${STYLES.title.standard} text-stone-800`}>
+              <h2 className={`${STYLES.title.section} text-stone-800`}>
                 山荘の記憶を
                 <br className="md:hidden" />
                 持ち帰る
               </h2>
 
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "4rem" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-                className={STYLES.divider.title + " mx-auto"}
-              />
+              <SectionDivider />
 
               <p className={`${STYLES.text.caption} text-stone-600 max-w-2xl mx-auto`}>
                 三俣山荘での時間を、日常へ。
@@ -1038,7 +1047,7 @@ export default function MitsumataPage() {
 
       {/* ストーリー展開 - 画面1：朝靄の源流 */}
       <section className="relative min-h-screen bg-stone-50">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
             {/* 左側60% - 写真 */}
             <div className="lg:col-span-7 relative h-screen lg:sticky lg:top-0">
@@ -1094,7 +1103,7 @@ export default function MitsumataPage() {
                   className="space-y-12 px-6 lg:px-12"
                 >
                   <div className="space-y-8">
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 tracking-[0.1em] leading-[1.5]">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.1em] leading-[1.5]">
                       原始の
                       <br />
                       水景
@@ -1135,7 +1144,7 @@ export default function MitsumataPage() {
 
       {/* ストーリー展開 - 画面2：原生林 */}
       <section className="relative min-h-screen bg-gradient-to-b from-stone-50 to-stone-100">
-        <div className="container mx-auto px-4 max-w-7xl py-20 lg:py-32">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl py-20 lg:py-32">
           <div className="space-y-16 lg:space-y-24">
             {/* 上部70% - パノラマ写真 */}
             <FadeInSection>
@@ -1189,7 +1198,7 @@ export default function MitsumataPage() {
                 className="max-w-4xl mx-auto text-center space-y-12"
               >
                 <div className="space-y-6">
-                  <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 tracking-[0.1em]">
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.1em]">
                     手つかずの森
                   </h3>
 
@@ -1219,7 +1228,7 @@ export default function MitsumataPage() {
 
       {/* ストーリー展開 - 画面3：清流のクローズアップ */}
       <section className="relative min-h-screen bg-stone-50">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
             {/* 左側60% - 説明文 */}
             <div className="lg:col-span-7 py-20 lg:py-32 order-2 lg:order-1">
@@ -1232,7 +1241,7 @@ export default function MitsumataPage() {
                   className="space-y-12 px-6 lg:px-16"
                 >
                   <div className="space-y-8">
-                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 tracking-[0.1em] leading-[1.5]">
+                    <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.1em] leading-[1.5]">
                       透明度
                       <br />
                       100%の水
@@ -1359,7 +1368,7 @@ export default function MitsumataPage() {
 
       {/* 紹介テキスト - 横スクロールギャラリー */}
       <section className="relative bg-white py-24 md:py-32 overflow-hidden">
-        <div className="container mx-auto px-4 max-w-7xl">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
           <FadeInSection>
             <div className="max-w-3xl mx-auto mb-16 space-y-8">
               <p className="text-lg md:text-xl leading-[2.5] font-serif font-light text-stone-700 tracking-[0.04em]">
@@ -1475,8 +1484,8 @@ export default function MitsumataPage() {
       </section>
 
       {/* 情報セクション - ミニマル表現 */}
-      <section className={`relative bg-stone-50 ${STYLES.spacing.standard}`}>
-        <div className="container mx-auto px-4 max-w-5xl">
+      <section className={`relative bg-stone-50 ${STYLES.spacing.section}`}>
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
             <FadeInSection delay={0.1}>
               <div className="space-y-6">
@@ -1537,28 +1546,22 @@ export default function MitsumataPage() {
         <div className="relative h-full flex items-center justify-center z-10">
           <FadeInSection>
             <div className="text-center space-y-6">
-              <h2 className={`${STYLES.title.major} text-white`}>
+              <h2 className={`${STYLES.title.section} text-white`}>
                 Access
               </h2>
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "4rem" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-                className={STYLES.divider.overlay + " mx-auto"}
-              />
+              <SectionDivider />
             </div>
           </FadeInSection>
         </div>
       </section>
 
       {/* ルート詳細 - アコーディオン形式 */}
-      <section className={`relative ${STYLES.spacing.standard} bg-white`}>
+      <section className={`relative ${STYLES.spacing.section} bg-white`}>
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="subtle" animated={false} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-6xl relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
           {/* イントロテキスト */}
           <FadeInSection>
             <div className="text-center mb-24 md:mb-32 space-y-6">
@@ -1906,25 +1909,19 @@ export default function MitsumataPage() {
       </section>
 
       {/* よくある質問セクション - 超ミニマル */}
-      <section className={`relative ${STYLES.spacing.standard} bg-white`}>
-        <div className="container mx-auto px-4 max-w-3xl">
+      <section className={`relative ${STYLES.spacing.section} bg-white`}>
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-3xl">
           {/* セクション導入 */}
           <FadeInSection>
             <div className="text-center mb-24 md:mb-32 space-y-6">
               <p className={`${STYLES.title.label} text-stone-400`}>
                 FAQ
               </p>
-              <h2 className={`${STYLES.title.standard} text-stone-800`}>
+              <h2 className={`${STYLES.title.section} text-stone-800`}>
                 よくある質問
               </h2>
 
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "4rem" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-                className={STYLES.divider.title + " mx-auto"}
-              />
+              <SectionDivider />
             </div>
           </FadeInSection>
 
@@ -2069,7 +2066,7 @@ export default function MitsumataPage() {
           <TreeShadowBackground intensity="subtle" enableParallax={false} />
         </div>
 
-        <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl text-center relative z-10">
           <FadeInSection>
             <div className="space-y-12">
               <div className="space-y-6">
