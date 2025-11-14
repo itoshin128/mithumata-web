@@ -80,7 +80,7 @@ const ReservationButton = memo(() => {
             px-6 py-4
             rounded-full
             transition-all duration-300
-            flex items-center justify-center gap-2
+            flex items-center justify-center
           "
           style={{
             backgroundColor: "rgba(255, 255, 255, 0.12)",
@@ -94,9 +94,6 @@ const ReservationButton = memo(() => {
         >
           <span className="text-base font-serif font-medium tracking-wider">
             予約
-          </span>
-          <span className="text-sm opacity-60">
-            →
           </span>
         </motion.button>
       </motion.div>
