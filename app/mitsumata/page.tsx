@@ -548,6 +548,290 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* 食事セクション - ビジュアル重視 */}
+      {/* 導入セクション（100vh） */}
+      <section className="relative h-screen overflow-hidden">
+        {/* 背景写真 */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/lodges/mitsumata-3.jpg"
+            alt="三俣山荘の食事"
+            fill
+            className="object-cover"
+            style={{ filter: 'brightness(0.6) saturate(0.9)' }}
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
+        </div>
+
+        {/* コンテンツ */}
+        <div className="relative h-full flex flex-col items-center justify-center z-10">
+          <FadeInSection>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true }}
+              className="text-center space-y-12"
+            >
+              {/* 縦書き風のタイトル */}
+              <h2
+                className="text-8xl md:text-9xl font-serif font-light text-white tracking-[0.3em]"
+                style={{
+                  textShadow: "0 4px 40px rgba(0,0,0,0.9), 0 2px 15px rgba(0,0,0,1)",
+                  writingMode: 'vertical-rl' as const,
+                  textOrientation: 'upright' as const,
+                  margin: '0 auto'
+                }}
+              >
+                食事
+              </h2>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="flex items-center justify-center gap-4"
+              >
+                <div className="h-[1px] w-12 bg-white/60" />
+                <p
+                  className="text-sm md:text-base font-sans text-white/90 tracking-[0.3em] uppercase"
+                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
+                >
+                  Mountain Cuisine
+                </p>
+                <div className="h-[1px] w-12 bg-white/60" />
+              </motion.div>
+            </motion.div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* 料理ギャラリー - スクロール展開 */}
+      {/* 1品目：左寄せ大判写真 + 右側テキスト */}
+      <section className="relative py-32 md:py-40 lg:py-48">
+        <div className="absolute inset-0 z-0">
+          <WashiBackground intensity="subtle" animated={false} />
+        </div>
+
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* 写真 - 左寄せ */}
+            <div className="lg:col-span-7">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-150px" }}
+                  className="relative aspect-[5/4] overflow-hidden shadow-2xl"
+                >
+                  <motion.div
+                    initial={{ scale: 1.1 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 2, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    className="w-full h-full"
+                  >
+                    <Image
+                      src="/images/lodges/mitsumata-2.jpg"
+                      alt="鹿肉のジビエシチュー"
+                      fill
+                      className="object-cover"
+                      style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                      quality={95}
+                    />
+                  </motion.div>
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* テキスト - 右側 */}
+            <div className="lg:col-span-5">
+              <FadeInSection delay={0.3}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="space-y-8"
+                >
+                  <div className="space-y-4">
+                    <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.4]">
+                      鹿肉の
+                      <br />
+                      ジビエシチュー
+                    </h3>
+
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "3rem" }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                      viewport={{ once: true }}
+                      className="h-[1px] bg-gradient-to-r from-stone-400 to-stone-200"
+                    />
+                  </div>
+
+                  <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    北アルプスの大自然で育った鹿肉を、
+                    じっくりと煮込んだ三俣山荘の名物料理。
+                    深いコクと柔らかな食感が特徴です。
+                  </p>
+                </motion.div>
+              </FadeInSection>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2品目：右寄せ大判写真 + 左側テキスト */}
+      <section className="relative py-32 md:py-40 lg:py-48 bg-stone-50">
+        <div className="absolute inset-0 z-0">
+          <WashiBackground intensity="medium" animated={false} />
+          <TreeShadowBackground intensity="subtle" enableParallax={true} />
+        </div>
+
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* テキスト - 左側（モバイルでは下） */}
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <FadeInSection delay={0.3}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="space-y-8"
+                >
+                  <div className="space-y-4">
+                    <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.4]">
+                      三俣
+                      <br />
+                      オリジナルカレー
+                    </h3>
+
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "3rem" }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                      viewport={{ once: true }}
+                      className="h-[1px] bg-gradient-to-r from-stone-400 to-stone-200"
+                    />
+                  </div>
+
+                  <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    スパイスの香りが食欲をそそる、
+                    山荘特製のカレー。
+                    標高2,677mで味わう格別の一皿。
+                  </p>
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* 写真 - 右寄せ */}
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-150px" }}
+                  className="relative aspect-[5/4] overflow-hidden shadow-2xl"
+                >
+                  <motion.div
+                    initial={{ scale: 1.1 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 2, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    className="w-full h-full"
+                  >
+                    <Image
+                      src="/images/lodges/mitsumata-1.jpg"
+                      alt="三俣オリジナルカレー"
+                      fill
+                      className="object-cover"
+                      style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                      quality={95}
+                    />
+                  </motion.div>
+                </motion.div>
+              </FadeInSection>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3品目：中央配置の正方形写真 */}
+      <section className="relative py-32 md:py-40 lg:py-48">
+        <div className="absolute inset-0 z-0">
+          <WashiBackground intensity="subtle" animated={false} />
+        </div>
+
+        <div className="container mx-auto px-4 max-w-5xl relative z-10">
+          <div className="space-y-16 md:space-y-20">
+            {/* 写真 - 中央配置 */}
+            <FadeInSection>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-150px" }}
+                className="relative aspect-square overflow-hidden shadow-2xl mx-auto max-w-3xl"
+              >
+                <motion.div
+                  initial={{ scale: 1.1 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 2, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                  className="w-full h-full"
+                >
+                  <Image
+                    src="/images/lodges/mitsumata-3.jpg"
+                    alt="山小屋の朝食"
+                    fill
+                    className="object-cover"
+                    style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                    quality={95}
+                  />
+                </motion.div>
+              </motion.div>
+            </FadeInSection>
+
+            {/* テキスト - 中央配置 */}
+            <FadeInSection delay={0.3}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="text-center space-y-8 max-w-2xl mx-auto"
+              >
+                <div className="space-y-4">
+                  <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em]">
+                    山小屋の朝食
+                  </h3>
+
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "3rem" }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    viewport={{ once: true }}
+                    className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
+                  />
+                </div>
+
+                <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                  槍ヶ岳を望む展望食堂で、
+                  心と体を満たす朝食を。
+                  新しい一日の始まりを迎えます。
+                </p>
+              </motion.div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
       {/* CTAセクション - シンプルで余白たっぷり */}
       <section className="relative py-32 md:py-40">
         <div className="absolute inset-0 z-0">
