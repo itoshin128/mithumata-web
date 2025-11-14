@@ -75,24 +75,25 @@ const ReservationButton = memo(() => {
           transition={{ duration: 0.2 }}
           onClick={handleClick}
           className="
-            bg-white
+            backdrop-blur-md
             text-black
-            px-8 py-5
+            px-6 py-4
             rounded-full
-            backdrop-blur-sm
-            shadow-[0_4px_24px_rgba(0,0,0,0.15)]
-            active:shadow-[0_2px_16px_rgba(0,0,0,0.2)]
-            border-2 border-mitsumata-primary/20
-            transition-shadow duration-200
-            flex items-center justify-center gap-2.5
-            min-w-[140px]
+            transition-all duration-300
+            flex items-center justify-center
           "
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.12)",
+            border: "1.5px solid rgba(255, 255, 255, 0.3)",
+            boxShadow: `
+              0 4px 16px rgba(0, 0, 0, 0.08),
+              0 1px 3px rgba(0, 0, 0, 0.12),
+              inset 0 1px 2px rgba(255, 255, 255, 0.4)
+            `,
+          }}
         >
           <span className="text-base font-serif font-medium tracking-wider">
-            予約する
-          </span>
-          <span className="text-sm opacity-60">
-            →
+            予約
           </span>
         </motion.button>
       </motion.div>
