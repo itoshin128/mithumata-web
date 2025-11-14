@@ -9,13 +9,21 @@ import TreeShadowBackground from "@/components/effects/tree-shadow-background"
 
 export default function MitsumataPage() {
   const heroRef = useRef<HTMLDivElement>(null)
+  const kurobeRef = useRef<HTMLDivElement>(null)
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   })
 
+  const { scrollYProgress: kurobeScrollProgress } = useScroll({
+    target: kurobeRef,
+    offset: ["start start", "end start"]
+  })
+
   const y = useTransform(scrollYProgress, [0, 1], [0, 400])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const kurobeOpacity = useTransform(kurobeScrollProgress, [0, 0.3], [1, 0])
 
   return (
     <main className="min-h-screen bg-stone-50">
@@ -903,6 +911,354 @@ export default function MitsumataPage() {
               </p>
             </div>
           </FadeInSection>
+        </div>
+      </section>
+
+      {/* 黒部源流セクション - 壮大なストーリーテリング */}
+      {/* オープニング（100vh） */}
+      <section ref={kurobeRef} className="relative h-screen overflow-hidden">
+        {/* 背景写真 */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/lodges/mitsumata-1.jpg"
+            alt="黒部源流"
+            fill
+            className="object-cover"
+            style={{ filter: 'brightness(0.5) saturate(1.1)' }}
+            quality={95}
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </div>
+
+        {/* タイトル - スクロールで透明化 */}
+        <motion.div
+          className="relative h-full flex items-center justify-center z-10"
+          style={{
+            opacity: kurobeOpacity
+          }}
+        >
+          <FadeInSection>
+            <motion.h2
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-8xl md:text-9xl lg:text-[12rem] font-serif font-light text-white tracking-[0.15em]"
+              style={{
+                textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)",
+                fontFeatureSettings: "'palt' 1"
+              }}
+            >
+              黒部源流
+            </motion.h2>
+          </FadeInSection>
+        </motion.div>
+
+        {/* スクロールインジケーター */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20"
+        >
+          <motion.div
+            animate={{ y: [0, 15, 0] }}
+            transition={{
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="text-white/70 text-xs tracking-[0.3em] uppercase"
+          >
+            Scroll to Explore
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* ストーリー展開 - 画面1：朝靄の源流 */}
+      <section className="relative min-h-screen bg-stone-50">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
+            {/* 左側60% - 写真 */}
+            <div className="lg:col-span-7 relative h-screen lg:sticky lg:top-0">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: -60 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-200px" }}
+                  className="relative h-full w-full"
+                >
+                  <motion.div
+                    initial={{ scale: 1.15 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 2.5, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    className="h-full w-full"
+                  >
+                    <Image
+                      src="/images/lodges/mitsumata-2.jpg"
+                      alt="朝靄に包まれる黒部源流"
+                      fill
+                      className="object-cover"
+                      style={{ filter: 'saturate(0.9) brightness(0.92)' }}
+                      quality={95}
+                    />
+                  </motion.div>
+
+                  {/* 微細なアニメーション - 霧のエフェクト */}
+                  <motion.div
+                    animate={{
+                      opacity: [0.3, 0.5, 0.3],
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/5 pointer-events-none"
+                  />
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* 右側40% - 縦書きテキスト */}
+            <div className="lg:col-span-5 py-20 lg:py-32">
+              <FadeInSection delay={0.4}>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.4, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-150px" }}
+                  className="space-y-12 px-6 lg:px-12"
+                >
+                  <div className="space-y-8">
+                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 tracking-[0.1em] leading-[1.5]">
+                      原始の
+                      <br />
+                      水景
+                    </h3>
+
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "4rem" }}
+                      transition={{ duration: 1, delay: 0.8 }}
+                      viewport={{ once: true }}
+                      className="h-[2px] bg-gradient-to-r from-stone-700 via-stone-400 to-transparent"
+                    />
+                  </div>
+
+                  <div className="space-y-6">
+                    <p className="text-xl md:text-2xl leading-[2.2] font-serif font-light text-stone-700 tracking-[0.05em]">
+                      標高2,600m。
+                      <br />
+                      ここは黒部川の始まりの地。
+                    </p>
+
+                    <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                      朝靄が立ち込める静寂の中、
+                      <br />
+                      清冽な水が岩肌を滑り落ちる。
+                      <br />
+                      太古から変わらぬ、
+                      <br />
+                      命の源流がここにある。
+                    </p>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ストーリー展開 - 画面2：原生林 */}
+      <section className="relative min-h-screen bg-gradient-to-b from-stone-50 to-stone-100">
+        <div className="container mx-auto px-4 max-w-7xl py-20 lg:py-32">
+          <div className="space-y-16 lg:space-y-24">
+            {/* 上部70% - パノラマ写真 */}
+            <FadeInSection>
+              <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-200px" }}
+                className="relative aspect-[21/9] lg:aspect-[32/9] overflow-hidden shadow-2xl"
+              >
+                <motion.div
+                  initial={{ scale: 1.15 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{ duration: 3, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                  className="w-full h-full"
+                >
+                  <Image
+                    src="/images/lodges/mitsumata-3.jpg"
+                    alt="原生林のパノラマ"
+                    fill
+                    className="object-cover"
+                    style={{ filter: 'saturate(0.95) brightness(0.9)' }}
+                    quality={95}
+                  />
+                </motion.div>
+
+                {/* 木漏れ日のエフェクト */}
+                <motion.div
+                  animate={{
+                    opacity: [0.1, 0.25, 0.1],
+                    x: [-20, 20, -20]
+                  }}
+                  transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-50/20 to-transparent pointer-events-none"
+                />
+              </motion.div>
+            </FadeInSection>
+
+            {/* 下部30% - テキスト */}
+            <FadeInSection delay={0.3}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="max-w-4xl mx-auto text-center space-y-12"
+              >
+                <div className="space-y-6">
+                  <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 tracking-[0.1em]">
+                    手つかずの森
+                  </h3>
+
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "4rem" }}
+                    transition={{ duration: 1, delay: 0.6 }}
+                    viewport={{ once: true }}
+                    className="h-[2px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
+                  />
+                </div>
+
+                <p className="text-xl md:text-2xl leading-[2.2] font-serif font-light text-stone-700 tracking-[0.05em]">
+                  標高2,000mを超える原生林。
+                  <br />
+                  苔むした巨木、清流のせせらぎ、野鳥のさえずり。
+                  <br />
+                  人の手が届かぬ場所だからこそ、
+                  <br />
+                  豊かな生態系が息づいている。
+                </p>
+              </motion.div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ストーリー展開 - 画面3：清流のクローズアップ */}
+      <section className="relative min-h-screen bg-stone-50">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
+            {/* 左側60% - 説明文 */}
+            <div className="lg:col-span-7 py-20 lg:py-32 order-2 lg:order-1">
+              <FadeInSection delay={0.3}>
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-150px" }}
+                  className="space-y-12 px-6 lg:px-16"
+                >
+                  <div className="space-y-8">
+                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-stone-800 tracking-[0.1em] leading-[1.5]">
+                      透明度
+                      <br />
+                      100%の水
+                    </h3>
+
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "4rem" }}
+                      transition={{ duration: 1, delay: 0.7 }}
+                      viewport={{ once: true }}
+                      className="h-[2px] bg-gradient-to-r from-stone-700 via-stone-400 to-transparent"
+                    />
+                  </div>
+
+                  <div className="space-y-8">
+                    <p className="text-xl md:text-2xl leading-[2.2] font-serif font-light text-stone-700 tracking-[0.05em]">
+                      雪解け水が岩盤を伝い、
+                      <br />
+                      何千年もかけて濾過された清水。
+                    </p>
+
+                    <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                      手ですくえば、
+                      <br />
+                      冷たさが心地よい。
+                      <br />
+                      この水が、やがて黒部川となり、
+                      <br />
+                      富山湾へと注ぐ。
+                    </p>
+
+                    <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                      三俣山荘は、
+                      <br />
+                      この源流を守り続ける
+                      <br />
+                      守り人でありたい。
+                    </p>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* 右側40% - 縦長写真 */}
+            <div className="lg:col-span-5 relative h-screen lg:sticky lg:top-0 order-1 lg:order-2">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: 60 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-200px" }}
+                  className="relative h-full w-full"
+                >
+                  <motion.div
+                    initial={{ scale: 1.15 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ duration: 2.5, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    className="h-full w-full"
+                  >
+                    <Image
+                      src="/images/lodges/mitsumata-1.jpg"
+                      alt="清流のクローズアップ"
+                      fill
+                      className="object-cover"
+                      style={{ filter: 'saturate(1.05) brightness(0.95)' }}
+                      quality={95}
+                    />
+                  </motion.div>
+
+                  {/* 水の流れを表現するアニメーション */}
+                  <motion.div
+                    animate={{
+                      y: [0, 100, 0],
+                      opacity: [0.2, 0.4, 0.2]
+                    }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                    className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/30 to-transparent pointer-events-none"
+                  />
+                </motion.div>
+              </FadeInSection>
+            </div>
+          </div>
         </div>
       </section>
 
