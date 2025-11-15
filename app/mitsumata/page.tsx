@@ -303,7 +303,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
-                    槍ヶ岳を望む展望
+                    特徴 1
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -329,7 +329,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
-                    黒部源流の清水と食材
+                    特徴 2
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -672,17 +672,14 @@ export default function MitsumataPage() {
               viewport={{ once: true }}
               className="text-center space-y-12"
             >
-              {/* 縦書き風のタイトル */}
+              {/* タイトル */}
               <h2
-                className="text-8xl md:text-9xl font-serif font-light text-white tracking-[0.3em]"
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
                 style={{
-                  textShadow: "0 4px 40px rgba(0,0,0,0.9), 0 2px 15px rgba(0,0,0,1)",
-                  writingMode: 'vertical-rl' as const,
-                  textOrientation: 'upright' as const,
-                  margin: '0 auto'
+                  textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)"
                 }}
               >
-                食
+                三俣山荘の食事
               </h2>
 
               <motion.div
@@ -1071,7 +1068,7 @@ export default function MitsumataPage() {
             }}
             className="text-white/80 text-xs tracking-[0.25em] uppercase font-light font-sans"
           >
-            Surrounding Area
+            Kurobe Genryu
           </motion.div>
         </motion.div>
       </section>
@@ -1401,7 +1398,12 @@ export default function MitsumataPage() {
         <div className="relative h-full flex items-center justify-center z-10">
           <FadeInSection>
             <div className="text-center space-y-6 md:space-y-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]">
+              <h2
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
+                style={{
+                  textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)"
+                }}
+              >
                 伊藤新道
               </h2>
               <motion.div
