@@ -85,8 +85,8 @@ export default function MitsumataPage() {
           className="absolute inset-0 w-full h-[120vh]"
         >
           <Image
-            src="/images/lodges/mitsumata-1.jpg"
-            alt="三俣山荘 - 黒部源流の壮大な景色"
+            src="/images/placeholder.jpg"
+            alt="画像の説明"
             fill
             className="object-cover object-center"
             priority
@@ -115,7 +115,7 @@ export default function MitsumataPage() {
                   textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
                 }}
               >
-                三俣山荘
+                タイトルテキスト
               </h1>
 
               {/* サブタイトル */}
@@ -130,7 +130,7 @@ export default function MitsumataPage() {
                   className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]"
                   style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
                 >
-                  黒部源流の守り人
+                  サブタイトルテキスト
                 </p>
                 <div className="h-[1px] w-16 bg-white/60" />
               </motion.div>
@@ -143,7 +143,7 @@ export default function MitsumataPage() {
                 className="text-sm md:text-base font-sans text-white/80 tracking-[0.25em] uppercase"
                 style={{ textShadow: "0 2px 15px rgba(0,0,0,0.7)" }}
               >
-                Elevation 2,677m · Kurobe Genryu
+                Sample Text
               </motion.p>
             </motion.div>
           </div>
@@ -172,7 +172,7 @@ export default function MitsumataPage() {
               }
             }}
             role="button"
-            aria-label="次のセクションへスクロール"
+            aria-label="ラベルテキスト"
             tabIndex={0}
           >
             <div className="w-6 h-10 border-2 border-white/60 group-hover:border-white rounded-full flex items-start justify-center p-1.5 transition-colors">
@@ -216,9 +216,9 @@ export default function MitsumataPage() {
                   className="space-y-8"
                 >
                   <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 leading-[1.5] tracking-[0.08em]">
-                    源流に
+                    見出し
                     <br />
-                    たたずむ
+                    テキスト
                   </h2>
 
                   <motion.div
@@ -237,27 +237,27 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.2}>
                 <div className="space-y-8 text-stone-700 max-w-prose">
                   <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
-                    北アルプスの最奥、黒部の源流域。
+                    ここに説明文が入ります。
                     <br />
-                    標高2,677mに位置する三俣山荘は、
+                    ダミーテキストです。
                     <br />
-                    槍ヶ岳を望む展望食堂を持つ山小屋です。
+                    サンプルテキストがここに表示されます。
                   </p>
 
                   <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                    裏銀座縦走路の要所として、
+                    ここに説明文が入ります。
                     <br />
-                    多くの登山者を迎え入れてきました。
+                    ダミーテキストです。
                     <br />
-                    ここは、山の深さと静けさに出会う場所。
+                    サンプルテキストがここに表示されます。
                   </p>
 
                   <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                    黒部源流の清らかな水、
+                    ここに説明文が入ります。
                     <br />
-                    名物のジビエシチュー、
+                    ダミーテキストです。
                     <br />
-                    そして、原始の自然がそのまま息づく風景。
+                    サンプルテキストがここに表示されます。
                   </p>
                 </div>
               </FadeInSection>
@@ -287,8 +287,8 @@ export default function MitsumataPage() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <Image
-                    src="/images/lodges/mitsumata-2.jpg"
-                    alt="三俣山荘の展望"
+                    src="/images/placeholder.jpg"
+                    alt="画像の説明"
                     fill
                     className="object-cover"
                     quality={90}
@@ -303,15 +303,15 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
-                    槍ヶ岳を望む
+                    見出しテキスト
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                    展望食堂から見える槍ヶ岳の雄姿は、
-                    三俣山荘の象徴的な風景。
-                    朝焼けに染まる穂先、
-                    夕暮れに浮かぶシルエット。
-                    刻々と変わる表情を眺めながら、
-                    山の時間が流れていきます。
+                    ここに説明文が入ります。ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
                   </p>
                 </div>
               </FadeInSection>
@@ -329,14 +329,14 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
-                    黒部源流の恵み
+                    見出しテキスト
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                    黒部川の源流に位置する三俣山荘。
-                    豊かな清水と、周辺の自然が育む食材。
-                    名物のジビエシチューは、
-                    山の恵みを活かした一品として、
-                    多くの登山者に愛されています。
+                    ここに説明文が入ります。ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
                   </p>
                 </div>
               </FadeInSection>
@@ -354,8 +354,8 @@ export default function MitsumataPage() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <Image
-                    src="/images/lodges/mitsumata-3.jpg"
-                    alt="三俣山荘の食事"
+                    src="/images/placeholder.jpg"
+                    alt="画像の説明"
                     fill
                     className="object-cover"
                     quality={90}
@@ -380,7 +380,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center mb-20 md:mb-24 space-y-6">
               <h2 className={`${STYLES.title.section} text-stone-800`}>
-                宿泊料金
+                セクションタイトル
               </h2>
 
               <motion.div
@@ -392,7 +392,7 @@ export default function MitsumataPage() {
               />
 
               <p className="text-base md:text-lg font-serif font-light text-stone-600 tracking-[0.04em] leading-[2]">
-                2025年シーズン料金
+                サブタイトルテキスト
               </p>
             </div>
           </FadeInSection>
@@ -407,7 +407,7 @@ export default function MitsumataPage() {
                 className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
                 tabIndex={0}
                 role="article"
-                aria-label="一泊二食付きプラン 12,000円"
+                aria-label="ラベルテキスト"
               >
                 {/* アクセント線 */}
                 <motion.div
@@ -420,7 +420,7 @@ export default function MitsumataPage() {
                   {/* カードタイトル */}
                   <div className="space-y-4">
                     <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
-                      一泊二食付き
+                      カードタイトル
                     </h3>
 
                     {/* 価格 */}
@@ -432,7 +432,7 @@ export default function MitsumataPage() {
                         </span>
                       </div>
                       <p className="text-sm font-sans text-stone-500 tracking-wide">
-                        1名様あたり
+                        テキスト
                       </p>
                     </div>
                   </div>
@@ -445,25 +445,25 @@ export default function MitsumataPage() {
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        夕食・朝食付き
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        個室または相部屋
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        寝具・シーツ付き
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        展望食堂での食事
+                        項目テキスト
                       </span>
                     </li>
                   </ul>
@@ -482,7 +482,7 @@ export default function MitsumataPage() {
                 className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
                 tabIndex={0}
                 role="article"
-                aria-label="素泊まりプラン 8,000円"
+                aria-label="ラベルテキスト"
               >
                 {/* アクセント線 */}
                 <motion.div
@@ -495,7 +495,7 @@ export default function MitsumataPage() {
                   {/* カードタイトル */}
                   <div className="space-y-4">
                     <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
-                      素泊まり
+                      カードタイトル
                     </h3>
 
                     {/* 価格 */}
@@ -507,7 +507,7 @@ export default function MitsumataPage() {
                         </span>
                       </div>
                       <p className="text-sm font-sans text-stone-500 tracking-wide">
-                        1名様あたり
+                        テキスト
                       </p>
                     </div>
                   </div>
@@ -520,25 +520,25 @@ export default function MitsumataPage() {
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        宿泊のみ
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        個室または相部屋
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        寝具・シーツ付き
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        自炊スペース利用可
+                        項目テキスト
                       </span>
                     </li>
                   </ul>
@@ -557,7 +557,7 @@ export default function MitsumataPage() {
                 className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
                 tabIndex={0}
                 role="article"
-                aria-label="テント泊プラン 2,000円"
+                aria-label="ラベルテキスト"
               >
                 {/* アクセント線 */}
                 <motion.div
@@ -570,7 +570,7 @@ export default function MitsumataPage() {
                   {/* カードタイトル */}
                   <div className="space-y-4">
                     <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
-                      テント泊
+                      カードタイトル
                     </h3>
 
                     {/* 価格 */}
@@ -582,7 +582,7 @@ export default function MitsumataPage() {
                         </span>
                       </div>
                       <p className="text-sm font-sans text-stone-500 tracking-wide">
-                        1名様あたり
+                        テキスト
                       </p>
                     </div>
                   </div>
@@ -595,25 +595,25 @@ export default function MitsumataPage() {
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        テント場利用
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        トイレ・水場利用可
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        自炊スペース利用可
+                        項目テキスト
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
                       <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        テント・寝具持参
+                        項目テキスト
                       </span>
                     </li>
                   </ul>
@@ -631,9 +631,9 @@ export default function MitsumataPage() {
               <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-300 to-transparent max-w-md mx-auto" />
 
               <div className="space-y-2 text-sm md:text-base font-serif font-light text-stone-600 tracking-[0.04em] leading-[2]">
-                <p>※ 料金は税込です</p>
-                <p>※ 個室は空き状況により案内いたします</p>
-                <p>※ 営業期間：7月上旬〜11月上旬</p>
+                <p>※ 注意事項テキスト</p>
+                <p>※ 注意事項テキスト</p>
+                <p>※ 注意事項テキスト</p>
               </div>
             </div>
           </FadeInSection>
@@ -651,8 +651,8 @@ export default function MitsumataPage() {
         {/* 背景写真 */}
         <div className="absolute inset-0">
           <Image
-            src="/images/lodges/mitsumata-3.jpg"
-            alt="三俣山荘の食事"
+            src="/images/placeholder.jpg"
+            alt="画像の説明"
             fill
             className="object-cover"
             style={{ filter: 'brightness(0.6) saturate(0.9)' }}
@@ -682,7 +682,7 @@ export default function MitsumataPage() {
                   margin: '0 auto'
                 }}
               >
-                食事
+                タイトル
               </h2>
 
               <motion.div
@@ -697,7 +697,7 @@ export default function MitsumataPage() {
                   className="text-sm md:text-base font-sans text-white/90 tracking-[0.3em] uppercase"
                   style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
                 >
-                  Mountain Cuisine
+                  Sample Text
                 </p>
                 <div className="h-[1px] w-12 bg-white/60" />
               </motion.div>
@@ -729,8 +729,8 @@ export default function MitsumataPage() {
                     className="w-full h-full"
                   >
                     <Image
-                      src="/images/lodges/mitsumata-2.jpg"
-                      alt="鹿肉のジビエシチュー"
+                      src="/images/placeholder.jpg"
+                      alt="画像の説明"
                       fill
                       className="object-cover"
                       style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -754,9 +754,9 @@ export default function MitsumataPage() {
                 >
                   <div className="space-y-4">
                     <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.4]">
-                      鹿肉の
+                      見出し
                       <br />
-                      ジビエシチュー
+                      テキスト
                     </h3>
 
                     <motion.div
@@ -769,9 +769,9 @@ export default function MitsumataPage() {
                   </div>
 
                   <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                    北アルプスの大自然で育った鹿肉を、
-                    じっくりと煮込んだ三俣山荘の名物料理。
-                    深いコクと柔らかな食感が特徴です。
+                    ここに説明文が入ります。ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
                   </p>
                 </motion.div>
               </FadeInSection>
@@ -796,9 +796,9 @@ export default function MitsumataPage() {
                 >
                   <div className="space-y-4">
                     <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.4]">
-                      三俣
+                      見出し
                       <br />
-                      オリジナルカレー
+                      テキスト
                     </h3>
 
                     <motion.div
@@ -811,9 +811,9 @@ export default function MitsumataPage() {
                   </div>
 
                   <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                    スパイスの香りが食欲をそそる、
-                    山荘特製のカレー。
-                    標高2,677mで味わう格別の一皿。
+                    ここに説明文が入ります。ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
                   </p>
                 </motion.div>
               </FadeInSection>
@@ -837,8 +837,8 @@ export default function MitsumataPage() {
                     className="w-full h-full"
                   >
                     <Image
-                      src="/images/lodges/mitsumata-1.jpg"
-                      alt="三俣オリジナルカレー"
+                      src="/images/placeholder.jpg"
+                      alt="画像の説明"
                       fill
                       className="object-cover"
                       style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -874,8 +874,8 @@ export default function MitsumataPage() {
                   className="w-full h-full"
                 >
                   <Image
-                    src="/images/lodges/mitsumata-3.jpg"
-                    alt="山小屋の朝食"
+                    src="/images/placeholder.jpg"
+                    alt="画像の説明"
                     fill
                     className="object-cover"
                     style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -897,7 +897,7 @@ export default function MitsumataPage() {
               >
                 <div className="space-y-4">
                   <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em]">
-                    山小屋の朝食
+                    見出しテキスト
                   </h3>
 
                   <motion.div
@@ -910,9 +910,9 @@ export default function MitsumataPage() {
                 </div>
 
                 <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                  槍ヶ岳を望む展望食堂で、
-                  心と体を満たす朝食を。
-                  新しい一日の始まりを迎えます。
+                  ここに説明文が入ります。ダミーテキストです。
+                  サンプルテキストがここに表示されます。
+                  ダミーテキストです。
                 </p>
               </motion.div>
             </FadeInSection>
@@ -932,9 +932,9 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center mb-24 md:mb-32 space-y-6">
               <h2 className={`${STYLES.title.section} text-stone-800`}>
-                山荘の記憶を
+                セクション
                 <br className="md:hidden" />
-                持ち帰る
+                タイトル
               </h2>
 
               <motion.div
@@ -946,9 +946,9 @@ export default function MitsumataPage() {
               />
 
               <p className="text-xs md:text-sm text-stone-600 font-serif font-light tracking-wider max-w-2xl mx-auto">
-                三俣山荘での時間を、日常へ。
+                サブタイトルテキスト。
                 <br />
-                ひとつひとつに宿る、黒部源流の物語。
+                説明文がここに入ります。
               </p>
             </div>
           </FadeInSection>
@@ -956,14 +956,14 @@ export default function MitsumataPage() {
           {/* グッズグリッド */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
             {[
-              { id: 1, name: 'オリジナルタオル', image: '/images/lodges/mitsumata-1.jpg' },
-              { id: 2, name: 'マグカップ', image: '/images/lodges/mitsumata-2.jpg' },
-              { id: 3, name: 'ステッカー', image: '/images/lodges/mitsumata-3.jpg' },
-              { id: 4, name: 'トートバッグ', image: '/images/lodges/mitsumata-1.jpg' },
-              { id: 5, name: 'バンダナ', image: '/images/lodges/mitsumata-2.jpg' },
-              { id: 6, name: '手ぬぐい', image: '/images/lodges/mitsumata-3.jpg' },
-              { id: 7, name: 'ピンバッジ', image: '/images/lodges/mitsumata-1.jpg' },
-              { id: 8, name: 'キーホルダー', image: '/images/lodges/mitsumata-2.jpg' },
+              { id: 1, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 2, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 3, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 4, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 5, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 6, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 7, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 8, name: '商品名', image: '/images/placeholder.jpg' },
             ].map((item, index) => (
               <FadeInSection key={item.id} delay={index * 0.05}>
                 <motion.div
@@ -975,7 +975,7 @@ export default function MitsumataPage() {
                   className="group relative aspect-square overflow-hidden bg-white cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-300"
                   tabIndex={0}
                   role="button"
-                  aria-label={`${item.name}の詳細を見る`}
+                  aria-label="ラベルテキスト"
                 >
                   {/* 商品画像 */}
                   <Image
@@ -1003,7 +1003,7 @@ export default function MitsumataPage() {
           <FadeInSection delay={0.5}>
             <div className="mt-16 md:mt-20 text-center">
               <p className="text-xs md:text-sm font-sans font-light text-stone-500 tracking-[0.15em]">
-                詳細はお問い合わせください
+                テキストがここに入ります
               </p>
             </div>
           </FadeInSection>
@@ -1015,14 +1015,14 @@ export default function MitsumataPage() {
         <SectionDivider />
       </div>
 
-      {/* 黒部源流セクション - 壮大なストーリーテリング */}
+      {/* セクション1 - サンプルコンテンツ */}
       {/* オープニング（100vh） */}
       <section ref={kurobeRef} className="relative h-screen overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           <Image
-            src="/images/lodges/mitsumata-1.jpg"
-            alt="黒部源流"
+            src="/images/placeholder.jpg"
+            alt="画像の説明"
             fill
             className="object-cover"
             style={{ filter: 'brightness(0.5) saturate(1.1)' }}
@@ -1050,7 +1050,7 @@ export default function MitsumataPage() {
                 fontFeatureSettings: "'palt' 1"
               }}
             >
-              黒部源流
+              タイトルテキスト
             </motion.h2>
           </FadeInSection>
         </motion.div>
@@ -1071,7 +1071,7 @@ export default function MitsumataPage() {
             }}
             className="text-white/80 text-xs tracking-[0.25em] uppercase font-light font-sans"
           >
-            Scroll to Explore
+            Sample Text
           </motion.div>
         </motion.div>
       </section>
@@ -1099,8 +1099,8 @@ export default function MitsumataPage() {
                     className="h-full w-full overflow-hidden"
                   >
                     <Image
-                      src="/images/lodges/mitsumata-2.jpg"
-                      alt="朝靄に包まれる黒部源流"
+                      src="/images/placeholder.jpg"
+                      alt="画像の説明"
                       fill
                       className="object-cover transition-all duration-700 ease-out"
                       style={{ filter: 'saturate(0.9) brightness(0.92)' }}
@@ -1137,9 +1137,9 @@ export default function MitsumataPage() {
                 >
                   <div className="space-y-8">
                     <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
-                      原始の
+                      見出し
                       <br />
-                      水景
+                      テキスト
                     </h3>
 
                     <motion.div
@@ -1153,19 +1153,19 @@ export default function MitsumataPage() {
 
                   <div className="space-y-8">
                     <p className={`${STYLES.text.hero} text-stone-700 max-w-prose`}>
-                      標高2,600m。
+                      ダミーテキスト。
                       <br />
-                      ここは黒部川の始まりの地。
+                      ここに説明文が入ります。
                     </p>
 
                     <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
-                      朝靄が立ち込める静寂の中、
+                      ここに説明文が入ります。
                       <br />
-                      清冽な水が岩肌を滑り落ちる。
+                      ダミーテキストです。
                       <br />
-                      太古から変わらぬ、
+                      サンプルテキストがここに表示されます。
                       <br />
-                      命の源流がここにある。
+                      ダミーテキストです。
                     </p>
                   </div>
                 </motion.div>
@@ -1202,8 +1202,8 @@ export default function MitsumataPage() {
                   className="w-full h-full overflow-hidden"
                 >
                   <Image
-                    src="/images/lodges/mitsumata-3.jpg"
-                    alt="原生林のパノラマ"
+                    src="/images/placeholder.jpg"
+                    alt="画像の説明"
                     fill
                     className="object-cover transition-all duration-700 ease-out"
                     style={{ filter: 'saturate(0.95) brightness(0.9)' }}
@@ -1239,7 +1239,7 @@ export default function MitsumataPage() {
               >
                 <div className="space-y-8">
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    手つかずの森
+                    見出しテキスト
                   </h3>
 
                   <motion.div
@@ -1252,13 +1252,13 @@ export default function MitsumataPage() {
                 </div>
 
                 <p className={`${STYLES.text.hero} text-stone-700 max-w-prose mx-auto`}>
-                  標高2,000mを超える原生林。
+                  ここに説明文が入ります。
                   <br />
-                  苔むした巨木、清流のせせらぎ、野鳥のさえずり。
+                  ダミーテキストです。サンプルテキストがここに表示されます。
                   <br />
-                  人の手が届かぬ場所だからこそ、
+                  ここに説明文が入ります。
                   <br />
-                  豊かな生態系が息づいている。
+                  ダミーテキストです。
                 </p>
               </motion.div>
             </FadeInSection>
@@ -1287,9 +1287,9 @@ export default function MitsumataPage() {
                 >
                   <div className="space-y-8">
                     <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
-                      透明度
+                      見出し
                       <br />
-                      100%の水
+                      テキスト
                     </h3>
 
                     <motion.div
@@ -1303,27 +1303,27 @@ export default function MitsumataPage() {
 
                   <div className="space-y-8">
                     <p className={`${STYLES.text.hero} text-stone-700 max-w-prose`}>
-                      雪解け水が岩盤を伝い、
+                      ここに説明文が入ります。
                       <br />
-                      何千年もかけて濾過された清水。
+                      ダミーテキストです。
                     </p>
 
                     <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
-                      手ですくえば、
+                      ここに説明文が入ります。
                       <br />
-                      冷たさが心地よい。
+                      ダミーテキストです。
                       <br />
-                      この水が、やがて黒部川となり、
+                      サンプルテキストがここに表示されます。
                       <br />
-                      富山湾へと注ぐ。
+                      ダミーテキストです。
                     </p>
 
                     <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
-                      三俣山荘は、
+                      ここに説明文が入ります。
                       <br />
-                      この源流を守り続ける
+                      ダミーテキストです。
                       <br />
-                      守り人でありたい。
+                      サンプルテキストがここに表示されます。
                     </p>
                   </div>
                 </motion.div>
@@ -1349,8 +1349,8 @@ export default function MitsumataPage() {
                     className="h-full w-full overflow-hidden"
                   >
                     <Image
-                      src="/images/lodges/mitsumata-1.jpg"
-                      alt="清流のクローズアップ"
+                      src="/images/placeholder.jpg"
+                      alt="画像の説明"
                       fill
                       className="object-cover transition-all duration-700 ease-out"
                       style={{ filter: 'saturate(1.05) brightness(0.95)' }}
@@ -1384,12 +1384,12 @@ export default function MitsumataPage() {
         <SectionDivider />
       </div>
 
-      {/* 伊藤新道セクション - 歴史と冒険 */}
+      {/* セクション2 - サンプルコンテンツ */}
       {/* イントロ - 80vh */}
       <section className="relative h-[80vh] overflow-hidden">
         <Image
-          src="/images/lodges/mitsumata-1.jpg"
-          alt="伊藤新道 稜線の朝焼け"
+          src="/images/placeholder.jpg"
+          alt="画像の説明"
           fill
           className="object-cover object-center"
           style={{ filter: 'saturate(0.9) brightness(0.85)' }}
@@ -1402,7 +1402,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center space-y-6 md:space-y-8">
               <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]">
-                伊藤新道
+                タイトルテキスト
               </h2>
               <motion.div
                 initial={{ width: 0 }}
@@ -1412,7 +1412,7 @@ export default function MitsumataPage() {
                 className="h-[1.5px] bg-gradient-to-r from-transparent via-white/90 to-transparent mx-auto"
               />
               <p className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-white/95 tracking-[0.2em]">
-                稜線ルート
+                サブタイトルテキスト
               </p>
             </div>
           </FadeInSection>
@@ -1425,12 +1425,12 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="max-w-3xl mx-auto mb-16 md:mb-20 space-y-8 md:space-y-10">
               <p className={`${STYLES.text.hero} text-stone-700 leading-[2.5] md:leading-[2.8]`}>
-                1962年、登山家・伊藤正一によって開拓された歴史ある登山道。三俣山荘から水晶岳へと続く稜線ルートは、
-                高山植物の宝庫として知られ、7月から9月にかけて色とりどりの花々が登山者を迎えます。
+                ここに説明文が入ります。ダミーテキストです。サンプルテキストがここに表示されます。
+                ダミーテキストです。サンプルテキストがここに表示されます。
               </p>
               <p className={`${STYLES.text.hero} text-stone-600 leading-[2.5] md:leading-[2.8]`}>
-                標高2,600mから3,000m近い高度を縦走するこのルートは、北アルプスの核心部を体感できる
-                冒険の道として、多くの登山者に愛されています。
+                ここに説明文が入ります。ダミーテキストです。サンプルテキストがここに表示されます。
+                ダミーテキストです。
               </p>
             </div>
           </FadeInSection>
@@ -1439,7 +1439,7 @@ export default function MitsumataPage() {
           <div className="relative mt-20 md:mt-24">
             <FadeInSection delay={0.2}>
               <p className={`${STYLES.title.label} text-stone-500 mb-8 md:mb-10 text-center`}>
-                Trail Points
+                Sample Text
               </p>
 
               <Swiper
@@ -1462,28 +1462,28 @@ export default function MitsumataPage() {
               >
                 {[
                   {
-                    image: '/images/lodges/mitsumata-2.jpg',
-                    title: '三俣山荘起点',
-                    elevation: '2,677m',
-                    description: '伊藤新道の始まり'
+                    image: '/images/placeholder.jpg',
+                    title: 'ポイント名',
+                    elevation: '0,000m',
+                    description: '説明テキスト'
                   },
                   {
-                    image: '/images/lodges/mitsumata-3.jpg',
-                    title: '高山植物帯',
-                    elevation: '2,800m',
-                    description: 'コマクサ、チングルマの群生地'
+                    image: '/images/placeholder.jpg',
+                    title: 'ポイント名',
+                    elevation: '0,000m',
+                    description: '説明テキスト'
                   },
                   {
-                    image: '/images/lodges/mitsumata-1.jpg',
-                    title: '稜線展望地',
-                    elevation: '2,900m',
-                    description: '槍ヶ岳を望む絶景ポイント'
+                    image: '/images/placeholder.jpg',
+                    title: 'ポイント名',
+                    elevation: '0,000m',
+                    description: '説明テキスト'
                   },
                   {
-                    image: '/images/lodges/mitsumata-2.jpg',
-                    title: '水晶岳分岐',
-                    elevation: '2,950m',
-                    description: '水晶小屋へ続く道'
+                    image: '/images/placeholder.jpg',
+                    title: 'ポイント名',
+                    elevation: '0,000m',
+                    description: '説明テキスト'
                   },
                 ].map((point, index) => (
                   <SwiperSlide key={index} className="!w-[85vw] md:!w-[600px] lg:!w-[700px]">
@@ -1515,7 +1515,7 @@ export default function MitsumataPage() {
                             {point.elevation}
                           </div>
                           <div className={`${STYLES.title.label} text-white/95`}>
-                            Elevation
+                            Sample Text
                           </div>
                         </motion.div>
 
@@ -1549,13 +1549,13 @@ export default function MitsumataPage() {
                     <Flower2 className="w-6 h-6 text-mitsumata-primary" />
                   </div>
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    高山植物
+                    見出しテキスト
                   </h3>
                 </div>
                 <div className="pl-16">
                   <p className={`${STYLES.text.body} text-stone-700 leading-[2.2] md:leading-[2.4]`}>
-                    コマクサ、チングルマ、ハクサンイチゲ、イワギキョウなど、
-                    200種を超える高山植物が季節ごとに彩りを添えます。
+                    ここに説明文が入ります。ダミーテキストです。
+                    サンプルテキストがここに表示されます。
                   </p>
                 </div>
               </div>
@@ -1568,15 +1568,15 @@ export default function MitsumataPage() {
                     <Calendar className="w-6 h-6 text-mitsumata-primary" />
                   </div>
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    ベストシーズン
+                    見出しテキスト
                   </h3>
                 </div>
                 <div className="pl-16 space-y-4 md:space-y-5">
                   <p className={`${STYLES.text.body} text-stone-700 leading-[2.2] md:leading-[2.4]`}>
-                    7月上旬〜9月下旬
+                    テキストがここに入ります
                   </p>
                   <p className={`${STYLES.text.caption} text-stone-500 leading-[2] md:leading-[2.2]`}>
-                    特に7月中旬から8月上旬は、高山植物が最も美しい季節です。
+                    説明テキストがここに入ります。ダミーテキストです。
                   </p>
                 </div>
               </div>
@@ -1594,8 +1594,8 @@ export default function MitsumataPage() {
       {/* ヘッダー - 50vh */}
       <section className="relative h-[50vh] overflow-hidden">
         <Image
-          src="/images/lodges/mitsumata-2.jpg"
-          alt="登山道への道"
+          src="/images/placeholder.jpg"
+          alt="画像の説明"
           fill
           className="object-cover object-center"
           style={{ filter: 'saturate(0.7) brightness(0.8)' }}
@@ -1629,16 +1629,16 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center mb-20 md:mb-24 space-y-6">
               <p className="text-xs md:text-sm text-stone-600 font-serif font-light tracking-wider max-w-2xl mx-auto">
-                三俣山荘へは、3つの主要ルートからアクセスできます。
+                ここに説明文が入ります。ダミーテキストです。
                 <br />
-                それぞれの道のりには、独自の景色と魅力があります。
+                サンプルテキストがここに表示されます。
               </p>
             </div>
           </FadeInSection>
 
           {/* アコーディオン */}
           <Accordion.Root type="single" collapsible className="space-y-6">
-            {/* ルート1: 新穂高温泉から */}
+            {/* ルート1: サンプルルート */}
             <FadeInSection delay={0.1}>
               <Accordion.Item value="route-1" className="bg-white shadow-lg hover:shadow-xl overflow-hidden group transition-all duration-300">
                 <Accordion.Header>
@@ -1649,11 +1649,11 @@ export default function MitsumataPage() {
                       </div>
                       <div className="text-left">
                         <h3 className={`${STYLES.title.subsection} text-stone-800 mb-2`}>
-                          新穂高温泉から
+                          ルート名
                         </h3>
                         <div className="flex items-center gap-3 text-mitsumata-primary">
                           <Clock className="w-5 h-5" />
-                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">8時間</span>
+                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">0時間</span>
                         </div>
                       </div>
                     </div>
@@ -1677,9 +1677,9 @@ export default function MitsumataPage() {
                             <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
                           </div>
                           <div className="flex-1 pb-8">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">松本駅</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">場所名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
-                              電車でJR松本駅下車
+                              説明テキスト
                             </p>
                           </div>
                         </div>
@@ -1693,9 +1693,9 @@ export default function MitsumataPage() {
                             <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
                           </div>
                           <div className="flex-1 pb-8">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">バス移動</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">ステップ名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
-                              アルピコ交通バスで新穂高温泉へ（約2時間30分）
+                              説明テキストがここに入ります
                             </p>
                           </div>
                         </div>
@@ -1708,12 +1708,12 @@ export default function MitsumataPage() {
                             </div>
                           </div>
                           <div className="flex-1">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">登山</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">ステップ名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8] mb-3">
-                              わさび平小屋経由で三俣山荘へ（約8時間）
+                              説明テキストがここに入ります
                             </p>
                             <div className="inline-block px-4 py-2 bg-stone-50 rounded-full">
-                              <span className="text-sm font-light text-stone-600">最も一般的なルート</span>
+                              <span className="text-sm font-light text-stone-600">タグテキスト</span>
                             </div>
                           </div>
                         </div>
@@ -1729,8 +1729,8 @@ export default function MitsumataPage() {
                           className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
                         >
                           <Image
-                            src="/images/lodges/mitsumata-1.jpg"
-                            alt="新穂高温泉からのルート"
+                            src="/images/placeholder.jpg"
+                            alt="画像の説明"
                             fill
                             className="object-cover"
                             style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -1756,11 +1756,11 @@ export default function MitsumataPage() {
                       </div>
                       <div className="text-left">
                         <h3 className={`${STYLES.title.subsection} text-stone-800 mb-2`}>
-                          高瀬ダムから
+                          ルート名
                         </h3>
                         <div className="flex items-center gap-3 text-mitsumata-primary">
                           <Clock className="w-5 h-5" />
-                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">7時間</span>
+                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">0時間</span>
                         </div>
                       </div>
                     </div>
@@ -1784,9 +1784,9 @@ export default function MitsumataPage() {
                             <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
                           </div>
                           <div className="flex-1 pb-8">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">七倉山荘</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">場所名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
-                              タクシーで七倉山荘へ（信濃大町駅から約50分）
+                              説明テキスト
                             </p>
                           </div>
                         </div>
@@ -1800,9 +1800,9 @@ export default function MitsumataPage() {
                             <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
                           </div>
                           <div className="flex-1 pb-8">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">高瀬ダム</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">場所名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
-                              タクシーで高瀬ダムへ（約30分）
+                              説明テキスト
                             </p>
                           </div>
                         </div>
@@ -1815,12 +1815,12 @@ export default function MitsumataPage() {
                             </div>
                           </div>
                           <div className="flex-1">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">登山</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">ステップ名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8] mb-3">
-                              湯俣山荘経由で三俣山荘へ（約7時間）
+                              説明テキストがここに入ります
                             </p>
                             <div className="inline-block px-4 py-2 bg-stone-50 rounded-full">
-                              <span className="text-sm font-light text-stone-600">静かな森林ルート</span>
+                              <span className="text-sm font-light text-stone-600">タグテキスト</span>
                             </div>
                           </div>
                         </div>
@@ -1836,8 +1836,8 @@ export default function MitsumataPage() {
                           className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
                         >
                           <Image
-                            src="/images/lodges/mitsumata-3.jpg"
-                            alt="高瀬ダムからのルート"
+                            src="/images/placeholder.jpg"
+                            alt="画像の説明"
                             fill
                             className="object-cover"
                             style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -1852,7 +1852,7 @@ export default function MitsumataPage() {
               </Accordion.Item>
             </FadeInSection>
 
-            {/* ルート3: 折立から */}
+            {/* ルート2: サンプルルート */}
             <FadeInSection delay={0.3}>
               <Accordion.Item value="route-3" className="bg-white shadow-lg hover:shadow-xl overflow-hidden group transition-all duration-300">
                 <Accordion.Header>
@@ -1863,11 +1863,11 @@ export default function MitsumataPage() {
                       </div>
                       <div className="text-left">
                         <h3 className={`${STYLES.title.subsection} text-stone-800 mb-2`}>
-                          折立から
+                          ルート名
                         </h3>
                         <div className="flex items-center gap-3 text-mitsumata-primary">
                           <Clock className="w-5 h-5" />
-                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">6時間</span>
+                          <span className="text-3xl md:text-4xl font-serif font-light tracking-tight">0時間</span>
                         </div>
                       </div>
                     </div>
@@ -1891,9 +1891,9 @@ export default function MitsumataPage() {
                             <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
                           </div>
                           <div className="flex-1 pb-8">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">富山駅</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">場所名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
-                              北陸新幹線で富山駅下車
+                              説明テキスト
                             </p>
                           </div>
                         </div>
@@ -1907,9 +1907,9 @@ export default function MitsumataPage() {
                             <div className="w-[2px] h-full bg-gradient-to-b from-stone-300 to-transparent mt-2" />
                           </div>
                           <div className="flex-1 pb-8">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">折立</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">場所名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8]">
-                              バスで折立登山口へ（約3時間）
+                              説明テキスト
                             </p>
                           </div>
                         </div>
@@ -1922,12 +1922,12 @@ export default function MitsumataPage() {
                             </div>
                           </div>
                           <div className="flex-1">
-                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">登山</h4>
+                            <h4 className="text-lg font-serif font-medium text-stone-800 mb-2">ステップ名</h4>
                             <p className="text-sm md:text-base font-light text-stone-600 leading-[1.8] mb-3">
-                              太郎平小屋経由で三俣山荘へ（約6時間）
+                              説明テキストがここに入ります
                             </p>
                             <div className="inline-block px-4 py-2 bg-stone-50 rounded-full">
-                              <span className="text-sm font-light text-stone-600">最短ルート</span>
+                              <span className="text-sm font-light text-stone-600">タグテキスト</span>
                             </div>
                           </div>
                         </div>
@@ -1943,8 +1943,8 @@ export default function MitsumataPage() {
                           className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
                         >
                           <Image
-                            src="/images/lodges/mitsumata-2.jpg"
-                            alt="折立からのルート"
+                            src="/images/placeholder.jpg"
+                            alt="画像の説明"
                             fill
                             className="object-cover"
                             style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -1965,9 +1965,9 @@ export default function MitsumataPage() {
             <div className="mt-20 md:mt-24 text-center space-y-6">
               <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-300 to-transparent max-w-md mx-auto" />
               <div className="space-y-3 text-sm md:text-base font-serif font-light text-stone-600 tracking-[0.04em] leading-[2]">
-                <p>※ 所要時間は一般的な登山者の目安です</p>
-                <p>※ 天候や体力により大きく変動します</p>
-                <p>※ 詳しいアクセス情報はお問い合わせください</p>
+                <p>※ 注意事項テキスト</p>
+                <p>※ 注意事項テキスト</p>
+                <p>※ 注意事項テキスト</p>
               </div>
             </div>
           </FadeInSection>
@@ -1989,7 +1989,7 @@ export default function MitsumataPage() {
                 FAQ
               </p>
               <h2 className={`${STYLES.title.section} text-stone-800`}>
-                よくある質問
+                セクションタイトル
               </h2>
 
               <motion.div
@@ -2010,7 +2010,7 @@ export default function MitsumataPage() {
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
                     <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
-                      予約は必要ですか？
+                      質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
                       <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
@@ -2021,9 +2021,9 @@ export default function MitsumataPage() {
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
                     <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
-                      宿泊の予約は必須です。電話またはウェブサイトからご予約ください。
-                      特に週末や連休は混雑が予想されるため、お早めのご予約をおすすめします。
-                      テント泊の場合も、スペースに限りがあるため事前予約をお願いしています。
+                      ここに回答テキストが入ります。ダミーテキストです。
+                      サンプルテキストがここに表示されます。ダミーテキストです。
+                      サンプルテキストがここに表示されます。
                     </p>
                   </div>
                 </Accordion.Content>
@@ -2036,7 +2036,7 @@ export default function MitsumataPage() {
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
                     <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
-                      キャンセル料はかかりますか？
+                      質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
                       <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
@@ -2047,9 +2047,9 @@ export default function MitsumataPage() {
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
                     <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
-                      前日キャンセルは50%、当日キャンセルは100%のキャンセル料が発生します。
-                      天候不良による登山中止の場合は、キャンセル料はいただきません。
-                      変更がある場合は、お早めにご連絡ください。
+                      ここに回答テキストが入ります。ダミーテキストです。
+                      サンプルテキストがここに表示されます。ダミーテキストです。
+                      サンプルテキストがここに表示されます。
                     </p>
                   </div>
                 </Accordion.Content>
@@ -2062,7 +2062,7 @@ export default function MitsumataPage() {
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
                     <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
-                      営業期間を教えてください
+                      質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
                       <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
@@ -2073,9 +2073,9 @@ export default function MitsumataPage() {
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
                     <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
-                      7月上旬から11月上旬まで営業しています。
-                      積雪状況により、営業開始日と終了日は前後する可能性があります。
-                      詳しい営業日程は、毎年6月頃にウェブサイトで発表いたします。
+                      ここに回答テキストが入ります。ダミーテキストです。
+                      サンプルテキストがここに表示されます。ダミーテキストです。
+                      サンプルテキストがここに表示されます。
                     </p>
                   </div>
                 </Accordion.Content>
@@ -2088,7 +2088,7 @@ export default function MitsumataPage() {
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
                     <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
-                      必要な装備は何ですか？
+                      質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
                       <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
@@ -2099,9 +2099,9 @@ export default function MitsumataPage() {
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
                     <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
-                      登山靴、レインウェア、ヘッドランプは必須です。
-                      標高2,600m以上のため、夏でも防寒着をご持参ください。
-                      宿泊の場合、寝具は山荘でご用意しますが、インナーシーツをお持ちいただくと快適です。
+                      ここに回答テキストが入ります。ダミーテキストです。
+                      サンプルテキストがここに表示されます。ダミーテキストです。
+                      サンプルテキストがここに表示されます。
                     </p>
                   </div>
                 </Accordion.Content>
@@ -2114,7 +2114,7 @@ export default function MitsumataPage() {
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
                     <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
-                      支払い方法を教えてください
+                      質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
                       <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
@@ -2125,9 +2125,9 @@ export default function MitsumataPage() {
                 <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                   <div className="pt-6">
                     <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
-                      現金のみのお取り扱いとなります。
-                      クレジットカードや電子マネーはご利用いただけませんので、
-                      必要な現金を事前にご用意ください。山荘にATMはございません。
+                      ここに回答テキストが入ります。ダミーテキストです。
+                      サンプルテキストがここに表示されます。ダミーテキストです。
+                      サンプルテキストがここに表示されます。
                     </p>
                   </div>
                 </Accordion.Content>
@@ -2144,7 +2144,7 @@ export default function MitsumataPage() {
             <div className="space-y-12">
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em]">
-                  三俣山荘へ
+                  タイトルテキスト
                 </h2>
 
                 <motion.div
@@ -2156,9 +2156,9 @@ export default function MitsumataPage() {
                 />
 
                 <p className="text-lg md:text-xl leading-[2] font-serif font-light text-stone-600 tracking-[0.05em] max-w-2xl mx-auto">
-                  ご予約、お問い合わせは
+                  サブタイトルテキスト
                   <br />
-                  お気軽にご連絡ください
+                  ダミーテキストです
                 </p>
               </div>
 
@@ -2167,9 +2167,9 @@ export default function MitsumataPage() {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="group relative px-12 py-5 bg-mitsumata-primary text-white font-serif tracking-[0.15em] text-base shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden focus:outline-none focus:ring-2 focus:ring-mitsumata-primary focus:ring-offset-2"
-                  aria-label="三俣山荘の予約ページへ移動"
+                  aria-label="ラベルテキスト"
                 >
-                  <span className="relative z-10">予約する</span>
+                  <span className="relative z-10">ボタンテキスト</span>
                   {/* Subtle shine effect on hover */}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -2183,9 +2183,9 @@ export default function MitsumataPage() {
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   className="px-12 py-5 border-2 border-stone-300 text-stone-700 font-serif tracking-[0.15em] text-base hover:border-mitsumata-primary/60 hover:bg-mitsumata-primary/5 hover:text-stone-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2"
-                  aria-label="三俣山荘の詳細情報を見る"
+                  aria-label="ラベルテキスト"
                 >
-                  詳細を見る
+                  ボタンテキスト
                 </motion.button>
               </div>
             </div>
