@@ -115,7 +115,7 @@ export default function MitsumataPage() {
                   textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
                 }}
               >
-                山荘名
+                三俣山荘
               </h1>
 
               {/* サブタイトル */}
@@ -303,7 +303,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
-                    山岳展望
+                    槍ヶ岳を望む展望
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -329,7 +329,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
-                    源流の恵み
+                    黒部源流の清水と食材
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -420,7 +420,7 @@ export default function MitsumataPage() {
                   {/* カードタイトル */}
                   <div className="space-y-4">
                     <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
-                      カードタイトル
+                      一泊二食付き
                     </h3>
 
                     {/* 価格 */}
@@ -428,11 +428,11 @@ export default function MitsumataPage() {
                       <div className="flex items-baseline justify-center gap-1">
                         <span className="text-sm md:text-base font-sans text-stone-500">¥</span>
                         <span className="text-5xl md:text-6xl font-serif font-light text-mitsumata-primary tracking-tight">
-                          12,000
+                          00,000
                         </span>
                       </div>
                       <p className="text-sm font-sans text-stone-500 tracking-wide">
-                        テキスト
+                        1名様あたり
                       </p>
                     </div>
                   </div>
@@ -495,7 +495,7 @@ export default function MitsumataPage() {
                   {/* カードタイトル */}
                   <div className="space-y-4">
                     <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
-                      カードタイトル
+                      素泊まり
                     </h3>
 
                     {/* 価格 */}
@@ -503,11 +503,11 @@ export default function MitsumataPage() {
                       <div className="flex items-baseline justify-center gap-1">
                         <span className="text-sm md:text-base font-sans text-stone-500">¥</span>
                         <span className="text-5xl md:text-6xl font-serif font-light text-stone-700 tracking-tight">
-                          8,000
+                          00,000
                         </span>
                       </div>
                       <p className="text-sm font-sans text-stone-500 tracking-wide">
-                        テキスト
+                        1名様あたり
                       </p>
                     </div>
                   </div>
@@ -570,7 +570,7 @@ export default function MitsumataPage() {
                   {/* カードタイトル */}
                   <div className="space-y-4">
                     <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
-                      カードタイトル
+                      テント泊
                     </h3>
 
                     {/* 価格 */}
@@ -578,11 +578,11 @@ export default function MitsumataPage() {
                       <div className="flex items-baseline justify-center gap-1">
                         <span className="text-sm md:text-base font-sans text-stone-500">¥</span>
                         <span className="text-5xl md:text-6xl font-serif font-light text-stone-600 tracking-tight">
-                          2,000
+                          0,000
                         </span>
                       </div>
                       <p className="text-sm font-sans text-stone-500 tracking-wide">
-                        テキスト
+                        1名様あたり
                       </p>
                     </div>
                   </div>
@@ -1050,7 +1050,7 @@ export default function MitsumataPage() {
                 fontFeatureSettings: "'palt' 1"
               }}
             >
-              周辺エリア
+              黒部源流
             </motion.h2>
           </FadeInSection>
         </motion.div>
@@ -1402,7 +1402,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center space-y-6 md:space-y-8">
               <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]">
-                登山道
+                伊藤新道
               </h2>
               <motion.div
                 initial={{ width: 0 }}
@@ -1412,7 +1412,7 @@ export default function MitsumataPage() {
                 className="h-[1.5px] bg-gradient-to-r from-transparent via-white/90 to-transparent mx-auto"
               />
               <p className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-white/95 tracking-[0.2em]">
-                ルート名
+                稜線ルート
               </p>
             </div>
           </FadeInSection>
