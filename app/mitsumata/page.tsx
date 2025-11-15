@@ -1044,7 +1044,7 @@ export default function MitsumataPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-8xl md:text-9xl lg:text-[12rem] font-serif font-light text-white tracking-[0.15em]"
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
               style={{
                 textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)",
                 fontFeatureSettings: "'palt' 1"
@@ -1069,7 +1069,7 @@ export default function MitsumataPage() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="text-white/70 text-xs tracking-[0.3em] uppercase"
+            className="text-white/80 text-xs tracking-[0.25em] uppercase font-light font-sans"
           >
             Scroll to Explore
           </motion.div>
@@ -1093,15 +1093,16 @@ export default function MitsumataPage() {
                   <motion.div
                     initial={{ scale: 1.15 }}
                     whileInView={{ scale: 1 }}
+                    whileHover={{ scale: 1.02 }}
                     transition={{ duration: 2.5, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="h-full w-full"
+                    className="h-full w-full overflow-hidden"
                   >
                     <Image
                       src="/images/lodges/mitsumata-2.jpg"
                       alt="朝靄に包まれる黒部源流"
                       fill
-                      className="object-cover"
+                      className="object-cover transition-all duration-700 ease-out"
                       style={{ filter: 'saturate(0.9) brightness(0.92)' }}
                       quality={95}
                       loading="lazy"
@@ -1125,14 +1126,14 @@ export default function MitsumataPage() {
             </div>
 
             {/* 右側40% - 縦書きテキスト */}
-            <div className="lg:col-span-5 py-20 lg:py-32">
+            <div className="lg:col-span-5 py-24 lg:py-32">
               <FadeInSection delay={0.4}>
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.4, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-150px" }}
-                  className="space-y-12 px-6 lg:px-12"
+                  className="space-y-16 px-6 lg:px-12"
                 >
                   <div className="space-y-8">
                     <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
@@ -1146,18 +1147,18 @@ export default function MitsumataPage() {
                       whileInView={{ width: "4rem" }}
                       transition={{ duration: 1, delay: 0.8 }}
                       viewport={{ once: true }}
-                      className="h-[2px] bg-gradient-to-r from-stone-700 via-stone-400 to-transparent"
+                      className="h-[2px] bg-gradient-to-r from-stone-600 via-stone-400 to-transparent"
                     />
                   </div>
 
-                  <div className="space-y-6">
-                    <p className="text-xl md:text-2xl leading-[2.2] font-serif font-light text-stone-700 tracking-[0.05em]">
+                  <div className="space-y-8">
+                    <p className={`${STYLES.text.hero} text-stone-700 max-w-prose`}>
                       標高2,600m。
                       <br />
                       ここは黒部川の始まりの地。
                     </p>
 
-                    <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
                       朝靄が立ち込める静寂の中、
                       <br />
                       清冽な水が岩肌を滑り落ちる。
@@ -1174,10 +1175,15 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* ストーリー展開 - 画面2：原生林 */}
       <section className="relative min-h-screen">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl py-20 lg:py-32 relative z-10">
-          <div className="space-y-16 lg:space-y-24">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl py-24 md:py-32 lg:py-40 relative z-10">
+          <div className="space-y-20 lg:space-y-28">
             {/* 上部70% - パノラマ写真 */}
             <FadeInSection>
               <motion.div
@@ -1190,15 +1196,16 @@ export default function MitsumataPage() {
                 <motion.div
                   initial={{ scale: 1.15 }}
                   whileInView={{ scale: 1 }}
+                  whileHover={{ scale: 1.02 }}
                   transition={{ duration: 3, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  className="w-full h-full"
+                  className="w-full h-full overflow-hidden"
                 >
                   <Image
                     src="/images/lodges/mitsumata-3.jpg"
                     alt="原生林のパノラマ"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-all duration-700 ease-out"
                     style={{ filter: 'saturate(0.95) brightness(0.9)' }}
                     quality={95}
                     loading="lazy"
@@ -1228,9 +1235,9 @@ export default function MitsumataPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="max-w-4xl mx-auto text-center space-y-12"
+                className="max-w-4xl mx-auto text-center space-y-16"
               >
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
                     手つかずの森
                   </h3>
@@ -1240,11 +1247,11 @@ export default function MitsumataPage() {
                     whileInView={{ width: "4rem" }}
                     transition={{ duration: 1, delay: 0.6 }}
                     viewport={{ once: true }}
-                    className="h-[2px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
+                    className="h-[2px] bg-gradient-to-r from-transparent via-stone-500 to-transparent mx-auto"
                   />
                 </div>
 
-                <p className="text-xl md:text-2xl leading-[2.2] font-serif font-light text-stone-700 tracking-[0.05em]">
+                <p className={`${STYLES.text.hero} text-stone-700 max-w-prose mx-auto`}>
                   標高2,000mを超える原生林。
                   <br />
                   苔むした巨木、清流のせせらぎ、野鳥のさえずり。
@@ -1259,19 +1266,24 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* ストーリー展開 - 画面3：清流のクローズアップ */}
       <section className="relative min-h-screen">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
             {/* 左側60% - 説明文 */}
-            <div className="lg:col-span-7 py-20 lg:py-32 order-2 lg:order-1">
+            <div className="lg:col-span-7 py-24 lg:py-32 order-2 lg:order-1">
               <FadeInSection delay={0.3}>
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-150px" }}
-                  className="space-y-12 px-6 lg:px-16"
+                  className="space-y-16 px-6 lg:px-16"
                 >
                   <div className="space-y-8">
                     <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
@@ -1285,18 +1297,18 @@ export default function MitsumataPage() {
                       whileInView={{ width: "4rem" }}
                       transition={{ duration: 1, delay: 0.7 }}
                       viewport={{ once: true }}
-                      className="h-[2px] bg-gradient-to-r from-stone-700 via-stone-400 to-transparent"
+                      className="h-[2px] bg-gradient-to-r from-stone-600 via-stone-400 to-transparent"
                     />
                   </div>
 
                   <div className="space-y-8">
-                    <p className="text-xl md:text-2xl leading-[2.2] font-serif font-light text-stone-700 tracking-[0.05em]">
+                    <p className={`${STYLES.text.hero} text-stone-700 max-w-prose`}>
                       雪解け水が岩盤を伝い、
                       <br />
                       何千年もかけて濾過された清水。
                     </p>
 
-                    <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
                       手ですくえば、
                       <br />
                       冷たさが心地よい。
@@ -1306,7 +1318,7 @@ export default function MitsumataPage() {
                       富山湾へと注ぐ。
                     </p>
 
-                    <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
                       三俣山荘は、
                       <br />
                       この源流を守り続ける
@@ -1331,15 +1343,16 @@ export default function MitsumataPage() {
                   <motion.div
                     initial={{ scale: 1.15 }}
                     whileInView={{ scale: 1 }}
+                    whileHover={{ scale: 1.02 }}
                     transition={{ duration: 2.5, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="h-full w-full"
+                    className="h-full w-full overflow-hidden"
                   >
                     <Image
                       src="/images/lodges/mitsumata-1.jpg"
                       alt="清流のクローズアップ"
                       fill
-                      className="object-cover"
+                      className="object-cover transition-all duration-700 ease-out"
                       style={{ filter: 'saturate(1.05) brightness(0.95)' }}
                       quality={95}
                       loading="lazy"
@@ -1387,18 +1400,18 @@ export default function MitsumataPage() {
 
         <div className="relative h-full flex items-center justify-center z-10">
           <FadeInSection>
-            <div className="text-center space-y-6">
-              <h2 className="text-6xl md:text-7xl lg:text-8xl font-serif font-light text-white tracking-[0.15em]">
+            <div className="text-center space-y-6 md:space-y-8">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]">
                 伊藤新道
               </h2>
               <motion.div
                 initial={{ width: 0 }}
-                whileInView={{ width: "6rem" }}
-                transition={{ duration: 1, delay: 0.3 }}
+                whileInView={{ width: "8rem" }}
+                transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="h-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent mx-auto"
+                className="h-[1.5px] bg-gradient-to-r from-transparent via-white/90 to-transparent mx-auto"
               />
-              <p className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]">
+              <p className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-white/95 tracking-[0.2em]">
                 稜線ルート
               </p>
             </div>
@@ -1410,12 +1423,12 @@ export default function MitsumataPage() {
       <section className="relative py-0 overflow-hidden">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <FadeInSection>
-            <div className="max-w-3xl mx-auto mb-16 space-y-8">
-              <p className="text-lg md:text-xl leading-[2.5] font-serif font-light text-stone-700 tracking-[0.04em]">
+            <div className="max-w-3xl mx-auto mb-16 md:mb-20 space-y-8 md:space-y-10">
+              <p className={`${STYLES.text.hero} text-stone-700 leading-[2.5] md:leading-[2.8]`}>
                 1962年、登山家・伊藤正一によって開拓された歴史ある登山道。三俣山荘から水晶岳へと続く稜線ルートは、
                 高山植物の宝庫として知られ、7月から9月にかけて色とりどりの花々が登山者を迎えます。
               </p>
-              <p className="text-lg md:text-xl leading-[2.5] font-serif font-light text-stone-700 tracking-[0.04em]">
+              <p className={`${STYLES.text.hero} text-stone-600 leading-[2.5] md:leading-[2.8]`}>
                 標高2,600mから3,000m近い高度を縦走するこのルートは、北アルプスの核心部を体感できる
                 冒険の道として、多くの登山者に愛されています。
               </p>
@@ -1423,10 +1436,10 @@ export default function MitsumataPage() {
           </FadeInSection>
 
           {/* 横スクロールギャラリー */}
-          <div className="relative mt-20">
+          <div className="relative mt-20 md:mt-24">
             <FadeInSection delay={0.2}>
-              <p className="text-sm font-light tracking-[0.2em] text-stone-500 mb-6 text-center">
-                TRAIL POINTS
+              <p className={`${STYLES.title.label} text-stone-500 mb-8 md:mb-10 text-center`}>
+                Trail Points
               </p>
 
               <Swiper
@@ -1477,9 +1490,9 @@ export default function MitsumataPage() {
                     <motion.div
                       className="relative group cursor-grab active:cursor-grabbing"
                       whileHover={{ y: -8 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
+                      <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
                         <Image
                           src={point.image}
                           alt={point.title}
@@ -1489,28 +1502,29 @@ export default function MitsumataPage() {
                           quality={90}
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
 
                         {/* ホバー時の標高情報 */}
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           whileHover={{ opacity: 1, y: 0 }}
-                          className="absolute inset-0 flex flex-col items-center justify-center text-white"
+                          transition={{ duration: 0.3 }}
+                          className="absolute inset-0 flex flex-col items-center justify-center text-white backdrop-blur-[2px]"
                         >
-                          <div className="text-5xl md:text-6xl font-serif font-light tracking-[0.1em] mb-2">
+                          <div className="text-5xl md:text-6xl lg:text-7xl font-serif font-light tracking-[0.1em] mb-3">
                             {point.elevation}
                           </div>
-                          <div className="text-sm font-light tracking-[0.3em] opacity-90">
-                            ELEVATION
+                          <div className={`${STYLES.title.label} text-white/95`}>
+                            Elevation
                           </div>
                         </motion.div>
 
                         {/* 常時表示の情報 */}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white z-10">
-                          <h3 className="text-2xl md:text-3xl font-serif font-light tracking-[0.08em] mb-2">
+                        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10 text-white z-10 group-hover:opacity-0 transition-opacity duration-300">
+                          <h3 className={`${STYLES.title.card} text-white mb-2 md:mb-3`}>
                             {point.title}
                           </h3>
-                          <p className="text-sm md:text-base font-light tracking-[0.05em] opacity-90">
+                          <p className="text-sm md:text-base font-light tracking-[0.05em] text-white/90 leading-relaxed">
                             {point.description}
                           </p>
                         </div>
@@ -1525,13 +1539,13 @@ export default function MitsumataPage() {
       </section>
 
       {/* 情報セクション - ミニマル表現 */}
-      <section className="relative py-16 md:py-24 lg:py-32">{/* Major section spacing */}
+      <section className="relative py-20 md:py-28 lg:py-36">{/* Major section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
             <FadeInSection delay={0.1}>
-              <div className="space-y-6">
+              <div className="space-y-6 md:space-y-8">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md transition-shadow hover:shadow-lg">
                     <Flower2 className="w-6 h-6 text-mitsumata-primary" />
                   </div>
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
@@ -1539,7 +1553,7 @@ export default function MitsumataPage() {
                   </h3>
                 </div>
                 <div className="pl-16">
-                  <p className="text-base md:text-lg leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                  <p className={`${STYLES.text.body} text-stone-700 leading-[2.2] md:leading-[2.4]`}>
                     コマクサ、チングルマ、ハクサンイチゲ、イワギキョウなど、
                     200種を超える高山植物が季節ごとに彩りを添えます。
                   </p>
@@ -1548,20 +1562,20 @@ export default function MitsumataPage() {
             </FadeInSection>
 
             <FadeInSection delay={0.2}>
-              <div className="space-y-6">
+              <div className="space-y-6 md:space-y-8">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm">
+                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md transition-shadow hover:shadow-lg">
                     <Calendar className="w-6 h-6 text-mitsumata-primary" />
                   </div>
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
                     ベストシーズン
                   </h3>
                 </div>
-                <div className="pl-16">
-                  <p className="text-base md:text-lg leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                <div className="pl-16 space-y-4 md:space-y-5">
+                  <p className={`${STYLES.text.body} text-stone-700 leading-[2.2] md:leading-[2.4]`}>
                     7月上旬〜9月下旬
                   </p>
-                  <p className="text-sm md:text-base leading-[2] font-serif font-light text-stone-500 tracking-[0.04em] mt-4">
+                  <p className={`${STYLES.text.caption} text-stone-500 leading-[2] md:leading-[2.2]`}>
                     特に7月中旬から8月上旬は、高山植物が最も美しい季節です。
                   </p>
                 </div>
