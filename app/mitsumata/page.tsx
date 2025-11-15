@@ -115,7 +115,7 @@ export default function MitsumataPage() {
                   textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
                 }}
               >
-                タイトルテキスト
+                山荘名
               </h1>
 
               {/* サブタイトル */}
@@ -130,7 +130,7 @@ export default function MitsumataPage() {
                   className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]"
                   style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
                 >
-                  サブタイトルテキスト
+                  キャッチコピー
                 </p>
                 <div className="h-[1px] w-16 bg-white/60" />
               </motion.div>
@@ -143,7 +143,7 @@ export default function MitsumataPage() {
                 className="text-sm md:text-base font-sans text-white/80 tracking-[0.25em] uppercase"
                 style={{ textShadow: "0 2px 15px rgba(0,0,0,0.7)" }}
               >
-                Sample Text
+                標高情報 · エリア名
               </motion.p>
             </motion.div>
           </div>
@@ -216,9 +216,9 @@ export default function MitsumataPage() {
                   className="space-y-8"
                 >
                   <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 leading-[1.5] tracking-[0.08em]">
-                    見出し
+                    キャッチ
                     <br />
-                    テキスト
+                    コピー
                   </h2>
 
                   <motion.div
@@ -303,7 +303,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
-                    見出しテキスト
+                    山岳展望
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -329,7 +329,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
-                    見出しテキスト
+                    源流の恵み
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -380,7 +380,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center mb-20 md:mb-24 space-y-6">
               <h2 className={`${STYLES.title.section} text-stone-800`}>
-                セクションタイトル
+                宿泊料金
               </h2>
 
               <motion.div
@@ -392,7 +392,7 @@ export default function MitsumataPage() {
               />
 
               <p className="text-base md:text-lg font-serif font-light text-stone-600 tracking-[0.04em] leading-[2]">
-                サブタイトルテキスト
+                料金プラン
               </p>
             </div>
           </FadeInSection>
@@ -682,7 +682,7 @@ export default function MitsumataPage() {
                   margin: '0 auto'
                 }}
               >
-                タイトル
+                食
               </h2>
 
               <motion.div
@@ -697,7 +697,7 @@ export default function MitsumataPage() {
                   className="text-sm md:text-base font-sans text-white/90 tracking-[0.3em] uppercase"
                   style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
                 >
-                  Sample Text
+                  Cuisine
                 </p>
                 <div className="h-[1px] w-12 bg-white/60" />
               </motion.div>
@@ -754,9 +754,9 @@ export default function MitsumataPage() {
                 >
                   <div className="space-y-4">
                     <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.4]">
-                      見出し
+                      名物料理
                       <br />
-                      テキスト
+                      料理名
                     </h3>
 
                     <motion.div
@@ -796,9 +796,9 @@ export default function MitsumataPage() {
                 >
                   <div className="space-y-4">
                     <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.4]">
-                      見出し
+                      おすすめ
                       <br />
-                      テキスト
+                      料理名
                     </h3>
 
                     <motion.div
@@ -897,7 +897,7 @@ export default function MitsumataPage() {
               >
                 <div className="space-y-4">
                   <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em]">
-                    見出しテキスト
+                    季節料理
                   </h3>
 
                   <motion.div
@@ -1050,7 +1050,7 @@ export default function MitsumataPage() {
                 fontFeatureSettings: "'palt' 1"
               }}
             >
-              タイトルテキスト
+              周辺エリア
             </motion.h2>
           </FadeInSection>
         </motion.div>
@@ -1071,7 +1071,7 @@ export default function MitsumataPage() {
             }}
             className="text-white/80 text-xs tracking-[0.25em] uppercase font-light font-sans"
           >
-            Sample Text
+            Surrounding Area
           </motion.div>
         </motion.div>
       </section>
@@ -1137,9 +1137,9 @@ export default function MitsumataPage() {
                 >
                   <div className="space-y-8">
                     <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
-                      見出し
+                      エリア名
                       <br />
-                      テキスト
+                      スポット名
                     </h3>
 
                     <motion.div
@@ -1239,7 +1239,7 @@ export default function MitsumataPage() {
               >
                 <div className="space-y-8">
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    見出しテキスト
+                    スポット名
                   </h3>
 
                   <motion.div
@@ -1402,7 +1402,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center space-y-6 md:space-y-8">
               <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]">
-                タイトルテキスト
+                登山道
               </h2>
               <motion.div
                 initial={{ width: 0 }}
@@ -1412,7 +1412,7 @@ export default function MitsumataPage() {
                 className="h-[1.5px] bg-gradient-to-r from-transparent via-white/90 to-transparent mx-auto"
               />
               <p className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-white/95 tracking-[0.2em]">
-                サブタイトルテキスト
+                ルート名
               </p>
             </div>
           </FadeInSection>
@@ -1549,7 +1549,7 @@ export default function MitsumataPage() {
                     <Flower2 className="w-6 h-6 text-mitsumata-primary" />
                   </div>
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    見出しテキスト
+                    ベストシーズン
                   </h3>
                 </div>
                 <div className="pl-16">
@@ -1568,7 +1568,7 @@ export default function MitsumataPage() {
                     <Calendar className="w-6 h-6 text-mitsumata-primary" />
                   </div>
                   <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    見出しテキスト
+                    営業期間
                   </h3>
                 </div>
                 <div className="pl-16 space-y-4 md:space-y-5">
@@ -2144,7 +2144,7 @@ export default function MitsumataPage() {
             <div className="space-y-12">
               <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em]">
-                  タイトルテキスト
+                  予約・お問い合わせ
                 </h2>
 
                 <motion.div
@@ -2156,9 +2156,9 @@ export default function MitsumataPage() {
                 />
 
                 <p className="text-lg md:text-xl leading-[2] font-serif font-light text-stone-600 tracking-[0.05em] max-w-2xl mx-auto">
-                  サブタイトルテキスト
+                  キャッチコピー
                   <br />
-                  ダミーテキストです
+                  サブテキスト
                 </p>
               </div>
 
