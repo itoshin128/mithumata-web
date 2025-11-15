@@ -1077,12 +1077,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* ストーリー展開 - 画面1：朝靄の源流 */}
-      <section className="relative min-h-screen bg-stone-50">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative min-h-screen">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
             {/* 左側60% - 写真 */}
@@ -1180,12 +1175,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* ストーリー展開 - 画面2：原生林 */}
-      <section className="relative min-h-screen bg-gradient-to-b from-stone-50 to-stone-100">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative min-h-screen">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl py-20 lg:py-32 relative z-10">
           <div className="space-y-16 lg:space-y-24">
             {/* 上部70% - パノラマ写真 */}
@@ -1270,12 +1260,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* ストーリー展開 - 画面3：清流のクローズアップ */}
-      <section className="relative min-h-screen bg-stone-50">
-        <div className="absolute inset-0 z-0">
-          <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
-        </div>
-
+      <section className="relative min-h-screen">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
             {/* 左側60% - 説明文 */}
