@@ -109,67 +109,90 @@ export default function MitsumataPage() {
         activeSection={activeSection}
         scrollProgress={scrollProgress}
       />
-      {/* ヒーローセクション - 100vh フルスクリーン */}
-      <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden">
-        {/* パラレックス背景画像 */}
-        <motion.div
-          style={{ y }}
-          className="absolute inset-0 w-full h-[120vh]"
-        >
-          {/* 三俣山荘の外観を遠景で捉えた写真、または北アルプスの稜線と山荘が映る壮大な山岳風景写真を配置 */}
-          <Image
-            src="/images/lodges/DSCF0359.jpg"
-            alt="三俣山荘"
-            fill
-            className="object-cover object-center"
-            priority
-            quality={90}
-          />
-          {/* グラデーションオーバーレイ */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-        </motion.div>
-
-        {/* ヒーローコンテンツ */}
-        <motion.div
-          style={{ opacity }}
-          className="relative z-10 h-full flex items-center justify-center"
-        >
-          <div className="text-center px-4 space-y-8">
-            {/* メインタイトル - 縦書き風の大きな明朝体 */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-6"
+      {/* ヒーローセクション - 2枚の候補画像を比較表示 */}
+      <section id="hero" ref={heroRef} className="relative min-h-screen py-20 md:py-32 bg-stone-900">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20">
+          {/* タイトル */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center mb-12 md:mb-20 space-y-6"
+          >
+            <h1
+              className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light text-white tracking-[0.08em]"
+              style={{
+                textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
+              }}
             >
-              <h1
-                className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light text-white tracking-[0.08em]"
-                style={{
-                  textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
-                }}
-              >
-                三俣山荘
-              </h1>
+              三俣山荘
+            </h1>
 
-              {/* サブタイトル */}
-              <motion.div
-                initial={{ opacity: 0, scaleX: 0 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex items-center justify-center gap-4"
+            {/* サブタイトル */}
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="flex items-center justify-center gap-4"
+            >
+              <div className="h-[1px] w-16 bg-white/60" />
+              <p
+                className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]"
+                style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
               >
-                <div className="h-[1px] w-16 bg-white/60" />
-                <p
-                  className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]"
-                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
-                >
-                  キャッチコピー
-                </p>
-                <div className="h-[1px] w-16 bg-white/60" />
-              </motion.div>
+                キャッチコピー
+              </p>
+              <div className="h-[1px] w-16 bg-white/60" />
+            </motion.div>
+          </motion.div>
+
+          {/* 2枚の候補画像 - アスペクト比を保持して表示 */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* 候補1: DSCF8042.jpg */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="space-y-4"
+            >
+              <div className="relative w-full aspect-[3/2] overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/lodges/DSCF8042.jpg"
+                  alt="三俣山荘 候補1"
+                  fill
+                  className="object-contain"
+                  priority
+                  quality={95}
+                />
+              </div>
+              <p className="text-center text-white/70 text-sm tracking-wider font-serif">
+                候補 1
+              </p>
+            </motion.div>
+
+            {/* 候補2: DSCF5539.jpg */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="space-y-4"
+            >
+              <div className="relative w-full aspect-[3/2] overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/lodges/DSCF5539.jpg"
+                  alt="三俣山荘 候補2"
+                  fill
+                  className="object-contain"
+                  priority
+                  quality={95}
+                />
+              </div>
+              <p className="text-center text-white/70 text-sm tracking-wider font-serif">
+                候補 2
+              </p>
             </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         {/* スクロールインジケーター */}
         <motion.div
