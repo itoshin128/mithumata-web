@@ -2110,58 +2110,226 @@ export default function MitsumataPage() {
         </div>
       </section>
 
-      {/* CTAセクション - シンプルで余白たっぷり */}
-      <section id="reservation" className="relative py-20 md:py-32 lg:py-40">{/* CTA importance spacing */}
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl text-center relative z-10">
+      {/* CTAセクション - 予約への誘い */}
+      <section id="reservation" className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
+        {/* 背景装飾 */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-stone-50 via-stone-100/50 to-stone-50" />
+          {/* 和紙テクスチャ */}
+          <div
+            className="absolute inset-0 opacity-40"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E")`,
+              backgroundSize: '300px 300px',
+            }}
+          />
+        </div>
+
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
           <FadeInSection>
-            <div className="space-y-12">
-              <div className="space-y-6">
-                <h2 className={`${STYLES.title.section} text-stone-800`}>
-                  ご予約
-                </h2>
+            {/* ヘッダー */}
+            <div className="text-center mb-16 md:mb-20 space-y-6">
+              <motion.h2
+                className={`${STYLES.title.section} text-stone-800`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                ご予約
+              </motion.h2>
 
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "4rem" }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  viewport={{ once: true }}
-                  className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
-                />
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "5rem" }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="h-[2px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
+              />
 
-                <p className="text-lg md:text-xl leading-[2] font-serif font-light text-stone-600 tracking-[0.05em] max-w-2xl mx-auto">
-                  キャッチコピー
-                  <br />
-                  サブテキスト
-                </p>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative px-12 py-5 bg-mitsumata-primary text-white font-serif tracking-[0.15em] text-base shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden focus:outline-none focus:ring-2 focus:ring-mitsumata-primary focus:ring-offset-2"
-                  aria-label="ラベルテキスト"
-                >
-                  <span className="relative z-10">ボタンテキスト</span>
-                  {/* Subtle shine effect on hover */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '100%' }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                  />
-                </motion.button>
-
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="px-12 py-5 border-2 border-stone-300 text-stone-700 font-serif tracking-[0.15em] text-base hover:border-mitsumata-primary/60 hover:bg-mitsumata-primary/5 hover:text-stone-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2"
-                  aria-label="ラベルテキスト"
-                >
-                  ボタンテキスト
-                </motion.button>
-              </div>
+              <motion.p
+                className="text-base md:text-lg leading-[1.9] font-serif font-light text-stone-600 tracking-[0.05em] max-w-2xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                北アルプスの懐に抱かれた三俣山荘で、
+                <br className="hidden sm:block" />
+                特別な山の時間をお過ごしください。
+              </motion.p>
             </div>
+
+            {/* 予約方法カード */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
+              {/* 電話予約 */}
+              <FadeInSection delay={0.1}>
+                <motion.div
+                  className="group bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-stone-200/50"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                >
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    {/* アイコン */}
+                    <motion.div
+                      className="w-16 h-16 rounded-full bg-gradient-to-br from-stone-600 to-stone-700 flex items-center justify-center text-white shadow-lg"
+                      whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                    </motion.div>
+
+                    <h3 className="text-lg md:text-xl font-serif font-medium text-stone-800 tracking-[0.08em]">
+                      お電話
+                    </h3>
+
+                    <p className="text-sm text-stone-600 font-serif leading-[1.8]">
+                      お気軽にお問い合わせください
+                    </p>
+
+                    <motion.a
+                      href="tel:0000-00-0000"
+                      className="text-2xl md:text-3xl font-serif font-light text-stone-700 tracking-wider hover:text-stone-900 transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      0000-00-0000
+                    </motion.a>
+
+                    <div className="text-xs text-stone-500 font-serif space-y-1">
+                      <p>受付時間：9:00〜17:00</p>
+                      <p>（営業期間中）</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+
+              {/* メール予約 */}
+              <FadeInSection delay={0.2}>
+                <motion.div
+                  className="group bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-stone-200/50"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                >
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    {/* アイコン */}
+                    <motion.div
+                      className="w-16 h-16 rounded-full bg-gradient-to-br from-stone-600 to-stone-700 flex items-center justify-center text-white shadow-lg"
+                      whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </motion.div>
+
+                    <h3 className="text-lg md:text-xl font-serif font-medium text-stone-800 tracking-[0.08em]">
+                      メール
+                    </h3>
+
+                    <p className="text-sm text-stone-600 font-serif leading-[1.8]">
+                      24時間受付
+                    </p>
+
+                    <motion.a
+                      href="mailto:info@mitsumata-sanso.jp"
+                      className="text-sm md:text-base font-serif text-stone-700 hover:text-stone-900 transition-colors underline decoration-stone-300 hover:decoration-stone-600 underline-offset-4"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      info@mitsumata-sanso.jp
+                    </motion.a>
+
+                    <div className="text-xs text-stone-500 font-serif space-y-1">
+                      <p>ご返信まで2〜3営業日</p>
+                      <p>いただく場合がございます</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+
+              {/* オンライン予約 */}
+              <FadeInSection delay={0.3}>
+                <motion.div
+                  className="group bg-gradient-to-br from-stone-700 to-stone-800 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-stone-600/50 text-white"
+                  whileHover={{ y: -8, scale: 1.02 }}
+                >
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    {/* アイコン */}
+                    <motion.div
+                      className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg"
+                      whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Calendar className="w-8 h-8" />
+                    </motion.div>
+
+                    <h3 className="text-lg md:text-xl font-serif font-medium tracking-[0.08em]">
+                      オンライン予約
+                    </h3>
+
+                    <p className="text-sm text-white/90 font-serif leading-[1.8]">
+                      24時間いつでも予約可能
+                    </p>
+
+                    <motion.button
+                      className="mt-4 px-8 py-3 bg-white text-stone-800 rounded-lg font-serif tracking-[0.12em] text-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      予約サイトへ
+                    </motion.button>
+
+                    <div className="text-xs text-white/80 font-serif">
+                      <p>即時予約確定</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* 営業期間・注意事項 */}
+            <FadeInSection delay={0.4}>
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 md:p-10 border border-stone-200/50">
+                <div className="space-y-6">
+                  <h3 className="text-center text-lg md:text-xl font-serif font-medium text-stone-800 tracking-[0.08em] mb-6">
+                    ご予約について
+                  </h3>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm md:text-base font-serif text-stone-700 leading-[1.8]">
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
+                        <p>営業期間：6月中旬〜10月中旬（積雪状況により変動）</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
+                        <p>完全予約制となっております</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
+                        <p>キャンセルは3日前までにご連絡ください</p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
+                        <p>天候により到着時刻が前後する場合がございます</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
+                        <p>山岳保険への加入を推奨しております</p>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
+                        <p>詳細はお問い合わせください</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
           </FadeInSection>
         </div>
       </section>
