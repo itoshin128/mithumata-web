@@ -2237,30 +2237,30 @@ export default function MitsumataPage() {
                     <div className="space-y-3">
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
-                        <p>営業期間は6月中旬から10月中旬までとなります（積雪状況により変動いたします）</p>
+                        <p>ご予約に関する注意事項がここに入ります。ダミーテキストです。</p>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
-                        <p>完全予約制となっております。当日のご予約はお受けできない場合がございます</p>
+                        <p>営業期間や予約方法についての説明がここに入ります。</p>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
-                        <p>キャンセルは3日前までにご連絡をお願いいたします</p>
+                        <p>キャンセルポリシーについての説明文がここに入ります。</p>
                       </div>
                     </div>
 
                     <div className="space-y-3">
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
-                        <p>天候や登山道の状況により、到着時刻が前後する場合がございます</p>
+                        <p>登山や宿泊に関する注意事項がここに入ります。</p>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
-                        <p>山岳保険への加入を推奨しております</p>
+                        <p>持ち物や装備についての説明がここに入ります。</p>
                       </div>
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0"></div>
-                        <p>その他ご不明な点は、お気軽にお問い合わせください</p>
+                        <p>お問い合わせ先についての情報がここに入ります。</p>
                       </div>
                     </div>
                   </div>
