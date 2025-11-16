@@ -1252,7 +1252,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 紹介テキスト - 横スクロールギャラリー */}
-      <section className="relative py-0 overflow-hidden">
+      <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <FadeInSection>
             <div className="max-w-3xl mx-auto mb-16 md:mb-20 space-y-8 md:space-y-10">
