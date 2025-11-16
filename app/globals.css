@@ -17,14 +17,14 @@
   --foreground: oklch(0.145 0 0);
 
   /* Card */
-  --card: #ffffff;
-  --card: oklch(1 0 0);
+  --card: #FFFDFB;
+  --card: oklch(0.995 0.005 70);
   --card-foreground: #252525;
   --card-foreground: oklch(0.145 0 0);
 
   /* Popover */
-  --popover: #ffffff;
-  --popover: oklch(1 0 0);
+  --popover: #FFFDFB;
+  --popover: oklch(0.995 0.005 70);
   --popover-foreground: #252525;
   --popover-foreground: oklch(0.145 0 0);
 
@@ -35,20 +35,20 @@
   --primary-foreground: oklch(0.985 0 0);
 
   /* Secondary */
-  --secondary: #f7f7f7;
-  --secondary: oklch(0.97 0 0);
+  --secondary: #F8F5EF;
+  --secondary: oklch(0.965 0.008 70);
   --secondary-foreground: #343434;
   --secondary-foreground: oklch(0.205 0 0);
 
   /* Muted */
-  --muted: #f7f7f7;
-  --muted: oklch(0.97 0 0);
+  --muted: #F8F5EF;
+  --muted: oklch(0.965 0.008 70);
   --muted-foreground: #8e8e8e;
   --muted-foreground: oklch(0.556 0 0);
 
   /* Accent */
-  --accent: #f7f7f7;
-  --accent: oklch(0.97 0 0);
+  --accent: #F8F5EF;
+  --accent: oklch(0.965 0.008 70);
   --accent-foreground: #343434;
   --accent-foreground: oklch(0.205 0 0);
 
@@ -59,10 +59,10 @@
   --destructive-foreground: oklch(0.577 0.245 27.325);
 
   /* Border & Input */
-  --border: #ebebeb;
-  --border: oklch(0.922 0 0);
-  --input: #ebebeb;
-  --input: oklch(0.922 0 0);
+  --border: #EDE9E3;
+  --border: oklch(0.918 0.01 70);
+  --input: #EDE9E3;
+  --input: oklch(0.918 0.01 70);
   --ring: #b5b5b5;
   --ring: oklch(0.708 0 0);
 
@@ -82,20 +82,20 @@
   --radius: 0.625rem;
 
   /* Sidebar */
-  --sidebar: #fbfbfb;
-  --sidebar: oklch(0.985 0 0);
+  --sidebar: #FAF7F1;
+  --sidebar: oklch(0.98 0.006 70);
   --sidebar-foreground: #252525;
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: #343434;
   --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: #fbfbfb;
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: #f7f7f7;
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-primary-foreground: #FAF7F1;
+  --sidebar-primary-foreground: oklch(0.98 0.006 70);
+  --sidebar-accent: #F8F5EF;
+  --sidebar-accent: oklch(0.965 0.008 70);
   --sidebar-accent-foreground: #343434;
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: #ebebeb;
-  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-border: #EDE9E3;
+  --sidebar-border: oklch(0.918 0.01 70);
   --sidebar-ring: #b5b5b5;
   --sidebar-ring: oklch(0.708 0 0);
 
