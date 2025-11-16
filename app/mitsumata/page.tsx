@@ -103,7 +103,9 @@ export default function MitsumataPage() {
       src: '/images/lodges/DSCF8042.jpg',
       alt: '三俣山荘 候補1',
       label: '候補1: 山荘外観',
-      // 写真1: 横長の構図、山荘の全景 → object-coverで迫力を出す
+      // 写真1: 横長の構図、山荘の全景 → h-screen + object-coverで全画面の迫力
+      sectionHeight: 'h-screen',
+      containerClass: 'absolute inset-0 w-full h-full',
       objectFit: 'cover' as const,
       objectPosition: 'center',
     },
@@ -111,9 +113,11 @@ export default function MitsumataPage() {
       src: '/images/lodges/DSCF5539.jpg',
       alt: '三俣山荘 候補2',
       label: '候補2: 鷲羽岳バック',
-      // 写真2: 縦長の構図、鷲羽岳バック → 上部（山頂）を優先して表示
-      objectFit: 'cover' as const,
-      objectPosition: 'center top',
+      // 写真2: 縦長の構図、上下両方が重要 → 写真の高さに合わせてpy-20 + object-containで全体表示
+      sectionHeight: 'min-h-screen py-20 md:py-24 lg:py-32',
+      containerClass: 'relative w-full h-full flex items-center justify-center',
+      objectFit: 'contain' as const,
+      objectPosition: 'center',
     },
   ]
 
@@ -139,9 +143,13 @@ export default function MitsumataPage() {
         scrollProgress={scrollProgress}
       />
       {/* ヒーローセクション - スライド形式で各写真を個別最適化して表示 */}
-      <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden bg-stone-900">
+      <section
+        id="hero"
+        ref={heroRef}
+        className={`relative overflow-hidden bg-stone-900 transition-all duration-500 ${heroImages[currentSlide].sectionHeight}`}
+      >
         {/* 背景画像 - 各写真ごとに最適な表示方法を適用 */}
-        <div className="absolute inset-0 w-full h-full">
+        <div className={heroImages[currentSlide].containerClass}>
           <Image
             key={currentSlide} // スライド切り替え時にアニメーションをリセット
             src={heroImages[currentSlide].src}
