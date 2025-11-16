@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
+import { Calendar } from 'lucide-react'
 import type { SectionConfig } from '@/hooks/useActiveSection'
 
 interface SectionProgressBarProps {
@@ -61,7 +62,7 @@ export function SectionProgressBar({
         </motion.div>
 
         {/* プログレスバーと墨色の縦線 */}
-        <div className="relative flex items-center justify-end py-8 px-4 pr-6">
+        <div className="relative flex flex-col items-end gap-6 py-6 px-4 pr-6">
           {/* 縦線とプログレスバー */}
           <div className="relative h-80">
             {/* 背景の縦線（薄い墨色） */}
@@ -142,6 +143,70 @@ export function SectionProgressBar({
               })}
             </div>
           </div>
+
+          {/* 予約CTAボタン */}
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+          >
+            <motion.button
+              onClick={() => {
+                // 予約セクションまたは外部リンクにナビゲート
+                window.location.href = '#reservation'
+              }}
+              className="group relative flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-stone-700 to-stone-800 text-white rounded-l-lg shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-600 focus-visible:ring-offset-2"
+              whileHover={{ x: -4, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              aria-label="予約・お問い合わせ"
+            >
+              {/* 背景アニメーション */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-stone-600 to-stone-700 rounded-l-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ zIndex: -1 }}
+              />
+
+              {/* アイコン（常に表示） */}
+              <motion.div
+                animate={{
+                  rotate: isHovered ? 0 : [0, -10, 10, -10, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: isHovered ? 0 : Infinity,
+                  repeatDelay: 3,
+                }}
+              >
+                <Calendar className="w-5 h-5 flex-shrink-0" />
+              </motion.div>
+
+              {/* テキスト（ホバー時に展開） */}
+              <motion.div
+                className="overflow-hidden"
+                initial={{ width: 0, opacity: 0 }}
+                animate={{
+                  width: isHovered ? 'auto' : 0,
+                  opacity: isHovered ? 1 : 0,
+                }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              >
+                <span className="font-serif text-sm tracking-[0.12em] whitespace-nowrap">
+                  予約・問合せ
+                </span>
+              </motion.div>
+
+              {/* 縦書き風アクセント（非ホバー時） */}
+              {!isHovered && (
+                <motion.div
+                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-8 bg-white/30 rounded-full"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+              )}
+            </motion.button>
+          </motion.div>
         </div>
       </div>
     </motion.aside>
