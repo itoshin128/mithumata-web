@@ -116,6 +116,7 @@ export default function MitsumataPage() {
           style={{ y }}
           className="absolute inset-0 w-full h-[120vh]"
         >
+          {/* 三俣山荘の外観を遠景で捉えた写真、または北アルプスの稜線と山荘が映る壮大な山岳風景写真を配置 */}
           <Image
             src="/images/placeholder.jpg"
             alt="画像の説明"
@@ -166,17 +167,6 @@ export default function MitsumataPage() {
                 </p>
                 <div className="h-[1px] w-16 bg-white/60" />
               </motion.div>
-
-              {/* 標高・位置情報 */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 1.2 }}
-                className="text-sm md:text-base font-sans text-white/80 tracking-[0.25em] uppercase"
-                style={{ textShadow: "0 2px 15px rgba(0,0,0,0.7)" }}
-              >
-                標高情報 · エリア名
-              </motion.p>
             </motion.div>
           </div>
         </motion.div>
@@ -318,6 +308,7 @@ export default function MitsumataPage() {
                   className="relative aspect-[4/5] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
+                  {/* 三俣山荘の建物外観や特徴的な建築の様子を示す写真を配置 */}
                   <Image
                     src="/images/placeholder.jpg"
                     alt="画像の説明"
@@ -385,6 +376,7 @@ export default function MitsumataPage() {
                   className="relative aspect-[4/5] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
+                  {/* 山荘の内部（談話室や宿泊施設の様子）、または山荘からの景色を示す写真を配置 */}
                   <Image
                     src="/images/placeholder.jpg"
                     alt="画像の説明"
@@ -688,6 +680,7 @@ export default function MitsumataPage() {
       <section id="dining" className="relative h-screen overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
+          {/* 三俣山荘の食事風景または代表的な料理の全景を示す写真を配置（温かみのある雰囲気の写真） */}
           <Image
             src="/images/placeholder.jpg"
             alt="画像の説明"
@@ -763,6 +756,7 @@ export default function MitsumataPage() {
                     viewport={{ once: true }}
                     className="w-full h-full"
                   >
+                    {/* 三俣山荘の名物料理のクローズアップ写真を配置（美味しそうな盛り付けの写真） */}
                     <Image
                       src="/images/placeholder.jpg"
                       alt="画像の説明"
@@ -871,6 +865,7 @@ export default function MitsumataPage() {
                     viewport={{ once: true }}
                     className="w-full h-full"
                   >
+                    {/* 2品目の料理写真を配置（例：山の幸を使った一品料理や煮物など） */}
                     <Image
                       src="/images/placeholder.jpg"
                       alt="画像の説明"
@@ -908,6 +903,7 @@ export default function MitsumataPage() {
                   viewport={{ once: true }}
                   className="w-full h-full"
                 >
+                  {/* 季節の料理写真を配置（例：旬の山菜料理や季節ごとの特別メニュー）正方形でアートな構図 */}
                   <Image
                     src="/images/placeholder.jpg"
                     alt="画像の説明"
@@ -988,7 +984,7 @@ export default function MitsumataPage() {
             </div>
           </FadeInSection>
 
-          {/* グッズグリッド */}
+          {/* グッズグリッド - それぞれのタイル画像は、山荘で提供される様々な料理や食材の写真を配置（例：朝食、夕食、デザート、お茶菓子など） */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
             {[
               { id: 1, name: '商品名', image: '/images/placeholder.jpg' },
@@ -1058,6 +1054,7 @@ export default function MitsumataPage() {
       <section id="kurobe" ref={kurobeRef} className="relative h-screen overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
+          {/* 黒部源流の雄大な自然風景写真を配置（例：源流の清流、山々の連なり、渓谷の風景など）*/}
           <Image
             src="/images/placeholder.jpg"
             alt="画像の説明"
@@ -1136,6 +1133,7 @@ export default function MitsumataPage() {
                     viewport={{ once: true }}
                     className="h-full w-full overflow-hidden"
                   >
+                    {/* 朝靄に包まれた黒部源流の幻想的な風景写真を配置（霧がかった静謐な渓谷の様子） */}
                     <Image
                       src="/images/placeholder.jpg"
                       alt="画像の説明"
@@ -1239,6 +1237,7 @@ export default function MitsumataPage() {
                   viewport={{ once: true }}
                   className="w-full h-full overflow-hidden"
                 >
+                  {/* 原生林のパノラマ写真を配置（木漏れ日が差し込む森の中、横長のワイド構図） */}
                   <Image
                     src="/images/placeholder.jpg"
                     alt="画像の説明"
@@ -1386,6 +1385,7 @@ export default function MitsumataPage() {
                     viewport={{ once: true }}
                     className="h-full w-full overflow-hidden"
                   >
+                    {/* 黒部源流の渓流や滝の縦長写真を配置（水が流れる様子、ダイナミックな構図） */}
                     <Image
                       src="/images/placeholder.jpg"
                       alt="画像の説明"
@@ -1428,6 +1428,7 @@ export default function MitsumataPage() {
       {/* セクション2 - サンプルコンテンツ */}
       {/* イントロ - 80vh */}
       <section id="ito-shindo" className="relative h-[80vh] overflow-hidden">
+        {/* 伊藤新道の稜線ルートの風景写真を配置（登山道や山岳風景、登山者の姿など） */}
         <Image
           src="/images/placeholder.jpg"
           alt="画像の説明"
@@ -1506,6 +1507,7 @@ export default function MitsumataPage() {
                   1024: { spaceBetween: 40 },
                 }}
               >
+                {/* 各スライド画像は、伊藤新道の主要ポイントの写真を配置（例：特徴的な岩場、展望ポイント、山小屋など） */}
                 {[
                   {
                     image: '/images/placeholder.jpg',
@@ -1642,6 +1644,7 @@ export default function MitsumataPage() {
       {/* 交通・アクセスセクション */}
       {/* ヘッダー - 50vh */}
       <section id="access" className="relative h-[50vh] overflow-hidden">
+        {/* 登山道や交通手段を示す写真を配置（例：バスやタクシー、登山口の様子など） */}
         <Image
           src="/images/placeholder.jpg"
           alt="画像の説明"
@@ -1777,6 +1780,7 @@ export default function MitsumataPage() {
                           viewport={{ once: true }}
                           className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
                         >
+                          {/* ルート1の代表的な風景写真を配置（登山道、風景、目印となる地点など） */}
                           <Image
                             src="/images/placeholder.jpg"
                             alt="画像の説明"
@@ -1884,6 +1888,7 @@ export default function MitsumataPage() {
                           viewport={{ once: true }}
                           className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
                         >
+                          {/* ルート2（高瀬ダムから）の代表的な風景写真を配置（ダム、登山道、目印となる地点など） */}
                           <Image
                             src="/images/placeholder.jpg"
                             alt="画像の説明"
@@ -1991,6 +1996,7 @@ export default function MitsumataPage() {
                           viewport={{ once: true }}
                           className="relative aspect-[4/5] overflow-hidden rounded-sm shadow-lg"
                         >
+                          {/* ルート3の代表的な風景写真を配置（登山道、風景、目印となる地点など） */}
                           <Image
                             src="/images/placeholder.jpg"
                             alt="画像の説明"
