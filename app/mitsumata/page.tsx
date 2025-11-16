@@ -1123,7 +1123,7 @@ export default function MitsumataPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-200px" }}
-                  className="relative h-full w-full"
+                  className="relative h-screen w-full"
                 >
                   <motion.div
                     initial={{ scale: 1.15 }}
@@ -1131,7 +1131,7 @@ export default function MitsumataPage() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 2.5, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="h-full w-full overflow-hidden"
+                    className="h-screen w-full overflow-hidden"
                   >
                     {/* 朝靄に包まれた黒部源流の幻想的な風景写真を配置（霧がかった静謐な渓谷の様子） */}
                     <Image
@@ -1375,7 +1375,7 @@ export default function MitsumataPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-200px" }}
-                  className="relative h-full w-full"
+                  className="relative h-screen w-full"
                 >
                   <motion.div
                     initial={{ scale: 1.15 }}
@@ -1383,7 +1383,7 @@ export default function MitsumataPage() {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 2.5, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="h-full w-full overflow-hidden"
+                    className="h-screen w-full overflow-hidden"
                   >
                     {/* 黒部源流の渓流や滝の縦長写真を配置（水が流れる様子、ダイナミックな構図） */}
                     <Image
