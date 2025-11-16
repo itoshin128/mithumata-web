@@ -12,6 +12,11 @@ import 'swiper/css'
 import 'swiper/css/free-mode'
 import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus } from 'lucide-react'
 import * as Accordion from '@radix-ui/react-accordion'
+import { SectionProgressBar } from '@/components/navigation/SectionProgressBar'
+import { MobileSectionNav } from '@/components/navigation/MobileSectionNav'
+import { SectionAnchorLinks } from '@/components/navigation/SectionAnchorLinks'
+import { useActiveSection, type SectionConfig } from '@/hooks/useActiveSection'
+import { useScrollProgress } from '@/hooks/useScrollProgress'
 
 // デザインシステム - トップページ準拠の統一ルール
 const STYLES = {
@@ -57,6 +62,18 @@ function SectionDivider() {
   )
 }
 
+// セクション定義
+const SECTIONS: SectionConfig[] = [
+  { id: 'hero', label: '三俣山荘' },
+  { id: 'about', label: '山荘について' },
+  { id: 'accommodation', label: '宿泊料金' },
+  { id: 'dining', label: 'お食事' },
+  { id: 'kurobe', label: '黒部源流' },
+  { id: 'ito-shindo', label: '稜線ルート' },
+  { id: 'access', label: 'アクセス' },
+  { id: 'faq', label: 'FAQ' },
+]
+
 export default function MitsumataPage() {
   const heroRef = useRef<HTMLDivElement>(null)
   const kurobeRef = useRef<HTMLDivElement>(null)
@@ -75,10 +92,25 @@ export default function MitsumataPage() {
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
   const kurobeOpacity = useTransform(kurobeScrollProgress, [0, 0.3], [1, 0])
 
+  // ナビゲーション用のhooks
+  const activeSection = useActiveSection(SECTIONS)
+  const scrollProgress = useScrollProgress()
+
   return (
     <main className="min-h-screen bg-stone-50">
+      {/* ナビゲーション */}
+      <SectionProgressBar
+        sections={SECTIONS}
+        activeSection={activeSection}
+        scrollProgress={scrollProgress}
+      />
+      <MobileSectionNav
+        sections={SECTIONS}
+        activeSection={activeSection}
+        scrollProgress={scrollProgress}
+      />
       {/* ヒーローセクション - 100vh フルスクリーン */}
-      <section ref={heroRef} className="relative h-screen overflow-hidden">
+      <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden">
         {/* パラレックス背景画像 */}
         <motion.div
           style={{ y }}
@@ -202,7 +234,7 @@ export default function MitsumataPage() {
         </div>
 
         {/* イントロダクションセクション - 詩的なテキスト、大きな余白 */}
-        <section className="relative py-20 md:py-32 lg:py-40">
+        <section id="about" className="relative py-20 md:py-32 lg:py-40">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
             {/* 左側 - 大きな余白とキャッチコピー */}
@@ -370,11 +402,14 @@ export default function MitsumataPage() {
 
       {/* Section Divider - Transition to pricing */}
       <div className="relative z-10">
-        <SectionDivider />
+        <SectionAnchorLinks
+          previousSection={{ id: 'about', label: '山荘について' }}
+          nextSection={{ id: 'accommodation', label: '宿泊料金' }}
+        />
       </div>
 
       {/* 宿泊料金セクション */}
-      <section className="relative py-16 md:py-24 lg:py-32">{/* Major section spacing */}
+      <section id="accommodation" className="relative py-16 md:py-24 lg:py-32">{/* Major section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           {/* セクションタイトル */}
           <FadeInSection>
@@ -642,12 +677,15 @@ export default function MitsumataPage() {
 
       {/* Section Divider - Transition to food experience */}
       <div className="relative z-10">
-        <SectionDivider />
+        <SectionAnchorLinks
+          previousSection={{ id: 'accommodation', label: '宿泊料金' }}
+          nextSection={{ id: 'dining', label: 'お食事' }}
+        />
       </div>
 
       {/* 食事セクション - ビジュアル重視 */}
       {/* 導入セクション（100vh） */}
-      <section className="relative h-screen overflow-hidden">
+      <section id="dining" className="relative h-screen overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           <Image
@@ -1009,12 +1047,15 @@ export default function MitsumataPage() {
 
       {/* Section Divider - Transition to Kurobe Genryu story */}
       <div className="relative z-10">
-        <SectionDivider />
+        <SectionAnchorLinks
+          previousSection={{ id: 'dining', label: 'お食事' }}
+          nextSection={{ id: 'kurobe', label: '黒部源流' }}
+        />
       </div>
 
       {/* セクション1 - サンプルコンテンツ */}
       {/* オープニング（100vh） */}
-      <section ref={kurobeRef} className="relative h-screen overflow-hidden">
+      <section id="kurobe" ref={kurobeRef} className="relative h-screen overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           <Image
@@ -1378,12 +1419,15 @@ export default function MitsumataPage() {
 
       {/* Section Divider - Transition to Ito Shindo */}
       <div className="relative z-10">
-        <SectionDivider />
+        <SectionAnchorLinks
+          previousSection={{ id: 'kurobe', label: '黒部源流' }}
+          nextSection={{ id: 'ito-shindo', label: '稜線ルート' }}
+        />
       </div>
 
       {/* セクション2 - サンプルコンテンツ */}
       {/* イントロ - 80vh */}
-      <section className="relative h-[80vh] overflow-hidden">
+      <section id="ito-shindo" className="relative h-[80vh] overflow-hidden">
         <Image
           src="/images/placeholder.jpg"
           alt="画像の説明"
@@ -1589,12 +1633,15 @@ export default function MitsumataPage() {
 
       {/* Section Divider - Transition to access information */}
       <div className="relative z-10">
-        <SectionDivider />
+        <SectionAnchorLinks
+          previousSection={{ id: 'ito-shindo', label: '稜線ルート' }}
+          nextSection={{ id: 'access', label: 'アクセス' }}
+        />
       </div>
 
       {/* 交通・アクセスセクション */}
       {/* ヘッダー - 50vh */}
-      <section className="relative h-[50vh] overflow-hidden">
+      <section id="access" className="relative h-[50vh] overflow-hidden">
         <Image
           src="/images/placeholder.jpg"
           alt="画像の説明"
@@ -1978,11 +2025,14 @@ export default function MitsumataPage() {
 
       {/* Section Divider - Transition to FAQ */}
       <div className="relative z-10">
-        <SectionDivider />
+        <SectionAnchorLinks
+          previousSection={{ id: 'access', label: 'アクセス' }}
+          nextSection={{ id: 'faq', label: 'FAQ' }}
+        />
       </div>
 
       {/* よくある質問セクション */}
-      <section className="relative py-16 md:py-32 lg:py-40">
+      <section id="faq" className="relative py-16 md:py-32 lg:py-40">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
           {/* Section Header - Centered */}
           <FadeInSection delay={0.1}>
