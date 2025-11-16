@@ -1981,161 +1981,82 @@ export default function MitsumataPage() {
         <SectionDivider />
       </div>
 
-      {/* よくある質問セクション - 超ミニマル */}
-      <section className="relative py-20 md:py-32 lg:py-40">{/* FAQ importance spacing */}
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-3xl relative z-10">
-          {/* セクション導入 */}
-          <FadeInSection>
-            <div className="text-center mb-24 md:mb-32 space-y-6">
-              <p className={`${STYLES.title.label} text-stone-400`}>
-                FAQ
-              </p>
-              <h2 className={`${STYLES.title.section} text-stone-800`}>
-                セクションタイトル
+      {/* よくある質問セクション */}
+      <section className="relative py-16 md:py-32 lg:py-40">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
+          {/* Section Header - Centered */}
+          <FadeInSection delay={0.1}>
+            <div className="text-center mb-16 md:mb-20 lg:mb-24 max-w-3xl mx-auto">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance">
+                よくあるご質問
               </h2>
-
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "4rem" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
-              />
+              <p className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light text-pretty">
+                お問い合わせの多いご質問をまとめました。
+                <br className="hidden md:block" />
+                その他のご質問は、お気軽にお問い合わせください。
+              </p>
             </div>
           </FadeInSection>
 
-          {/* 質問リスト */}
-          <Accordion.Root type="single" collapsible className="space-y-20">
-            {/* Q1: 予約について */}
-            <FadeInSection delay={0.1}>
-              <Accordion.Item value="faq-1" className="group border-b border-stone-200">
-                <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
-                      質問テキスト
-                    </h3>
-                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
-                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
-                    </div>
-                  </Accordion.Trigger>
-                </Accordion.Header>
-                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-                  <div className="pt-6">
-                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
-                      ここに回答テキストが入ります。ダミーテキストです。
-                      サンプルテキストがここに表示されます。ダミーテキストです。
-                      サンプルテキストがここに表示されます。
-                    </p>
-                  </div>
-                </Accordion.Content>
-              </Accordion.Item>
-            </FadeInSection>
-
-            {/* Q2: キャンセルポリシー */}
+          {/* FAQ Items - Simplified Single Section */}
+          <div className="space-y-12 md:space-y-16 lg:space-y-20">
             <FadeInSection delay={0.2}>
-              <Accordion.Item value="faq-2" className="group border-b border-stone-200">
-                <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
-                      質問テキスト
-                    </h3>
-                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
-                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
-                    </div>
-                  </Accordion.Trigger>
-                </Accordion.Header>
-                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-                  <div className="pt-6">
-                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+              <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 md:p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow duration-300">
+                {/* Questions Accordion */}
+                <Accordion.Root type="single" collapsible className="space-y-3 md:space-y-4">
+                  <Accordion.Item value="faq-1" className="border-none">
+                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                      <span className="pr-4">質問テキスト</span>
+                    </Accordion.Trigger>
+                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
-                      サンプルテキストがここに表示されます。ダミーテキストです。
                       サンプルテキストがここに表示されます。
-                    </p>
-                  </div>
-                </Accordion.Content>
-              </Accordion.Item>
-            </FadeInSection>
+                    </Accordion.Content>
+                  </Accordion.Item>
 
-            {/* Q3: 営業期間 */}
-            <FadeInSection delay={0.3}>
-              <Accordion.Item value="faq-3" className="group border-b border-stone-200">
-                <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
-                      質問テキスト
-                    </h3>
-                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
-                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
-                    </div>
-                  </Accordion.Trigger>
-                </Accordion.Header>
-                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-                  <div className="pt-6">
-                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+                  <Accordion.Item value="faq-2" className="border-none">
+                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                      <span className="pr-4">質問テキスト</span>
+                    </Accordion.Trigger>
+                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
-                      サンプルテキストがここに表示されます。ダミーテキストです。
                       サンプルテキストがここに表示されます。
-                    </p>
-                  </div>
-                </Accordion.Content>
-              </Accordion.Item>
-            </FadeInSection>
+                    </Accordion.Content>
+                  </Accordion.Item>
 
-            {/* Q4: 装備について */}
-            <FadeInSection delay={0.4}>
-              <Accordion.Item value="faq-4" className="group border-b border-stone-200">
-                <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
-                      質問テキスト
-                    </h3>
-                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
-                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
-                    </div>
-                  </Accordion.Trigger>
-                </Accordion.Header>
-                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-                  <div className="pt-6">
-                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+                  <Accordion.Item value="faq-3" className="border-none">
+                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                      <span className="pr-4">質問テキスト</span>
+                    </Accordion.Trigger>
+                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
-                      サンプルテキストがここに表示されます。ダミーテキストです。
                       サンプルテキストがここに表示されます。
-                    </p>
-                  </div>
-                </Accordion.Content>
-              </Accordion.Item>
-            </FadeInSection>
+                    </Accordion.Content>
+                  </Accordion.Item>
 
-            {/* Q5: 支払い方法 */}
-            <FadeInSection delay={0.5}>
-              <Accordion.Item value="faq-5" className="group border-b border-stone-200">
-                <Accordion.Header>
-                  <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
-                      質問テキスト
-                    </h3>
-                    <div className="relative w-6 h-6 flex-shrink-0 mt-1">
-                      <Plus className="absolute inset-0 w-6 h-6 text-stone-300 transition-all duration-300 group-data-[state=open]:opacity-0 group-data-[state=open]:rotate-90 group-hover:text-mitsumata-primary" strokeWidth={1} />
-                      <Minus className="absolute inset-0 w-6 h-6 text-mitsumata-primary transition-all duration-300 group-data-[state=closed]:opacity-0 group-data-[state=closed]:-rotate-90" strokeWidth={1} />
-                    </div>
-                  </Accordion.Trigger>
-                </Accordion.Header>
-                <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-                  <div className="pt-6">
-                    <p className="text-base font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+                  <Accordion.Item value="faq-4" className="border-none">
+                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                      <span className="pr-4">質問テキスト</span>
+                    </Accordion.Trigger>
+                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
-                      サンプルテキストがここに表示されます。ダミーテキストです。
                       サンプルテキストがここに表示されます。
-                    </p>
-                  </div>
-                </Accordion.Content>
-              </Accordion.Item>
+                    </Accordion.Content>
+                  </Accordion.Item>
+
+                  <Accordion.Item value="faq-5" className="border-none">
+                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                      <span className="pr-4">質問テキスト</span>
+                    </Accordion.Trigger>
+                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
+                      ここに回答テキストが入ります。ダミーテキストです。
+                      サンプルテキストがここに表示されます。
+                    </Accordion.Content>
+                  </Accordion.Item>
+                </Accordion.Root>
+              </div>
             </FadeInSection>
-          </Accordion.Root>
+          </div>
         </div>
       </section>
 
