@@ -125,19 +125,21 @@ export default function MitsumataPage() {
         scrollProgress={scrollProgress}
       />
       {/* ヒーローセクション - スライド形式で候補画像を1枚ずつ表示 */}
-      <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden">
+      <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden bg-stone-900">
         {/* 背景画像 */}
-        <div className="absolute inset-0 w-full h-full">
-          <Image
-            src={heroImages[currentSlide].src}
-            alt={heroImages[currentSlide].alt}
-            fill
-            className="object-cover object-center"
-            priority
-            quality={90}
-          />
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
+          <div className="relative w-full h-full">
+            <Image
+              src={heroImages[currentSlide].src}
+              alt={heroImages[currentSlide].alt}
+              fill
+              className="object-contain"
+              priority
+              quality={95}
+            />
+          </div>
           {/* グラデーションオーバーレイ */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 pointer-events-none" />
         </div>
 
         {/* ヒーローコンテンツ */}
