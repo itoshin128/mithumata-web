@@ -110,13 +110,13 @@ export default function MitsumataPage() {
       objectPosition: 'center',
     },
     {
-      src: '/images/lodges/DSCF5539.jpg',
+      src: '/images/lodges/DSCF1815.jpg',
       alt: '三俣山荘 候補2',
-      label: '候補2: 鷲羽岳バック',
-      // 写真2: 縦長の構図、上下両方が重要 → h-screen + object-containで上下を絶対に切らない
+      label: '候補2: 山荘写真',
+      // 写真2: 新しい候補写真 → h-screen + object-coverで全画面表示
       sectionHeight: 'h-screen',
       containerClass: 'absolute inset-0 w-full h-full',
-      objectFit: 'contain' as const,
+      objectFit: 'cover' as const,
       objectPosition: 'center',
     },
   ]
