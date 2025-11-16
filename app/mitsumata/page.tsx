@@ -1610,7 +1610,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center space-y-6">
               <h2 className={`${STYLES.title.section} text-white`}>
-                Access
+                アクセス・ルート
               </h2>
               <motion.div
                 initial={{ width: 0 }}
