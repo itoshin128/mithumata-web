@@ -316,7 +316,7 @@ export function Header() {
                     </motion.h3>
                     <ul className="space-y-4" role="list">
                       {[
-                        { name: "三俣山荘", href: "/lodges/mitsumata", color: "mitsumata" },
+                        { name: "三俣山荘", href: "/mitsumata", color: "mitsumata" },
                         { name: "水晶小屋", href: "/lodges/suisho", color: "suisho" },
                         { name: "湯俣山荘", href: "/lodges/yumata", color: "yumata" },
                       ].map((lodge, index) => (
