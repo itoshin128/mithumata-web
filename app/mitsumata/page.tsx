@@ -219,7 +219,8 @@ export default function MitsumataPage() {
         {/* 統一背景エフェクト */}
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="strong" animated={false} />
-          <TreeShadowBackground intensity="subtle" enableParallax={true} />
+          {/* 木の影アニメーションを一時的に無効化 */}
+          {/* <TreeShadowBackground intensity="subtle" enableParallax={true} /> */}
         </div>
 
         {/* イントロダクションセクション - 詩的なテキスト、大きな余白 */}
