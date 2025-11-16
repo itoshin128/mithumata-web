@@ -144,7 +144,7 @@ export function SectionProgressBar({
             </div>
           </div>
 
-          {/* 予約CTAボタン */}
+          {/* 予約CTAボタン - 常に目立つデザイン */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, y: 10 }}
@@ -156,55 +156,49 @@ export function SectionProgressBar({
                 // 予約セクションまたは外部リンクにナビゲート
                 window.location.href = '#reservation'
               }}
-              className="group relative flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-stone-700 to-stone-800 text-white rounded-l-lg shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-600 focus-visible:ring-offset-2"
-              whileHover={{ x: -4, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="group relative flex items-center justify-center gap-2.5 px-5 py-3.5 bg-gradient-to-r from-stone-700 to-stone-800 text-white rounded-l-xl shadow-xl hover:shadow-2xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-600 focus-visible:ring-offset-2 min-w-[140px]"
+              whileHover={{ x: -6, scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               aria-label="予約・お問い合わせ"
             >
               {/* 背景アニメーション */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-stone-600 to-stone-700 rounded-l-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ zIndex: -1 }}
+                className="absolute inset-0 bg-gradient-to-r from-stone-600 to-stone-700 rounded-l-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               />
 
-              {/* アイコン（常に表示） */}
+              {/* 左側の装飾線 */}
               <motion.div
+                className="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-12 bg-white/40 rounded-full"
                 animate={{
-                  rotate: isHovered ? 0 : [0, -10, 10, -10, 0],
+                  height: ['3rem', '2.5rem', '3rem'],
+                  opacity: [0.4, 0.7, 0.4]
                 }}
-                transition={{
-                  duration: 2,
-                  repeat: isHovered ? 0 : Infinity,
-                  repeatDelay: 3,
-                }}
-              >
-                <Calendar className="w-5 h-5 flex-shrink-0" />
-              </motion.div>
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
 
-              {/* テキスト（ホバー時に展開） */}
-              <motion.div
-                className="overflow-hidden"
-                initial={{ width: 0, opacity: 0 }}
-                animate={{
-                  width: isHovered ? 'auto' : 0,
-                  opacity: isHovered ? 1 : 0,
-                }}
-                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              >
-                <span className="font-serif text-sm tracking-[0.12em] whitespace-nowrap">
-                  予約・問合せ
-                </span>
-              </motion.div>
-
-              {/* 縦書き風アクセント（非ホバー時） */}
-              {!isHovered && (
+              {/* コンテンツ */}
+              <div className="relative flex items-center gap-2.5">
                 <motion.div
-                  className="absolute -left-1 top-1/2 -translate-y-1/2 w-1 h-8 bg-white/30 rounded-full"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              )}
+                  animate={{
+                    rotate: [0, -8, 8, -8, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatDelay: 5,
+                  }}
+                >
+                  <Calendar className="w-5 h-5 flex-shrink-0" />
+                </motion.div>
+                <div className="flex flex-col items-start">
+                  <span className="font-serif text-xs tracking-[0.15em] opacity-90 leading-tight">
+                    予約
+                  </span>
+                  <span className="font-serif text-xs tracking-[0.15em] opacity-90 leading-tight">
+                    問合せ
+                  </span>
+                </div>
+              </div>
             </motion.button>
           </motion.div>
         </div>

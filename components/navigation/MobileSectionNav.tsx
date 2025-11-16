@@ -110,17 +110,17 @@ export function MobileSectionNav({
           </div>
 
           {/* ナビゲーションコントロール */}
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
             {/* 現在のセクション表示 + 展開ボタン */}
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex-1 flex items-center justify-between gap-3 px-4 py-2 bg-white/80 hover:bg-white rounded-lg shadow-sm transition-all duration-200 group"
+              className="flex-1 flex items-center justify-between gap-2 px-3 py-2 bg-white/80 hover:bg-white rounded-lg shadow-sm transition-all duration-200 group min-w-0"
             >
-              <div className="text-left min-w-0">
-                <div className="text-[10px] text-stone-500 tracking-[0.2em] uppercase font-sans mb-0.5">
-                  Section {activeIndex + 1} / {sections.length}
+              <div className="text-left min-w-0 flex-1">
+                <div className="text-[9px] text-stone-500 tracking-[0.2em] uppercase font-sans mb-0.5">
+                  {activeIndex + 1} / {sections.length}
                 </div>
-                <div className="text-sm font-serif text-stone-800 tracking-[0.08em] truncate">
+                <div className="text-xs font-serif text-stone-800 tracking-[0.08em] truncate">
                   {sections[activeIndex]?.label || '三俣山荘'}
                 </div>
               </div>
@@ -130,36 +130,26 @@ export function MobileSectionNav({
                 transition={{ duration: 0.3 }}
                 className="flex-shrink-0"
               >
-                <ChevronUp className="w-5 h-5 text-stone-600 group-hover:text-stone-800" />
+                <ChevronUp className="w-4 h-4 text-stone-600 group-hover:text-stone-800" />
               </motion.div>
             </button>
 
-            {/* ドットインジケーター */}
-            <div className="flex items-center gap-1.5 px-2">
-              {sections.map((section, index) => {
-                const isActive = activeSection === section.id
-
-                return (
-                  <button
-                    key={section.id}
-                    onClick={() => handleNavigate(section.id)}
-                    className="p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-600 focus-visible:ring-offset-2 rounded-full"
-                    aria-label={`${section.label}へ移動`}
-                  >
-                    <motion.div
-                      className={`rounded-full transition-all duration-300 ${
-                        isActive
-                          ? 'bg-stone-800 w-2 h-2'
-                          : 'bg-stone-400 w-1.5 h-1.5 hover:bg-stone-600'
-                      }`}
-                      animate={{
-                        scale: isActive ? 1.2 : 1,
-                      }}
-                    />
-                  </button>
-                )
-              })}
-            </div>
+            {/* 予約CTAボタン - 常時表示 */}
+            <motion.button
+              onClick={() => {
+                window.location.href = '#reservation'
+              }}
+              className="flex items-center gap-1.5 px-3 py-2 bg-gradient-to-r from-stone-700 to-stone-800 text-white rounded-lg shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200"
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+            >
+              <Calendar className="w-4 h-4 flex-shrink-0" />
+              <span className="font-serif text-xs tracking-[0.12em] whitespace-nowrap">
+                予約
+              </span>
+            </motion.button>
           </div>
         </div>
       </div>
