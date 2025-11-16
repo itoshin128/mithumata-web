@@ -215,7 +215,7 @@ export default function MitsumataPage() {
                   viewport={{ once: true, margin: "-100px" }}
                   className="space-y-8"
                 >
-                  <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 leading-[1.5] tracking-[0.08em]">
+                  <h2 className={`${STYLES.title.section} text-stone-800`}>
                     キャッチ
                     <br />
                     コピー
@@ -302,7 +302,7 @@ export default function MitsumataPage() {
             <div className="lg:col-span-5">
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
-                  <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
                     特徴 1
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
@@ -328,7 +328,7 @@ export default function MitsumataPage() {
             <div className="lg:col-span-5 order-2 lg:order-1">
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
-                  <h3 className="text-3xl md:text-4xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.5]">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
                     特徴 2
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
@@ -419,7 +419,7 @@ export default function MitsumataPage() {
                 <div className="p-8 md:p-10 space-y-8">
                   {/* カードタイトル */}
                   <div className="space-y-4">
-                    <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
+                    <h3 className={`${STYLES.title.card} text-stone-800 text-center font-medium`}>
                       一泊二食付き
                     </h3>
 
@@ -494,7 +494,7 @@ export default function MitsumataPage() {
                 <div className="p-8 md:p-10 space-y-8">
                   {/* カードタイトル */}
                   <div className="space-y-4">
-                    <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
+                    <h3 className={`${STYLES.title.card} text-stone-800 text-center font-medium`}>
                       素泊まり
                     </h3>
 
@@ -569,7 +569,7 @@ export default function MitsumataPage() {
                 <div className="p-8 md:p-10 space-y-8">
                   {/* カードタイトル */}
                   <div className="space-y-4">
-                    <h3 className="text-base md:text-lg lg:text-xl font-serif font-medium text-stone-800 tracking-[0.06em] leading-[1.6] text-center">
+                    <h3 className={`${STYLES.title.card} text-stone-800 text-center font-medium`}>
                       テント泊
                     </h3>
 
@@ -674,7 +674,7 @@ export default function MitsumataPage() {
             >
               {/* タイトル */}
               <h2
-                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
                 style={{
                   textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)"
                 }}
@@ -750,7 +750,7 @@ export default function MitsumataPage() {
                   className="space-y-8"
                 >
                   <div className="space-y-4">
-                    <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.4]">
+                    <h3 className={`${STYLES.title.section} text-stone-800`}>
                       名物料理
                       <br />
                       料理名
@@ -792,7 +792,7 @@ export default function MitsumataPage() {
                   className="space-y-8"
                 >
                   <div className="space-y-4">
-                    <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em] leading-[1.4]">
+                    <h3 className={`${STYLES.title.section} text-stone-800`}>
                       おすすめ
                       <br />
                       料理名
@@ -893,7 +893,7 @@ export default function MitsumataPage() {
                 className="text-center space-y-8 max-w-2xl mx-auto"
               >
                 <div className="space-y-4">
-                  <h3 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em]">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
                     季節料理
                   </h3>
 
@@ -1041,7 +1041,7 @@ export default function MitsumataPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
               style={{
                 textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)",
                 fontFeatureSettings: "'palt' 1"
@@ -1399,7 +1399,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center space-y-6 md:space-y-8">
               <h2
-                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
                 style={{
                   textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)"
                 }}
@@ -2011,7 +2011,7 @@ export default function MitsumataPage() {
               <Accordion.Item value="faq-1" className="group border-b border-stone-200">
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
+                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
                       質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
@@ -2037,7 +2037,7 @@ export default function MitsumataPage() {
               <Accordion.Item value="faq-2" className="group border-b border-stone-200">
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
+                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
                       質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
@@ -2063,7 +2063,7 @@ export default function MitsumataPage() {
               <Accordion.Item value="faq-3" className="group border-b border-stone-200">
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
+                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
                       質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
@@ -2089,7 +2089,7 @@ export default function MitsumataPage() {
               <Accordion.Item value="faq-4" className="group border-b border-stone-200">
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
+                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
                       質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
@@ -2115,7 +2115,7 @@ export default function MitsumataPage() {
               <Accordion.Item value="faq-5" className="group border-b border-stone-200">
                 <Accordion.Header>
                   <Accordion.Trigger className="w-full flex items-start justify-between gap-6 text-left group py-6 hover:bg-stone-50/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-mitsumata-primary/20 rounded">
-                    <h3 className="text-xl font-serif font-normal text-stone-800 tracking-[0.04em] transition-colors duration-300 group-hover:text-mitsumata-primary pl-2">
+                    <h3 className={`${STYLES.title.subsection} text-stone-800 font-normal transition-colors duration-300 group-hover:text-mitsumata-primary pl-2`}>
                       質問テキスト
                     </h3>
                     <div className="relative w-6 h-6 flex-shrink-0 mt-1">
@@ -2145,7 +2145,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="space-y-12">
               <div className="space-y-6">
-                <h2 className="text-4xl md:text-5xl font-serif font-light text-stone-800 tracking-[0.08em]">
+                <h2 className={`${STYLES.title.section} text-stone-800`}>
                   予約・お問い合わせ
                 </h2>
 
