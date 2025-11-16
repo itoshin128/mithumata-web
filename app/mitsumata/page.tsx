@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { WashiBackground } from "@/components/effects/washi-background"
 import TreeShadowBackground from "@/components/effects/tree-shadow-background"
@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
-import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus } from 'lucide-react'
 import * as Accordion from '@radix-ui/react-accordion'
 import { SectionProgressBar } from '@/components/navigation/SectionProgressBar'
 import { MobileSectionNav } from '@/components/navigation/MobileSectionNav'
@@ -77,7 +77,6 @@ const SECTIONS: SectionConfig[] = [
 export default function MitsumataPage() {
   const heroRef = useRef<HTMLDivElement>(null)
   const kurobeRef = useRef<HTMLDivElement>(null)
-  const [currentSlide, setCurrentSlide] = useState(0)
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -97,38 +96,6 @@ export default function MitsumataPage() {
   const activeSection = useActiveSection(SECTIONS)
   const scrollProgress = useScrollProgress()
 
-  // スライダーの画像配列 - 各写真ごとに最適な表示設定を定義
-  const heroImages = [
-    {
-      src: '/images/lodges/DSCF8042.jpg',
-      alt: '三俣山荘 候補1',
-      label: '候補1: 山荘外観',
-      // 写真1: 横長の構図、山荘の全景 → h-screen + object-coverで全画面の迫力
-      sectionHeight: 'h-screen',
-      containerClass: 'absolute inset-0 w-full h-full',
-      objectFit: 'cover' as const,
-      objectPosition: 'center',
-    },
-    {
-      src: '/images/lodges/DSCF1815.jpg',
-      alt: '三俣山荘 候補2',
-      label: '候補2: 山荘写真',
-      // 写真2: 新しい候補写真 → h-screen + object-cover + topで上部を優先表示
-      sectionHeight: 'h-screen',
-      containerClass: 'absolute inset-0 w-full h-full',
-      objectFit: 'cover' as const,
-      objectPosition: 'top',
-    },
-  ]
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroImages.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
-  }
-
   return (
     <main className="min-h-screen bg-stone-50">
       {/* ナビゲーション */}
@@ -142,34 +109,32 @@ export default function MitsumataPage() {
         activeSection={activeSection}
         scrollProgress={scrollProgress}
       />
-      {/* ヒーローセクション - スライド形式で各写真を個別最適化して表示 */}
-      <section
-        id="hero"
-        ref={heroRef}
-        className={`relative overflow-hidden bg-stone-900 transition-all duration-500 ${heroImages[currentSlide].sectionHeight}`}
-      >
-        {/* 背景画像 - 各写真ごとに最適な表示方法を適用 */}
-        <div className={heroImages[currentSlide].containerClass}>
+      {/* ヒーローセクション - 100vh フルスクリーン */}
+      <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden">
+        {/* パラレックス背景画像 */}
+        <motion.div
+          style={{ y }}
+          className="absolute inset-0 w-full h-[120vh]"
+        >
           <Image
-            key={currentSlide} // スライド切り替え時にアニメーションをリセット
-            src={heroImages[currentSlide].src}
-            alt={heroImages[currentSlide].alt}
+            src="/images/lodges/DSCF1815.jpg"
+            alt="三俣山荘"
             fill
-            className={`object-${heroImages[currentSlide].objectFit} transition-opacity duration-500`}
-            style={{
-              objectPosition: heroImages[currentSlide].objectPosition
-            }}
+            className="object-cover object-top"
             priority
-            quality={95}
+            quality={90}
           />
           {/* グラデーションオーバーレイ */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 pointer-events-none" />
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </motion.div>
 
         {/* ヒーローコンテンツ */}
-        <div className="relative z-10 h-full flex items-center justify-center">
+        <motion.div
+          style={{ opacity }}
+          className="relative z-10 h-full flex items-center justify-center"
+        >
           <div className="text-center px-4 space-y-8">
-            {/* メインタイトル */}
+            {/* メインタイトル - 縦書き風の大きな明朝体 */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -203,51 +168,7 @@ export default function MitsumataPage() {
               </motion.div>
             </motion.div>
           </div>
-        </div>
-
-        {/* ナビゲーションボタン - 左 */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all group"
-          aria-label="前の画像"
-        >
-          <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform" />
-        </button>
-
-        {/* ナビゲーションボタン - 右 */}
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all group"
-          aria-label="次の画像"
-        >
-          <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform" />
-        </button>
-
-        {/* スライドインジケーター */}
-        <div className="absolute bottom-24 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`transition-all ${
-                index === currentSlide
-                  ? 'w-8 h-2 bg-white'
-                  : 'w-2 h-2 bg-white/40 hover:bg-white/60'
-              } rounded-full`}
-              aria-label={`スライド ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* スライド情報表示 */}
-        <div className="absolute top-6 right-6 z-20 text-right space-y-1">
-          <div className="text-white/70 text-sm font-serif tracking-wider">
-            {currentSlide + 1} / {heroImages.length}
-          </div>
-          <div className="text-white/90 text-xs font-serif tracking-wide bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
-            {heroImages[currentSlide].label}
-          </div>
-        </div>
+        </motion.div>
 
         {/* スクロールインジケーター */}
         <motion.div
