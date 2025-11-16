@@ -113,10 +113,10 @@ export default function MitsumataPage() {
       src: '/images/lodges/DSCF5539.jpg',
       alt: '三俣山荘 候補2',
       label: '候補2: 鷲羽岳バック',
-      // 写真2: 縦長の構図、上下両方が重要 → h-screen + object-containで縦を切らずに表示（横は切れても可）
+      // 写真2: 縦長の構図、上下両方が重要 → h-screen + object-coverで縦いっぱいに表示（横は切れても可）
       sectionHeight: 'h-screen',
       containerClass: 'absolute inset-0 w-full h-full',
-      objectFit: 'contain' as const,
+      objectFit: 'cover' as const,
       objectPosition: 'center',
     },
   ]
