@@ -113,11 +113,11 @@ export default function MitsumataPage() {
       src: '/images/lodges/DSCF1815.jpg',
       alt: '三俣山荘 候補2',
       label: '候補2: 山荘写真',
-      // 写真2: 新しい候補写真 → h-screen + object-coverで全画面表示
+      // 写真2: 新しい候補写真 → h-screen + object-cover + topで上部を優先表示
       sectionHeight: 'h-screen',
       containerClass: 'absolute inset-0 w-full h-full',
       objectFit: 'cover' as const,
-      objectPosition: 'center',
+      objectPosition: 'top',
     },
   ]
 
