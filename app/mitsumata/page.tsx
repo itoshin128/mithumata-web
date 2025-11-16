@@ -118,8 +118,8 @@ export default function MitsumataPage() {
         >
           {/* 三俣山荘の外観を遠景で捉えた写真、または北アルプスの稜線と山荘が映る壮大な山岳風景写真を配置 */}
           <Image
-            src="/images/placeholder.jpg"
-            alt="画像の説明"
+            src="/images/lodges/DSCF0359.jpg"
+            alt="三俣山荘"
             fill
             className="object-cover object-center"
             priority
