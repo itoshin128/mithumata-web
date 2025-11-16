@@ -33,31 +33,29 @@ export function HorizontalScroll() {
   }, [])
 
   return (
-    <>
-      <style jsx global>{`
-        .horizontal-scroll-container::-webkit-scrollbar {
-          display: none;
-        }
-        .horizontal-scroll-container {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
-
+    <div className="w-screen h-screen overflow-hidden">
       {/* 横スクロールコンテナ */}
       <div
         ref={containerRef}
-        className="horizontal-scroll-container fixed inset-0 overflow-x-auto overflow-y-hidden"
+        className="w-full h-full overflow-x-auto overflow-y-hidden"
         style={{
           scrollSnapType: 'x mandatory',
           scrollBehavior: 'smooth',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
         }}
       >
+        <style jsx>{`
+          div::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
+
         {/* セクションコンテナ */}
-        <div className="flex h-screen" style={{ width: `${totalSections * 100}vw` }}>
+        <div className="flex h-full" style={{ width: `${totalSections * 100}vw` }}>
           {/* ヒーローセクション */}
           <section
-            className="flex-shrink-0 w-screen h-screen"
+            className="flex-shrink-0 w-screen h-full"
             style={{ scrollSnapAlign: 'start' }}
           >
             <HeroSection />
@@ -65,7 +63,7 @@ export function HorizontalScroll() {
 
           {/* 三俣山荘セクション */}
           <section
-            className="flex-shrink-0 w-screen h-screen"
+            className="flex-shrink-0 w-screen h-full"
             style={{ scrollSnapAlign: 'start' }}
           >
             <LodgeSection
@@ -79,7 +77,7 @@ export function HorizontalScroll() {
 
           {/* 水晶小屋セクション */}
           <section
-            className="flex-shrink-0 w-screen h-screen"
+            className="flex-shrink-0 w-screen h-full"
             style={{ scrollSnapAlign: 'start' }}
           >
             <LodgeSection
@@ -93,7 +91,7 @@ export function HorizontalScroll() {
 
           {/* 湯俣山荘セクション */}
           <section
-            className="flex-shrink-0 w-screen h-screen"
+            className="flex-shrink-0 w-screen h-full"
             style={{ scrollSnapAlign: 'start' }}
           >
             <LodgeSection
@@ -107,7 +105,7 @@ export function HorizontalScroll() {
 
           {/* 最新情報セクション */}
           <section
-            className="flex-shrink-0 w-screen h-screen"
+            className="flex-shrink-0 w-screen h-full"
             style={{ scrollSnapAlign: 'start' }}
           >
             <InfoSection />
@@ -115,7 +113,7 @@ export function HorizontalScroll() {
 
           {/* コンタクトセクション */}
           <section
-            className="flex-shrink-0 w-screen h-screen"
+            className="flex-shrink-0 w-screen h-full"
             style={{ scrollSnapAlign: 'start' }}
           >
             <ContactSection />
@@ -129,6 +127,6 @@ export function HorizontalScroll() {
         currentSection={currentSection}
         scrollProgress={scrollXProgress}
       />
-    </>
+    </div>
   )
 }

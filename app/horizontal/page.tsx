@@ -3,5 +3,9 @@
 import { HorizontalScroll } from "@/components/horizontal/horizontal-scroll"
 
 export default function HorizontalPage() {
-  return <HorizontalScroll />
+  return (
+    <div className="w-screen h-screen">
+      <HorizontalScroll />
+    </div>
+  )
 }
