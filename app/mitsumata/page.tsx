@@ -225,66 +225,35 @@ export default function MitsumataPage() {
 
         {/* イントロダクションセクション - 詩的なテキスト、大きな余白 */}
         <section id="about" className="relative py-20 md:py-32 lg:py-40">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
-            {/* 左側 - 大きな余白とキャッチコピー */}
-            <div className="lg:col-span-5">
-              <FadeInSection>
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="space-y-8"
-                >
-                  <h2 className={`${STYLES.title.section} text-stone-800`}>
-                    キャッチ
-                    <br />
-                    コピー
-                  </h2>
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl relative z-10">
+          {/* センター配置のリード文 */}
+          <FadeInSection>
+            <div className="space-y-8 text-stone-700 text-center">
+              <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
+                ここに説明文が入ります。
+                <br />
+                ダミーテキストです。
+                <br />
+                サンプルテキストがここに表示されます。
+              </p>
 
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "4rem" }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    viewport={{ once: true }}
-                    className="h-[1px] bg-gradient-to-r from-stone-400 to-stone-200"
-                  />
-                </motion.div>
-              </FadeInSection>
+              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
+                ここに説明文が入ります。
+                <br />
+                ダミーテキストです。
+                <br />
+                サンプルテキストがここに表示されます。
+              </p>
+
+              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
+                ここに説明文が入ります。
+                <br />
+                ダミーテキストです。
+                <br />
+                サンプルテキストがここに表示されます。
+              </p>
             </div>
-
-            {/* 右側 - 詩的な説明文 */}
-            <div className="lg:col-span-7">
-              <FadeInSection delay={0.2}>
-                <div className="space-y-8 text-stone-700 max-w-prose">
-                  <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
-                    ここに説明文が入ります。
-                    <br />
-                    ダミーテキストです。
-                    <br />
-                    サンプルテキストがここに表示されます。
-                  </p>
-
-                  <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                    ここに説明文が入ります。
-                    <br />
-                    ダミーテキストです。
-                    <br />
-                    サンプルテキストがここに表示されます。
-                  </p>
-
-                  <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                    ここに説明文が入ります。
-                    <br />
-                    ダミーテキストです。
-                    <br />
-                    サンプルテキストがここに表示されます。
-                  </p>
-                </div>
-              </FadeInSection>
-            </div>
-          </div>
+          </FadeInSection>
         </div>
       </section>
 
@@ -712,23 +681,6 @@ export default function MitsumataPage() {
               >
                 三俣山荘の食事
               </h2>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                viewport={{ once: true }}
-                className="flex items-center justify-center gap-4"
-              >
-                <div className="h-[1px] w-12 bg-white/60" />
-                <p
-                  className="text-sm md:text-base font-sans text-white/90 tracking-[0.3em] uppercase"
-                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
-                >
-                  Cuisine
-                </p>
-                <div className="h-[1px] w-12 bg-white/60" />
-              </motion.div>
             </motion.div>
           </FadeInSection>
         </div>
@@ -963,9 +915,7 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="text-center mb-24 md:mb-32 space-y-6">
               <h2 className={`${STYLES.title.section} text-stone-800`}>
-                セクション
-                <br className="md:hidden" />
-                タイトル
+                お土産、グッズ
               </h2>
 
               <motion.div
@@ -1089,122 +1039,54 @@ export default function MitsumataPage() {
             </motion.h2>
           </FadeInSection>
         </motion.div>
-
-        {/* スクロールインジケーター */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20"
-        >
-          <motion.div
-            animate={{ y: [0, 15, 0] }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="text-white/80 text-xs tracking-[0.25em] uppercase font-light font-sans"
-          >
-            Kurobe Genryu
-          </motion.div>
-        </motion.div>
       </section>
 
       {/* ストーリー展開 - 画面1：朝靄の源流 */}
-      <section className="relative min-h-screen">
+      <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* 左側60% - 写真 */}
-            <div className="lg:col-span-7 relative h-screen lg:sticky lg:top-0">
+            <div className="lg:col-span-7">
               <FadeInSection>
                 <motion.div
-                  initial={{ opacity: 0, x: -60 }}
+                  initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-200px" }}
-                  className="relative h-screen w-full"
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <motion.div
-                    initial={{ scale: 1.15 }}
-                    whileInView={{ scale: 1 }}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 2.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
-                    className="h-screen w-full overflow-hidden"
-                  >
-                    {/* 朝靄に包まれた黒部源流の幻想的な風景写真を配置（霧がかった静謐な渓谷の様子） */}
-                    <Image
-                      src="/images/placeholder.jpg"
-                      alt="画像の説明"
-                      fill
-                      className="object-cover transition-all duration-700 ease-out"
-                      style={{ filter: 'saturate(0.9) brightness(0.92)' }}
-                      quality={95}
-                      loading="lazy"
-                    />
-                  </motion.div>
-
-                  {/* 微細なアニメーション - 霧のエフェクト */}
-                  <motion.div
-                    animate={{
-                      opacity: [0.3, 0.5, 0.3],
-                    }}
-                    transition={{
-                      duration: 8,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/5 pointer-events-none"
+                  {/* 朝靄に包まれた黒部源流の幻想的な風景写真を配置（霧がかった静謐な渓谷の様子） */}
+                  <Image
+                    src="/images/placeholder.jpg"
+                    alt="画像の説明"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                    loading="lazy"
                   />
                 </motion.div>
               </FadeInSection>
             </div>
 
-            {/* 右側40% - 縦書きテキスト */}
-            <div className="lg:col-span-5 py-24 lg:py-32">
-              <FadeInSection delay={0.4}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.4, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-150px" }}
-                  className="space-y-16 px-6 lg:px-12"
-                >
-                  <div className="space-y-8">
-                    <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
-                      エリア名
-                      <br />
-                      スポット名
-                    </h3>
-
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "4rem" }}
-                      transition={{ duration: 1, delay: 0.8 }}
-                      viewport={{ once: true }}
-                      className="h-[2px] bg-gradient-to-r from-stone-600 via-stone-400 to-transparent"
-                    />
-                  </div>
-
-                  <div className="space-y-8">
-                    <p className={`${STYLES.text.hero} text-stone-700 max-w-prose`}>
-                      ダミーテキスト。
-                      <br />
-                      ここに説明文が入ります。
-                    </p>
-
-                    <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
-                      ここに説明文が入ります。
-                      <br />
-                      ダミーテキストです。
-                      <br />
-                      サンプルテキストがここに表示されます。
-                      <br />
-                      ダミーテキストです。
-                    </p>
-                  </div>
-                </motion.div>
+            {/* 右側40% - テキスト */}
+            <div className="lg:col-span-5">
+              <FadeInSection delay={0.3}>
+                <div className="space-y-6 max-w-prose">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
+                    エリア名
+                    <br />
+                    スポット名
+                  </h3>
+                  <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    ダミーテキスト。
+                    ここに説明文が入ります。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
+                  </p>
+                </div>
               </FadeInSection>
             </div>
           </div>
@@ -1217,87 +1099,44 @@ export default function MitsumataPage() {
       </div>
 
       {/* ストーリー展開 - 画面2：原生林 */}
-      <section className="relative min-h-screen">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl py-24 md:py-32 lg:py-40 relative z-10">
-          <div className="space-y-20 lg:space-y-28">
-            {/* 上部70% - パノラマ写真 */}
+      <section className="relative py-12 md:py-20 lg:py-28">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="space-y-16 md:space-y-20">
+            {/* パノラマ写真 */}
             <FadeInSection>
               <motion.div
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-200px" }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
                 className="relative aspect-[21/9] lg:aspect-[32/9] overflow-hidden shadow-2xl"
+                whileHover={{ scale: 1.02 }}
               >
-                <motion.div
-                  initial={{ scale: 1.15 }}
-                  whileInView={{ scale: 1 }}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 3, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                  className="w-full h-full overflow-hidden"
-                >
-                  {/* 原生林のパノラマ写真を配置（木漏れ日が差し込む森の中、横長のワイド構図） */}
-                  <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
-                    fill
-                    className="object-cover transition-all duration-700 ease-out"
-                    style={{ filter: 'saturate(0.95) brightness(0.9)' }}
-                    quality={95}
-                    loading="lazy"
-                  />
-                </motion.div>
-
-                {/* 木漏れ日のエフェクト */}
-                <motion.div
-                  animate={{
-                    opacity: [0.1, 0.25, 0.1],
-                    x: [-20, 20, -20]
-                  }}
-                  transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-50/20 to-transparent pointer-events-none"
+                {/* 原生林のパノラマ写真を配置（木漏れ日が差し込む森の中、横長のワイド構図） */}
+                <Image
+                  src="/images/placeholder.jpg"
+                  alt="画像の説明"
+                  fill
+                  className="object-cover"
+                  quality={90}
+                  loading="lazy"
                 />
               </motion.div>
             </FadeInSection>
 
-            {/* 下部30% - テキスト */}
+            {/* テキスト */}
             <FadeInSection delay={0.3}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="max-w-4xl mx-auto text-center space-y-16"
-              >
-                <div className="space-y-8">
-                  <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    スポット名
-                  </h3>
-
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "4rem" }}
-                    transition={{ duration: 1, delay: 0.6 }}
-                    viewport={{ once: true }}
-                    className="h-[2px] bg-gradient-to-r from-transparent via-stone-500 to-transparent mx-auto"
-                  />
-                </div>
-
-                <p className={`${STYLES.text.hero} text-stone-700 max-w-prose mx-auto`}>
+              <div className="max-w-4xl mx-auto text-center space-y-8">
+                <h3 className={`${STYLES.title.section} text-stone-800`}>
+                  スポット名
+                </h3>
+                <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                   ここに説明文が入ります。
-                  <br />
                   ダミーテキストです。サンプルテキストがここに表示されます。
-                  <br />
                   ここに説明文が入ります。
-                  <br />
                   ダミーテキストです。
                 </p>
-              </motion.div>
+              </div>
             </FadeInSection>
           </div>
         </div>
@@ -1309,106 +1148,52 @@ export default function MitsumataPage() {
       </div>
 
       {/* ストーリー展開 - 画面3：清流のクローズアップ */}
-      <section className="relative min-h-screen">
+      <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-screen items-center">
-            {/* 左側60% - 説明文 */}
-            <div className="lg:col-span-7 py-24 lg:py-32 order-2 lg:order-1">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* テキスト - 左側 (モバイルでは写真の下) */}
+            <div className="lg:col-span-5 order-2 lg:order-1">
               <FadeInSection delay={0.3}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-150px" }}
-                  className="space-y-16 px-6 lg:px-16"
-                >
-                  <div className="space-y-8">
-                    <h3 className={`${STYLES.title.subsection} text-stone-800 leading-[1.5]`}>
-                      見出し
-                      <br />
-                      テキスト
-                    </h3>
-
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "4rem" }}
-                      transition={{ duration: 1, delay: 0.7 }}
-                      viewport={{ once: true }}
-                      className="h-[2px] bg-gradient-to-r from-stone-600 via-stone-400 to-transparent"
-                    />
-                  </div>
-
-                  <div className="space-y-8">
-                    <p className={`${STYLES.text.hero} text-stone-700 max-w-prose`}>
-                      ここに説明文が入ります。
-                      <br />
-                      ダミーテキストです。
-                    </p>
-
-                    <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
-                      ここに説明文が入ります。
-                      <br />
-                      ダミーテキストです。
-                      <br />
-                      サンプルテキストがここに表示されます。
-                      <br />
-                      ダミーテキストです。
-                    </p>
-
-                    <p className={`${STYLES.text.body} text-stone-600 max-w-prose`}>
-                      ここに説明文が入ります。
-                      <br />
-                      ダミーテキストです。
-                      <br />
-                      サンプルテキストがここに表示されます。
-                    </p>
-                  </div>
-                </motion.div>
+                <div className="space-y-6 max-w-prose">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
+                    見出し
+                    <br />
+                    テキスト
+                  </h3>
+                  <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                  </p>
+                </div>
               </FadeInSection>
             </div>
 
-            {/* 右側40% - 縦長写真 */}
-            <div className="lg:col-span-5 relative h-screen lg:sticky lg:top-0 order-1 lg:order-2">
+            {/* 写真 - 右側 */}
+            <div className="lg:col-span-7 order-1 lg:order-2">
               <FadeInSection>
                 <motion.div
-                  initial={{ opacity: 0, x: 60 }}
+                  initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-200px" }}
-                  className="relative h-screen w-full"
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <motion.div
-                    initial={{ scale: 1.15 }}
-                    whileInView={{ scale: 1 }}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 2.5, ease: "easeOut" }}
-                    viewport={{ once: true }}
-                    className="h-screen w-full overflow-hidden"
-                  >
-                    {/* 黒部源流の渓流や滝の縦長写真を配置（水が流れる様子、ダイナミックな構図） */}
-                    <Image
-                      src="/images/placeholder.jpg"
-                      alt="画像の説明"
-                      fill
-                      className="object-cover transition-all duration-700 ease-out"
-                      style={{ filter: 'saturate(1.05) brightness(0.95)' }}
-                      quality={95}
-                      loading="lazy"
-                    />
-                  </motion.div>
-
-                  {/* 水の流れを表現するアニメーション */}
-                  <motion.div
-                    animate={{
-                      y: [0, 100, 0],
-                      opacity: [0.2, 0.4, 0.2]
-                    }}
-                    transition={{
-                      duration: 6,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                    className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/30 to-transparent pointer-events-none"
+                  {/* 黒部源流の渓流や滝の縦長写真を配置（水が流れる様子、ダイナミックな構図） */}
+                  <Image
+                    src="/images/placeholder.jpg"
+                    alt="画像の説明"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                    loading="lazy"
                   />
                 </motion.div>
               </FadeInSection>
