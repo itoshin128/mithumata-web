@@ -97,10 +97,24 @@ export default function MitsumataPage() {
   const activeSection = useActiveSection(SECTIONS)
   const scrollProgress = useScrollProgress()
 
-  // スライダーの画像配列
+  // スライダーの画像配列 - 各写真ごとに最適な表示設定を定義
   const heroImages = [
-    { src: '/images/lodges/DSCF8042.jpg', alt: '三俣山荘 候補1' },
-    { src: '/images/lodges/DSCF5539.jpg', alt: '三俣山荘 候補2' },
+    {
+      src: '/images/lodges/DSCF8042.jpg',
+      alt: '三俣山荘 候補1',
+      label: '候補1: 山荘外観',
+      // 写真1: 横長の構図、山荘の全景 → object-coverで迫力を出す
+      objectFit: 'cover' as const,
+      objectPosition: 'center',
+    },
+    {
+      src: '/images/lodges/DSCF5539.jpg',
+      alt: '三俣山荘 候補2',
+      label: '候補2: 鷲羽岳バック',
+      // 写真2: 縦長の構図、鷲羽岳バック → 上部（山頂）を優先して表示
+      objectFit: 'cover' as const,
+      objectPosition: 'center top',
+    },
   ]
 
   const nextSlide = () => {
@@ -124,20 +138,22 @@ export default function MitsumataPage() {
         activeSection={activeSection}
         scrollProgress={scrollProgress}
       />
-      {/* ヒーローセクション - スライド形式で候補画像を1枚ずつ表示 */}
+      {/* ヒーローセクション - スライド形式で各写真を個別最適化して表示 */}
       <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden bg-stone-900">
-        {/* 背景画像 */}
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center">
-          <div className="relative w-full h-full">
-            <Image
-              src={heroImages[currentSlide].src}
-              alt={heroImages[currentSlide].alt}
-              fill
-              className="object-contain"
-              priority
-              quality={95}
-            />
-          </div>
+        {/* 背景画像 - 各写真ごとに最適な表示方法を適用 */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            key={currentSlide} // スライド切り替え時にアニメーションをリセット
+            src={heroImages[currentSlide].src}
+            alt={heroImages[currentSlide].alt}
+            fill
+            className={`object-${heroImages[currentSlide].objectFit} transition-opacity duration-500`}
+            style={{
+              objectPosition: heroImages[currentSlide].objectPosition
+            }}
+            priority
+            quality={95}
+          />
           {/* グラデーションオーバーレイ */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 pointer-events-none" />
         </div>
@@ -215,9 +231,14 @@ export default function MitsumataPage() {
           ))}
         </div>
 
-        {/* スライド番号表示 */}
-        <div className="absolute top-6 right-6 z-20 text-white/70 text-sm font-serif tracking-wider">
-          {currentSlide + 1} / {heroImages.length}
+        {/* スライド情報表示 */}
+        <div className="absolute top-6 right-6 z-20 text-right space-y-1">
+          <div className="text-white/70 text-sm font-serif tracking-wider">
+            {currentSlide + 1} / {heroImages.length}
+          </div>
+          <div className="text-white/90 text-xs font-serif tracking-wide bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
+            {heroImages[currentSlide].label}
+          </div>
         </div>
 
         {/* スクロールインジケーター */}
