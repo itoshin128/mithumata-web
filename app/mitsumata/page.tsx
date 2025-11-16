@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { WashiBackground } from "@/components/effects/washi-background"
 import TreeShadowBackground from "@/components/effects/tree-shadow-background"
@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Mousewheel } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
-import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus } from 'lucide-react'
+import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus, ChevronLeft, ChevronRight } from 'lucide-react'
 import * as Accordion from '@radix-ui/react-accordion'
 import { SectionProgressBar } from '@/components/navigation/SectionProgressBar'
 import { MobileSectionNav } from '@/components/navigation/MobileSectionNav'
@@ -77,6 +77,7 @@ const SECTIONS: SectionConfig[] = [
 export default function MitsumataPage() {
   const heroRef = useRef<HTMLDivElement>(null)
   const kurobeRef = useRef<HTMLDivElement>(null)
+  const [currentSlide, setCurrentSlide] = useState(0)
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -96,6 +97,20 @@ export default function MitsumataPage() {
   const activeSection = useActiveSection(SECTIONS)
   const scrollProgress = useScrollProgress()
 
+  // スライダーの画像配列
+  const heroImages = [
+    { src: '/images/lodges/DSCF8042.jpg', alt: '三俣山荘 候補1' },
+    { src: '/images/lodges/DSCF5539.jpg', alt: '三俣山荘 候補2' },
+  ]
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length)
+  }
+
   return (
     <main className="min-h-screen bg-stone-50">
       {/* ナビゲーション */}
@@ -109,89 +124,98 @@ export default function MitsumataPage() {
         activeSection={activeSection}
         scrollProgress={scrollProgress}
       />
-      {/* ヒーローセクション - 2枚の候補画像を比較表示 */}
-      <section id="hero" ref={heroRef} className="relative min-h-screen py-20 md:py-32 bg-stone-900">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20">
-          {/* タイトル */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-12 md:mb-20 space-y-6"
-          >
-            <h1
-              className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light text-white tracking-[0.08em]"
-              style={{
-                textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
-              }}
-            >
-              三俣山荘
-            </h1>
+      {/* ヒーローセクション - スライド形式で候補画像を1枚ずつ表示 */}
+      <section id="hero" ref={heroRef} className="relative h-screen overflow-hidden">
+        {/* 背景画像 */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={heroImages[currentSlide].src}
+            alt={heroImages[currentSlide].alt}
+            fill
+            className="object-cover object-center"
+            priority
+            quality={90}
+          />
+          {/* グラデーションオーバーレイ */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </div>
 
-            {/* サブタイトル */}
+        {/* ヒーローコンテンツ */}
+        <div className="relative z-10 h-full flex items-center justify-center">
+          <div className="text-center px-4 space-y-8">
+            {/* メインタイトル */}
             <motion.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex items-center justify-center gap-4"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="space-y-6"
             >
-              <div className="h-[1px] w-16 bg-white/60" />
-              <p
-                className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]"
-                style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
+              <h1
+                className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light text-white tracking-[0.08em]"
+                style={{
+                  textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
+                }}
               >
-                キャッチコピー
-              </p>
-              <div className="h-[1px] w-16 bg-white/60" />
-            </motion.div>
-          </motion.div>
+                三俣山荘
+              </h1>
 
-          {/* 2枚の候補画像 - アスペクト比を保持して表示 */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {/* 候補1: DSCF8042.jpg */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="space-y-4"
-            >
-              <div className="relative w-full aspect-[3/2] overflow-hidden shadow-2xl">
-                <Image
-                  src="/images/lodges/DSCF8042.jpg"
-                  alt="三俣山荘 候補1"
-                  fill
-                  className="object-contain"
-                  priority
-                  quality={95}
-                />
-              </div>
-              <p className="text-center text-white/70 text-sm tracking-wider font-serif">
-                候補 1
-              </p>
-            </motion.div>
-
-            {/* 候補2: DSCF5539.jpg */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="space-y-4"
-            >
-              <div className="relative w-full aspect-[3/2] overflow-hidden shadow-2xl">
-                <Image
-                  src="/images/lodges/DSCF5539.jpg"
-                  alt="三俣山荘 候補2"
-                  fill
-                  className="object-contain"
-                  priority
-                  quality={95}
-                />
-              </div>
-              <p className="text-center text-white/70 text-sm tracking-wider font-serif">
-                候補 2
-              </p>
+              {/* サブタイトル */}
+              <motion.div
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="flex items-center justify-center gap-4"
+              >
+                <div className="h-[1px] w-16 bg-white/60" />
+                <p
+                  className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]"
+                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
+                >
+                  キャッチコピー
+                </p>
+                <div className="h-[1px] w-16 bg-white/60" />
+              </motion.div>
             </motion.div>
           </div>
+        </div>
+
+        {/* ナビゲーションボタン - 左 */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all group"
+          aria-label="前の画像"
+        >
+          <ChevronLeft className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform" />
+        </button>
+
+        {/* ナビゲーションボタン - 右 */}
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all group"
+          aria-label="次の画像"
+        >
+          <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:scale-110 transition-transform" />
+        </button>
+
+        {/* スライドインジケーター */}
+        <div className="absolute bottom-24 md:bottom-20 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`transition-all ${
+                index === currentSlide
+                  ? 'w-8 h-2 bg-white'
+                  : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+              } rounded-full`}
+              aria-label={`スライド ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* スライド番号表示 */}
+        <div className="absolute top-6 right-6 z-20 text-white/70 text-sm font-serif tracking-wider">
+          {currentSlide + 1} / {heroImages.length}
         </div>
 
         {/* スクロールインジケーター */}
