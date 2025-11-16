@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronRight } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 
 export function HeroSection() {
   return (
@@ -32,7 +32,7 @@ export function HeroSection() {
           </p>
         </motion.div>
 
-        {/* スクロールヒント */}
+        {/* スクロールヒント - 左向き */}
         <motion.div
           className="absolute bottom-12 left-1/2 -translate-x-1/2"
           initial={{ opacity: 0 }}
@@ -41,11 +41,11 @@ export function HeroSection() {
         >
           <motion.div
             className="flex items-center gap-2 text-sm text-gray-500 font-light tracking-wider"
-            animate={{ x: [0, 10, 0] }}
+            animate={{ x: [0, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
+            <ChevronLeft className="w-4 h-4" />
             <span>SCROLL</span>
-            <ChevronRight className="w-4 h-4" />
           </motion.div>
         </motion.div>
       </div>

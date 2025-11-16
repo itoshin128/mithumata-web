@@ -2,9 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
-import { Header } from "@/components/navigation/header"
-import { Footer } from "@/components/navigation/footer"
-import { FloatingReservationButton } from "@/components/ui/floating-reservation-button"
+import { ConditionalLayout } from "@/components/layout/conditional-layout"
 import "./globals.css"
 
 const notoSerifJP = Noto_Serif_JP({
@@ -72,18 +70,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${notoSerifJP.variable} ${notoSansJP.variable}`}>
       <body className="font-serif antialiased">
-        {/* アクセシビリティ: スキップリンク */}
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-8 focus:py-4 focus:bg-white focus:shadow-2xl focus:border-2 focus:border-[var(--mitsumata-primary)] focus:rounded-xl font-serif tracking-[0.2em] text-sm focus:text-gray-900 transition-all"
-        >
-          本文へスキップ
-        </a>
-
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <FloatingReservationButton />
+        <ConditionalLayout>{children}</ConditionalLayout>
         <Analytics />
       </body>
     </html>
