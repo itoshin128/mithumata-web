@@ -334,27 +334,27 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="space-y-8 text-stone-700 text-center max-w-4xl mx-auto">
               <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
-                ここに説明文が入ります。
+                北アルプスの最奥部、黒部源流域に佇む山小屋。
                 <br />
-                ダミーテキストです。
+                槍ヶ岳、穂高連峰、そして立山を結ぶ稜線の要所として、
                 <br />
-                サンプルテキストがここに表示されます。
+                多くの登山者の憩いの場となってきました。
               </p>
 
               <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                ここに説明文が入ります。
+                昭和○年の開業以来、変わらぬ山の温もりと、
                 <br />
-                ダミーテキストです。
+                心を込めたおもてなしを大切にしています。
                 <br />
-                サンプルテキストがここに表示されます。
+                標高○○○○メートル、澄んだ空気と満天の星空が迎えてくれます。
               </p>
 
               <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                ここに説明文が入ります。
+                ここは、自然と人が出会う場所。
                 <br />
-                ダミーテキストです。
+                登山の疲れを癒し、明日への力を蓄える。
                 <br />
-                サンプルテキストがここに表示されます。
+                そんな特別な時間をお過ごしいただけます。
               </p>
             </div>
           </FadeInSection>
