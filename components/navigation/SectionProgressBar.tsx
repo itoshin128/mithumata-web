@@ -37,12 +37,12 @@ export function SectionProgressBar({
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1, duration: 0.8 }}
     >
-      <div className="relative pr-6">
+      <div className="relative">
         {/* 和紙調の背景 - ホバー時に展開 */}
         <motion.div
-          className="absolute right-0 top-0 h-full bg-gradient-to-l from-stone-100/95 via-stone-50/90 to-transparent backdrop-blur-sm"
-          initial={{ width: '2rem' }}
-          animate={{ width: isHovered ? '16rem' : '2rem' }}
+          className="absolute right-0 top-0 h-full bg-gradient-to-l from-stone-100/95 via-stone-50/90 to-transparent backdrop-blur-sm rounded-l-lg"
+          initial={{ width: '3rem' }}
+          animate={{ width: isHovered ? '14rem' : '3rem' }}
           transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
           style={{
             boxShadow: isHovered
@@ -52,7 +52,7 @@ export function SectionProgressBar({
         >
           {/* 和紙テクスチャオーバーレイ */}
           <div
-            className="absolute inset-0 opacity-30 pointer-events-none"
+            className="absolute inset-0 opacity-30 pointer-events-none rounded-l-lg"
             style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E")`,
               backgroundSize: '200px 200px',
@@ -61,7 +61,7 @@ export function SectionProgressBar({
         </motion.div>
 
         {/* プログレスバーと墨色の縦線 */}
-        <div className="relative flex items-center gap-4 py-8 px-4">
+        <div className="relative flex items-center justify-end py-8 px-4 pr-6">
           {/* 縦線とプログレスバー */}
           <div className="relative h-80">
             {/* 背景の縦線（薄い墨色） */}
@@ -118,13 +118,13 @@ export function SectionProgressBar({
                       }}
                     />
 
-                    {/* ホバー時のツールチップ（常に表示する簡易版） */}
+                    {/* ホバー時のテキストラベル */}
                     {isHovered && (
                       <motion.div
-                        className="absolute left-full ml-6 top-1/2 -translate-y-1/2 whitespace-nowrap pointer-events-none"
-                        initial={{ opacity: 0, x: -10 }}
+                        className="absolute right-full mr-4 top-1/2 -translate-y-1/2 whitespace-nowrap pointer-events-none"
+                        initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05 }}
+                        transition={{ delay: index * 0.05, duration: 0.3 }}
                       >
                         <span
                           className={`text-sm font-serif tracking-[0.08em] transition-all duration-300 ${
