@@ -156,10 +156,10 @@ export function SectionProgressBar({
                 // 予約セクションまたは外部リンクにナビゲート
                 window.location.href = '#reservation'
               }}
-              className="group relative flex items-center justify-center gap-2.5 px-5 py-3.5 bg-gradient-to-r from-stone-700 to-stone-800 text-white rounded-l-xl shadow-xl hover:shadow-2xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-600 focus-visible:ring-offset-2 min-w-[140px]"
+              className="group relative flex items-center justify-center gap-2.5 px-5 py-3.5 bg-gradient-to-r from-stone-700 to-stone-800 text-white rounded-l-xl shadow-xl hover:shadow-2xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-600 focus-visible:ring-offset-2 min-w-[120px]"
               whileHover={{ x: -6, scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              aria-label="予約・お問い合わせ"
+              aria-label="ご予約"
             >
               {/* 背景アニメーション */}
               <motion.div
@@ -177,7 +177,7 @@ export function SectionProgressBar({
               />
 
               {/* コンテンツ */}
-              <div className="relative flex items-center gap-2.5">
+              <div className="relative flex items-center gap-2">
                 <motion.div
                   animate={{
                     rotate: [0, -8, 8, -8, 0],
@@ -190,14 +190,9 @@ export function SectionProgressBar({
                 >
                   <Calendar className="w-5 h-5 flex-shrink-0" />
                 </motion.div>
-                <div className="flex flex-col items-start">
-                  <span className="font-serif text-xs tracking-[0.15em] opacity-90 leading-tight">
-                    予約
-                  </span>
-                  <span className="font-serif text-xs tracking-[0.15em] opacity-90 leading-tight">
-                    問合せ
-                  </span>
-                </div>
+                <span className="font-serif text-sm tracking-[0.15em] whitespace-nowrap">
+                  ご予約
+                </span>
               </div>
             </motion.button>
           </motion.div>

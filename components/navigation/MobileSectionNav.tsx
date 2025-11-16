@@ -78,10 +78,11 @@ export function MobileSectionNav({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               whileTap={{ scale: 0.95 }}
+              aria-label="ご予約"
             >
               <Calendar className="w-5 h-5" />
               <span className="font-serif text-sm tracking-[0.12em]">
-                予約・お問い合わせ
+                ご予約
               </span>
             </motion.button>
           </div>
@@ -144,10 +145,11 @@ export function MobileSectionNav({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.4 }}
+              aria-label="ご予約"
             >
               <Calendar className="w-4 h-4 flex-shrink-0" />
               <span className="font-serif text-xs tracking-[0.12em] whitespace-nowrap">
-                予約
+                ご予約
               </span>
             </motion.button>
           </div>

@@ -2117,7 +2117,7 @@ export default function MitsumataPage() {
             <div className="space-y-12">
               <div className="space-y-6">
                 <h2 className={`${STYLES.title.section} text-stone-800`}>
-                  予約・お問い合わせ
+                  ご予約
                 </h2>
 
                 <motion.div
