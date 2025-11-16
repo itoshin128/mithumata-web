@@ -2111,7 +2111,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* CTAセクション - シンプルで余白たっぷり */}
-      <section className="relative py-20 md:py-32 lg:py-40">{/* CTA importance spacing */}
+      <section id="reservation" className="relative py-20 md:py-32 lg:py-40">{/* CTA importance spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl text-center relative z-10">
           <FadeInSection>
             <div className="space-y-12">
