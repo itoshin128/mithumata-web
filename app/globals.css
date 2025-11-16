@@ -5,9 +5,9 @@
 
 :root {
   /* Washi Background Colors - 和紙背景色（一元管理）*/
-  /* より明るく柔らかい黄色味のクリーム色 */
+  /* 明るいグレーベージュ - 上品で落ち着いた印象 */
   /* 注意：他の変数より先に定義する必要があります */
-  --washi-bg-color: #fcf6e3;
+  --washi-bg-color: #E2E0DA;
 
   /* Base Colors */
   /* 和紙背景色を参照 - 一元管理された--washi-bg-colorを使用 */
