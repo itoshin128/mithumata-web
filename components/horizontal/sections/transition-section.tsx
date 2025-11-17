@@ -1,41 +1,128 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { WashiBackground } from '@/components/effects/washi-background'
 
 export function TransitionSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.3 })
 
+  // 水滴パーティクル（源流の水）
+  const [waterParticles] = useState(() =>
+    Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      delay: Math.random() * 8,
+      duration: Math.random() * 6 + 4,
+      opacity: Math.random() * 0.4 + 0.2,
+      size: Math.random() * 3 + 1,
+      stream: Math.floor(Math.random() * 3), // どの水系に属するか
+    }))
+  )
+
   return (
     <div ref={ref} className="relative w-full h-full overflow-hidden bg-gradient-to-br from-stone-50 via-amber-50/30 to-stone-50">
       {/* 和紙背景 */}
       <WashiBackground intensity="subtle" animated={false} />
 
-      {/* 流れる光のライン（軽量化） */}
+      {/* 黒部源流の水系図 - SVG */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute h-px bg-gradient-to-r from-transparent via-gray-400/30 to-transparent"
-            style={{
-              top: `${25 + i * 25}%`,
-              width: '200%',
-              left: '-100%',
-            }}
-            animate={{
-              x: ['0%', '50%'],
-              opacity: [0, 0.4, 0],
-            }}
-            transition={{
-              duration: 12 + i * 3,
-              repeat: Infinity,
-              delay: i * 1.5,
-              ease: 'linear',
-            }}
+        <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            {/* グラデーション定義 */}
+            <linearGradient id="streamGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(100, 120, 140, 0)" />
+              <stop offset="20%" stopColor="rgba(100, 120, 140, 0.3)" />
+              <stop offset="80%" stopColor="rgba(100, 120, 140, 0.6)" />
+              <stop offset="100%" stopColor="rgba(100, 120, 140, 0)" />
+            </linearGradient>
+          </defs>
+
+          {/* メインストリーム（黒部川源流） */}
+          <motion.path
+            d="M 100,400 Q 300,380 500,400 T 900,420 L 1100,430"
+            stroke="url(#streamGradient)"
+            strokeWidth="4"
+            fill="none"
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: isInView ? 1 : 0, opacity: isInView ? 1 : 0 }}
+            transition={{ duration: 3, delay: 0.5, ease: 'easeInOut' }}
           />
-        ))}
+
+          {/* 支流1: 岩苔小谷 */}
+          <motion.path
+            d="M 350,300 Q 370,330 400,360 L 430,390"
+            stroke="url(#streamGradient)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: isInView ? 1 : 0, opacity: isInView ? 0.7 : 0 }}
+            transition={{ duration: 2, delay: 1.2, ease: 'easeInOut' }}
+          />
+
+          {/* 支流2: 真砂沢 */}
+          <motion.path
+            d="M 500,250 Q 510,300 520,350 L 530,390"
+            stroke="url(#streamGradient)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: isInView ? 1 : 0, opacity: isInView ? 0.7 : 0 }}
+            transition={{ duration: 2, delay: 1.5, ease: 'easeInOut' }}
+          />
+
+          {/* 支流3: 薬師沢 */}
+          <motion.path
+            d="M 700,280 Q 710,320 720,360 L 750,400"
+            stroke="url(#streamGradient)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: isInView ? 1 : 0, opacity: isInView ? 0.7 : 0 }}
+            transition={{ duration: 2, delay: 1.8, ease: 'easeInOut' }}
+          />
+
+          {/* 水滴パーティクル */}
+          {waterParticles.map((particle) => {
+            // どの水系に属するかで位置を決定
+            const streamPaths = [
+              'M 100,400 Q 300,380 500,400 T 900,420 L 1100,430', // メイン
+              'M 350,300 Q 370,330 400,360 L 430,390', // 支流1
+              'M 500,250 Q 510,300 520,350 L 530,390', // 支流2
+            ]
+            const stream = particle.stream
+
+            return (
+              <motion.circle
+                key={particle.id}
+                r={particle.size}
+                fill="rgba(120, 150, 180, 0.5)"
+                filter="blur(1px)"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: isInView ? [0, particle.opacity, 0] : 0,
+                }}
+                transition={{
+                  duration: particle.duration,
+                  delay: particle.delay,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+              >
+                <animateMotion
+                  dur={`${particle.duration}s`}
+                  repeatCount="indefinite"
+                  begin={`${particle.delay}s`}
+                  path={streamPaths[stream]}
+                />
+              </motion.circle>
+            )
+          })}
+        </svg>
       </div>
 
       {/* 中央のグラデーション円（軽量化） */}
@@ -98,21 +185,52 @@ export function TransitionSection() {
           </p>
         </motion.div>
 
-        {/* メインテキスト */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0.95 }}
-          transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-8"
-        >
+        {/* メインテキスト - 文字ごとのアニメーション */}
+        <div className="text-center mb-8">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-light tracking-wider text-gray-900 leading-tight">
-            源流を守る
+            {'源流を守る'.split('').map((char, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+                animate={{
+                  opacity: isInView ? 1 : 0,
+                  y: isInView ? 0 : 20,
+                  filter: isInView ? 'blur(0px)' : 'blur(4px)',
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.6 + index * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="inline-block"
+              >
+                {char}
+              </motion.span>
+            ))}
             <br />
             <span className="text-3xl md:text-5xl lg:text-6xl text-gray-700">
-              三つの山荘
+              {'三つの山荘'.split('').map((char, index) => (
+                <motion.span
+                  key={index}
+                  initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
+                  animate={{
+                    opacity: isInView ? 1 : 0,
+                    y: isInView ? 0 : 20,
+                    filter: isInView ? 'blur(0px)' : 'blur(4px)',
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 1.0 + index * 0.08,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="inline-block"
+                >
+                  {char}
+                </motion.span>
+              ))}
             </span>
           </h2>
-        </motion.div>
+        </div>
 
         {/* 説明文 */}
         <motion.div
