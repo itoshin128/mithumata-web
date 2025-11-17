@@ -936,14 +936,14 @@ export default function MitsumataPage() {
                   viewport={{ once: true, margin: "-150px" }}
                 >
                   {/* 2枚の縦構図写真を横並びに配置 */}
-                  <div className="grid grid-cols-2 gap-4 md:gap-6">
+                  <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8">
                     {/* 朝食の写真 */}
                     <motion.div
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       viewport={{ once: true, margin: "-150px" }}
-                      className="relative"
+                      className="space-y-4"
                     >
                       <div className="relative aspect-[2/3] overflow-hidden shadow-2xl">
                         <Image
@@ -955,12 +955,19 @@ export default function MitsumataPage() {
                           quality={95}
                           loading="lazy"
                         />
-                        {/* ラベル */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
-                          <p className="text-white text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.15em]">
-                            朝食
-                          </p>
-                        </div>
+                      </div>
+                      {/* ラベル - 写真の下に配置 */}
+                      <div className="text-center space-y-2">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "2rem" }}
+                          transition={{ duration: 0.8, delay: 0.5 }}
+                          viewport={{ once: true }}
+                          className="h-[1px] bg-stone-300 mx-auto"
+                        />
+                        <p className="text-sm md:text-base font-serif font-light text-stone-700 tracking-[0.2em]">
+                          朝食
+                        </p>
                       </div>
                     </motion.div>
 
@@ -970,7 +977,7 @@ export default function MitsumataPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       viewport={{ once: true, margin: "-150px" }}
-                      className="relative"
+                      className="space-y-4"
                     >
                       <div className="relative aspect-[2/3] overflow-hidden shadow-2xl">
                         <Image
@@ -982,12 +989,19 @@ export default function MitsumataPage() {
                           quality={95}
                           loading="lazy"
                         />
-                        {/* ラベル */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
-                          <p className="text-white text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.15em]">
-                            夕食
-                          </p>
-                        </div>
+                      </div>
+                      {/* ラベル - 写真の下に配置 */}
+                      <div className="text-center space-y-2">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: "2rem" }}
+                          transition={{ duration: 0.8, delay: 0.7 }}
+                          viewport={{ once: true }}
+                          className="h-[1px] bg-stone-300 mx-auto"
+                        />
+                        <p className="text-sm md:text-base font-serif font-light text-stone-700 tracking-[0.2em]">
+                          夕食
+                        </p>
                       </div>
                     </motion.div>
                   </div>
