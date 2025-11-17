@@ -63,7 +63,7 @@ const ReservationButton = memo(() => {
         </motion.button>
       </motion.div>
 
-      {/* モバイル版 - 右下の固定ボタン（最適化：44x44pt以上のタップエリア確保） */}
+      {/* モバイル版 - 右下の固定ボタン（最適化：44x44pt以上のタップエリア確保、視認性向上） */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -75,25 +75,67 @@ const ReservationButton = memo(() => {
           transition={{ duration: 0.2 }}
           onClick={handleClick}
           className="
-            backdrop-blur-md
-            text-black
-            px-6 py-4
+            relative
+            px-7 py-4
             rounded-full
             transition-all duration-300
-            flex items-center justify-center
+            flex items-center justify-center gap-2
+            overflow-hidden
           "
           style={{
-            backgroundColor: "rgba(255, 255, 255, 0.12)",
-            border: "1.5px solid rgba(255, 255, 255, 0.3)",
+            background: `
+              linear-gradient(135deg,
+                rgba(250, 247, 241, 0.98) 0%,
+                rgba(255, 253, 248, 0.96) 50%,
+                rgba(250, 247, 241, 0.98) 100%
+              )
+            `,
+            border: "2px solid rgba(45, 80, 22, 0.15)",
             boxShadow: `
-              0 4px 16px rgba(0, 0, 0, 0.08),
-              0 1px 3px rgba(0, 0, 0, 0.12),
-              inset 0 1px 2px rgba(255, 255, 255, 0.4)
+              0 8px 24px rgba(0, 0, 0, 0.12),
+              0 4px 8px rgba(0, 0, 0, 0.08),
+              inset 0 2px 4px rgba(255, 255, 255, 0.8),
+              inset 0 -2px 4px rgba(45, 80, 22, 0.05)
             `,
           }}
         >
-          <span className="text-base font-serif font-medium tracking-wider">
-            予約
+          {/* 内側の光る効果 - 山荘の灯りをイメージ */}
+          <motion.div
+            className="absolute inset-0 rounded-full opacity-0"
+            style={{
+              background: `radial-gradient(circle at 50% 50%,
+                rgba(45, 80, 22, 0.08) 0%,
+                transparent 70%
+              )`
+            }}
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              scale: [0.8, 1, 0.8]
+            }}
+            transition={{
+              duration: 3,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut"
+            }}
+          />
+
+          {/* アクセント装飾 - 左側の小さな点 */}
+          <div
+            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+            style={{
+              background: "linear-gradient(135deg, #2d5016 0%, #4a7c29 100%)",
+              boxShadow: "0 0 8px rgba(45, 80, 22, 0.4)"
+            }}
+          />
+
+          <span
+            className="text-base font-serif font-medium tracking-[0.15em] relative z-10"
+            style={{
+              color: "#2d5016",
+              textShadow: "0 1px 2px rgba(255, 255, 255, 0.8)"
+            }}
+          >
+            予約する
           </span>
         </motion.button>
       </motion.div>
