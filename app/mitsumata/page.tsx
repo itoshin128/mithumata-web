@@ -767,9 +767,9 @@ export default function MitsumataPage() {
 
               {/* グリッドレイアウト - 写真を重ねずに整然と配置 */}
               <div className="max-w-7xl mx-auto">
-                {/* 上段：縦長2枚 */}
+                {/* 上段：2枚 */}
                 <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-4 md:mb-6 lg:mb-8">
-                  {/* 写真1 - 縦長 */}
+                  {/* 写真1 */}
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -778,15 +778,16 @@ export default function MitsumataPage() {
                     className="group"
                   >
                     <motion.div
-                      className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                      className="relative overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                       whileHover={{ y: -8, scale: 1.01 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Image
                         src="/images/lodges/DSCF0598.jpg"
                         alt="館内の様子"
-                        fill
-                        className="object-cover"
+                        width={4000}
+                        height={6000}
+                        className="w-full h-auto"
                         quality={95}
                         loading="lazy"
                       />
@@ -794,7 +795,7 @@ export default function MitsumataPage() {
                     </motion.div>
                   </motion.div>
 
-                  {/* 写真2 - 縦長 */}
+                  {/* 写真2 */}
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -803,15 +804,16 @@ export default function MitsumataPage() {
                     className="group"
                   >
                     <motion.div
-                      className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                      className="relative overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                       whileHover={{ y: -8, scale: 1.01 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Image
                         src="/images/lodges/_DSF9002.jpg"
                         alt="館内の様子"
-                        fill
-                        className="object-cover"
+                        width={4000}
+                        height={6000}
+                        className="w-full h-auto"
                         quality={95}
                         loading="lazy"
                       />
@@ -820,9 +822,9 @@ export default function MitsumataPage() {
                   </motion.div>
                 </div>
 
-                {/* 下段：横長1枚 + 縦長1枚 */}
+                {/* 下段：2枚 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
-                  {/* 写真3 - 横長 */}
+                  {/* 写真3 */}
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -831,15 +833,16 @@ export default function MitsumataPage() {
                     className="group"
                   >
                     <motion.div
-                      className="relative aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                      className="relative overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                       whileHover={{ y: -8, scale: 1.01 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Image
                         src="/images/lodges/DSCF5126.jpg"
                         alt="館内の様子"
-                        fill
-                        className="object-cover"
+                        width={6000}
+                        height={4000}
+                        className="w-full h-auto"
                         quality={95}
                         loading="lazy"
                       />
@@ -847,7 +850,7 @@ export default function MitsumataPage() {
                     </motion.div>
                   </motion.div>
 
-                  {/* 写真4 - 縦長 */}
+                  {/* 写真4 */}
                   <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -856,15 +859,16 @@ export default function MitsumataPage() {
                     className="group"
                   >
                     <motion.div
-                      className="relative aspect-[2/3] md:aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                      className="relative overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                       whileHover={{ y: -8, scale: 1.01 }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Image
                         src="/images/lodges/DSCF0493.jpg"
                         alt="館内の様子"
-                        fill
-                        className="object-cover"
+                        width={6000}
+                        height={4000}
+                        className="w-full h-auto"
                         quality={95}
                         loading="lazy"
                       />
