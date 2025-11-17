@@ -765,107 +765,113 @@ export default function MitsumataPage() {
                 </h3>
               </div>
 
-              {/* 散りばめる配置レイアウト - 有機的で動きのある配置 */}
-              <div className="relative max-w-7xl mx-auto" style={{ minHeight: '1000px' }}>
-                {/* 写真1 - 左上、縦長、左回転 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 50, rotate: -2 }}
-                  whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
-                  transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="absolute left-0 md:left-[5%] top-0 w-full md:w-[34%] lg:w-[30%] group z-10"
-                >
+              {/* グリッドレイアウト - 写真を重ねずに整然と配置 */}
+              <div className="max-w-7xl mx-auto">
+                {/* 上段：縦長2枚 */}
+                <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8 mb-4 md:mb-6 lg:mb-8">
+                  {/* 写真1 - 縦長 */}
                   <motion.div
-                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
-                    whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="group"
                   >
-                    <Image
-                      src="/images/lodges/DSCF0598.jpg"
-                      alt="館内の様子"
-                      fill
-                      className="object-cover"
-                      quality={95}
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <motion.div
+                      className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                      whileHover={{ y: -8, scale: 1.01 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <Image
+                        src="/images/lodges/DSCF0598.jpg"
+                        alt="館内の様子"
+                        fill
+                        className="object-cover"
+                        quality={95}
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
 
-                {/* 写真2 - 右上、縦長、右回転 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 50, rotate: 2 }}
-                  whileInView={{ opacity: 1, y: 0, rotate: 2 }}
-                  transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="absolute right-0 md:right-[3%] top-[50px] md:top-[80px] w-full md:w-[32%] lg:w-[28%] group z-20"
-                >
+                  {/* 写真2 - 縦長 */}
                   <motion.div
-                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
-                    whileHover={{ y: -12, rotate: 0.5, scale: 1.02 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="group"
                   >
-                    <Image
-                      src="/images/lodges/_DSF9002.jpg"
-                      alt="館内の様子"
-                      fill
-                      className="object-cover"
-                      quality={95}
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <motion.div
+                      className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                      whileHover={{ y: -8, scale: 1.01 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <Image
+                        src="/images/lodges/_DSF9002.jpg"
+                        alt="館内の様子"
+                        fill
+                        className="object-cover"
+                        quality={95}
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
+                </div>
 
-                {/* 写真3 - 左下、横長、右回転 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 50, rotate: 1 }}
-                  whileInView={{ opacity: 1, y: 0, rotate: 1.5 }}
-                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="absolute left-0 md:left-[8%] top-[380px] md:top-[460px] w-full md:w-[42%] lg:w-[40%] group z-30"
-                >
+                {/* 下段：横長1枚 + 縦長1枚 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+                  {/* 写真3 - 横長 */}
                   <motion.div
-                    className="relative aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
-                    whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="group"
                   >
-                    <Image
-                      src="/images/lodges/DSCF5126.jpg"
-                      alt="館内の様子"
-                      fill
-                      className="object-cover"
-                      quality={95}
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <motion.div
+                      className="relative aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                      whileHover={{ y: -8, scale: 1.01 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <Image
+                        src="/images/lodges/DSCF5126.jpg"
+                        alt="館内の様子"
+                        fill
+                        className="object-cover"
+                        quality={95}
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
 
-                {/* 写真4 - 右下、縦長、左回転 */}
-                <motion.div
-                  initial={{ opacity: 0, y: 50, rotate: -1 }}
-                  whileInView={{ opacity: 1, y: 0, rotate: -2 }}
-                  transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="absolute right-0 md:right-[6%] top-[430px] md:top-[520px] w-full md:w-[34%] lg:w-[30%] group z-20"
-                >
+                  {/* 写真4 - 縦長 */}
                   <motion.div
-                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
-                    whileHover={{ y: -12, rotate: -0.5, scale: 1.02 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="group"
                   >
-                    <Image
-                      src="/images/lodges/DSCF0493.jpg"
-                      alt="館内の様子"
-                      fill
-                      className="object-cover"
-                      quality={95}
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <motion.div
+                      className="relative aspect-[2/3] md:aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                      whileHover={{ y: -8, scale: 1.01 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <Image
+                        src="/images/lodges/DSCF0493.jpg"
+                        alt="館内の様子"
+                        fill
+                        className="object-cover"
+                        quality={95}
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </FadeInSection>
