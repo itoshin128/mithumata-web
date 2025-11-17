@@ -934,46 +934,18 @@ export default function MitsumataPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-150px" }}
-                  className="relative"
                 >
-                  {/* 2枚の縦構図写真をオーバーラップ配置 */}
-                  <div className="relative h-[700px] md:h-[800px]">
-                    {/* 夕食の写真 - 背景（少し左下に配置） */}
+                  {/* 2枚の縦構図写真を横並びに配置 */}
+                  <div className="grid grid-cols-2 gap-4 md:gap-6">
+                    {/* 朝食の写真 */}
                     <motion.div
-                      initial={{ opacity: 0, y: 30, x: -20 }}
-                      whileInView={{ opacity: 1, y: 0, x: 0 }}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       viewport={{ once: true, margin: "-150px" }}
-                      className="absolute left-0 bottom-0 w-[60%] aspect-[2/3] overflow-hidden shadow-2xl"
+                      className="relative"
                     >
-                      <div className="relative w-full h-full">
-                        <Image
-                          src="/images/lodges/DSCF5065.jpg"
-                          alt="三俣山荘の夕食"
-                          fill
-                          className="object-cover"
-                          style={{ filter: 'saturate(0.85) brightness(0.95)' }}
-                          quality={95}
-                          loading="lazy"
-                        />
-                        {/* ラベル */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                          <p className="text-white text-xl md:text-2xl font-serif font-light tracking-[0.15em]">
-                            夕食
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {/* 朝食の写真 - 前景（右上に配置） */}
-                    <motion.div
-                      initial={{ opacity: 0, y: -30, x: 20 }}
-                      whileInView={{ opacity: 1, y: 0, x: 0 }}
-                      transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      viewport={{ once: true, margin: "-150px" }}
-                      className="absolute right-0 top-0 w-[60%] aspect-[2/3] overflow-hidden shadow-2xl"
-                    >
-                      <div className="relative w-full h-full">
+                      <div className="relative aspect-[2/3] overflow-hidden shadow-2xl">
                         <Image
                           src="/images/lodges/DSCF4852.jpg"
                           alt="三俣山荘の朝食"
@@ -984,9 +956,36 @@ export default function MitsumataPage() {
                           loading="lazy"
                         />
                         {/* ラベル */}
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
-                          <p className="text-white text-xl md:text-2xl font-serif font-light tracking-[0.15em]">
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
+                          <p className="text-white text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.15em]">
                             朝食
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* 夕食の写真 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      viewport={{ once: true, margin: "-150px" }}
+                      className="relative"
+                    >
+                      <div className="relative aspect-[2/3] overflow-hidden shadow-2xl">
+                        <Image
+                          src="/images/lodges/DSCF5065.jpg"
+                          alt="三俣山荘の夕食"
+                          fill
+                          className="object-cover"
+                          style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                          quality={95}
+                          loading="lazy"
+                        />
+                        {/* ラベル */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 md:p-6">
+                          <p className="text-white text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.15em]">
+                            夕食
                           </p>
                         </div>
                       </div>
