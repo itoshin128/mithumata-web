@@ -765,52 +765,51 @@ export default function MitsumataPage() {
                 </h3>
               </div>
 
-              {/* ミニマルグリッドレイアウト - 統一されたアスペクト比と十分な余白 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 lg:gap-20 max-w-6xl mx-auto">
-                {/* 写真1 */}
+              {/* 散りばめる配置レイアウト - 有機的で動きのある配置 */}
+              <div className="relative max-w-7xl mx-auto" style={{ minHeight: '1000px' }}>
+                {/* 写真1 - 左上、大きめ、左回転 */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="group"
+                  initial={{ opacity: 0, y: 50, rotate: -2 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
+                  transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="absolute left-0 md:left-[5%] top-0 w-full md:w-[48%] lg:w-[45%] group z-10"
                 >
                   <motion.div
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-shadow duration-700"
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Image
                       src="/images/lodges/DSCF0598.jpg"
                       alt="館内の様子"
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      className="object-cover"
                       quality={95}
                       loading="lazy"
                     />
-                    {/* 繊細なオーバーレイ */}
                     <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   </motion.div>
                 </motion.div>
 
-                {/* 写真2 */}
+                {/* 写真2 - 右上、中サイズ、右回転 */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="group"
+                  initial={{ opacity: 0, y: 50, rotate: 2 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 2 }}
+                  transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="absolute right-0 md:right-[3%] top-[50px] md:top-[100px] w-full md:w-[42%] lg:w-[40%] group z-20"
                 >
                   <motion.div
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-shadow duration-700"
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    whileHover={{ y: -12, rotate: 0.5, scale: 1.02 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Image
                       src="/images/lodges/_DSF9002.jpg"
                       alt="館内の様子"
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      className="object-cover"
                       quality={95}
                       loading="lazy"
                     />
@@ -818,24 +817,24 @@ export default function MitsumataPage() {
                   </motion.div>
                 </motion.div>
 
-                {/* 写真3 */}
+                {/* 写真3 - 左下、中サイズ、右回転 */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="group"
+                  initial={{ opacity: 0, y: 50, rotate: 1 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 1.5 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="absolute left-0 md:left-[8%] top-[400px] md:top-[480px] w-full md:w-[40%] lg:w-[38%] group z-30"
                 >
                   <motion.div
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-shadow duration-700"
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Image
                       src="/images/lodges/DSCF5126.jpg"
                       alt="館内の様子"
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      className="object-cover"
                       quality={95}
                       loading="lazy"
                     />
@@ -843,24 +842,24 @@ export default function MitsumataPage() {
                   </motion.div>
                 </motion.div>
 
-                {/* 写真4 */}
+                {/* 写真4 - 右下、中サイズ、左回転 */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="group"
+                  initial={{ opacity: 0, y: 50, rotate: -1 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+                  transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="absolute right-0 md:right-[5%] top-[450px] md:top-[550px] w-full md:w-[44%] lg:w-[42%] group z-20"
                 >
                   <motion.div
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-shadow duration-700"
-                    whileHover={{ y: -8 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    whileHover={{ y: -12, rotate: -0.5, scale: 1.02 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Image
                       src="/images/lodges/DSCF0493.jpg"
                       alt="館内の様子"
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      className="object-cover"
                       quality={95}
                       loading="lazy"
                     />
