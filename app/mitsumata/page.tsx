@@ -760,7 +760,7 @@ export default function MitsumataPage() {
                   viewport={{ once: true }}
                   className="h-[1px] w-12 bg-stone-300 mx-auto mb-8"
                 />
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.15em]">
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] antialiased">
                   館内の様子
                 </h3>
               </div>
