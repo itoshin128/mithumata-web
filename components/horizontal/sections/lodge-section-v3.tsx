@@ -67,17 +67,20 @@ export function LodgeSectionV3({
       // 水晶小屋（2,986m - 最高地点）
       filter: 'brightness(1.08) contrast(1.05)',
       cloudLayer: true,
+      mistEffect: false,
       description: '天空の稜線、空気の薄さを感じる',
     },
     mitsumata: {
       // 三俣山荘（2,550m）
       filter: 'brightness(1.0) contrast(1.0)',
       cloudLayer: false,
+      mistEffect: false,
       description: '黒部源流、森林限界の境界',
     },
     yumata: {
       // 湯俣山荘（1,580m - 最低地点）
       filter: 'saturate(1.08) sepia(0.03)',
+      cloudLayer: false,
       mistEffect: true,
       description: '秘湯の湯けむり、豊かな植生',
     },
