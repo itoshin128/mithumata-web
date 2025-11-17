@@ -936,15 +936,15 @@ export default function MitsumataPage() {
                   viewport={{ once: true, margin: "-150px" }}
                   className="relative"
                 >
-                  {/* 2枚の写真をオーバーラップ配置 */}
-                  <div className="relative h-[600px] md:h-[700px]">
+                  {/* 2枚の縦構図写真をオーバーラップ配置 */}
+                  <div className="relative h-[700px] md:h-[800px]">
                     {/* 夕食の写真 - 背景（少し左下に配置） */}
                     <motion.div
                       initial={{ opacity: 0, y: 30, x: -20 }}
                       whileInView={{ opacity: 1, y: 0, x: 0 }}
                       transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       viewport={{ once: true, margin: "-150px" }}
-                      className="absolute left-0 bottom-0 w-[75%] h-[65%] overflow-hidden shadow-2xl"
+                      className="absolute left-0 bottom-0 w-[60%] aspect-[2/3] overflow-hidden shadow-2xl"
                     >
                       <div className="relative w-full h-full">
                         <Image
@@ -971,7 +971,7 @@ export default function MitsumataPage() {
                       whileInView={{ opacity: 1, y: 0, x: 0 }}
                       transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       viewport={{ once: true, margin: "-150px" }}
-                      className="absolute right-0 top-0 w-[75%] h-[65%] overflow-hidden shadow-2xl"
+                      className="absolute right-0 top-0 w-[60%] aspect-[2/3] overflow-hidden shadow-2xl"
                     >
                       <div className="relative w-full h-full">
                         <Image
