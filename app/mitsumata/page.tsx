@@ -887,8 +887,8 @@ export default function MitsumataPage() {
         <div className="absolute inset-0">
           {/* 三俣山荘の食事風景または代表的な料理の全景を示す写真を配置（温かみのある雰囲気の写真） */}
           <Image
-            src="/images/placeholder.jpg"
-            alt="画像の説明"
+            src="/images/lodges/DSCF8130.jpg"
+            alt="三俣山荘の食事"
             fill
             className="object-cover"
             style={{ filter: 'brightness(0.6) saturate(0.9)' }}
