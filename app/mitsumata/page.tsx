@@ -96,7 +96,7 @@ const INTERIOR_IMAGES = [
   }
 ]
 
-// 帯状カルーセルコンポーネント（最適化版）
+// 帯状カルーセルコンポーネント（フルワイド最適化版）
 function InteriorGalleryCarousel() {
   const [isPaused, setIsPaused] = useState(false)
 
@@ -119,22 +119,22 @@ function InteriorGalleryCarousel() {
         </h3>
       </div>
 
-      {/* 帯状スクロールカルーセル - 画面端まで */}
+      {/* 帯状スクロールカルーセル - 画面全体フルワイド */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         <motion.div
-          className="flex gap-4"
+          className="flex gap-3"
           animate={{
-            x: isPaused ? undefined : [0, -1580], // 画像5枚分 (300px + 16px) × 5
+            x: isPaused ? undefined : [0, -1740], // 画像5枚分 (345px + 12px) × 5 = 1785px
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 50,
+              duration: 45,
               ease: "linear",
             },
           }}
@@ -143,7 +143,7 @@ function InteriorGalleryCarousel() {
           {duplicatedImages.map((image, index) => (
             <div
               key={`${image.id}-${index}`}
-              className="relative flex-shrink-0 w-[300px] group"
+              className="relative flex-shrink-0 w-[345px] group"
             >
               {/* 画像コンテナ */}
               <div className="relative aspect-square overflow-hidden bg-stone-100">
@@ -152,22 +152,22 @@ function InteriorGalleryCarousel() {
                   alt={image.alt}
                   fill
                   className="object-cover"
-                  quality={80}
+                  quality={85}
                   loading="lazy"
-                  sizes="300px"
+                  sizes="345px"
                 />
 
                 {/* 装飾番号 */}
-                <div className="absolute top-3 left-3 z-10">
-                  <span className="text-xs font-light tracking-[0.2em] text-white/80 font-sans drop-shadow-md">
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="text-xs font-light tracking-[0.25em] text-white/85 font-sans drop-shadow-lg">
                     {String(((index % 5) + 1)).padStart(2, '0')}
                   </span>
                 </div>
 
                 {/* ホバー時のオーバーレイ＋キャプション */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <p className="text-sm font-serif font-light text-white/95 tracking-[0.06em]">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <p className="text-sm font-serif font-light text-white tracking-[0.08em] leading-relaxed">
                       {image.caption}
                     </p>
                   </div>
@@ -177,18 +177,19 @@ function InteriorGalleryCarousel() {
           ))}
         </motion.div>
 
-        {/* グラデーションフェード（両端）- 控えめに */}
-        <div className="absolute inset-y-0 left-0 w-16 md:w-24 bg-gradient-to-r from-stone-50 via-stone-50/80 to-transparent pointer-events-none z-10" />
-        <div className="absolute inset-y-0 right-0 w-16 md:w-24 bg-gradient-to-l from-stone-50 via-stone-50/80 to-transparent pointer-events-none z-10" />
+        {/* グラデーションフェード（両端）- より自然に */}
+        <div className="absolute inset-y-0 left-0 w-24 md:w-40 lg:w-56 bg-gradient-to-r from-stone-50 via-stone-50/60 to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-24 md:w-40 lg:w-56 bg-gradient-to-l from-stone-50 via-stone-50/60 to-transparent pointer-events-none z-10" />
 
-        {/* 一時停止インジケーター - 控えめに */}
+        {/* 一時停止インジケーター */}
         {isPaused && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="absolute top-3 right-3 z-20 bg-white/90 px-2.5 py-1.5 rounded-full shadow-sm"
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-4 right-4 z-20 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-md"
           >
-            <span className="text-[10px] text-stone-700 font-light tracking-wider">PAUSE</span>
+            <span className="text-[10px] text-stone-600 font-light tracking-[0.15em]">PAUSE</span>
           </motion.div>
         )}
       </div>
@@ -199,7 +200,7 @@ function InteriorGalleryCarousel() {
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         viewport={{ once: true }}
-        className="h-[1px] w-16 bg-stone-300 mx-auto mt-16 md:mt-20"
+        className="h-[1px] w-20 bg-stone-300 mx-auto mt-16 md:mt-20"
       />
     </div>
   )
