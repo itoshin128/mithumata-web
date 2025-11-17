@@ -36,7 +36,7 @@ export function LodgeSectionV3({
   theme,
 }: LodgeSectionV3Props) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.2 })
+  const isInView = useInView(ref, { once: false, amount: 0.1, margin: "0px 100px 0px 0px" })
   const imageRef = useRef<HTMLDivElement>(null)
 
   // スムーズなマウス追従
@@ -54,23 +54,23 @@ export function LodgeSectionV3({
     mouseY.set(y)
   }
 
-  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [5, -5])
-  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-5, 5])
-  const imageScale = useTransform(smoothMouseX, [-0.5, 0.5], [1, 1.05])
+  const rotateX = useTransform(smoothMouseY, [-0.5, 0.5], [2, -2])
+  const rotateY = useTransform(smoothMouseX, [-0.5, 0.5], [-2, 2])
+  const imageScale = useTransform(smoothMouseX, [-0.5, 0.5], [1, 1.02])
 
   // 番号の表示
   const number = lodge === 'mitsumata' ? '01' : lodge === 'suisho' ? '02' : '03'
 
-  // 浮遊パーティクル（各山荘のテーマカラーで）
+  // 浮遊パーティクル（各山荘のテーマカラーで・軽量化）
   const [particles] = useState(() =>
-    Array.from({ length: 20 }, (_, i) => ({
+    Array.from({ length: 8 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: Math.random() * 1.5 + 0.5,
       duration: Math.random() * 25 + 15,
       delay: Math.random() * 5,
-      opacity: Math.random() * 0.2 + 0.1,
+      opacity: Math.random() * 0.15 + 0.05,
     }))
   )
 
@@ -99,9 +99,8 @@ export function LodgeSectionV3({
             }}
             initial={{ opacity: 0 }}
             animate={{
-              y: isInView ? [-10, -30, -10] : 0,
+              y: isInView ? [-5, -15, -5] : 0,
               opacity: isInView ? [particle.opacity * 0.5, particle.opacity, particle.opacity * 0.5] : 0,
-              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: particle.duration,
@@ -130,11 +129,11 @@ export function LodgeSectionV3({
             background: `radial-gradient(ellipse 50% 70% at 70% 50%, ${theme.primary} 0%, transparent 60%)`,
           }}
           animate={{
-            opacity: isInView ? [0.05, 0.08, 0.05] : 0,
-            scale: [1, 1.1, 1],
+            opacity: isInView ? [0.04, 0.06, 0.04] : 0,
+            scale: [1, 1.05, 1],
           }}
           transition={{
-            duration: 8,
+            duration: 12,
             repeat: Infinity,
             ease: 'easeInOut',
           }}

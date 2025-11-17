@@ -13,43 +13,43 @@ export function TransitionSection() {
       {/* 和紙背景 */}
       <WashiBackground intensity="subtle" animated={false} />
 
-      {/* 流れる光のライン */}
+      {/* 流れる光のライン（軽量化） */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute h-px bg-gradient-to-r from-transparent via-gray-400/40 to-transparent"
+            className="absolute h-px bg-gradient-to-r from-transparent via-gray-400/30 to-transparent"
             style={{
-              top: `${20 + i * 15}%`,
+              top: `${25 + i * 25}%`,
               width: '200%',
               left: '-100%',
             }}
             animate={{
               x: ['0%', '50%'],
-              opacity: [0, 0.6, 0],
+              opacity: [0, 0.4, 0],
             }}
             transition={{
-              duration: 8 + i * 2,
+              duration: 12 + i * 3,
               repeat: Infinity,
-              delay: i * 0.8,
+              delay: i * 1.5,
               ease: 'linear',
             }}
           />
         ))}
       </div>
 
-      {/* 中央のグラデーション円 */}
+      {/* 中央のグラデーション円（軽量化） */}
       <motion.div
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(245, 240, 230, 0.5) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 50% at 50% 50%, rgba(245, 240, 230, 0.4) 0%, transparent 70%)',
         }}
         animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.4, 0.6, 0.4],
+          scale: [1, 1.05, 1],
+          opacity: [0.3, 0.5, 0.3],
         }}
         transition={{
-          duration: 10,
+          duration: 15,
           repeat: Infinity,
           ease: 'easeInOut',
         }}

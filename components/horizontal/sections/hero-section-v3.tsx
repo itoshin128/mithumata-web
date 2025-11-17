@@ -17,20 +17,20 @@ export function HeroSectionV3() {
   const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 })
   const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 })
 
-  // パララックス効果
-  const parallaxX = useTransform(smoothMouseX, [-0.5, 0.5], [-20, 20])
-  const parallaxY = useTransform(smoothMouseY, [-0.5, 0.5], [-20, 20])
+  // パララックス効果（軽量化）
+  const parallaxX = useTransform(smoothMouseX, [-0.5, 0.5], [-10, 10])
+  const parallaxY = useTransform(smoothMouseY, [-0.5, 0.5], [-10, 10])
 
-  // 微細な浮遊パーティクル（増量）
+  // 微細な浮遊パーティクル（軽量化）
   const [particles] = useState(() =>
-    Array.from({ length: 50 }, (_, i) => ({
+    Array.from({ length: 15 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: Math.random() * 2 + 0.5,
       duration: Math.random() * 30 + 20,
       delay: Math.random() * 8,
-      opacity: Math.random() * 0.3 + 0.1,
+      opacity: Math.random() * 0.2 + 0.05,
     }))
   )
 
@@ -54,18 +54,18 @@ export function HeroSectionV3() {
         <WashiBackground intensity="subtle" animated={false} />
       </div>
 
-      {/* 大きな円形グラデーション背景 */}
+      {/* 大きな円形グラデーション背景（軽量化） */}
       <motion.div
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(245, 240, 230, 0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(245, 240, 230, 0.3) 0%, transparent 70%)',
         }}
         animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.3, 0.5, 0.3],
+          scale: [1, 1.03, 1],
+          opacity: [0.2, 0.4, 0.2],
         }}
         transition={{
-          duration: 8,
+          duration: 12,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -86,9 +86,8 @@ export function HeroSectionV3() {
               filter: 'blur(1px)',
             }}
             animate={{
-              y: [-20, -50, -20],
+              y: [-10, -25, -10],
               opacity: [particle.opacity * 0.5, particle.opacity, particle.opacity * 0.5],
-              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: particle.duration,
