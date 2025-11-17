@@ -767,16 +767,16 @@ export default function MitsumataPage() {
 
               {/* 散りばめる配置レイアウト - 有機的で動きのある配置 */}
               <div className="relative max-w-7xl mx-auto" style={{ minHeight: '1000px' }}>
-                {/* 写真1 - 左上、大きめ、左回転 */}
+                {/* 写真1 - 左上、横長、左回転 */}
                 <motion.div
                   initial={{ opacity: 0, y: 50, rotate: -2 }}
                   whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
                   transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="absolute left-0 md:left-[5%] top-0 w-full md:w-[48%] lg:w-[45%] group z-10"
+                  className="absolute left-0 md:left-[5%] top-0 w-full md:w-[48%] lg:w-[46%] group z-10"
                 >
                   <motion.div
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    className="relative aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                     whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
@@ -792,16 +792,16 @@ export default function MitsumataPage() {
                   </motion.div>
                 </motion.div>
 
-                {/* 写真2 - 右上、中サイズ、右回転 */}
+                {/* 写真2 - 右上、縦長、右回転 */}
                 <motion.div
                   initial={{ opacity: 0, y: 50, rotate: 2 }}
                   whileInView={{ opacity: 1, y: 0, rotate: 2 }}
                   transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="absolute right-0 md:right-[3%] top-[50px] md:top-[100px] w-full md:w-[42%] lg:w-[40%] group z-20"
+                  className="absolute right-0 md:right-[3%] top-[50px] md:top-[80px] w-full md:w-[32%] lg:w-[28%] group z-20"
                 >
                   <motion.div
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                     whileHover={{ y: -12, rotate: 0.5, scale: 1.02 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
@@ -817,16 +817,16 @@ export default function MitsumataPage() {
                   </motion.div>
                 </motion.div>
 
-                {/* 写真3 - 左下、中サイズ、右回転 */}
+                {/* 写真3 - 左下、横長、右回転 */}
                 <motion.div
                   initial={{ opacity: 0, y: 50, rotate: 1 }}
                   whileInView={{ opacity: 1, y: 0, rotate: 1.5 }}
                   transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="absolute left-0 md:left-[8%] top-[400px] md:top-[480px] w-full md:w-[40%] lg:w-[38%] group z-30"
+                  className="absolute left-0 md:left-[8%] top-[380px] md:top-[460px] w-full md:w-[42%] lg:w-[40%] group z-30"
                 >
                   <motion.div
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    className="relative aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                     whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
@@ -842,16 +842,16 @@ export default function MitsumataPage() {
                   </motion.div>
                 </motion.div>
 
-                {/* 写真4 - 右下、中サイズ、左回転 */}
+                {/* 写真4 - 右下、縦長、左回転 */}
                 <motion.div
                   initial={{ opacity: 0, y: 50, rotate: -1 }}
                   whileInView={{ opacity: 1, y: 0, rotate: -2 }}
                   transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="absolute right-0 md:right-[5%] top-[450px] md:top-[550px] w-full md:w-[44%] lg:w-[42%] group z-20"
+                  className="absolute right-0 md:right-[6%] top-[430px] md:top-[520px] w-full md:w-[34%] lg:w-[30%] group z-20"
                 >
                   <motion.div
-                    className="relative aspect-[16/10] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                     whileHover={{ y: -12, rotate: -0.5, scale: 1.02 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
