@@ -1,8 +1,8 @@
 'use client'
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useState, useEffect, useCallback } from "react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { WashiBackground } from "@/components/effects/washi-background"
 import TreeShadowBackground from "@/components/effects/tree-shadow-background"
@@ -57,6 +57,226 @@ function SectionDivider() {
           <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-80"></div>
         </div>
         <div className="w-12 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
+      </div>
+    </div>
+  )
+}
+
+// 館内写真ギャラリーのデータ
+const INTERIOR_IMAGES = [
+  {
+    id: 1,
+    src: '/images/lodges/DSCF0598.jpg',
+    alt: '受付カウンター',
+    caption: '温かみのある受付空間'
+  },
+  {
+    id: 2,
+    src: '/images/lodges/_DSF9002-2.jpg',
+    alt: '山岳本棚',
+    caption: '青い壁の図書コーナー'
+  },
+  {
+    id: 3,
+    src: '/images/lodges/DSCF5126-2.jpg',
+    alt: '窓際の景色',
+    caption: '霧に包まれる山景色'
+  },
+  {
+    id: 4,
+    src: '/images/lodges/DSCF0360-2.jpg',
+    alt: 'テントサイト',
+    caption: '遠くに見える山小屋'
+  },
+  {
+    id: 5,
+    src: '/images/lodges/3259_22.jpg',
+    alt: '食堂',
+    caption: '山を望む食事空間'
+  }
+]
+
+// シネマティックカルーセルコンポーネント
+function InteriorGalleryCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+
+  // 自動再生（5秒ごと）
+  useEffect(() => {
+    if (!isHovered) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % INTERIOR_IMAGES.length)
+      }, 5000)
+      return () => clearInterval(interval)
+    }
+  }, [isHovered])
+
+  const handleThumbnailClick = useCallback((index: number) => {
+    setCurrentIndex(index)
+  }, [])
+
+  const currentImage = INTERIOR_IMAGES[currentIndex]
+
+  return (
+    <div className="mt-24 md:mt-32 lg:mt-40">
+      {/* セクションタイトル */}
+      <div className="text-center mb-16 md:mb-20 lg:mb-24">
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
+          className="h-[1px] w-12 bg-stone-300 mx-auto mb-8"
+        />
+        <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] antialiased">
+          館内の様子
+        </h3>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
+        {/* メインカルーセルエリア */}
+        <div
+          className="relative mb-8 md:mb-12"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* メイン画像エリア */}
+          <div className="relative aspect-square overflow-hidden bg-stone-100 shadow-[0_8px_40px_rgba(0,0,0,0.12)]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                  scale: [1, 1.08],
+                  x: [0, -20],
+                  y: [0, -10]
+                }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  opacity: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+                  scale: { duration: 10, ease: "linear" },
+                  x: { duration: 10, ease: "linear" },
+                  y: { duration: 10, ease: "linear" }
+                }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={currentImage.src}
+                  alt={currentImage.alt}
+                  fill
+                  className="object-cover"
+                  quality={95}
+                  priority
+                />
+              </motion.div>
+            </AnimatePresence>
+
+            {/* 装飾番号 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="absolute top-6 left-6 md:top-8 md:left-8 z-10"
+            >
+              <span className="text-xl md:text-2xl font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-2xl">
+                {String(currentIndex + 1).padStart(2, '0')}
+              </span>
+            </motion.div>
+
+            {/* キャプション */}
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 z-10"
+            >
+              <div className="bg-white/95 backdrop-blur-sm px-6 py-4 md:px-8 md:py-5 shadow-xl">
+                <p className="text-sm md:text-base font-serif font-light text-stone-800 tracking-[0.08em]">
+                  {currentImage.caption}
+                </p>
+              </div>
+            </motion.div>
+
+            {/* 一時停止インジケーター */}
+            {isHovered && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute top-6 right-6 z-10 bg-black/50 backdrop-blur-sm px-3 py-2 rounded-full"
+              >
+                <span className="text-xs text-white/90 font-light tracking-wider">PAUSED</span>
+              </motion.div>
+            )}
+          </div>
+
+          {/* プログレスバー */}
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-stone-200/50">
+            <motion.div
+              key={currentIndex}
+              initial={{ width: '0%' }}
+              animate={{ width: isHovered ? '0%' : '100%' }}
+              transition={{ duration: 5, ease: 'linear' }}
+              className="h-full bg-stone-400"
+            />
+          </div>
+        </div>
+
+        {/* サムネイルナビゲーション */}
+        <div className="grid grid-cols-5 gap-3 md:gap-4">
+          {INTERIOR_IMAGES.map((image, index) => (
+            <motion.button
+              key={image.id}
+              onClick={() => handleThumbnailClick(index)}
+              className={`
+                relative aspect-square overflow-hidden cursor-pointer
+                transition-all duration-500
+                ${currentIndex === index
+                  ? 'ring-2 ring-stone-400 ring-offset-2 ring-offset-stone-50 shadow-lg'
+                  : 'opacity-60 hover:opacity-100 shadow-sm hover:shadow-md'
+                }
+              `}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover"
+                quality={80}
+              />
+
+              {/* アクティブオーバーレイ */}
+              {currentIndex === index && (
+                <motion.div
+                  layoutId="activeThumb"
+                  className="absolute inset-0 border-2 border-white/50"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+
+              {/* 番号ラベル */}
+              <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2">
+                <span className="text-[9px] md:text-[10px] font-light tracking-wider text-white/80 drop-shadow-lg">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
+            </motion.button>
+          ))}
+        </div>
+
+        {/* 装飾線 */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          viewport={{ once: true }}
+          className="h-[1px] w-24 bg-stone-300 mx-auto mt-16 md:mt-20"
+        />
       </div>
     </div>
   )
@@ -748,219 +968,9 @@ export default function MitsumataPage() {
             </div>
           </FadeInSection>
 
-          {/* 館内写真ギャラリー - スクエアグリッドレイアウト */}
+          {/* 館内写真ギャラリー - シネマティックカルーセル */}
           <FadeInSection delay={0.6}>
-            <div className="mt-24 md:mt-32 lg:mt-40">
-              {/* セクションタイトル */}
-              <div className="text-center mb-16 md:mb-20 lg:mb-24">
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true }}
-                  className="h-[1px] w-12 bg-stone-300 mx-auto mb-8"
-                />
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] antialiased">
-                  館内の様子
-                </h3>
-              </div>
-
-              {/* スクエアグリッドレイアウト - 非対称で余白を活かした配置 */}
-              <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 lg:gap-6">
-
-                  {/* 1枚目 - 大（2x2） */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="col-span-2 row-span-2 relative group"
-                  >
-                    {/* 装飾番号 */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      viewport={{ once: true }}
-                      className="absolute top-3 left-3 md:top-4 md:left-4 z-10"
-                    >
-                      <span className="text-[10px] md:text-xs font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-lg">
-                        01
-                      </span>
-                    </motion.div>
-
-                    <motion.div
-                      className="relative aspect-square overflow-hidden border border-stone-100/50 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.14)] transition-all duration-700"
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <Image
-                        src="/images/lodges/DSCF0598.jpg"
-                        alt="館内の様子"
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        quality={95}
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-stone-900/0 via-transparent to-stone-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    </motion.div>
-                  </motion.div>
-
-                  {/* 2枚目 - 通常（1x1） */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="col-span-1 relative group"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
-                      viewport={{ once: true }}
-                      className="absolute top-2 left-2 md:top-3 md:left-3 z-10"
-                    >
-                      <span className="text-[9px] md:text-[10px] font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-lg">
-                        02
-                      </span>
-                    </motion.div>
-
-                    <motion.div
-                      className="relative aspect-square overflow-hidden border border-stone-100/50 shadow-[0_6px_25px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.12)] transition-all duration-700"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <Image
-                        src="/images/lodges/_DSF9002-2.jpg"
-                        alt="館内の様子"
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        quality={95}
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-stone-900/0 via-transparent to-stone-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    </motion.div>
-                  </motion.div>
-
-                  {/* 3枚目 - 通常（1x1） */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="col-span-1 relative group"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.55 }}
-                      viewport={{ once: true }}
-                      className="absolute top-2 left-2 md:top-3 md:left-3 z-10"
-                    >
-                      <span className="text-[9px] md:text-[10px] font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-lg">
-                        03
-                      </span>
-                    </motion.div>
-
-                    <motion.div
-                      className="relative aspect-square overflow-hidden border border-stone-100/50 shadow-[0_6px_25px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.12)] transition-all duration-700"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <Image
-                        src="/images/lodges/DSCF5126-2.jpg"
-                        alt="館内の様子"
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        quality={95}
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-stone-900/0 via-transparent to-stone-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    </motion.div>
-                  </motion.div>
-
-                  {/* 4枚目 - 大（2x2） */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="col-span-2 row-span-2 relative group"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.48 }}
-                      viewport={{ once: true }}
-                      className="absolute top-3 left-3 md:top-4 md:left-4 z-10"
-                    >
-                      <span className="text-[10px] md:text-xs font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-lg">
-                        04
-                      </span>
-                    </motion.div>
-
-                    <motion.div
-                      className="relative aspect-square overflow-hidden border border-stone-100/50 shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_60px_rgba(0,0,0,0.14)] transition-all duration-700"
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <Image
-                        src="/images/lodges/DSCF0360-2.jpg"
-                        alt="館内の様子"
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        quality={95}
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-stone-900/0 via-transparent to-stone-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    </motion.div>
-                  </motion.div>
-
-                  {/* 5枚目 - 通常（1x1） */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="col-span-1 relative group"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      viewport={{ once: true }}
-                      className="absolute top-2 left-2 md:top-3 md:left-3 z-10"
-                    >
-                      <span className="text-[9px] md:text-[10px] font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-lg">
-                        05
-                      </span>
-                    </motion.div>
-
-                    <motion.div
-                      className="relative aspect-square overflow-hidden border border-stone-100/50 shadow-[0_6px_25px_rgba(0,0,0,0.08)] hover:shadow-[0_15px_45px_rgba(0,0,0,0.12)] transition-all duration-700"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <Image
-                        src="/images/lodges/3259_22.jpg"
-                        alt="館内の様子"
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        quality={95}
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-stone-900/0 via-transparent to-stone-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    </motion.div>
-                  </motion.div>
-
-                  {/* 空のスペース - 余白を作る */}
-                  <div className="col-span-1 hidden lg:block"></div>
-
-                </div>
-              </div>
-            </div>
+            <InteriorGalleryCarousel />
           </FadeInSection>
         </div>
       </section>
