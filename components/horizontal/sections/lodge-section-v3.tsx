@@ -61,6 +61,30 @@ export function LodgeSectionV3({
   // 番号の表示
   const number = lodge === 'mitsumata' ? '01' : lodge === 'suisho' ? '02' : '03'
 
+  // 標高による視覚的エフェクト設定
+  const elevationEffects = {
+    suisho: {
+      // 水晶小屋（2,986m - 最高地点）
+      filter: 'brightness(1.08) contrast(1.05)',
+      cloudLayer: true,
+      description: '天空の稜線、空気の薄さを感じる',
+    },
+    mitsumata: {
+      // 三俣山荘（2,550m）
+      filter: 'brightness(1.0) contrast(1.0)',
+      cloudLayer: false,
+      description: '黒部源流、森林限界の境界',
+    },
+    yumata: {
+      // 湯俣山荘（1,580m - 最低地点）
+      filter: 'saturate(1.08) sepia(0.03)',
+      mistEffect: true,
+      description: '秘湯の湯けむり、豊かな植生',
+    },
+  }
+
+  const currentEffect = elevationEffects[lodge]
+
   // 浮遊パーティクル（各山荘のテーマカラーで・軽量化）
   const [particles] = useState(() =>
     Array.from({ length: 8 }, (_, i) => ({
@@ -82,6 +106,28 @@ export function LodgeSectionV3({
     >
       {/* 和紙背景 */}
       <WashiBackground intensity="subtle" animated={false} />
+
+      {/* セクション間の稜線越え演出 - 右端 */}
+      <motion.div
+        className="absolute right-0 top-0 bottom-0 w-32 pointer-events-none z-30"
+        style={{
+          background: `linear-gradient(to left, ${theme.bg} 0%, transparent 100%)`,
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isInView ? 0.6 : 0 }}
+        transition={{ duration: 1 }}
+      />
+
+      {/* セクション間の稜線越え演出 - 左端 */}
+      <motion.div
+        className="absolute left-0 top-0 bottom-0 w-32 pointer-events-none z-30"
+        style={{
+          background: `linear-gradient(to right, ${theme.bg} 0%, transparent 100%)`,
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isInView ? 0.6 : 0 }}
+        transition={{ duration: 1 }}
+      />
 
       {/* パーティクルレイヤー */}
       <div className="absolute inset-0 overflow-hidden">
@@ -184,6 +230,11 @@ export function LodgeSectionV3({
                   scale: imageScale,
                 }}
                 transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                whileHover={{
+                  scale: 1.03,
+                  boxShadow: '0 30px 60px rgba(0, 0, 0, 0.4)',
+                  transition: { duration: 0.4 },
+                }}
               >
                 <Image
                   src={image}
@@ -192,6 +243,7 @@ export function LodgeSectionV3({
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 45vw"
                   priority
+                  style={{ filter: currentEffect.filter }}
                 />
 
                 {/* 画像オーバーレイ - グラデーション */}
@@ -220,9 +272,66 @@ export function LodgeSectionV3({
                     ease: 'linear',
                   }}
                 />
+
+                {/* 標高エフェクトレイヤー */}
+                {currentEffect.cloudLayer && (
+                  // 水晶小屋 - 雲海エフェクト（天空の稜線）
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, transparent 30%)',
+                    }}
+                    animate={{
+                      opacity: [0.3, 0.5, 0.3],
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: 'easeInOut',
+                    }}
+                  />
+                )}
+
+                {currentEffect.mistEffect && (
+                  // 湯俣山荘 - 湯けむりエフェクト（秘湯の霧）
+                  <>
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
+                      style={{
+                        background: 'linear-gradient(to top, rgba(255, 250, 240, 0.2) 0%, transparent 100%)',
+                      }}
+                      animate={{
+                        opacity: [0.4, 0.6, 0.4],
+                        y: [0, -10, 0],
+                      }}
+                      transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }}
+                    />
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-1/4 pointer-events-none"
+                      style={{
+                        background: 'linear-gradient(to top, rgba(220, 210, 200, 0.15) 0%, transparent 100%)',
+                        filter: 'blur(8px)',
+                      }}
+                      animate={{
+                        opacity: [0.3, 0.5, 0.3],
+                        y: [0, -15, 0],
+                      }}
+                      transition={{
+                        duration: 7,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                        delay: 1,
+                      }}
+                    />
+                  </>
+                )}
               </motion.div>
 
-              {/* 標高表示 */}
+              {/* 標高表示 - 環境情報追加 */}
               <motion.div
                 className="absolute -bottom-5 -right-5 bg-white/95 backdrop-blur-sm px-6 py-4 rounded-md shadow-xl border z-20"
                 style={{ borderColor: theme.light }}
@@ -231,11 +340,23 @@ export function LodgeSectionV3({
                 transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 whileHover={{ scale: 1.05, y: -5 }}
               >
-                <div className="flex items-center gap-2">
-                  <Mountain className="w-5 h-5" style={{ color: theme.primary }} />
-                  <span className="text-base font-serif tracking-wider font-medium text-gray-800">
-                    {elevation}
-                  </span>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <Mountain className="w-5 h-5" style={{ color: theme.primary }} />
+                    <span className="text-base font-serif tracking-wider font-medium text-gray-800">
+                      {elevation}
+                    </span>
+                  </div>
+                  <motion.div
+                    className="overflow-hidden"
+                    initial={{ height: 0, opacity: 0 }}
+                    whileHover={{ height: 'auto', opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <p className="text-xs font-serif text-gray-600 leading-relaxed max-w-[200px]">
+                      {currentEffect.description}
+                    </p>
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
