@@ -604,15 +604,15 @@ export function HeroParallaxSection() {
             >
               <button className="group relative">
                 <motion.div
-                  whileHover={{ scale: 1.05, rotate: 360 }}
-                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                   className="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 xl:w-56 xl:h-56 rounded-full border-2 border-dashed border-white/40 flex items-center justify-center relative overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/8 transition-colors duration-700 ease-out" />
 
                   <motion.span
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.3 }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     className="text-white text-xs sm:text-sm md:text-base font-serif font-light tracking-[0.1em] sm:tracking-[0.12em] text-center px-5 sm:px-6 relative z-10"
                   >
                     三俣山荘
@@ -622,10 +622,10 @@ export function HeroParallaxSection() {
                 </motion.div>
 
                 <motion.div
-                  className="absolute inset-0 rounded-full border border-white/15"
+                  className="absolute inset-0 rounded-full border border-white/20"
                   initial={{ scale: 1, opacity: 0 }}
-                  whileHover={{ scale: 1.15, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
+                  whileHover={{ scale: 1.12, opacity: 1 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 />
               </button>
             </motion.div>
