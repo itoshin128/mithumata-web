@@ -124,8 +124,8 @@ export default function MitsumataPage() {
             priority
             quality={90}
           />
-          {/* グラデーションオーバーレイ */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+          {/* グラデーションオーバーレイ - 明るめに調整 */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
         </motion.div>
 
         {/* ヒーローコンテンツ */}
@@ -229,8 +229,8 @@ export default function MitsumataPage() {
 
           {/* センター配置のリード文 */}
           <FadeInSection>
-            <div className="space-y-8 text-stone-700 text-center max-w-4xl mx-auto mb-24 md:mb-32 lg:mb-40">
-              <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
+            <div className="space-y-12 md:space-y-16 text-stone-700 text-center max-w-4xl mx-auto mb-32 md:mb-40 lg:mb-48">
+              <p className="text-lg md:text-xl lg:text-2xl leading-[2.4] font-serif font-light tracking-[0.08em] text-stone-800">
                 北アルプスの最奥部、黒部源流域に佇む山小屋。
                 <br />
                 槍ヶ岳、穂高連峰、そして立山を結ぶ稜線の要所として、
@@ -238,125 +238,85 @@ export default function MitsumataPage() {
                 多くの登山者の憩いの場となってきました。
               </p>
 
-              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                昭和○年の開業以来、変わらぬ山の温もりと、
-                <br />
-                心を込めたおもてなしを大切にしています。
-                <br />
-                標高○○○○メートル、澄んだ空気と満天の星空が迎えてくれます。
-              </p>
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                className="h-[1px] w-16 md:w-20 bg-stone-300 mx-auto"
+              />
 
-              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                ここは、自然と人が出会う場所。
-                <br />
-                登山の疲れを癒し、明日への力を蓄える。
-                <br />
-                そんな特別な時間をお過ごしいただけます。
-              </p>
+              <div className="space-y-10 md:space-y-12">
+                <p className="text-base md:text-lg lg:text-xl leading-[2.4] font-serif font-light tracking-[0.06em] text-stone-600">
+                  昭和○年の開業以来、変わらぬ山の温もりと、
+                  <br />
+                  心を込めたおもてなしを大切にしています。
+                  <br />
+                  標高○○○○メートル、澄んだ空気と満天の星空が迎えてくれます。
+                </p>
+
+                <p className="text-base md:text-lg lg:text-xl leading-[2.4] font-serif font-light tracking-[0.06em] text-stone-600">
+                  ここは、自然と人が出会う場所。
+                  <br />
+                  登山の疲れを癒し、明日への力を蓄える。
+                  <br />
+                  そんな特別な時間をお過ごしいただけます。
+                </p>
+              </div>
             </div>
           </FadeInSection>
 
-          {/* イラストエリア - 三俣山荘周辺の表現 */}
+          {/* イラストエリア - 洗練されたシンプルデザイン */}
           <FadeInSection>
-            <div>
-              {/* 装飾的な上部ライン */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true }}
-                className="flex items-center justify-center mb-12 md:mb-16"
-              >
-                <div className="h-[1px] w-24 md:w-32 bg-gradient-to-r from-transparent to-stone-300" />
-                <div className="flex gap-2 mx-4">
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-40" />
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-60" />
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-80" />
-                </div>
-                <div className="h-[1px] w-24 md:w-32 bg-gradient-to-l from-transparent to-stone-300" />
-              </motion.div>
-
-              {/* イラスト配置エリア */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="relative max-w-5xl mx-auto"
-              >
-                {/* 装飾的な角のドット */}
-                <div className="absolute -top-3 -left-3 w-6 h-6 border-l-2 border-t-2 border-stone-300 opacity-40" />
-                <div className="absolute -top-3 -right-3 w-6 h-6 border-r-2 border-t-2 border-stone-300 opacity-40" />
-                <div className="absolute -bottom-3 -left-3 w-6 h-6 border-l-2 border-b-2 border-stone-300 opacity-40" />
-                <div className="absolute -bottom-3 -right-3 w-6 h-6 border-r-2 border-b-2 border-stone-300 opacity-40" />
-
-                {/* イラスト本体 */}
-                <div className="relative aspect-[16/9] md:aspect-[21/9] bg-gradient-to-b from-stone-50 to-stone-100 overflow-hidden shadow-xl">
-                  {/* イラストプレースホルダー - 三俣山荘の周辺イラストを配置 */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 relative">
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                          className="absolute inset-0 border-2 border-stone-300 border-dashed rounded-full opacity-30"
-                        />
-                        <div className="absolute inset-4 bg-stone-200 rounded-full" />
-                      </div>
-                      <p className="text-sm md:text-base text-stone-500 font-serif tracking-[0.15em]">
-                        三俣山荘周辺を表現したイラスト
-                      </p>
-                      <p className="text-xs text-stone-400 font-sans tracking-[0.2em] uppercase">
-                        Illustration Area
-                      </p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="relative max-w-5xl mx-auto"
+            >
+              {/* イラスト本体 - クリーンで上品なデザイン */}
+              <div className="relative aspect-[16/9] md:aspect-[21/9] bg-gradient-to-br from-stone-50 via-stone-100 to-stone-50 overflow-hidden rounded-sm shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
+                {/* イラストプレースホルダー */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center space-y-6 p-8">
+                    <div className="w-12 h-12 md:w-14 md:h-14 mx-auto relative">
+                      <div className="absolute inset-0 bg-stone-200/40 rounded-full" />
+                      <div className="absolute inset-2 bg-stone-300/30 rounded-full" />
                     </div>
-                  </div>
-
-                  {/* 和紙のテクスチャオーバーレイ */}
-                  <div className="absolute inset-0 opacity-30 pointer-events-none mix-blend-multiply">
-                    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                      <defs>
-                        <pattern id="washi-texture" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                          <circle cx="10" cy="10" r="1.5" fill="#8B7355" opacity="0.1"/>
-                          <circle cx="50" cy="30" r="1" fill="#8B7355" opacity="0.08"/>
-                          <circle cx="80" cy="60" r="1.2" fill="#8B7355" opacity="0.09"/>
-                          <circle cx="30" cy="80" r="0.8" fill="#8B7355" opacity="0.07"/>
-                        </pattern>
-                      </defs>
-                      <rect width="100%" height="100%" fill="url(#washi-texture)"/>
-                    </svg>
+                    <p className="text-sm md:text-base text-stone-500 font-serif tracking-[0.2em] font-light">
+                      三俣山荘周辺を表現したイラスト
+                    </p>
                   </div>
                 </div>
 
-                {/* キャプション */}
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.6 }}
-                  viewport={{ once: true }}
-                  className="text-center mt-6 md:mt-8 text-xs md:text-sm text-stone-500 font-serif tracking-[0.2em]"
-                >
-                  北アルプスの懐に佇む山小屋
-                </motion.p>
-              </motion.div>
+                {/* 繊細なテクスチャオーバーレイ */}
+                <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-multiply">
+                  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <pattern id="minimal-texture" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                        <circle cx="10" cy="10" r="0.8" fill="#8B7355" opacity="0.08"/>
+                        <circle cx="50" cy="30" r="0.6" fill="#8B7355" opacity="0.06"/>
+                        <circle cx="80" cy="60" r="0.7" fill="#8B7355" opacity="0.07"/>
+                        <circle cx="30" cy="80" r="0.5" fill="#8B7355" opacity="0.05"/>
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#minimal-texture)"/>
+                  </svg>
+                </div>
+              </div>
 
-              {/* 装飾的な下部ライン */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              {/* キャプション - シンプルで上品 */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="flex items-center justify-center mt-12 md:mt-16"
+                className="text-center mt-8 md:mt-10 text-xs md:text-sm text-stone-500 font-serif tracking-[0.25em] font-light"
               >
-                <div className="h-[1px] w-24 md:w-32 bg-gradient-to-r from-transparent to-stone-300" />
-                <div className="flex gap-2 mx-4">
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-80" />
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-60" />
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-40" />
-                </div>
-                <div className="h-[1px] w-24 md:w-32 bg-gradient-to-l from-transparent to-stone-300" />
-              </motion.div>
-            </div>
+                北アルプスの懐に佇む山小屋
+              </motion.p>
+            </motion.div>
           </FadeInSection>
         </div>
       </section>
@@ -367,24 +327,24 @@ export default function MitsumataPage() {
       </div>
 
       {/* 写真セクション1 - 左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-12 md:py-20 lg:py-28">{/* Photo section spacing */}
+      <section className="relative py-16 md:py-24 lg:py-32">{/* Photo section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* 写真 - 70% */}
-            <div className="lg:col-span-7">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* 写真 - 横構図を大きく表示 */}
+            <div className="lg:col-span-8">
               <FadeInSection>
                 <motion.div
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  className="relative aspect-[16/10] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* 三俣山荘の建物外観や特徴的な建築の様子を示す写真を配置 */}
+                  {/* 展望食堂からの景色 */}
                   <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
+                    src="/images/lodges/DSCF4060.jpg"
+                    alt="展望食堂からの景色"
                     fill
                     className="object-cover"
                     quality={90}
@@ -394,12 +354,12 @@ export default function MitsumataPage() {
               </FadeInSection>
             </div>
 
-            {/* テキスト - 30% */}
-            <div className="lg:col-span-5">
+            {/* テキスト */}
+            <div className="lg:col-span-4">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6 max-w-prose">
+                <div className="space-y-8 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    特徴 1
+                    展望食堂からの景色
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -417,15 +377,15 @@ export default function MitsumataPage() {
       </section>
 
       {/* 写真セクション2 - 右寄せ大判写真 + 左側テキスト */}
-      <section className="relative py-12 md:py-20 lg:py-28">
+      <section className="relative py-16 md:py-24 lg:py-32">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* テキスト - 30% (モバイルでは写真の下) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* テキスト (モバイルでは写真の下) */}
             <div className="lg:col-span-5 order-2 lg:order-1">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6 max-w-prose">
+                <div className="space-y-8 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    特徴 2
+                    豊かな植生
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -438,7 +398,7 @@ export default function MitsumataPage() {
               </FadeInSection>
             </div>
 
-            {/* 写真 - 70% */}
+            {/* 写真 */}
             <div className="lg:col-span-7 order-1 lg:order-2">
               <FadeInSection>
                 <motion.div
@@ -449,16 +409,66 @@ export default function MitsumataPage() {
                   className="relative aspect-[4/5] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* 山荘の内部（談話室や宿泊施設の様子）、または山荘からの景色を示す写真を配置 */}
+                  {/* 豊かな植生 */}
                   <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
+                    src="/images/lodges/_DSF6384.jpg"
+                    alt="豊かな植生"
                     fill
                     className="object-cover"
                     quality={90}
                     loading="lazy"
                   />
                 </motion.div>
+              </FadeInSection>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 写真セクション3 - 左寄せ大判写真 + 右側テキスト */}
+      <section className="relative py-16 md:py-24 lg:py-32">{/* Photo section spacing */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* 写真 - 横構図を大きく表示 */}
+            <div className="lg:col-span-8">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="relative aspect-[16/10] overflow-hidden shadow-2xl"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  {/* スタッフの明るさ */}
+                  <Image
+                    src="/images/lodges/_DSF5434.jpg"
+                    alt="スタッフの明るさ"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                    loading="lazy"
+                  />
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* テキスト */}
+            <div className="lg:col-span-4">
+              <FadeInSection delay={0.3}>
+                <div className="space-y-8 max-w-prose">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
+                    スタッフの明るさ
+                  </h3>
+                  <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    ここに説明文が入ります。ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
+                  </p>
+                </div>
               </FadeInSection>
             </div>
           </div>
@@ -734,6 +744,128 @@ export default function MitsumataPage() {
                 <p>※ 注意事項テキスト</p>
                 <p>※ 注意事項テキスト</p>
                 <p>※ 注意事項テキスト</p>
+              </div>
+            </div>
+          </FadeInSection>
+
+          {/* 館内写真ギャラリー - Elevated Minimalist Gallery */}
+          <FadeInSection delay={0.6}>
+            <div className="mt-24 md:mt-32 lg:mt-40">
+              {/* セクションタイトル */}
+              <div className="text-center mb-16 md:mb-20 lg:mb-24">
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true }}
+                  className="h-[1px] w-12 bg-stone-300 mx-auto mb-8"
+                />
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] antialiased">
+                  館内の様子
+                </h3>
+              </div>
+
+              {/* 散りばめる配置レイアウト - 有機的で動きのある配置 */}
+              <div className="relative max-w-7xl mx-auto" style={{ minHeight: '1000px' }}>
+                {/* 写真1 - 左上、縦長、左回転 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 50, rotate: -2 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
+                  transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="absolute left-0 md:left-[5%] top-0 w-full md:w-[34%] lg:w-[30%] group z-10"
+                >
+                  <motion.div
+                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF0598.jpg"
+                      alt="館内の様子"
+                      fill
+                      className="object-cover"
+                      quality={95}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  </motion.div>
+                </motion.div>
+
+                {/* 写真2 - 右上、縦長、右回転 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 50, rotate: 2 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 2 }}
+                  transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="absolute right-0 md:right-[3%] top-[50px] md:top-[80px] w-full md:w-[32%] lg:w-[28%] group z-20"
+                >
+                  <motion.div
+                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    whileHover={{ y: -12, rotate: 0.5, scale: 1.02 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src="/images/lodges/_DSF9002.jpg"
+                      alt="館内の様子"
+                      fill
+                      className="object-cover"
+                      quality={95}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  </motion.div>
+                </motion.div>
+
+                {/* 写真3 - 左下、横長、右回転 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 50, rotate: 1 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 1.5 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="absolute left-0 md:left-[8%] top-[380px] md:top-[460px] w-full md:w-[42%] lg:w-[40%] group z-30"
+                >
+                  <motion.div
+                    className="relative aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF5126.jpg"
+                      alt="館内の様子"
+                      fill
+                      className="object-cover"
+                      quality={95}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  </motion.div>
+                </motion.div>
+
+                {/* 写真4 - 右下、縦長、左回転 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 50, rotate: -1 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+                  transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="absolute right-0 md:right-[6%] top-[430px] md:top-[520px] w-full md:w-[34%] lg:w-[30%] group z-20"
+                >
+                  <motion.div
+                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    whileHover={{ y: -12, rotate: -0.5, scale: 1.02 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF0493.jpg"
+                      alt="館内の様子"
+                      fill
+                      className="object-cover"
+                      quality={95}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  </motion.div>
+                </motion.div>
               </div>
             </div>
           </FadeInSection>
