@@ -229,8 +229,8 @@ export default function MitsumataPage() {
 
           {/* センター配置のリード文 */}
           <FadeInSection>
-            <div className="space-y-8 text-stone-700 text-center max-w-4xl mx-auto mb-24 md:mb-32 lg:mb-40">
-              <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
+            <div className="space-y-12 md:space-y-16 text-stone-700 text-center max-w-4xl mx-auto mb-32 md:mb-40 lg:mb-48">
+              <p className="text-lg md:text-xl lg:text-2xl leading-[2.4] font-serif font-light tracking-[0.08em] text-stone-800">
                 北アルプスの最奥部、黒部源流域に佇む山小屋。
                 <br />
                 槍ヶ岳、穂高連峰、そして立山を結ぶ稜線の要所として、
@@ -238,125 +238,85 @@ export default function MitsumataPage() {
                 多くの登山者の憩いの場となってきました。
               </p>
 
-              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                昭和○年の開業以来、変わらぬ山の温もりと、
-                <br />
-                心を込めたおもてなしを大切にしています。
-                <br />
-                標高○○○○メートル、澄んだ空気と満天の星空が迎えてくれます。
-              </p>
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                className="h-[1px] w-16 md:w-20 bg-stone-300 mx-auto"
+              />
 
-              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                ここは、自然と人が出会う場所。
-                <br />
-                登山の疲れを癒し、明日への力を蓄える。
-                <br />
-                そんな特別な時間をお過ごしいただけます。
-              </p>
+              <div className="space-y-10 md:space-y-12">
+                <p className="text-base md:text-lg lg:text-xl leading-[2.4] font-serif font-light tracking-[0.06em] text-stone-600">
+                  昭和○年の開業以来、変わらぬ山の温もりと、
+                  <br />
+                  心を込めたおもてなしを大切にしています。
+                  <br />
+                  標高○○○○メートル、澄んだ空気と満天の星空が迎えてくれます。
+                </p>
+
+                <p className="text-base md:text-lg lg:text-xl leading-[2.4] font-serif font-light tracking-[0.06em] text-stone-600">
+                  ここは、自然と人が出会う場所。
+                  <br />
+                  登山の疲れを癒し、明日への力を蓄える。
+                  <br />
+                  そんな特別な時間をお過ごしいただけます。
+                </p>
+              </div>
             </div>
           </FadeInSection>
 
-          {/* イラストエリア - 三俣山荘周辺の表現 */}
+          {/* イラストエリア - 洗練されたシンプルデザイン */}
           <FadeInSection>
-            <div>
-              {/* 装飾的な上部ライン */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true }}
-                className="flex items-center justify-center mb-12 md:mb-16"
-              >
-                <div className="h-[1px] w-24 md:w-32 bg-gradient-to-r from-transparent to-stone-300" />
-                <div className="flex gap-2 mx-4">
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-40" />
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-60" />
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-80" />
-                </div>
-                <div className="h-[1px] w-24 md:w-32 bg-gradient-to-l from-transparent to-stone-300" />
-              </motion.div>
-
-              {/* イラスト配置エリア */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="relative max-w-5xl mx-auto"
-              >
-                {/* 装飾的な角のドット */}
-                <div className="absolute -top-3 -left-3 w-6 h-6 border-l-2 border-t-2 border-stone-300 opacity-40" />
-                <div className="absolute -top-3 -right-3 w-6 h-6 border-r-2 border-t-2 border-stone-300 opacity-40" />
-                <div className="absolute -bottom-3 -left-3 w-6 h-6 border-l-2 border-b-2 border-stone-300 opacity-40" />
-                <div className="absolute -bottom-3 -right-3 w-6 h-6 border-r-2 border-b-2 border-stone-300 opacity-40" />
-
-                {/* イラスト本体 */}
-                <div className="relative aspect-[16/9] md:aspect-[21/9] bg-gradient-to-b from-stone-50 to-stone-100 overflow-hidden shadow-xl">
-                  {/* イラストプレースホルダー - 三俣山荘の周辺イラストを配置 */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center space-y-4 p-8">
-                      <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 relative">
-                        <motion.div
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                          className="absolute inset-0 border-2 border-stone-300 border-dashed rounded-full opacity-30"
-                        />
-                        <div className="absolute inset-4 bg-stone-200 rounded-full" />
-                      </div>
-                      <p className="text-sm md:text-base text-stone-500 font-serif tracking-[0.15em]">
-                        三俣山荘周辺を表現したイラスト
-                      </p>
-                      <p className="text-xs text-stone-400 font-sans tracking-[0.2em] uppercase">
-                        Illustration Area
-                      </p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="relative max-w-5xl mx-auto"
+            >
+              {/* イラスト本体 - クリーンで上品なデザイン */}
+              <div className="relative aspect-[16/9] md:aspect-[21/9] bg-gradient-to-br from-stone-50 via-stone-100 to-stone-50 overflow-hidden rounded-sm shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
+                {/* イラストプレースホルダー */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center space-y-6 p-8">
+                    <div className="w-12 h-12 md:w-14 md:h-14 mx-auto relative">
+                      <div className="absolute inset-0 bg-stone-200/40 rounded-full" />
+                      <div className="absolute inset-2 bg-stone-300/30 rounded-full" />
                     </div>
-                  </div>
-
-                  {/* 和紙のテクスチャオーバーレイ */}
-                  <div className="absolute inset-0 opacity-30 pointer-events-none mix-blend-multiply">
-                    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                      <defs>
-                        <pattern id="washi-texture" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                          <circle cx="10" cy="10" r="1.5" fill="#8B7355" opacity="0.1"/>
-                          <circle cx="50" cy="30" r="1" fill="#8B7355" opacity="0.08"/>
-                          <circle cx="80" cy="60" r="1.2" fill="#8B7355" opacity="0.09"/>
-                          <circle cx="30" cy="80" r="0.8" fill="#8B7355" opacity="0.07"/>
-                        </pattern>
-                      </defs>
-                      <rect width="100%" height="100%" fill="url(#washi-texture)"/>
-                    </svg>
+                    <p className="text-sm md:text-base text-stone-500 font-serif tracking-[0.2em] font-light">
+                      三俣山荘周辺を表現したイラスト
+                    </p>
                   </div>
                 </div>
 
-                {/* キャプション */}
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.6 }}
-                  viewport={{ once: true }}
-                  className="text-center mt-6 md:mt-8 text-xs md:text-sm text-stone-500 font-serif tracking-[0.2em]"
-                >
-                  北アルプスの懐に佇む山小屋
-                </motion.p>
-              </motion.div>
+                {/* 繊細なテクスチャオーバーレイ */}
+                <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-multiply">
+                  <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <pattern id="minimal-texture" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                        <circle cx="10" cy="10" r="0.8" fill="#8B7355" opacity="0.08"/>
+                        <circle cx="50" cy="30" r="0.6" fill="#8B7355" opacity="0.06"/>
+                        <circle cx="80" cy="60" r="0.7" fill="#8B7355" opacity="0.07"/>
+                        <circle cx="30" cy="80" r="0.5" fill="#8B7355" opacity="0.05"/>
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#minimal-texture)"/>
+                  </svg>
+                </div>
+              </div>
 
-              {/* 装飾的な下部ライン */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              {/* キャプション - シンプルで上品 */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="flex items-center justify-center mt-12 md:mt-16"
+                className="text-center mt-8 md:mt-10 text-xs md:text-sm text-stone-500 font-serif tracking-[0.25em] font-light"
               >
-                <div className="h-[1px] w-24 md:w-32 bg-gradient-to-r from-transparent to-stone-300" />
-                <div className="flex gap-2 mx-4">
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-80" />
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-60" />
-                  <div className="w-1.5 h-1.5 rotate-45 bg-stone-400 opacity-40" />
-                </div>
-                <div className="h-[1px] w-24 md:w-32 bg-gradient-to-l from-transparent to-stone-300" />
-              </motion.div>
-            </div>
+                北アルプスの懐に佇む山小屋
+              </motion.p>
+            </motion.div>
           </FadeInSection>
         </div>
       </section>
