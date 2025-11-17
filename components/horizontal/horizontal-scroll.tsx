@@ -40,7 +40,7 @@ export function HorizontalScroll() {
     container.scrollLeft = container.scrollWidth - container.clientWidth
   }, [])
 
-  // マウスホイール → 横スクロール変換
+  // マウスホイール → 横スクロール変換（改善版）
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -51,16 +51,9 @@ export function HorizontalScroll() {
 
       // 縦スクロール量を横スクロールに変換（逆方向）
       // deltaY が正（下スクロール）→ 左へスクロール（scrollLeft を減らす）
-      const delta = e.deltaY || e.deltaX
+      // スクロール速度を1.2倍にして快適に
+      const delta = (e.deltaY || e.deltaX) * 1.2
       container.scrollLeft -= delta
-
-      // スムーズさを調整
-      if (Math.abs(delta) > 0) {
-        container.style.scrollBehavior = 'auto'
-        requestAnimationFrame(() => {
-          container.style.scrollBehavior = 'smooth'
-        })
-      }
     }
 
     // passive: false で preventDefault を有効化
@@ -124,9 +117,10 @@ export function HorizontalScroll() {
         ref={containerRef}
         className="w-full h-full overflow-x-auto overflow-y-hidden"
         style={{
-          scrollBehavior: 'auto', // スムーズは JS で制御
+          scrollBehavior: 'auto', // 常にautoで即座に反応
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch', // iOS対応
         }}
       >
         <style jsx>{`
