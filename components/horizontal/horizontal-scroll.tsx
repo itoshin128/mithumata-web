@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { useScroll } from 'framer-motion'
-import { HeroSectionV2 } from './sections/hero-section-v2'
-import { LodgeSectionV2 } from './sections/lodge-section-v2'
+import { HeroSectionV3 } from './sections/hero-section-v3'
+import { TransitionSection } from './sections/transition-section'
+import { LodgeSectionV3 } from './sections/lodge-section-v3'
 import { ExperienceSection } from './sections/experience-section'
 import { InfoSection } from './sections/info-section'
 import { ContactSection } from './sections/contact-section'
@@ -16,11 +17,12 @@ export function HorizontalScroll() {
   const [currentSection, setCurrentSection] = useState(0)
   const { scrollXProgress } = useScroll({ container: containerRef })
 
-  const totalSections = 7
+  const totalSections = 8
 
   // セクション名
   const sectionNames = [
     'ホーム',
+    '物語の始まり',
     '三俣山荘',
     '水晶小屋',
     '湯俣山荘',
@@ -38,7 +40,38 @@ export function HorizontalScroll() {
     container.scrollLeft = container.scrollWidth - container.clientWidth
   }, [])
 
-  // スクロール位置に応じて現在のセクションを更新（逆順）
+  // マウスホイール → 横スクロール変換
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const handleWheel = (e: WheelEvent) => {
+      // デフォルトの縦スクロールを防止
+      e.preventDefault()
+
+      // 縦スクロール量を横スクロールに変換（逆方向）
+      // deltaY が正（下スクロール）→ 左へスクロール（scrollLeft を減らす）
+      const delta = e.deltaY || e.deltaX
+      container.scrollLeft -= delta
+
+      // スムーズさを調整
+      if (Math.abs(delta) > 0) {
+        container.style.scrollBehavior = 'auto'
+        requestAnimationFrame(() => {
+          container.style.scrollBehavior = 'smooth'
+        })
+      }
+    }
+
+    // passive: false で preventDefault を有効化
+    container.addEventListener('wheel', handleWheel, { passive: false })
+
+    return () => {
+      container.removeEventListener('wheel', handleWheel)
+    }
+  }, [])
+
+  // スクロール位置に応じて現在のセクションを更新（スナップなし）
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -86,13 +119,12 @@ export function HorizontalScroll() {
         sectionNames={sectionNames}
       />
 
-      {/* 横スクロールコンテナ */}
+      {/* 横スクロールコンテナ - スナップなし */}
       <div
         ref={containerRef}
         className="w-full h-full overflow-x-auto overflow-y-hidden"
         style={{
-          scrollSnapType: 'x mandatory',
-          scrollBehavior: 'smooth',
+          scrollBehavior: 'auto', // スムーズは JS で制御
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
         }}
@@ -103,40 +135,29 @@ export function HorizontalScroll() {
           }
         `}</style>
 
-        {/* セクションコンテナ（順序を逆に） */}
+        {/* セクションコンテナ（順序を逆に、スナップ削除） */}
         <div className="flex h-full" style={{ width: `${totalSections * 100}vw` }}>
           {/* コンタクトセクション */}
-          <section
-            className="flex-shrink-0 w-screen h-full"
-            style={{ scrollSnapAlign: 'start' }}
-          >
+          <section className="flex-shrink-0 w-screen h-full">
             <ContactSection />
           </section>
 
           {/* 最新情報セクション */}
-          <section
-            className="flex-shrink-0 w-screen h-full"
-            style={{ scrollSnapAlign: 'start' }}
-          >
+          <section className="flex-shrink-0 w-screen h-full">
             <InfoSection />
           </section>
 
           {/* 体験セクション */}
-          <section
-            className="flex-shrink-0 w-screen h-full"
-            style={{ scrollSnapAlign: 'start' }}
-          >
+          <section className="flex-shrink-0 w-screen h-full">
             <ExperienceSection />
           </section>
 
           {/* 湯俣山荘セクション */}
-          <section
-            className="flex-shrink-0 w-screen h-full"
-            style={{ scrollSnapAlign: 'start' }}
-          >
-            <LodgeSectionV2
+          <section className="flex-shrink-0 w-screen h-full">
+            <LodgeSectionV3
               lodge="yumata"
               name="湯俣山荘"
+              subtitle="Yumata Sanso"
               description="秘湯・湯俣温泉の畔に佇む山小屋。北アルプスの大自然と温泉の癒しを同時に楽しめる特別な場所。"
               image="/images/lodges/yumata-1.jpg"
               elevation="標高 1,580m"
@@ -150,13 +171,11 @@ export function HorizontalScroll() {
           </section>
 
           {/* 水晶小屋セクション */}
-          <section
-            className="flex-shrink-0 w-screen h-full"
-            style={{ scrollSnapAlign: 'start' }}
-          >
-            <LodgeSectionV2
+          <section className="flex-shrink-0 w-screen h-full">
+            <LodgeSectionV3
               lodge="suisho"
               name="水晶小屋"
+              subtitle="Suisho Goya"
               description="標高2,986m、水晶岳直下に建つ山小屋。360度の大パノラマと満天の星空が広がる天空の宿。"
               image="/images/lodges/suisho-1.jpg"
               elevation="標高 2,986m"
@@ -170,13 +189,11 @@ export function HorizontalScroll() {
           </section>
 
           {/* 三俣山荘セクション */}
-          <section
-            className="flex-shrink-0 w-screen h-full"
-            style={{ scrollSnapAlign: 'start' }}
-          >
-            <LodgeSectionV2
+          <section className="flex-shrink-0 w-screen h-full">
+            <LodgeSectionV3
               lodge="mitsumata"
               name="三俣山荘"
+              subtitle="Mitsumata Sanso"
               description="北アルプス最奥、黒部源流の山小屋。鷲羽岳、水晶岳、三俣蓮華岳への登山基地として多くの登山者に愛されています。"
               image="/images/lodges/mitsumata-1.jpg"
               elevation="標高 2,550m"
@@ -189,12 +206,14 @@ export function HorizontalScroll() {
             />
           </section>
 
+          {/* トランジションセクション - ヒーローと山荘の橋渡し */}
+          <section className="flex-shrink-0 w-screen h-full">
+            <TransitionSection />
+          </section>
+
           {/* ヒーローセクション */}
-          <section
-            className="flex-shrink-0 w-screen h-full"
-            style={{ scrollSnapAlign: 'start' }}
-          >
-            <HeroSectionV2 />
+          <section className="flex-shrink-0 w-screen h-full">
+            <HeroSectionV3 />
           </section>
         </div>
       </div>
