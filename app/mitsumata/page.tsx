@@ -227,9 +227,38 @@ export default function MitsumataPage() {
         <section id="about" className="relative py-20 md:py-32 lg:py-40">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
 
+          {/* センター配置のリード文 */}
+          <FadeInSection>
+            <div className="space-y-8 text-stone-700 text-center max-w-4xl mx-auto mb-24 md:mb-32 lg:mb-40">
+              <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
+                北アルプスの最奥部、黒部源流域に佇む山小屋。
+                <br />
+                槍ヶ岳、穂高連峰、そして立山を結ぶ稜線の要所として、
+                <br />
+                多くの登山者の憩いの場となってきました。
+              </p>
+
+              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
+                昭和○年の開業以来、変わらぬ山の温もりと、
+                <br />
+                心を込めたおもてなしを大切にしています。
+                <br />
+                標高○○○○メートル、澄んだ空気と満天の星空が迎えてくれます。
+              </p>
+
+              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
+                ここは、自然と人が出会う場所。
+                <br />
+                登山の疲れを癒し、明日への力を蓄える。
+                <br />
+                そんな特別な時間をお過ごしいただけます。
+              </p>
+            </div>
+          </FadeInSection>
+
           {/* イラストエリア - 三俣山荘周辺の表現 */}
           <FadeInSection>
-            <div className="mb-24 md:mb-32 lg:mb-40">
+            <div>
               {/* 装飾的な上部ライン */}
               <motion.div
                 initial={{ scaleX: 0 }}
@@ -327,35 +356,6 @@ export default function MitsumataPage() {
                 </div>
                 <div className="h-[1px] w-24 md:w-32 bg-gradient-to-l from-transparent to-stone-300" />
               </motion.div>
-            </div>
-          </FadeInSection>
-
-          {/* センター配置のリード文 */}
-          <FadeInSection>
-            <div className="space-y-8 text-stone-700 text-center max-w-4xl mx-auto">
-              <p className="text-lg md:text-xl leading-[2.2] font-serif font-light tracking-[0.05em]">
-                北アルプスの最奥部、黒部源流域に佇む山小屋。
-                <br />
-                槍ヶ岳、穂高連峰、そして立山を結ぶ稜線の要所として、
-                <br />
-                多くの登山者の憩いの場となってきました。
-              </p>
-
-              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                昭和○年の開業以来、変わらぬ山の温もりと、
-                <br />
-                心を込めたおもてなしを大切にしています。
-                <br />
-                標高○○○○メートル、澄んだ空気と満天の星空が迎えてくれます。
-              </p>
-
-              <p className="text-base md:text-lg leading-[2.2] font-serif font-light tracking-[0.05em] text-stone-600">
-                ここは、自然と人が出会う場所。
-                <br />
-                登山の疲れを癒し、明日への力を蓄える。
-                <br />
-                そんな特別な時間をお過ごしいただけます。
-              </p>
             </div>
           </FadeInSection>
         </div>
