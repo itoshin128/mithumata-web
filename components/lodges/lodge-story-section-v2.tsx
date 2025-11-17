@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, memo, useCallback } from "react"
-import type React from "react"
+import { useState, memo, useCallback, useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
@@ -85,7 +84,7 @@ const ParallaxPhoto = memo(function ParallaxPhoto({
 }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
-  const ref = React.useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -123,7 +122,7 @@ const ParallaxPhoto = memo(function ParallaxPhoto({
           transition={ANIMATION.transition.hover}
         >
           <div
-            className={`relative ${aspectRatio} overflow-hidden shadow-lg hover:shadow-2xl transition-shadow ${ANIMATION.duration.slow}ms`}
+            className={`relative ${aspectRatio} overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-800`}
           >
             <Image
               src={src || "/placeholder.svg"}
