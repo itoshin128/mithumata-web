@@ -1071,6 +1071,102 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* 展望食堂の喫茶 */}
+      <section className="relative py-12 md:py-20 lg:py-28">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* テキスト - 左側 */}
+            <div className="lg:col-span-5">
+              <FadeInSection delay={0.3}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="space-y-8"
+                >
+                  <div className="space-y-4">
+                    <h3 className={`${STYLES.title.section} text-stone-800`}>
+                      展望食堂の喫茶
+                    </h3>
+
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "3rem" }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                      viewport={{ once: true }}
+                      className="h-[1px] bg-gradient-to-r from-stone-400 to-stone-200"
+                    />
+                  </div>
+
+                  <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    山々を見渡す展望食堂で、くつろぎのひとときを。
+                    心地よい空間で、こだわりの喫茶メニューをお楽しみいただけます。
+                  </p>
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* 写真エリア - 右側 */}
+            <div className="lg:col-span-7">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-150px" }}
+                >
+                  {/* 2枚の縦構図写真を横並びに配置 */}
+                  <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+                    {/* 喫茶の写真 1 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      viewport={{ once: true, margin: "-150px" }}
+                      className="space-y-4"
+                    >
+                      <div className="relative aspect-[2/3] overflow-hidden shadow-2xl">
+                        <Image
+                          src="/images/lodges/DSCF4691.jpg"
+                          alt="展望食堂の喫茶"
+                          fill
+                          className="object-cover"
+                          style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                          quality={95}
+                          loading="lazy"
+                        />
+                      </div>
+                    </motion.div>
+
+                    {/* 喫茶の写真 2 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      viewport={{ once: true, margin: "-150px" }}
+                      className="space-y-4"
+                    >
+                      <div className="relative aspect-[2/3] overflow-hidden shadow-2xl">
+                        <Image
+                          src="/images/lodges/DSCF4820.jpg"
+                          alt="展望食堂の喫茶"
+                          fill
+                          className="object-cover"
+                          style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                          quality={95}
+                          loading="lazy"
+                        />
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3品目：中央配置の正方形写真 */}
       <section className="relative py-8 md:py-16 lg:py-20">{/* Tightly related content */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
