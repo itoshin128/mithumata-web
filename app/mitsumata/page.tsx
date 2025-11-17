@@ -781,8 +781,8 @@ export default function MitsumataPage() {
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <Image
-                      src="/images/placeholder.jpg"
-                      alt="館内の様子（写真準備中）"
+                      src="/images/lodges/DSCF0598.jpg"
+                      alt="館内の様子"
                       fill
                       className="object-cover"
                       quality={95}
