@@ -21,18 +21,28 @@ export function HeroSectionV3() {
   const parallaxX = useTransform(smoothMouseX, [-0.5, 0.5], [-10, 10])
   const parallaxY = useTransform(smoothMouseY, [-0.5, 0.5], [-10, 10])
 
-  // 微細な浮遊パーティクル（軽量化）
-  const [particles] = useState(() =>
-    Array.from({ length: 15 }, (_, i) => ({
+  // ホタルのようなパーティクル
+  const [fireflies] = useState(() =>
+    Array.from({ length: 30 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 2 + 0.5,
-      duration: Math.random() * 30 + 20,
-      delay: Math.random() * 8,
-      opacity: Math.random() * 0.2 + 0.05,
+      size: Math.random() * 3 + 2, // 2-5px
+      pulseDuration: Math.random() * 2 + 3, // 3-5秒
+      moveDuration: Math.random() * 20 + 30, // 30-50秒
+      delay: Math.random() * 10,
+      opacity: Math.random() * 0.3 + 0.2, // 0.2-0.5
+      // ベジェ曲線のような動きのための中間点
+      midX: Math.random() * 100,
+      midY: Math.random() * 100,
     }))
   )
+
+  // マウス位置の実際の座標（repel効果用）
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  // 星座形成の状態
+  const [constellations, setConstellations] = useState<number[][]>([])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return
@@ -41,7 +51,95 @@ export function HeroSectionV3() {
     const y = (e.clientY - rect.top) / rect.height - 0.5
     mouseX.set(x)
     mouseY.set(y)
+
+    // 実際のピクセル座標を保存（repel効果用）
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    })
   }
+
+  // 星座形成ロジック（10%の確率で2秒間ランダムなホタル同士を繋ぐ）
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (Math.random() < 0.1) {
+        // 10%の確率
+        const count = Math.floor(Math.random() * 2) + 2 // 2-3個のホタルを繋ぐ
+        const indices = Array.from({ length: count }, () =>
+          Math.floor(Math.random() * fireflies.length)
+        )
+        setConstellations((prev) => [...prev, indices])
+
+        // 2秒後に消去
+        setTimeout(() => {
+          setConstellations((prev) => prev.filter((c) => c !== indices))
+        }, 2000)
+      }
+    }, 3000) // 3秒ごとにチェック
+
+    return () => clearInterval(interval)
+  }, [fireflies.length])
+
+  // ホタルの位置計算（repel効果とベジェ曲線移動）
+  const getFireflyPosition = (firefly: typeof fireflies[0], time: number) => {
+    const container = containerRef.current
+    if (!container) return { x: firefly.x, y: firefly.y }
+
+    const containerWidth = container.clientWidth
+    const containerHeight = container.clientHeight
+
+    // ベジェ曲線移動（時間に応じて0-1の範囲で移動）
+    const progress = (time % firefly.moveDuration) / firefly.moveDuration
+    const t = progress
+
+    // 3点ベジェ曲線: P(t) = (1-t)²P0 + 2(1-t)tP1 + t²P2
+    let x =
+      (1 - t) * (1 - t) * firefly.x +
+      2 * (1 - t) * t * firefly.midX +
+      t * t * firefly.x // 元の位置に戻る
+
+    let y =
+      (1 - t) * (1 - t) * firefly.y +
+      2 * (1 - t) * t * firefly.midY +
+      t * t * firefly.y
+
+    // マウスrepel効果（150px半径、0.3強度）
+    const fireflyPixelX = (x / 100) * containerWidth
+    const fireflyPixelY = (y / 100) * containerHeight
+    const dx = fireflyPixelX - mousePosition.x
+    const dy = fireflyPixelY - mousePosition.y
+    const distance = Math.sqrt(dx * dx + dy * dy)
+    const repelRadius = 150
+
+    if (distance < repelRadius && distance > 0) {
+      const repelStrength = 0.3
+      const force = ((repelRadius - distance) / repelRadius) * repelStrength
+      x += (dx / distance) * force * 10 // パーセンテージに変換
+      y += (dy / distance) * force * 10
+    }
+
+    // 画面端でのソフトバウンド（5%マージン）
+    x = Math.max(5, Math.min(95, x))
+    y = Math.max(5, Math.min(95, y))
+
+    return { x, y }
+  }
+
+  // アニメーション時間の追跡
+  const [time, setTime] = useState(0)
+
+  useEffect(() => {
+    let animationId: number
+    const startTime = Date.now()
+
+    const animate = () => {
+      setTime((Date.now() - startTime) / 1000)
+      animationId = requestAnimationFrame(animate)
+    }
+
+    animationId = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animationId)
+  }, [])
 
   return (
     <div
@@ -71,32 +169,69 @@ export function HeroSectionV3() {
         }}
       />
 
-      {/* パーティクルレイヤー */}
-      <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute rounded-full"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: particle.size,
-              height: particle.size,
-              backgroundColor: 'rgba(140, 130, 120, 0.4)',
-              filter: 'blur(1px)',
-            }}
-            animate={{
-              y: [-10, -25, -10],
-              opacity: [particle.opacity * 0.5, particle.opacity, particle.opacity * 0.5],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-              ease: 'easeInOut',
-            }}
-          />
-        ))}
+      {/* ホタルレイヤー */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* 星座の線 */}
+        <svg className="absolute inset-0 w-full h-full">
+          {constellations.map((constellation, idx) => {
+            const lines = []
+            for (let i = 0; i < constellation.length - 1; i++) {
+              const firefly1 = fireflies[constellation[i]]
+              const firefly2 = fireflies[constellation[i + 1]]
+              const pos1 = getFireflyPosition(firefly1, time)
+              const pos2 = getFireflyPosition(firefly2, time)
+
+              lines.push(
+                <motion.line
+                  key={`${idx}-${i}`}
+                  x1={`${pos1.x}%`}
+                  y1={`${pos1.y}%`}
+                  x2={`${pos2.x}%`}
+                  y2={`${pos2.y}%`}
+                  stroke="rgba(255, 255, 150, 0.3)"
+                  strokeWidth="1"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 0.6, 0] }}
+                  transition={{ duration: 2, ease: 'easeInOut' }}
+                />
+              )
+            }
+            return lines
+          })}
+        </svg>
+
+        {/* ホタル */}
+        {fireflies.map((firefly) => {
+          const position = getFireflyPosition(firefly, time)
+          const pulseProgress = (time % firefly.pulseDuration) / firefly.pulseDuration
+          const pulseOpacity =
+            firefly.opacity * (0.5 + 0.5 * Math.sin(pulseProgress * Math.PI * 2))
+          const pulseScale = 1 + 0.5 * Math.sin(pulseProgress * Math.PI * 2)
+
+          return (
+            <motion.div
+              key={firefly.id}
+              className="absolute rounded-full"
+              style={{
+                left: `${position.x}%`,
+                top: `${position.y}%`,
+                width: firefly.size,
+                height: firefly.size,
+                backgroundColor: 'rgba(255, 255, 150, 0.9)',
+                boxShadow: `0 0 ${20 * pulseScale}px rgba(255, 255, 100, ${pulseOpacity * 0.6})`,
+                opacity: pulseOpacity,
+                transform: `scale(${pulseScale})`,
+                filter: 'blur(0.5px)',
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: pulseOpacity }}
+              transition={{
+                delay: firefly.delay,
+                duration: 0.5,
+              }}
+            />
+          )
+        })}
       </div>
 
       {/* メインコンテンツ */}
