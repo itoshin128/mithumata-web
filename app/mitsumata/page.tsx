@@ -375,11 +375,11 @@ export default function MitsumataPage() {
           <FadeInSection>
             <div className="space-y-12 md:space-y-16 text-stone-700 text-center max-w-4xl mx-auto mb-32 md:mb-40 lg:mb-48">
               <p className="text-lg md:text-xl lg:text-2xl leading-[2.4] font-serif font-light tracking-[0.08em] text-stone-800">
-                北アルプスの最奥部、黒部源流域に佇む山小屋。
+                ここにリード文が入ります。ここにリード文が入ります。
                 <br />
-                槍ヶ岳、穂高連峰、そして立山を結ぶ稜線の要所として、
+                ここにリード文が入ります。ここにリード文が入ります。
                 <br />
-                多くの登山者の憩いの場となってきました。
+                ここにリード文が入ります。ここにリード文が入ります。
               </p>
 
               <motion.div
@@ -392,19 +392,19 @@ export default function MitsumataPage() {
 
               <div className="space-y-10 md:space-y-12">
                 <p className="text-base md:text-lg lg:text-xl leading-[2.4] font-serif font-light tracking-[0.06em] text-stone-600">
-                  昭和○年の開業以来、変わらぬ山の温もりと、
+                  ここにリード文が入ります。ここにリード文が入ります。
                   <br />
-                  心を込めたおもてなしを大切にしています。
+                  ここにリード文が入ります。ここにリード文が入ります。
                   <br />
-                  標高○○○○メートル、澄んだ空気と満天の星空が迎えてくれます。
+                  ここにリード文が入ります。ここにリード文が入ります。
                 </p>
 
                 <p className="text-base md:text-lg lg:text-xl leading-[2.4] font-serif font-light tracking-[0.06em] text-stone-600">
-                  ここは、自然と人が出会う場所。
+                  ここにリード文が入ります。ここにリード文が入ります。
                   <br />
-                  登山の疲れを癒し、明日への力を蓄える。
+                  ここにリード文が入ります。ここにリード文が入ります。
                   <br />
-                  そんな特別な時間をお過ごしいただけます。
+                  ここにリード文が入ります。ここにリード文が入ります。
                 </p>
               </div>
             </div>
