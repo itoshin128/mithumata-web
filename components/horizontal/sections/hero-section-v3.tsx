@@ -21,17 +21,17 @@ export function HeroSectionV3() {
   const parallaxX = useTransform(smoothMouseX, [-0.5, 0.5], [-10, 10])
   const parallaxY = useTransform(smoothMouseY, [-0.5, 0.5], [-10, 10])
 
-  // ホタルのようなパーティクル
+  // ホタルのようなパーティクル（軽量化: 30 → 12個）
   const [fireflies] = useState(() =>
-    Array.from({ length: 30 }, (_, i) => ({
+    Array.from({ length: 12 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 3 + 2, // 2-5px
-      pulseDuration: Math.random() * 2 + 3, // 3-5秒
-      moveDuration: Math.random() * 20 + 30, // 30-50秒
+      size: Math.random() * 2 + 2, // 2-4px（サイズ縮小）
+      pulseDuration: Math.random() * 3 + 4, // 4-7秒（周期を延長）
+      moveDuration: Math.random() * 30 + 40, // 40-70秒（ゆっくり）
       delay: Math.random() * 10,
-      opacity: Math.random() * 0.3 + 0.2, // 0.2-0.5
+      opacity: Math.random() * 0.25 + 0.15, // 0.15-0.4（透明度を下げる）
       // ベジェ曲線のような動きのための中間点
       midX: Math.random() * 100,
       midY: Math.random() * 100,
@@ -59,11 +59,11 @@ export function HeroSectionV3() {
     })
   }
 
-  // 星座形成ロジック（10%の確率で2秒間ランダムなホタル同士を繋ぐ）
+  // 星座形成ロジック（軽量化: 5%の確率で2秒間ランダムなホタル同士を繋ぐ）
   useEffect(() => {
     const interval = setInterval(() => {
-      if (Math.random() < 0.1) {
-        // 10%の確率
+      if (Math.random() < 0.05) {
+        // 5%の確率（10% → 5%に削減）
         const count = Math.floor(Math.random() * 2) + 2 // 2-3個のホタルを繋ぐ
         const indices = Array.from({ length: count }, () =>
           Math.floor(Math.random() * fireflies.length)
@@ -75,7 +75,7 @@ export function HeroSectionV3() {
           setConstellations((prev) => prev.filter((c) => c !== indices))
         }, 2000)
       }
-    }, 3000) // 3秒ごとにチェック
+    }, 5000) // 5秒ごとにチェック（3秒 → 5秒に延長）
 
     return () => clearInterval(interval)
   }, [fireflies.length])
@@ -103,19 +103,19 @@ export function HeroSectionV3() {
       2 * (1 - t) * t * firefly.midY +
       t * t * firefly.y
 
-    // マウスrepel効果（150px半径、0.3強度）
+    // マウスrepel効果（軽量化: 100px半径、0.2強度）
     const fireflyPixelX = (x / 100) * containerWidth
     const fireflyPixelY = (y / 100) * containerHeight
     const dx = fireflyPixelX - mousePosition.x
     const dy = fireflyPixelY - mousePosition.y
     const distance = Math.sqrt(dx * dx + dy * dy)
-    const repelRadius = 150
+    const repelRadius = 100 // 150 → 100pxに縮小
 
     if (distance < repelRadius && distance > 0) {
-      const repelStrength = 0.3
+      const repelStrength = 0.2 // 0.3 → 0.2に削減
       const force = ((repelRadius - distance) / repelRadius) * repelStrength
-      x += (dx / distance) * force * 10 // パーセンテージに変換
-      y += (dy / distance) * force * 10
+      x += (dx / distance) * force * 8 // 10 → 8に削減
+      y += (dy / distance) * force * 8
     }
 
     // 画面端でのソフトバウンド（5%マージン）
@@ -125,15 +125,25 @@ export function HeroSectionV3() {
     return { x, y }
   }
 
-  // アニメーション時間の追跡
+  // アニメーション時間の追跡（軽量化: フレームレート制限 60fps → 30fps）
   const [time, setTime] = useState(0)
 
   useEffect(() => {
     let animationId: number
     const startTime = Date.now()
+    let lastTime = 0
+    const fps = 30 // 30fpsに制限（60fps → 30fps）
+    const frameDelay = 1000 / fps
 
     const animate = () => {
-      setTime((Date.now() - startTime) / 1000)
+      const currentTime = Date.now()
+      const elapsed = currentTime - lastTime
+
+      if (elapsed > frameDelay) {
+        setTime((currentTime - startTime) / 1000)
+        lastTime = currentTime - (elapsed % frameDelay)
+      }
+
       animationId = requestAnimationFrame(animate)
     }
 
@@ -206,7 +216,7 @@ export function HeroSectionV3() {
           const pulseProgress = (time % firefly.pulseDuration) / firefly.pulseDuration
           const pulseOpacity =
             firefly.opacity * (0.5 + 0.5 * Math.sin(pulseProgress * Math.PI * 2))
-          const pulseScale = 1 + 0.5 * Math.sin(pulseProgress * Math.PI * 2)
+          const pulseScale = 1 + 0.3 * Math.sin(pulseProgress * Math.PI * 2) // 0.5 → 0.3に削減
 
           return (
             <motion.div
@@ -217,11 +227,12 @@ export function HeroSectionV3() {
                 top: `${position.y}%`,
                 width: firefly.size,
                 height: firefly.size,
-                backgroundColor: 'rgba(255, 255, 150, 0.9)',
-                boxShadow: `0 0 ${20 * pulseScale}px rgba(255, 255, 100, ${pulseOpacity * 0.6})`,
+                backgroundColor: 'rgba(255, 255, 150, 0.8)', // 0.9 → 0.8
+                boxShadow: `0 0 ${12 * pulseScale}px rgba(255, 255, 100, ${pulseOpacity * 0.4})`, // グロー軽量化
                 opacity: pulseOpacity,
                 transform: `scale(${pulseScale})`,
                 filter: 'blur(0.5px)',
+                willChange: 'transform, opacity', // GPU加速
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: pulseOpacity }}
