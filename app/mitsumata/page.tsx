@@ -381,10 +381,10 @@ export default function MitsumataPage() {
                   className="relative aspect-[4/5] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* 三俣山荘の建物外観や特徴的な建築の様子を示す写真を配置 */}
+                  {/* 展望食堂からの景色 */}
                   <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
+                    src="/images/lodges/DSCF4060.jpg"
+                    alt="展望食堂からの景色"
                     fill
                     className="object-cover"
                     quality={90}
@@ -399,7 +399,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    特徴 1
+                    展望食堂からの景色
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -425,7 +425,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    特徴 2
+                    豊かな植生
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。ダミーテキストです。
@@ -449,16 +449,66 @@ export default function MitsumataPage() {
                   className="relative aspect-[4/5] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* 山荘の内部（談話室や宿泊施設の様子）、または山荘からの景色を示す写真を配置 */}
+                  {/* 豊かな植生 */}
                   <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
+                    src="/images/lodges/_DSF6384.jpg"
+                    alt="豊かな植生"
                     fill
                     className="object-cover"
                     quality={90}
                     loading="lazy"
                   />
                 </motion.div>
+              </FadeInSection>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 写真セクション3 - 左寄せ大判写真 + 右側テキスト */}
+      <section className="relative py-12 md:py-20 lg:py-28">{/* Photo section spacing */}
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* 写真 - 70% */}
+            <div className="lg:col-span-7">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  {/* スタッフの明るさ */}
+                  <Image
+                    src="/images/lodges/_DSF5434.jpg"
+                    alt="スタッフの明るさ"
+                    fill
+                    className="object-cover"
+                    quality={90}
+                    loading="lazy"
+                  />
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* テキスト - 30% */}
+            <div className="lg:col-span-5">
+              <FadeInSection delay={0.3}>
+                <div className="space-y-6 max-w-prose">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
+                    スタッフの明るさ
+                  </h3>
+                  <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    ここに説明文が入ります。ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
+                  </p>
+                </div>
               </FadeInSection>
             </div>
           </div>
