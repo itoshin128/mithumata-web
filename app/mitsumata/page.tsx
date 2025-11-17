@@ -1187,10 +1187,10 @@ export default function MitsumataPage() {
                   viewport={{ once: true }}
                   className="w-full h-full"
                 >
-                  {/* 季節の料理写真を配置（例：旬の山菜料理や季節ごとの特別メニュー）正方形でアートな構図 */}
+                  {/* サイフォンコーヒーとチャイの写真 */}
                   <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
+                    src="/images/lodges/DSCF2356.jpg"
+                    alt="サイフォンコーヒーとチャイ"
                     fill
                     className="object-cover"
                     style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -1212,7 +1212,7 @@ export default function MitsumataPage() {
               >
                 <div className="space-y-4">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    季節料理
+                    サイフォンコーヒーとチャイ
                   </h3>
 
                   <motion.div
@@ -1225,9 +1225,8 @@ export default function MitsumataPage() {
                 </div>
 
                 <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                  ここに説明文が入ります。ダミーテキストです。
-                  サンプルテキストがここに表示されます。
-                  ダミーテキストです。
+                  丁寧に淹れたサイフォンコーヒーと、スパイスの香り豊かなチャイ。
+                  展望食堂で、特別なひとときをお過ごしください。
                 </p>
               </motion.div>
             </FadeInSection>
