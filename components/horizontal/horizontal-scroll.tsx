@@ -40,20 +40,131 @@ export function HorizontalScroll() {
     container.scrollLeft = container.scrollWidth - container.clientWidth
   }, [])
 
-  // マウスホイール → 横スクロール変換（改善版）
+  // 地形メタファー: 標高に応じたスクロール速度
+  const terrainSpeed = {
+    0: 1.0,   // ヒーロー: 平地
+    1: 0.8,   // トランジション: 登り始め
+    2: 0.7,   // 三俣: 急登（標高2,550m）
+    3: 0.6,   // 水晶: 最高地点（標高2,986m）
+    4: 0.9,   // 湯俣: 下り（標高1,580m）
+    5: 1.1,   // 体験: 平地
+    6: 1.0,   // 情報: 平地
+    7: 1.2,   // お問い合わせ: ゴール
+  }
+
+  // マグネティックスナップの設定
+  const magneticSnapConfig = {
+    threshold: 0.3,        // セクション境界の30%以内で発動
+    strengthDefault: 0.4,  // デフォルトの引力
+    strengthMountains: 0.6, // 山荘セクションは強めに（2,3,4）
+    duration: 300,
+  }
+
+  // 慣性スクロール → 横スクロール変換（極限の洗練版）
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
+    let velocity = 0
+    let animationId: number | null = null
+    let lastScrollTime = Date.now()
+
+    const friction = 0.92        // 減速率
+    const minVelocity = 0.02     // 最小速度閾値
+
+    const getCurrentSection = () => {
+      const scrollLeft = container.scrollLeft
+      const maxScroll = container.scrollWidth - container.clientWidth
+      const sectionWidth = container.clientWidth
+      // 逆方向カウント
+      return Math.floor((maxScroll - scrollLeft) / sectionWidth)
+    }
+
+    const getDistanceToNearestBoundary = () => {
+      const scrollLeft = container.scrollLeft
+      const maxScroll = container.scrollWidth - container.clientWidth
+      const sectionWidth = container.clientWidth
+      const currentScrollInSection = (maxScroll - scrollLeft) % sectionWidth
+      const distanceToPrev = currentScrollInSection
+      const distanceToNext = sectionWidth - currentScrollInSection
+      return Math.min(distanceToPrev, distanceToNext)
+    }
+
+    const getMagneticStrength = (section: number) => {
+      // 山荘セクション（2,3,4）は強めのマグネット
+      if (section >= 2 && section <= 4) {
+        return magneticSnapConfig.strengthMountains
+      }
+      return magneticSnapConfig.strengthDefault
+    }
+
+    const applyMagneticSnap = () => {
+      const sectionWidth = container.clientWidth
+      const distanceToBoundary = getDistanceToNearestBoundary()
+      const threshold = sectionWidth * magneticSnapConfig.threshold
+
+      if (distanceToBoundary < threshold && Math.abs(velocity) < 2) {
+        const currentSection = getCurrentSection()
+        const strength = getMagneticStrength(currentSection)
+
+        // 境界に向かって引力を適用
+        const scrollLeft = container.scrollLeft
+        const maxScroll = container.scrollWidth - container.clientWidth
+        const currentScrollInSection = (maxScroll - scrollLeft) % sectionWidth
+
+        if (currentScrollInSection < sectionWidth / 2) {
+          // 前のセクション境界に引き寄せ
+          velocity += strength
+        } else {
+          // 次のセクション境界に引き寄せ
+          velocity -= strength
+        }
+      }
+    }
+
+    const animate = () => {
+      if (Math.abs(velocity) > minVelocity) {
+        // 慣性を適用
+        velocity *= friction
+
+        // マグネティックスナップを適用
+        applyMagneticSnap()
+
+        // スクロール位置を更新
+        container.scrollLeft -= velocity
+
+        animationId = requestAnimationFrame(animate)
+      } else {
+        velocity = 0
+        animationId = null
+      }
+    }
+
     const handleWheel = (e: WheelEvent) => {
-      // デフォルトの縦スクロールを防止
       e.preventDefault()
 
-      // 縦スクロール量を横スクロールに変換（逆方向）
-      // deltaY が正（下スクロール）→ 左へスクロール（scrollLeft を減らす）
-      // スクロール速度を1.2倍にして快適に
-      const delta = (e.deltaY || e.deltaX) * 1.2
-      container.scrollLeft -= delta
+      const currentTime = Date.now()
+      const deltaTime = currentTime - lastScrollTime
+      lastScrollTime = currentTime
+
+      // 現在のセクションを取得
+      const currentSection = getCurrentSection()
+      const speedMultiplier = terrainSpeed[currentSection as keyof typeof terrainSpeed] || 1.0
+
+      // 地形に応じた速度調整を適用
+      const delta = (e.deltaY || e.deltaX) * speedMultiplier
+
+      // 速度に加算（慣性を蓄積）
+      velocity += delta * 0.05
+
+      // 速度上限を設定（暴走防止）
+      const maxVelocity = 50
+      velocity = Math.max(-maxVelocity, Math.min(maxVelocity, velocity))
+
+      // アニメーションが実行中でなければ開始
+      if (animationId === null) {
+        animationId = requestAnimationFrame(animate)
+      }
     }
 
     // passive: false で preventDefault を有効化
@@ -61,6 +172,9 @@ export function HorizontalScroll() {
 
     return () => {
       container.removeEventListener('wheel', handleWheel)
+      if (animationId !== null) {
+        cancelAnimationFrame(animationId)
+      }
     }
   }, [])
 
