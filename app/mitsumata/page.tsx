@@ -367,18 +367,18 @@ export default function MitsumataPage() {
       </div>
 
       {/* 写真セクション1 - 左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-12 md:py-20 lg:py-28">{/* Photo section spacing */}
+      <section className="relative py-16 md:py-24 lg:py-32">{/* Photo section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* 写真 - 70% */}
-            <div className="lg:col-span-7">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* 写真 - 横構図を大きく表示 */}
+            <div className="lg:col-span-8">
               <FadeInSection>
                 <motion.div
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[3/2] overflow-hidden shadow-2xl"
+                  className="relative aspect-[16/10] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
                   {/* 展望食堂からの景色 */}
@@ -394,10 +394,10 @@ export default function MitsumataPage() {
               </FadeInSection>
             </div>
 
-            {/* テキスト - 30% */}
-            <div className="lg:col-span-5">
+            {/* テキスト */}
+            <div className="lg:col-span-4">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6 max-w-prose">
+                <div className="space-y-8 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
                     展望食堂からの景色
                   </h3>
@@ -417,13 +417,13 @@ export default function MitsumataPage() {
       </section>
 
       {/* 写真セクション2 - 右寄せ大判写真 + 左側テキスト */}
-      <section className="relative py-12 md:py-20 lg:py-28">
+      <section className="relative py-16 md:py-24 lg:py-32">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* テキスト - 30% (モバイルでは写真の下) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* テキスト (モバイルでは写真の下) */}
             <div className="lg:col-span-5 order-2 lg:order-1">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6 max-w-prose">
+                <div className="space-y-8 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
                     豊かな植生
                   </h3>
@@ -438,7 +438,7 @@ export default function MitsumataPage() {
               </FadeInSection>
             </div>
 
-            {/* 写真 - 70% */}
+            {/* 写真 */}
             <div className="lg:col-span-7 order-1 lg:order-2">
               <FadeInSection>
                 <motion.div
@@ -466,18 +466,18 @@ export default function MitsumataPage() {
       </section>
 
       {/* 写真セクション3 - 左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-12 md:py-20 lg:py-28">{/* Photo section spacing */}
+      <section className="relative py-16 md:py-24 lg:py-32">{/* Photo section spacing */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* 写真 - 70% */}
-            <div className="lg:col-span-7">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* 写真 - 横構図を大きく表示 */}
+            <div className="lg:col-span-8">
               <FadeInSection>
                 <motion.div
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[3/2] overflow-hidden shadow-2xl"
+                  className="relative aspect-[16/10] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
                   {/* スタッフの明るさ */}
@@ -493,10 +493,10 @@ export default function MitsumataPage() {
               </FadeInSection>
             </div>
 
-            {/* テキスト - 30% */}
-            <div className="lg:col-span-5">
+            {/* テキスト */}
+            <div className="lg:col-span-4">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6 max-w-prose">
+                <div className="space-y-8 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
                     スタッフの明るさ
                   </h3>
