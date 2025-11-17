@@ -96,102 +96,99 @@ const INTERIOR_IMAGES = [
   }
 ]
 
-// 帯状カルーセルコンポーネント
+// 帯状カルーセルコンポーネント（最適化版）
 function InteriorGalleryCarousel() {
   const [isPaused, setIsPaused] = useState(false)
 
-  // 画像を2倍に複製して無限ループ効果
-  const duplicatedImages = [...INTERIOR_IMAGES, ...INTERIOR_IMAGES]
+  // 画像を3倍に複製してスムーズな無限ループ
+  const duplicatedImages = [...INTERIOR_IMAGES, ...INTERIOR_IMAGES, ...INTERIOR_IMAGES]
 
   return (
-    <div className="mt-24 md:mt-32 lg:mt-40">
+    <div className="mt-20 md:mt-28 lg:mt-32">
       {/* セクションタイトル */}
-      <div className="text-center mb-16 md:mb-20 lg:mb-24">
+      <div className="text-center mb-12 md:mb-16 lg:mb-20 px-6">
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
-          className="h-[1px] w-12 bg-stone-300 mx-auto mb-8"
+          className="h-[1px] w-12 bg-stone-300 mx-auto mb-6"
         />
-        <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.08em] antialiased">
+        <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-stone-800 tracking-[0.08em]">
           館内の様子
         </h3>
       </div>
 
-      {/* 帯状スクロールカルーセル */}
+      {/* 帯状スクロールカルーセル - 画面端まで */}
       <div
         className="relative overflow-hidden"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         <motion.div
-          className="flex gap-4 md:gap-6"
+          className="flex gap-4"
           animate={{
-            x: isPaused ? 0 : [0, -1920], // 画像5枚分の幅（約384px × 5）
+            x: isPaused ? undefined : [0, -1580], // 画像5枚分 (300px + 16px) × 5
           }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 30,
+              duration: 50,
               ease: "linear",
             },
           }}
+          style={{ willChange: 'transform' }}
         >
           {duplicatedImages.map((image, index) => (
-            <motion.div
+            <div
               key={`${image.id}-${index}`}
-              className="relative flex-shrink-0 w-[280px] md:w-[350px] lg:w-[380px] group"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: (index % 5) * 0.1 }}
-              viewport={{ once: true }}
+              className="relative flex-shrink-0 w-[300px] group"
             >
               {/* 画像コンテナ */}
-              <div className="relative aspect-square overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)] group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.18)] transition-shadow duration-500">
+              <div className="relative aspect-square overflow-hidden bg-stone-100">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  quality={90}
+                  className="object-cover"
+                  quality={80}
                   loading="lazy"
+                  sizes="300px"
                 />
 
                 {/* 装飾番号 */}
-                <div className="absolute top-4 left-4 md:top-5 md:left-5 z-10">
-                  <span className="text-sm md:text-base font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-xl">
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="text-xs font-light tracking-[0.2em] text-white/80 font-sans drop-shadow-md">
                     {String(((index % 5) + 1)).padStart(2, '0')}
                   </span>
                 </div>
 
-                {/* ホバー時のキャプション */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                    <p className="text-sm md:text-base font-serif font-light text-white tracking-[0.08em]">
+                {/* ホバー時のオーバーレイ＋キャプション */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <p className="text-sm font-serif font-light text-white/95 tracking-[0.06em]">
                       {image.caption}
                     </p>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </motion.div>
 
-        {/* グラデーションフェード（両端） */}
-        <div className="absolute inset-y-0 left-0 w-20 md:w-32 bg-gradient-to-r from-stone-50 to-transparent pointer-events-none z-10" />
-        <div className="absolute inset-y-0 right-0 w-20 md:w-32 bg-gradient-to-l from-stone-50 to-transparent pointer-events-none z-10" />
+        {/* グラデーションフェード（両端）- 控えめに */}
+        <div className="absolute inset-y-0 left-0 w-16 md:w-24 bg-gradient-to-r from-stone-50 via-stone-50/80 to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-16 md:w-24 bg-gradient-to-l from-stone-50 via-stone-50/80 to-transparent pointer-events-none z-10" />
 
-        {/* 一時停止インジケーター */}
+        {/* 一時停止インジケーター - 控えめに */}
         {isPaused && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-sm px-3 py-2 rounded-full"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="absolute top-3 right-3 z-20 bg-white/90 px-2.5 py-1.5 rounded-full shadow-sm"
           >
-            <span className="text-xs text-white/90 font-light tracking-wider">PAUSED</span>
+            <span className="text-[10px] text-stone-700 font-light tracking-wider">PAUSE</span>
           </motion.div>
         )}
       </div>
@@ -200,9 +197,9 @@ function InteriorGalleryCarousel() {
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         viewport={{ once: true }}
-        className="h-[1px] w-24 bg-stone-300 mx-auto mt-16 md:mt-20"
+        className="h-[1px] w-16 bg-stone-300 mx-auto mt-16 md:mt-20"
       />
     </div>
   )
