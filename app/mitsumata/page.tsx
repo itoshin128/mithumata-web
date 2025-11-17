@@ -922,21 +922,43 @@ export default function MitsumataPage() {
         </div>
       </section>
 
-      {/* 料理ギャラリー - スクロール展開 */}
-      {/* 1品目：左寄せ大判写真 + 右側テキスト */}
-      <section className="relative py-12 md:py-20 lg:py-28">{/* Food gallery spacing */}
+      {/* 料理ギャラリー - 朝食と夕食 */}
+      <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
-            {/* 写真 - 左寄せ */}
-            <div className="lg:col-span-7">
-              <FadeInSection>
-                <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-150px" }}
-                  className="relative aspect-[5/4] overflow-hidden shadow-2xl"
-                >
+          {/* セクションタイトル */}
+          <FadeInSection>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="text-center mb-16 md:mb-20 lg:mb-24"
+            >
+              <h3 className={`${STYLES.title.section} text-stone-800`}>
+                三俣の朝食と夕食
+              </h3>
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: "3rem" }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="h-[1px] bg-gradient-to-r from-stone-400 via-stone-300 to-stone-400 mx-auto mt-6"
+              />
+            </motion.div>
+          </FadeInSection>
+
+          {/* 朝食と夕食のグリッド */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20">
+            {/* 朝食 */}
+            <FadeInSection>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-150px" }}
+                className="space-y-6"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden shadow-2xl rounded-sm">
                   <motion.div
                     initial={{ scale: 1.1 }}
                     whileInView={{ scale: 1 }}
@@ -944,10 +966,9 @@ export default function MitsumataPage() {
                     viewport={{ once: true }}
                     className="w-full h-full"
                   >
-                    {/* 三俣山荘の名物料理のクローズアップ写真を配置（美味しそうな盛り付けの写真） */}
                     <Image
-                      src="/images/placeholder.jpg"
-                      alt="画像の説明"
+                      src="/images/lodges/DSCF4852.jpg"
+                      alt="三俣山荘の朝食"
                       fill
                       className="object-cover"
                       style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -955,97 +976,26 @@ export default function MitsumataPage() {
                       loading="lazy"
                     />
                   </motion.div>
-                </motion.div>
-              </FadeInSection>
-            </div>
+                </div>
+                <div className="text-center space-y-3">
+                  <h4 className="text-2xl md:text-3xl font-serif font-light text-stone-800 tracking-[0.1em]">
+                    朝食
+                  </h4>
+                  <div className="h-[1px] w-12 bg-stone-300 mx-auto" />
+                </div>
+              </motion.div>
+            </FadeInSection>
 
-            {/* テキスト - 右側 */}
-            <div className="lg:col-span-5">
-              <FadeInSection delay={0.3}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="space-y-8"
-                >
-                  <div className="space-y-4">
-                    <h3 className={`${STYLES.title.section} text-stone-800`}>
-                      名物料理
-                      <br />
-                      料理名
-                    </h3>
-
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "3rem" }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      viewport={{ once: true }}
-                      className="h-[1px] bg-gradient-to-r from-stone-400 to-stone-200"
-                    />
-                  </div>
-
-                  <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                    ここに説明文が入ります。ダミーテキストです。
-                    サンプルテキストがここに表示されます。
-                    ダミーテキストです。
-                  </p>
-                </motion.div>
-              </FadeInSection>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2品目：右寄せ大判写真 + 左側テキスト */}
-      <section className="relative py-8 md:py-16 lg:py-20">{/* Tightly related content */}
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
-            {/* テキスト - 左側（モバイルでは下） */}
-            <div className="lg:col-span-5 order-2 lg:order-1">
-              <FadeInSection delay={0.3}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="space-y-8"
-                >
-                  <div className="space-y-4">
-                    <h3 className={`${STYLES.title.section} text-stone-800`}>
-                      おすすめ
-                      <br />
-                      料理名
-                    </h3>
-
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: "3rem" }}
-                      transition={{ duration: 0.8, delay: 0.6 }}
-                      viewport={{ once: true }}
-                      className="h-[1px] bg-gradient-to-r from-stone-400 to-stone-200"
-                    />
-                  </div>
-
-                  <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                    ここに説明文が入ります。ダミーテキストです。
-                    サンプルテキストがここに表示されます。
-                    ダミーテキストです。
-                  </p>
-                </motion.div>
-              </FadeInSection>
-            </div>
-
-            {/* 写真 - 右寄せ */}
-            <div className="lg:col-span-7 order-1 lg:order-2">
-              <FadeInSection>
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-150px" }}
-                  className="relative aspect-[5/4] overflow-hidden shadow-2xl"
-                >
+            {/* 夕食 */}
+            <FadeInSection delay={0.2}>
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-150px" }}
+                className="space-y-6"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden shadow-2xl rounded-sm">
                   <motion.div
                     initial={{ scale: 1.1 }}
                     whileInView={{ scale: 1 }}
@@ -1053,10 +1003,9 @@ export default function MitsumataPage() {
                     viewport={{ once: true }}
                     className="w-full h-full"
                   >
-                    {/* 2品目の料理写真を配置（例：山の幸を使った一品料理や煮物など） */}
                     <Image
-                      src="/images/placeholder.jpg"
-                      alt="画像の説明"
+                      src="/images/lodges/DSCF5065.jpg"
+                      alt="三俣山荘の夕食"
                       fill
                       className="object-cover"
                       style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -1064,9 +1013,15 @@ export default function MitsumataPage() {
                       loading="lazy"
                     />
                   </motion.div>
-                </motion.div>
-              </FadeInSection>
-            </div>
+                </div>
+                <div className="text-center space-y-3">
+                  <h4 className="text-2xl md:text-3xl font-serif font-light text-stone-800 tracking-[0.1em]">
+                    夕食
+                  </h4>
+                  <div className="h-[1px] w-12 bg-stone-300 mx-auto" />
+                </div>
+              </motion.div>
+            </FadeInSection>
           </div>
         </div>
       </section>
