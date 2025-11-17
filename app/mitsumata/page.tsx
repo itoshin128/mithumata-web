@@ -767,16 +767,16 @@ export default function MitsumataPage() {
 
               {/* 散りばめる配置レイアウト - 有機的で動きのある配置 */}
               <div className="relative max-w-7xl mx-auto" style={{ minHeight: '1000px' }}>
-                {/* 写真1 - 左上、横長、左回転 */}
+                {/* 写真1 - 左上、縦長、左回転 */}
                 <motion.div
                   initial={{ opacity: 0, y: 50, rotate: -2 }}
                   whileInView={{ opacity: 1, y: 0, rotate: -1.5 }}
                   transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="absolute left-0 md:left-[5%] top-0 w-full md:w-[48%] lg:w-[46%] group z-10"
+                  className="absolute left-0 md:left-[5%] top-0 w-full md:w-[34%] lg:w-[30%] group z-10"
                 >
                   <motion.div
-                    className="relative aspect-[3/2] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
+                    className="relative aspect-[2/3] overflow-hidden rounded-sm shadow-[0_6px_25px_rgba(0,0,0,0.1)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.15)] transition-shadow duration-700"
                     whileHover={{ y: -12, rotate: 0, scale: 1.02 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   >
