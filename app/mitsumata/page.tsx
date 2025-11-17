@@ -747,6 +747,129 @@ export default function MitsumataPage() {
               </div>
             </div>
           </FadeInSection>
+
+          {/* 館内写真ギャラリー - Bento Grid with Liquid Parallax */}
+          <FadeInSection delay={0.6}>
+            <div className="mt-24 md:mt-32 lg:mt-40">
+              {/* セクションタイトル */}
+              <div className="text-center mb-12 md:mb-16">
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true }}
+                  className="h-[1px] w-12 bg-stone-300 mx-auto mb-6"
+                />
+                <h3 className="text-xl md:text-2xl font-serif font-light text-stone-800 tracking-[0.15em]">
+                  館内の様子
+                </h3>
+              </div>
+
+              {/* Bento Grid レイアウト */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+                {/* 写真1 - 左上、大きめ */}
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className="col-span-2 md:col-span-2 row-span-2 md:row-span-2 group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-500"
+                >
+                  <motion.div
+                    className="relative aspect-square overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF0598.jpg"
+                      alt="館内の様子"
+                      fill
+                      className="object-cover"
+                      quality={90}
+                      loading="lazy"
+                    />
+                    {/* ホバーオーバーレイ */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </motion.div>
+                </motion.div>
+
+                {/* 写真2 - 右上 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className="col-span-1 md:col-span-2 row-span-1 group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-500"
+                >
+                  <motion.div
+                    className="relative aspect-[4/3] md:aspect-square overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src="/images/lodges/_DSF9002.jpg"
+                      alt="館内の様子"
+                      fill
+                      className="object-cover"
+                      quality={90}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </motion.div>
+                </motion.div>
+
+                {/* 写真3 - 右中 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 80 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className="col-span-1 md:col-span-1 row-span-1 group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-500"
+                >
+                  <motion.div
+                    className="relative aspect-square overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF5126.jpg"
+                      alt="館内の様子"
+                      fill
+                      className="object-cover"
+                      quality={90}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </motion.div>
+                </motion.div>
+
+                {/* 写真4 - 右下 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className="col-span-1 md:col-span-1 row-span-1 group relative overflow-hidden rounded-sm shadow-lg hover:shadow-2xl transition-shadow duration-500"
+                >
+                  <motion.div
+                    className="relative aspect-square overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF0493.jpg"
+                      alt="館内の様子"
+                      fill
+                      className="object-cover"
+                      quality={90}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </FadeInSection>
         </div>
       </section>
 
