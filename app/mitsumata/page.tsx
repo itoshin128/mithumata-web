@@ -378,7 +378,7 @@ export default function MitsumataPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  className="relative aspect-[3/2] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
                   {/* 展望食堂からの景色 */}
@@ -477,7 +477,7 @@ export default function MitsumataPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  className="relative aspect-[3/2] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
                   {/* スタッフの明るさ */}
