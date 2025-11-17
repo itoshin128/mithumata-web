@@ -1,8 +1,8 @@
 'use client'
 
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
-import { useRef, useState, useEffect, useCallback } from "react"
+import { useRef, useState } from "react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { WashiBackground } from "@/components/effects/washi-background"
 import TreeShadowBackground from "@/components/effects/tree-shadow-background"
@@ -96,26 +96,12 @@ const INTERIOR_IMAGES = [
   }
 ]
 
-// シネマティックカルーセルコンポーネント
+// 帯状カルーセルコンポーネント
 function InteriorGalleryCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isHovered, setIsHovered] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
 
-  // 自動再生（5秒ごと）
-  useEffect(() => {
-    if (!isHovered) {
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % INTERIOR_IMAGES.length)
-      }, 5000)
-      return () => clearInterval(interval)
-    }
-  }, [isHovered])
-
-  const handleThumbnailClick = useCallback((index: number) => {
-    setCurrentIndex(index)
-  }, [])
-
-  const currentImage = INTERIOR_IMAGES[currentIndex]
+  // 画像を2倍に複製して無限ループ効果
+  const duplicatedImages = [...INTERIOR_IMAGES, ...INTERIOR_IMAGES]
 
   return (
     <div className="mt-24 md:mt-32 lg:mt-40">
@@ -133,151 +119,91 @@ function InteriorGalleryCarousel() {
         </h3>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
-        {/* メインカルーセルエリア */}
-        <div
-          className="relative mb-8 md:mb-12"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {/* メイン画像エリア */}
-          <div className="relative aspect-square overflow-hidden bg-stone-100 shadow-[0_8px_40px_rgba(0,0,0,0.12)]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: 1,
-                  scale: [1, 1.08],
-                  x: [0, -20],
-                  y: [0, -10]
-                }}
-                exit={{ opacity: 0 }}
-                transition={{
-                  opacity: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-                  scale: { duration: 10, ease: "linear" },
-                  x: { duration: 10, ease: "linear" },
-                  y: { duration: 10, ease: "linear" }
-                }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={currentImage.src}
-                  alt={currentImage.alt}
-                  fill
-                  className="object-cover"
-                  quality={95}
-                  priority
-                />
-              </motion.div>
-            </AnimatePresence>
-
-            {/* 装飾番号 */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute top-6 left-6 md:top-8 md:left-8 z-10"
-            >
-              <span className="text-xl md:text-2xl font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-2xl">
-                {String(currentIndex + 1).padStart(2, '0')}
-              </span>
-            </motion.div>
-
-            {/* キャプション */}
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 z-10"
-            >
-              <div className="bg-white/95 backdrop-blur-sm px-6 py-4 md:px-8 md:py-5 shadow-xl">
-                <p className="text-sm md:text-base font-serif font-light text-stone-800 tracking-[0.08em]">
-                  {currentImage.caption}
-                </p>
-              </div>
-            </motion.div>
-
-            {/* 一時停止インジケーター */}
-            {isHovered && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="absolute top-6 right-6 z-10 bg-black/50 backdrop-blur-sm px-3 py-2 rounded-full"
-              >
-                <span className="text-xs text-white/90 font-light tracking-wider">PAUSED</span>
-              </motion.div>
-            )}
-          </div>
-
-          {/* プログレスバー */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-stone-200/50">
-            <motion.div
-              key={currentIndex}
-              initial={{ width: '0%' }}
-              animate={{ width: isHovered ? '0%' : '100%' }}
-              transition={{ duration: 5, ease: 'linear' }}
-              className="h-full bg-stone-400"
-            />
-          </div>
-        </div>
-
-        {/* サムネイルナビゲーション */}
-        <div className="grid grid-cols-5 gap-3 md:gap-4">
-          {INTERIOR_IMAGES.map((image, index) => (
-            <motion.button
-              key={image.id}
-              onClick={() => handleThumbnailClick(index)}
-              className={`
-                relative aspect-square overflow-hidden cursor-pointer
-                transition-all duration-500
-                ${currentIndex === index
-                  ? 'ring-2 ring-stone-400 ring-offset-2 ring-offset-stone-50 shadow-lg'
-                  : 'opacity-60 hover:opacity-100 shadow-sm hover:shadow-md'
-                }
-              `}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-cover"
-                quality={80}
-              />
-
-              {/* アクティブオーバーレイ */}
-              {currentIndex === index && (
-                <motion.div
-                  layoutId="activeThumb"
-                  className="absolute inset-0 border-2 border-white/50"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-
-              {/* 番号ラベル */}
-              <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2">
-                <span className="text-[9px] md:text-[10px] font-light tracking-wider text-white/80 drop-shadow-lg">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-              </div>
-            </motion.button>
-          ))}
-        </div>
-
-        {/* 装飾線 */}
+      {/* 帯状スクロールカルーセル */}
+      <div
+        className="relative overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         <motion.div
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-          viewport={{ once: true }}
-          className="h-[1px] w-24 bg-stone-300 mx-auto mt-16 md:mt-20"
-        />
+          className="flex gap-4 md:gap-6"
+          animate={{
+            x: isPaused ? 0 : [0, -1920], // 画像5枚分の幅（約384px × 5）
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 30,
+              ease: "linear",
+            },
+          }}
+        >
+          {duplicatedImages.map((image, index) => (
+            <motion.div
+              key={`${image.id}-${index}`}
+              className="relative flex-shrink-0 w-[280px] md:w-[350px] lg:w-[380px] group"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: (index % 5) * 0.1 }}
+              viewport={{ once: true }}
+            >
+              {/* 画像コンテナ */}
+              <div className="relative aspect-square overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.12)] group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.18)] transition-shadow duration-500">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  quality={90}
+                  loading="lazy"
+                />
+
+                {/* 装飾番号 */}
+                <div className="absolute top-4 left-4 md:top-5 md:left-5 z-10">
+                  <span className="text-sm md:text-base font-light tracking-[0.3em] text-white/90 font-sans drop-shadow-xl">
+                    {String(((index % 5) + 1)).padStart(2, '0')}
+                  </span>
+                </div>
+
+                {/* ホバー時のキャプション */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                    <p className="text-sm md:text-base font-serif font-light text-white tracking-[0.08em]">
+                      {image.caption}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* グラデーションフェード（両端） */}
+        <div className="absolute inset-y-0 left-0 w-20 md:w-32 bg-gradient-to-r from-stone-50 to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-20 md:w-32 bg-gradient-to-l from-stone-50 to-transparent pointer-events-none z-10" />
+
+        {/* 一時停止インジケーター */}
+        {isPaused && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-sm px-3 py-2 rounded-full"
+          >
+            <span className="text-xs text-white/90 font-light tracking-wider">PAUSED</span>
+          </motion.div>
+        )}
       </div>
+
+      {/* 装飾線 */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        viewport={{ once: true }}
+        className="h-[1px] w-24 bg-stone-300 mx-auto mt-16 md:mt-20"
+      />
     </div>
   )
 }
