@@ -1265,44 +1265,36 @@ export default function MitsumataPage() {
             </div>
           </FadeInSection>
 
-          {/* グッズグリッド - それぞれのタイル画像は、山荘で提供される様々な料理や食材の写真を配置（例：朝食、夕食、デザート、お茶菓子など） */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+          {/* グッズグリッド - 3枚の商品写真を綺麗に並べて表示 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto">
             {[
-              { id: 1, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 2, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 3, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 4, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 5, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 6, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 7, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 8, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 1, name: '商品名', image: '/images/lodges/DSCF8815.jpg' },
+              { id: 2, name: '商品名', image: '/images/lodges/_DSF4055.jpg' },
+              { id: 3, name: '商品名', image: '/images/lodges/DSCF0241.jpg' },
             ].map((item, index) => (
-              <FadeInSection key={item.id} delay={index * 0.05}>
+              <FadeInSection key={item.id} delay={index * 0.1}>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.8, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="group relative aspect-square overflow-hidden bg-white cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-300"
-                  tabIndex={0}
-                  role="button"
-                  aria-label="ラベルテキスト"
+                  className="group relative aspect-[3/4] overflow-hidden bg-white cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
                 >
                   {/* 商品画像 */}
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                    style={{ filter: 'saturate(0.8) brightness(1.05)' }}
-                    quality={85}
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                    quality={90}
                     loading="lazy"
                   />
 
                   {/* ホバー時のオーバーレイと商品名 */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-6">
-                    <p className="text-white text-sm md:text-base font-serif font-light tracking-[0.1em] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-8">
+                    <p className="text-white text-base md:text-lg font-serif font-light tracking-[0.15em] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       {item.name}
                     </p>
                   </div>
