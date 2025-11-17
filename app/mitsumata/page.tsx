@@ -1071,6 +1071,102 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      {/* 展望食堂の喫茶 */}
+      <section className="relative py-12 md:py-20 lg:py-28">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* テキスト - 左側 */}
+            <div className="lg:col-span-5">
+              <FadeInSection delay={0.3}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="space-y-8"
+                >
+                  <div className="space-y-4">
+                    <h3 className={`${STYLES.title.section} text-stone-800`}>
+                      展望食堂の喫茶
+                    </h3>
+
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "3rem" }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                      viewport={{ once: true }}
+                      className="h-[1px] bg-gradient-to-r from-stone-400 to-stone-200"
+                    />
+                  </div>
+
+                  <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    山々を見渡す展望食堂で、くつろぎのひとときを。
+                    心地よい空間で、こだわりの喫茶メニューをお楽しみいただけます。
+                  </p>
+                </motion.div>
+              </FadeInSection>
+            </div>
+
+            {/* 写真エリア - 右側 */}
+            <div className="lg:col-span-7">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-150px" }}
+                >
+                  {/* 2枚の縦構図写真を横並びに配置 */}
+                  <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-8">
+                    {/* 喫茶の写真 1 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      viewport={{ once: true, margin: "-150px" }}
+                      className="space-y-4"
+                    >
+                      <div className="relative aspect-[2/3] overflow-hidden shadow-2xl">
+                        <Image
+                          src="/images/lodges/DSCF4691.jpg"
+                          alt="展望食堂の喫茶"
+                          fill
+                          className="object-cover"
+                          style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                          quality={95}
+                          loading="lazy"
+                        />
+                      </div>
+                    </motion.div>
+
+                    {/* 喫茶の写真 2 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      viewport={{ once: true, margin: "-150px" }}
+                      className="space-y-4"
+                    >
+                      <div className="relative aspect-[2/3] overflow-hidden shadow-2xl">
+                        <Image
+                          src="/images/lodges/DSCF4820.jpg"
+                          alt="展望食堂の喫茶"
+                          fill
+                          className="object-cover"
+                          style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                          quality={95}
+                          loading="lazy"
+                        />
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3品目：中央配置の正方形写真 */}
       <section className="relative py-8 md:py-16 lg:py-20">{/* Tightly related content */}
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
@@ -1091,10 +1187,10 @@ export default function MitsumataPage() {
                   viewport={{ once: true }}
                   className="w-full h-full"
                 >
-                  {/* 季節の料理写真を配置（例：旬の山菜料理や季節ごとの特別メニュー）正方形でアートな構図 */}
+                  {/* サイフォンコーヒーとチャイの写真 */}
                   <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
+                    src="/images/lodges/DSCF2356.jpg"
+                    alt="サイフォンコーヒーとチャイ"
                     fill
                     className="object-cover"
                     style={{ filter: 'saturate(0.85) brightness(0.95)' }}
@@ -1116,7 +1212,7 @@ export default function MitsumataPage() {
               >
                 <div className="space-y-4">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    季節料理
+                    サイフォンコーヒーとチャイ
                   </h3>
 
                   <motion.div
@@ -1129,9 +1225,8 @@ export default function MitsumataPage() {
                 </div>
 
                 <p className="text-lg md:text-xl leading-[2.2] font-serif font-light text-stone-600 tracking-[0.04em]">
-                  ここに説明文が入ります。ダミーテキストです。
-                  サンプルテキストがここに表示されます。
-                  ダミーテキストです。
+                  丁寧に淹れたサイフォンコーヒーと、スパイスの香り豊かなチャイ。
+                  展望食堂で、特別なひとときをお過ごしください。
                 </p>
               </motion.div>
             </FadeInSection>
@@ -1170,44 +1265,36 @@ export default function MitsumataPage() {
             </div>
           </FadeInSection>
 
-          {/* グッズグリッド - それぞれのタイル画像は、山荘で提供される様々な料理や食材の写真を配置（例：朝食、夕食、デザート、お茶菓子など） */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+          {/* グッズグリッド - 3枚の商品写真を綺麗に並べて表示 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto">
             {[
-              { id: 1, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 2, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 3, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 4, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 5, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 6, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 7, name: '商品名', image: '/images/placeholder.jpg' },
-              { id: 8, name: '商品名', image: '/images/placeholder.jpg' },
+              { id: 1, name: '商品名', image: '/images/lodges/DSCF8815.jpg' },
+              { id: 2, name: '商品名', image: '/images/lodges/_DSF4055.jpg' },
+              { id: 3, name: '商品名', image: '/images/lodges/DSCF0241.jpg' },
             ].map((item, index) => (
-              <FadeInSection key={item.id} delay={index * 0.05}>
+              <FadeInSection key={item.id} delay={index * 0.1}>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.8, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="group relative aspect-square overflow-hidden bg-white cursor-pointer shadow-md hover:shadow-xl transition-shadow duration-300"
-                  tabIndex={0}
-                  role="button"
-                  aria-label="ラベルテキスト"
+                  className="group relative aspect-[3/4] overflow-hidden bg-white cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
                 >
                   {/* 商品画像 */}
                   <Image
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                    style={{ filter: 'saturate(0.8) brightness(1.05)' }}
-                    quality={85}
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                    quality={90}
                     loading="lazy"
                   />
 
                   {/* ホバー時のオーバーレイと商品名 */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-6">
-                    <p className="text-white text-sm md:text-base font-serif font-light tracking-[0.1em] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-8">
+                    <p className="text-white text-base md:text-lg font-serif font-light tracking-[0.15em] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       {item.name}
                     </p>
                   </div>
