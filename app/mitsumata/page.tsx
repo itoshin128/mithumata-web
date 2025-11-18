@@ -1368,28 +1368,51 @@ export default function MitsumataPage() {
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* 左側60% - 写真 */}
+            {/* 左側60% - 写真2枚縦並び */}
             <div className="lg:col-span-7">
-              <FadeInSection>
-                <motion.div
-                  initial={{ opacity: 0, x: -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  {/* 朝靄に包まれた黒部源流の幻想的な風景写真を配置（霧がかった静謐な渓谷の様子） */}
-                  <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
-                    fill
-                    className="object-cover"
-                    quality={90}
-                    loading="lazy"
-                  />
-                </motion.div>
-              </FadeInSection>
+              <div className="space-y-6 md:space-y-8">
+                {/* 1枚目の写真 - DSCF9236.jpg (仮: DSCF9754.jpg) */}
+                <FadeInSection>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="relative aspect-[4/3] overflow-hidden shadow-xl"
+                    whileHover={{ scale: 1.015 }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF9754.jpg"
+                      alt="黒部源流の風景"
+                      fill
+                      className="object-cover"
+                      quality={90}
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </FadeInSection>
+
+                {/* 2枚目の写真 - DSCF9354.jpg */}
+                <FadeInSection delay={0.2}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="relative aspect-[4/3] overflow-hidden shadow-xl"
+                    whileHover={{ scale: 1.015 }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF9354.jpg"
+                      alt="黒部源流の風景"
+                      fill
+                      className="object-cover"
+                      quality={90}
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </FadeInSection>
+              </div>
             </div>
 
             {/* 右側40% - テキスト */}
@@ -1412,55 +1435,6 @@ export default function MitsumataPage() {
                 </div>
               </FadeInSection>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 黒部源流の写真2枚並べ */}
-      <section className="relative py-12 md:py-20 lg:py-28">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
-            {/* 左側の写真 - DSCF9236.jpg (仮: DSCF9754.jpg) */}
-            <FadeInSection delay={0.1}>
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="relative aspect-[4/3] overflow-hidden shadow-xl"
-                whileHover={{ scale: 1.015 }}
-              >
-                <Image
-                  src="/images/lodges/DSCF9754.jpg"
-                  alt="黒部源流の風景"
-                  fill
-                  className="object-cover"
-                  quality={90}
-                  loading="lazy"
-                />
-              </motion.div>
-            </FadeInSection>
-
-            {/* 右側の写真 - DSCF9354.jpg */}
-            <FadeInSection delay={0.2}>
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="relative aspect-[4/3] overflow-hidden shadow-xl"
-                whileHover={{ scale: 1.015 }}
-              >
-                <Image
-                  src="/images/lodges/DSCF9354.jpg"
-                  alt="黒部源流の風景"
-                  fill
-                  className="object-cover"
-                  quality={90}
-                  loading="lazy"
-                />
-              </motion.div>
-            </FadeInSection>
           </div>
         </div>
       </section>
