@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { X, Mountain } from "lucide-react"
+import { ANIMATION } from "@/lib/animation-constants"
+import { COLORS } from "@/lib/color-constants"
 
 const navigationItems = [
   { label: "山荘紹介", href: "/lodges" },
@@ -49,7 +51,10 @@ export function Header() {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 150, damping: 20 }}
+        transition={{
+          delay: ANIMATION.delay.large / 1000,
+          ...ANIMATION.spring.soft,
+        }}
         className="fixed z-50 pointer-events-none"
         style={{
           // デスクトップ・モバイル共通: 右上
@@ -66,8 +71,8 @@ export function Header() {
           aria-label="メニューを開く"
           aria-expanded={isMenuOpen}
           aria-controls="main-menu"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: ANIMATION.scale.hoverSubtle }}
+          whileTap={{ scale: ANIMATION.scale.tapDown }}
         >
           {/* エレガント サークル ボタン */}
           <motion.div
@@ -189,15 +194,13 @@ export function Header() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{
-                type: "spring",
-                damping: 28,
-                stiffness: 220,
-                opacity: { duration: 0.25 },
+                ...ANIMATION.spring.default,
+                opacity: { duration: ANIMATION.duration.fastest / 1000 },
               }}
               className="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] backdrop-blur-2xl z-[70] overflow-hidden"
               style={{
-                backgroundColor: "rgba(250, 247, 241, 0.98)",
-                boxShadow: "-16px 0 48px rgba(0, 0, 0, 0.12)",
+                backgroundColor: `${COLORS.washi.main}fa`, // 98% opacity
+                boxShadow: `-16px 0 48px ${COLORS.shadow.normal}`,
               }}
             >
               {/* 繊細なテクスチャ */}
