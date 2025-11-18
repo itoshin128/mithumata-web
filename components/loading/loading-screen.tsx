@@ -96,12 +96,13 @@ export function LoadingScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] cursor-pointer ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
+      className={`fixed inset-0 z-[9999] cursor-pointer rounded-none ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
       style={{
         background: COLORS.gradients.washi,
         transitionProperty: 'opacity',
         transitionDuration: `${ANIMATION.duration.slow}ms`,
         transitionTimingFunction: ANIMATION.easing.wafuu.join(','),
+        borderRadius: 0,
       }}
       onClick={handleSkip}
       role="button"
@@ -207,7 +208,6 @@ export function LoadingScreen() {
               fontFamily: 'var(--font-noto-serif)',
               color: COLORS.text.primary,
               animation: fontsLoaded ? `textFadeIn ${ANIMATION.duration.slower}ms ease-out forwards` : 'none',
-              opacity: fontsLoaded ? 0 : 0,
             }}
           >
             北アルプス黒部源流
@@ -221,7 +221,6 @@ export function LoadingScreen() {
               color: COLORS.text.secondary,
               animation: fontsLoaded ? `textFadeIn ${ANIMATION.duration.slower}ms ease-out forwards` : 'none',
               animationDelay: fontsLoaded ? `${ANIMATION.duration.fast}ms` : '0s',
-              opacity: fontsLoaded ? 0 : 0,
             }}
           >
             Northern Alps Kurobe Genryu
