@@ -918,7 +918,7 @@ export default function MitsumataPage() {
             alt="三俣山荘の食事"
             fill
             className="object-cover"
-            style={{ filter: 'brightness(0.6) saturate(0.9)' }}
+            style={{ filter: 'brightness(0.75) saturate(0.9)' }}
             quality={90}
             loading="lazy"
           />
@@ -1329,11 +1329,11 @@ export default function MitsumataPage() {
         <div className="absolute inset-0">
           {/* 黒部源流の雄大な自然風景写真を配置（例：源流の清流、山々の連なり、渓谷の風景など）*/}
           <Image
-            src="/images/placeholder.jpg"
-            alt="画像の説明"
+            src="/images/lodges/DSCF9939.jpg"
+            alt="黒部源流の景色"
             fill
             className="object-cover"
-            style={{ filter: 'brightness(0.5) saturate(1.1)' }}
+            style={{ filter: 'brightness(0.75) saturate(1.1)' }}
             quality={95}
             priority
           />
@@ -1367,34 +1367,10 @@ export default function MitsumataPage() {
       {/* ストーリー展開 - 画面1：朝靄の源流 */}
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* 左側60% - 写真 */}
-            <div className="lg:col-span-7">
-              <FadeInSection>
-                <motion.div
-                  initial={{ opacity: 0, x: -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  {/* 朝靄に包まれた黒部源流の幻想的な風景写真を配置（霧がかった静謐な渓谷の様子） */}
-                  <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
-                    fill
-                    className="object-cover"
-                    quality={90}
-                    loading="lazy"
-                  />
-                </motion.div>
-              </FadeInSection>
-            </div>
-
-            {/* 右側40% - テキスト */}
-            <div className="lg:col-span-5">
-              <FadeInSection delay={0.3}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* 左側：テキスト */}
+            <div className="lg:col-span-5 flex items-center">
+              <FadeInSection delay={0.1}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
                     エリア名
@@ -1412,6 +1388,55 @@ export default function MitsumataPage() {
                 </div>
               </FadeInSection>
             </div>
+
+            {/* 右側：写真2枚を上品にコンパクトに配置 */}
+            <div className="lg:col-span-7">
+              <div className="space-y-8 md:space-y-10 lg:space-y-12">
+                {/* 1枚目：縦長写真（DSCF9236.jpg）- コンパクトに */}
+                <FadeInSection delay={0.2}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="relative w-[52%] overflow-hidden shadow-lg"
+                    whileHover={{ scale: 1.015 }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF9236.jpg"
+                      alt="黒部源流の風景"
+                      width={6240}
+                      height={4160}
+                      className="w-full h-auto"
+                      quality={90}
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </FadeInSection>
+
+                {/* 2枚目：横長写真（DSCF9354.jpg）- 見やすいサイズに右寄せ */}
+                <FadeInSection delay={0.3}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="relative w-[80%] ml-auto overflow-hidden shadow-lg"
+                    whileHover={{ scale: 1.015 }}
+                  >
+                    <Image
+                      src="/images/lodges/DSCF9354.jpg"
+                      alt="黒部源流の風景"
+                      width={4160}
+                      height={6240}
+                      className="w-full h-auto"
+                      quality={90}
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </FadeInSection>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1425,22 +1450,23 @@ export default function MitsumataPage() {
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="space-y-16 md:space-y-20">
-            {/* パノラマ写真 */}
+            {/* パノラマ写真 - 元のアスペクト比で表示 */}
             <FadeInSection>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="relative aspect-[21/9] lg:aspect-[32/9] overflow-hidden shadow-2xl"
+                className="relative w-full overflow-hidden shadow-2xl"
                 whileHover={{ scale: 1.02 }}
               >
                 {/* 原生林のパノラマ写真を配置（木漏れ日が差し込む森の中、横長のワイド構図） */}
                 <Image
-                  src="/images/placeholder.jpg"
-                  alt="画像の説明"
-                  fill
-                  className="object-cover"
+                  src="/images/lodges/_DSF5988.jpg"
+                  alt="黒部源流の自然"
+                  width={6240}
+                  height={4160}
+                  className="w-full h-auto"
                   quality={90}
                   loading="lazy"
                 />
@@ -1479,9 +1505,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    見出し
-                    <br />
-                    テキスト
+                    イワナ
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。
@@ -1506,15 +1530,16 @@ export default function MitsumataPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  className="relative overflow-hidden shadow-2xl max-w-[65%] mx-auto"
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* 黒部源流の渓流や滝の縦長写真を配置（水が流れる様子、ダイナミックな構図） */}
+                  {/* イワナの写真 */}
                   <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
-                    fill
-                    className="object-cover"
+                    src="/images/lodges/DSCF2821.jpg"
+                    alt="イワナ"
+                    width={1365}
+                    height={2048}
+                    className="w-full h-auto"
                     quality={90}
                     loading="lazy"
                   />
