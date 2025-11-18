@@ -1368,15 +1368,15 @@ export default function MitsumataPage() {
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* 左側60% - 写真 */}
-            <div className="lg:col-span-7">
+            {/* 左側50% - 写真 */}
+            <div className="lg:col-span-6">
               <FadeInSection>
                 <motion.div
                   initial={{ opacity: 0, x: -40 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  className="relative aspect-[3/4] overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
                   {/* 朝靄に包まれた黒部源流の幻想的な風景写真を配置（霧がかった静謐な渓谷の様子） */}
@@ -1392,8 +1392,8 @@ export default function MitsumataPage() {
               </FadeInSection>
             </div>
 
-            {/* 右側40% - テキスト */}
-            <div className="lg:col-span-5">
+            {/* 右側50% - テキスト */}
+            <div className="lg:col-span-6">
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
@@ -1432,7 +1432,7 @@ export default function MitsumataPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="relative aspect-[21/9] lg:aspect-[32/9] overflow-hidden shadow-2xl"
+                className="relative aspect-[18/9] lg:aspect-[24/9] overflow-hidden shadow-2xl"
                 whileHover={{ scale: 1.02 }}
               >
                 {/* 原生林のパノラマ写真を配置（木漏れ日が差し込む森の中、横長のワイド構図） */}
