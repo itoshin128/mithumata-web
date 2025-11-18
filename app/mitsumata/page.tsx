@@ -1466,7 +1466,7 @@ export default function MitsumataPage() {
                   alt="黒部源流の自然"
                   width={6240}
                   height={4160}
-                  className="w-full h-auto"
+                  className="w-[85%] h-auto mx-auto"
                   quality={90}
                   loading="lazy"
                 />
