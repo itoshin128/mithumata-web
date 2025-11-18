@@ -1392,14 +1392,14 @@ export default function MitsumataPage() {
             {/* 右側：写真2枚を配置 */}
             <div className="lg:col-span-7">
               <div className="space-y-6 md:space-y-8">
-                {/* 1枚目：横長写真 */}
+                {/* 1枚目：横長写真 - 幅を65%に抑えて上品に */}
                 <FadeInSection delay={0.2}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="relative w-full overflow-hidden shadow-xl"
+                    className="relative w-[65%] overflow-hidden shadow-xl"
                     whileHover={{ scale: 1.015 }}
                   >
                     <Image
@@ -1414,14 +1414,14 @@ export default function MitsumataPage() {
                   </motion.div>
                 </FadeInSection>
 
-                {/* 2枚目：縦長写真 - 幅を60%に抑えて右寄せ */}
+                {/* 2枚目：縦長写真 - 幅を50%に抑えて右寄せ */}
                 <FadeInSection delay={0.3}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="relative w-3/5 ml-auto overflow-hidden shadow-xl"
+                    className="relative w-1/2 ml-auto overflow-hidden shadow-xl"
                     whileHover={{ scale: 1.015 }}
                   >
                     <Image
