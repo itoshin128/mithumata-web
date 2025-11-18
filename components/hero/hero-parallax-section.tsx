@@ -333,7 +333,7 @@ export function HeroParallaxSection() {
     <section ref={sectionRef} className="relative w-full">
       {showFixedBg && (
         <div
-          className="md:hidden absolute top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
+          className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
           style={{ opacity: bgOpacity }}
         >
           <div className="h-full w-full overflow-hidden">
