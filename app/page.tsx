@@ -2,7 +2,7 @@
 
 import { getSeasonalTheme } from "@/lib/seasonal-theme"
 import { HeroParallaxSection } from "@/components/hero/hero-parallax-section"
-import { LodgeStorySection } from "@/components/lodges/lodge-story-section-v2"
+import { LodgeStorySection } from "@/components/lodges/lodge-story-section"
 import { LatestPostsSection } from "@/components/blog/latest-posts-section"
 import { FAQSection } from "@/components/faq/faq-section"
 import { SeasonalBanner } from "@/components/ui/seasonal-banner"
