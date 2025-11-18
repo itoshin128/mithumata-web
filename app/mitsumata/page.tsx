@@ -1486,8 +1486,8 @@ export default function MitsumataPage() {
               >
                 {/* 原生林のパノラマ写真を配置（木漏れ日が差し込む森の中、横長のワイド構図） */}
                 <Image
-                  src="/images/placeholder.jpg"
-                  alt="画像の説明"
+                  src="/images/lodges/_DSF5988.jpg"
+                  alt="黒部源流の自然"
                   fill
                   className="object-cover"
                   quality={90}
