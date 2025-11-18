@@ -1371,21 +1371,22 @@ export default function MitsumataPage() {
             {/* 左側60% - 写真2枚縦並び */}
             <div className="lg:col-span-7">
               <div className="space-y-6 md:space-y-8">
-                {/* 1枚目の写真 - DSCF9236.jpg (仮: DSCF9754.jpg) */}
+                {/* 1枚目の写真 - DSCF9236.jpg */}
                 <FadeInSection>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="relative aspect-[4/3] overflow-hidden shadow-xl"
+                    className="relative w-full overflow-hidden shadow-xl"
                     whileHover={{ scale: 1.015 }}
                   >
                     <Image
-                      src="/images/lodges/DSCF9754.jpg"
+                      src="/images/lodges/DSCF9236.jpg"
                       alt="黒部源流の風景"
-                      fill
-                      className="object-cover"
+                      width={6240}
+                      height={4160}
+                      className="w-full h-auto"
                       quality={90}
                       loading="lazy"
                     />
@@ -1399,14 +1400,15 @@ export default function MitsumataPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="relative aspect-[4/3] overflow-hidden shadow-xl"
+                    className="relative w-full overflow-hidden shadow-xl"
                     whileHover={{ scale: 1.015 }}
                   >
                     <Image
                       src="/images/lodges/DSCF9354.jpg"
                       alt="黒部源流の風景"
-                      fill
-                      className="object-cover"
+                      width={4160}
+                      height={6240}
+                      className="w-full h-auto"
                       quality={90}
                       loading="lazy"
                     />
