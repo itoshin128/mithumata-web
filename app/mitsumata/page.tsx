@@ -1539,7 +1539,7 @@ export default function MitsumataPage() {
                     alt="イワナ"
                     width={1365}
                     height={2048}
-                    className="w-[85%] h-auto mx-auto"
+                    className="w-[65%] h-auto mx-auto"
                     quality={90}
                     loading="lazy"
                   />
