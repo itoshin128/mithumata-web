@@ -207,6 +207,7 @@ export function LoadingScreen() {
             style={{
               fontFamily: 'var(--font-noto-serif)',
               color: COLORS.text.primary,
+              opacity: 0,
               animation: fontsLoaded ? `textFadeIn ${ANIMATION.duration.slower}ms ease-out forwards` : 'none',
             }}
           >
@@ -219,6 +220,7 @@ export function LoadingScreen() {
             style={{
               fontFamily: 'var(--font-noto-sans)',
               color: COLORS.text.secondary,
+              opacity: 0,
               animation: fontsLoaded ? `textFadeIn ${ANIMATION.duration.slower}ms ease-out forwards` : 'none',
               animationDelay: fontsLoaded ? `${ANIMATION.duration.fast}ms` : '0s',
             }}
