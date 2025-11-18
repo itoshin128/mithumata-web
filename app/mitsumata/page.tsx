@@ -1373,9 +1373,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.1}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    エリア名
-                    <br />
-                    スポット名
+                    イワナ
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ダミーテキスト。
