@@ -1364,6 +1364,182 @@ export default function MitsumataPage() {
         </motion.div>
       </section>
 
+      {/* リード文セクション */}
+      <section className="relative py-16 md:py-24 lg:py-32">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl">
+          <FadeInSection>
+            <div className="text-center space-y-8">
+              <p className="text-lg md:text-xl lg:text-2xl font-serif font-light text-stone-700 leading-[2.2] tracking-[0.05em]">
+                北アルプスの最深部、黒部川の源流域。
+                <br />
+                三俣山荘から日帰りで訪れることができる、
+                <br />
+                手つかずの原生林と清冽な流れが織りなす聖域。
+              </p>
+              <p className="text-base md:text-lg font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+                イワナが泳ぐ透明な清流、静寂に包まれた深い森、
+                <br />
+                そして時の流れを忘れさせる神秘的な自然の営み。
+              </p>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
+      {/* 地図・イラストマップセクション */}
+      <section className="relative py-16 md:py-24 lg:py-32 bg-stone-50/50">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl">
+          <FadeInSection>
+            <div className="text-center mb-12 md:mb-16">
+              <h3 className={`${STYLES.title.section} text-stone-800 mb-6`}>
+                黒部源流へのアクセス
+              </h3>
+              <p className="text-base md:text-lg font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+                三俣山荘を起点とした、黒部源流域への道のり
+              </p>
+            </div>
+          </FadeInSection>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            {/* 地図エリア（プレースホルダー） */}
+            <FadeInSection delay={0.2}>
+              <div className="space-y-4">
+                <h4 className="text-xl md:text-2xl font-serif font-light text-stone-800 tracking-[0.05em] text-center">
+                  エリアマップ
+                </h4>
+                <div className="relative aspect-[4/3] bg-stone-200 rounded-lg overflow-hidden shadow-lg">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <p className="text-stone-500 font-serif">地図を配置予定</p>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+
+            {/* イラストマップエリア（プレースホルダー） */}
+            <FadeInSection delay={0.3}>
+              <div className="space-y-4">
+                <h4 className="text-xl md:text-2xl font-serif font-light text-stone-800 tracking-[0.05em] text-center">
+                  イラストマップ
+                </h4>
+                <div className="relative aspect-[4/3] bg-stone-200 rounded-lg overflow-hidden shadow-lg">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <p className="text-stone-500 font-serif">イラストマップを配置予定</p>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
+      {/* コースタイムセクション */}
+      <section className="relative py-16 md:py-24 lg:py-32">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
+          <FadeInSection>
+            <div className="text-center mb-12 md:mb-16">
+              <h3 className={`${STYLES.title.section} text-stone-800 mb-6`}>
+                コースタイム
+              </h3>
+              <p className="text-base md:text-lg font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+                三俣山荘から黒部源流への日帰りコース
+              </p>
+            </div>
+          </FadeInSection>
+
+          <FadeInSection delay={0.2}>
+            <div className="space-y-6">
+              {/* 往路 */}
+              <div className="bg-white rounded-lg shadow-md p-6 md:p-8 border border-stone-200">
+                <h4 className="text-lg md:text-xl font-serif font-medium text-stone-800 tracking-[0.05em] mb-6 text-center">
+                  往路：三俣山荘 → 黒部源流
+                </h4>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between py-3 border-b border-stone-200 last:border-b-0">
+                    <span className="font-serif text-stone-700">三俣山荘</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm md:text-base text-stone-500">▼ 約1時間30分</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between py-3 border-b border-stone-200 last:border-b-0">
+                    <span className="font-serif text-stone-700">黒部源流（岩魚止め小屋付近）</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm md:text-base text-stone-500">散策</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 復路 */}
+              <div className="bg-white rounded-lg shadow-md p-6 md:p-8 border border-stone-200">
+                <h4 className="text-lg md:text-xl font-serif font-medium text-stone-800 tracking-[0.05em] mb-6 text-center">
+                  復路：黒部源流 → 三俣山荘
+                </h4>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between py-3 border-b border-stone-200 last:border-b-0">
+                    <span className="font-serif text-stone-700">黒部源流（岩魚止め小屋付近）</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm md:text-base text-stone-500">▲ 約2時間</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between py-3 border-b border-stone-200 last:border-b-0">
+                    <span className="font-serif text-stone-700">三俣山荘</span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm md:text-base font-medium text-stone-800">到着</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 合計時間 */}
+              <div className="bg-stone-100 rounded-lg p-6 md:p-8 text-center">
+                <p className="text-lg md:text-xl font-serif font-medium text-stone-800 tracking-[0.05em]">
+                  合計所要時間：<span className="text-2xl md:text-3xl text-stone-900 ml-2">約3時間30分</span>
+                </p>
+                <p className="text-sm md:text-base text-stone-600 mt-4 font-serif font-light">
+                  ※ 散策時間を除く。天候や体力により変動します。
+                </p>
+              </div>
+
+              {/* 注意事項 */}
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 md:p-8">
+                <h5 className="text-base md:text-lg font-serif font-medium text-amber-900 tracking-[0.05em] mb-4">
+                  ご注意
+                </h5>
+                <ul className="space-y-2 text-sm md:text-base text-amber-800 font-serif font-light">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1">•</span>
+                    <span>登山道は整備されていない箇所があります。十分な装備でお出かけください。</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1">•</span>
+                    <span>天候の急変に備え、早朝出発をおすすめします。</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1">•</span>
+                    <span>熊の生息地域です。熊鈴の携行をお願いします。</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* ストーリー展開 - 画面1：朝靄の源流 */}
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
