@@ -35,7 +35,7 @@ export function getSeasonalTheme(): SeasonalTheme {
         gradient: "from-green-50 via-green-25 to-blue-50",
         banner: {
           show: true,
-          text: "2025年シーズンの予約受付中!営業開始は7月1日から",
+          text: "ここは最新情報を記載します",
           type: "info",
         },
         description: "今年の夏山へ、早めの予約をおすすめします",
@@ -50,7 +50,7 @@ export function getSeasonalTheme(): SeasonalTheme {
       gradient: "from-gray-50 to-white",
       banner: {
         show: true,
-        text: "今シーズンの営業は終了しました。2025年は7月から",
+        text: "ここは最新情報を記載します",
         type: "warning",
       },
       description: "雪に閉ざされた黒部源流の冬",
@@ -95,7 +95,7 @@ export function getSeasonalTheme(): SeasonalTheme {
         gradient: "from-stone-50 to-slate-50",
         banner: {
           show: true,
-          text: "今シーズンの営業は11月30日まで",
+          text: "ここは最新情報を記載します",
           type: "info",
         },
         description: "晩秋の静けさと初雪",
