@@ -918,7 +918,7 @@ export default function MitsumataPage() {
             alt="三俣山荘の食事"
             fill
             className="object-cover"
-            style={{ filter: 'brightness(0.6) saturate(0.9)' }}
+            style={{ filter: 'brightness(0.75) saturate(0.9)' }}
             quality={90}
             loading="lazy"
           />
@@ -1329,11 +1329,11 @@ export default function MitsumataPage() {
         <div className="absolute inset-0">
           {/* 黒部源流の雄大な自然風景写真を配置（例：源流の清流、山々の連なり、渓谷の風景など）*/}
           <Image
-            src="/images/placeholder.jpg"
-            alt="画像の説明"
+            src="/images/lodges/DSCF9939.jpg"
+            alt="黒部源流の景色"
             fill
             className="object-cover"
-            style={{ filter: 'brightness(0.5) saturate(1.1)' }}
+            style={{ filter: 'brightness(0.75) saturate(1.1)' }}
             quality={95}
             priority
           />
@@ -1412,6 +1412,55 @@ export default function MitsumataPage() {
                 </div>
               </FadeInSection>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 黒部源流の写真2枚並べ */}
+      <section className="relative py-12 md:py-20 lg:py-28">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
+            {/* 左側の写真 - DSCF9236.jpg */}
+            <FadeInSection delay={0.1}>
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative aspect-[4/3] overflow-hidden shadow-xl"
+                whileHover={{ scale: 1.015 }}
+              >
+                <Image
+                  src="/images/lodges/DSCF9236.jpg"
+                  alt="黒部源流の風景"
+                  fill
+                  className="object-cover"
+                  quality={90}
+                  loading="lazy"
+                />
+              </motion.div>
+            </FadeInSection>
+
+            {/* 右側の写真 - DSCF9354.jpg */}
+            <FadeInSection delay={0.2}>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative aspect-[4/3] overflow-hidden shadow-xl"
+                whileHover={{ scale: 1.015 }}
+              >
+                <Image
+                  src="/images/lodges/DSCF9354.jpg"
+                  alt="黒部源流の風景"
+                  fill
+                  className="object-cover"
+                  quality={90}
+                  loading="lazy"
+                />
+              </motion.div>
+            </FadeInSection>
           </div>
         </div>
       </section>
