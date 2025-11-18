@@ -1392,14 +1392,14 @@ export default function MitsumataPage() {
             {/* 右側：写真2枚を上品にコンパクトに配置 */}
             <div className="lg:col-span-7">
               <div className="space-y-8 md:space-y-10 lg:space-y-12">
-                {/* 1枚目：横長写真（DSCF9236.jpg）- コンパクトに */}
+                {/* 1枚目：横長写真（DSCF9236.jpg）- 見やすいサイズに */}
                 <FadeInSection delay={0.2}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="relative w-[52%] overflow-hidden shadow-lg"
+                    className="relative w-[80%] overflow-hidden shadow-lg"
                     whileHover={{ scale: 1.015 }}
                   >
                     <Image
@@ -1421,7 +1421,7 @@ export default function MitsumataPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="relative w-[38%] ml-auto overflow-hidden shadow-lg"
+                    className="relative w-[45%] ml-auto overflow-hidden shadow-lg"
                     whileHover={{ scale: 1.015 }}
                   >
                     <Image
