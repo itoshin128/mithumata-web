@@ -1364,6 +1364,97 @@ export default function MitsumataPage() {
         </motion.div>
       </section>
 
+      {/* リード文セクション */}
+      <section className="relative py-16 md:py-24 lg:py-32">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl">
+          <FadeInSection>
+            <div className="text-center space-y-8">
+              <p className="text-lg md:text-xl lg:text-2xl font-serif font-light text-stone-700 leading-[2.2] tracking-[0.05em]">
+                ダミーテキスト。ここに説明文が入ります。
+                <br />
+                ダミーテキストです。サンプルテキストがここに表示されます。
+                <br />
+                ここに説明文が入ります。ダミーテキストです。
+              </p>
+              <p className="text-base md:text-lg font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+                サンプルテキストがここに表示されます。ダミーテキストです。
+                <br />
+                ここに説明文が入ります。
+              </p>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
+      {/* イラストマップセクション */}
+      <section className="relative py-16 md:py-24 lg:py-32 bg-stone-50/50">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
+          <FadeInSection>
+            <div className="space-y-8">
+              <h3 className={`${STYLES.title.section} text-stone-800 text-center`}>
+                イラストマップ
+              </h3>
+              <div className="relative aspect-[4/3] bg-stone-200 rounded-lg overflow-hidden shadow-lg max-w-3xl mx-auto">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <p className="text-stone-500 font-serif">イラストマップを配置予定</p>
+                </div>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
+      {/* アクセス・コースタイムセクション */}
+      <section className="relative py-16 md:py-24 lg:py-32">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl">
+          <FadeInSection>
+            <div className="space-y-8">
+              <h3 className={`${STYLES.title.section} text-stone-800 text-center`}>
+                アクセス
+              </h3>
+
+              <div className="bg-white rounded-lg shadow-md p-6 md:p-8 border border-stone-200">
+                <div className="space-y-6">
+                  {/* コースタイム */}
+                  <div className="text-center pb-6 border-b border-stone-200">
+                    <p className="text-lg md:text-xl font-serif text-stone-700 mb-2">
+                      三俣山荘から黒部源流
+                    </p>
+                    <p className="text-base md:text-lg text-stone-600 font-serif font-light">
+                      片道 約1時間30分〜2時間
+                    </p>
+                  </div>
+
+                  {/* 注意事項 */}
+                  <div className="space-y-3">
+                    <p className="text-sm md:text-base text-stone-600 font-serif font-light leading-relaxed">
+                      • 登山道は整備されていない箇所があります<br />
+                      • 天候の急変に備え、早朝出発をおすすめします<br />
+                      • 熊の生息地域です。熊鈴の携行をお願いします
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
       {/* ストーリー展開 - 画面1：朝靄の源流 */}
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
