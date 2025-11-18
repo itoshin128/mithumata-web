@@ -1420,7 +1420,7 @@ export default function MitsumataPage() {
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10">
-            {/* 左側の写真 - DSCF9236.jpg */}
+            {/* 左側の写真 - DSCF9236.jpg (仮: DSCF9754.jpg) */}
             <FadeInSection delay={0.1}>
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -1431,7 +1431,7 @@ export default function MitsumataPage() {
                 whileHover={{ scale: 1.015 }}
               >
                 <Image
-                  src="/images/lodges/DSCF9236.jpg"
+                  src="/images/lodges/DSCF9754.jpg"
                   alt="黒部源流の風景"
                   fill
                   className="object-cover"
