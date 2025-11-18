@@ -1390,7 +1390,7 @@ export default function MitsumataPage() {
             {/* 右側：写真2枚を上品にコンパクトに配置 */}
             <div className="lg:col-span-7">
               <div className="space-y-8 md:space-y-10 lg:space-y-12">
-                {/* 1枚目：縦長写真（DSCF9236.jpg）- コンパクトに */}
+                {/* 1枚目：イワナの写真（DSCF2821.jpg）*/}
                 <FadeInSection delay={0.2}>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -1401,8 +1401,8 @@ export default function MitsumataPage() {
                     whileHover={{ scale: 1.015 }}
                   >
                     <Image
-                      src="/images/lodges/DSCF9236.jpg"
-                      alt="黒部源流の風景"
+                      src="/images/lodges/DSCF2821.jpg"
+                      alt="イワナ"
                       width={6240}
                       height={4160}
                       className="w-full h-auto"
