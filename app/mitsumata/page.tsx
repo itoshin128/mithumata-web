@@ -1530,7 +1530,7 @@ export default function MitsumataPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative overflow-hidden shadow-2xl"
+                  className="relative overflow-hidden shadow-2xl max-w-[65%] mx-auto"
                   whileHover={{ scale: 1.02 }}
                 >
                   {/* イワナの写真 */}
@@ -1539,7 +1539,7 @@ export default function MitsumataPage() {
                     alt="イワナ"
                     width={1365}
                     height={2048}
-                    className="w-[65%] h-auto mx-auto"
+                    className="w-full h-auto"
                     quality={90}
                     loading="lazy"
                   />
