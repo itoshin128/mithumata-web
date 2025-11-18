@@ -1367,58 +1367,56 @@ export default function MitsumataPage() {
       {/* ストーリー展開 - 画面1：朝靄の源流 */}
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* 左側60% - 写真2枚縦並び */}
-            <div className="lg:col-span-7">
-              <div className="space-y-6 md:space-y-8">
-                {/* 1枚目の写真 - DSCF9236.jpg */}
-                <FadeInSection>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="relative w-full overflow-hidden shadow-xl"
-                    whileHover={{ scale: 1.015 }}
-                  >
-                    <Image
-                      src="/images/lodges/DSCF9236.jpg"
-                      alt="黒部源流の風景"
-                      width={6240}
-                      height={4160}
-                      className="w-full h-auto"
-                      quality={90}
-                      loading="lazy"
-                    />
-                  </motion.div>
-                </FadeInSection>
+          {/* マガジン風レイアウト：横長写真を全幅で上部に配置 */}
+          <FadeInSection>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="relative w-full overflow-hidden shadow-2xl mb-8 md:mb-12 lg:mb-16"
+              whileHover={{ scale: 1.01 }}
+            >
+              <Image
+                src="/images/lodges/DSCF9236.jpg"
+                alt="黒部源流の風景"
+                width={6240}
+                height={4160}
+                className="w-full h-auto"
+                quality={90}
+                loading="lazy"
+              />
+            </motion.div>
+          </FadeInSection>
 
-                {/* 2枚目の写真 - DSCF9354.jpg */}
-                <FadeInSection delay={0.2}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="relative w-full overflow-hidden shadow-xl"
-                    whileHover={{ scale: 1.015 }}
-                  >
-                    <Image
-                      src="/images/lodges/DSCF9354.jpg"
-                      alt="黒部源流の風景"
-                      width={4160}
-                      height={6240}
-                      className="w-full h-auto"
-                      quality={90}
-                      loading="lazy"
-                    />
-                  </motion.div>
-                </FadeInSection>
-              </div>
+          {/* 下部：縦長写真とテキストを横並びに配置 */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* 左側：縦長写真 */}
+            <div className="lg:col-span-5">
+              <FadeInSection delay={0.2}>
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="relative w-full overflow-hidden shadow-xl"
+                  whileHover={{ scale: 1.015 }}
+                >
+                  <Image
+                    src="/images/lodges/DSCF9354.jpg"
+                    alt="黒部源流の風景"
+                    width={4160}
+                    height={6240}
+                    className="w-full h-auto"
+                    quality={90}
+                    loading="lazy"
+                  />
+                </motion.div>
+              </FadeInSection>
             </div>
 
-            {/* 右側40% - テキスト */}
-            <div className="lg:col-span-5">
+            {/* 右側：テキスト */}
+            <div className="lg:col-span-7 flex items-center">
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
