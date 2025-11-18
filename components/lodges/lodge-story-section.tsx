@@ -83,12 +83,17 @@ const InteractivePhoto = memo(function InteractivePhoto({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
 
+  // モバイルパフォーマンス最適化: モバイルでは3Dエフェクトを無効化
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    // モバイルでは3D計算をスキップ
+    if (isMobile) return
     const rect = e.currentTarget.getBoundingClientRect()
     const x = (e.clientX - rect.left) / rect.width - 0.5
     const y = (e.clientY - rect.top) / rect.height - 0.5
     setMousePosition({ x, y })
-  }, [])
+  }, [isMobile])
 
   const handleMouseEnter = useCallback(() => setIsHovering(true), [])
   const handleMouseLeave = useCallback(() => setIsHovering(false), [])
@@ -96,15 +101,15 @@ const InteractivePhoto = memo(function InteractivePhoto({
   return (
     <FadeInSection delay={delay}>
       <motion.div
-        whileHover={{ scale: 1.015 }}
+        whileHover={{ scale: isMobile ? 1 : 1.015 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         style={{
-          rotateY: isHovering ? mousePosition.x * 3 : 0,
-          rotateX: isHovering ? -mousePosition.y * 3 : 0,
+          rotateY: !isMobile && isHovering ? mousePosition.x * 3 : 0,
+          rotateX: !isMobile && isHovering ? -mousePosition.y * 3 : 0,
         }}
       >
         <div className={`relative ${aspectRatio} overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500`}>

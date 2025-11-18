@@ -213,6 +213,7 @@ const heroImagesDesktopWide = [
   },
 ]
 
+// モバイルパフォーマンス最適化: 画像を4枚に削減
 const heroImagesMobile = [
   {
     id: 1,
@@ -222,43 +223,19 @@ const heroImagesMobile = [
   },
   {
     id: 2,
-    url: "/images/hero/main02_mobile.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 3,
     url: "/images/hero/main03_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
-    id: 4,
-    url: "/images/hero/main04_mobile.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 5,
+    id: 3,
     url: "/images/hero/main05_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
   {
-    id: 6,
-    url: "/images/hero/main06_mobile.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 7,
+    id: 4,
     url: "/images/hero/main07_mobile.jpg",
-    alt: "北アルプス黒部源流の雄大な景色",
-    animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
-  },
-  {
-    id: 8,
-    url: "/images/hero/main08_mobile.jpg",
     alt: "北アルプス黒部源流の雄大な景色",
     animation: { scale: [1.0, 1.0], x: ["0%", "0%"], y: ["0%", "0%"] } as AnimationPattern,
   },
@@ -271,16 +248,22 @@ export function HeroParallaxSection() {
   const [activeSliderMobile, setActiveSliderMobile] = useState(0)
   const [dynamicHeight, setDynamicHeight] = useState("200vh")
   const [isDesktop, setIsDesktop] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const [imageSetType, setImageSetType] = useState<'macbook' | 'wide'>('macbook')
   const sectionRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
 
-  const y = useTransform(scrollY, [0, 2000], [0, 400])
+  // モバイルパフォーマンス最適化: モバイルではパララックス無効化
+  const y = useTransform(scrollY, (value) => {
+    if (isMobile) return 0
+    return (value / 2000) * 400
+  })
 
   useEffect(() => {
     const updateHeightBasedOnAspectRatio = () => {
       const isDesktopSize = window.innerWidth >= 768
       setIsDesktop(isDesktopSize)
+      setIsMobile(!isDesktopSize)
 
       // モバイル（768px未満）では固定
       if (!isDesktopSize) {
@@ -305,10 +288,14 @@ export function HeroParallaxSection() {
     }
   }, [])
 
+  // モバイルパフォーマンス最適化: スクロールリスナーをモバイルのみに制限、スロットル強化
   useEffect(() => {
+    // デスクトップではスクロールリスナー不要
+    if (window.innerWidth >= 768) return
+
     let rafId: number | null = null
     let lastUpdate = 0
-    const throttleInterval = 16 // ~60fps
+    const throttleInterval = 100 // パフォーマンス向上のため100msに緩和
 
     const handleScroll = () => {
       const now = Date.now()
@@ -321,39 +308,30 @@ export function HeroParallaxSection() {
         const scrollPosition = window.scrollY
         const viewportHeight = window.innerHeight
 
-        // モバイルでは、ヒーローセクションの終わりに向けて固定背景をフェードアウト
-        if (window.innerWidth < 768) {
-          const fadeStartPoint = viewportHeight * 1.5 // 150vhから透明度変化開始
-          const fadeEndPoint = viewportHeight * 1.8 // 180vhで完全に消える
+        const fadeStartPoint = viewportHeight * 1.5
+        const fadeEndPoint = viewportHeight * 1.8
 
-          if (scrollPosition < fadeStartPoint) {
-            // 150vhまでは完全に不透明
-            setBgOpacity(1)
-            setShowFixedBg(true)
-          } else if (scrollPosition < fadeEndPoint) {
-            // 150vh～180vhの間で透明度を1→0に変化
-            const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint)
-            setBgOpacity(1 - fadeProgress)
-            setShowFixedBg(true)
-          } else {
-            // 180vh以降は完全に非表示
-            setBgOpacity(0)
-            setShowFixedBg(false)
-          }
+        if (scrollPosition < fadeStartPoint) {
+          setBgOpacity(1)
+          setShowFixedBg(true)
+        } else if (scrollPosition < fadeEndPoint) {
+          const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint)
+          setBgOpacity(1 - fadeProgress)
+          setShowFixedBg(true)
+        } else {
+          setBgOpacity(0)
+          setShowFixedBg(false)
         }
         rafId = null
       })
     }
 
-    // 初回実行
     handleScroll()
 
     window.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("resize", handleScroll, { passive: true })
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", handleScroll)
       if (rafId !== null) {
         cancelAnimationFrame(rafId)
       }
@@ -383,38 +361,19 @@ export function HeroParallaxSection() {
               {heroImagesMobile.map((image, index) => (
                 <SwiperSlide key={image.id}>
                   <div className="relative h-full w-full overflow-hidden">
-                    <motion.div
-                      className="relative h-full w-full"
-                      initial={{
-                        scale: image.animation.scale[0],
-                        x: image.animation.x[0],
-                        y: image.animation.y[0],
-                      }}
-                      animate={
-                        activeSliderMobile === index
-                          ? {
-                              scale: image.animation.scale[1],
-                              x: image.animation.x[1],
-                              y: image.animation.y[1],
-                            }
-                          : undefined
-                      }
-                      transition={{
-                        duration: 4,
-                        delay: activeSliderMobile === index ? 2.5 : 0,
-                        ease: "easeInOut",
-                      }}
-                    >
+                    {/* モバイルパフォーマンス最適化: Ken Burnsアニメーション無効化 */}
+                    <div className="relative h-full w-full">
                       <Image
                         src={image.url || "/placeholder.svg"}
                         alt={image.alt}
                         fill
                         className="object-cover object-center"
                         priority={image.id === 1}
-                        quality={85}
+                        quality={75}
                         sizes="100vw"
+                        loading={image.id === 1 ? "eager" : "lazy"}
                       />
-                    </motion.div>
+                    </div>
                   </div>
                 </SwiperSlide>
               ))}
