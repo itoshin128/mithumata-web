@@ -1505,9 +1505,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.3}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    見出し
-                    <br />
-                    テキスト
+                    イワナ
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ここに説明文が入ります。
@@ -1532,15 +1530,16 @@ export default function MitsumataPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                   viewport={{ once: true, margin: "-100px" }}
-                  className="relative aspect-[4/5] overflow-hidden shadow-2xl"
+                  className="relative overflow-hidden shadow-2xl"
                   whileHover={{ scale: 1.02 }}
                 >
-                  {/* 黒部源流の渓流や滝の縦長写真を配置（水が流れる様子、ダイナミックな構図） */}
+                  {/* イワナの写真 */}
                   <Image
-                    src="/images/placeholder.jpg"
-                    alt="画像の説明"
-                    fill
-                    className="object-cover"
+                    src="/images/lodges/DSCF2821.jpg"
+                    alt="イワナ"
+                    width={1365}
+                    height={2048}
+                    className="w-full h-auto"
                     quality={90}
                     loading="lazy"
                   />
