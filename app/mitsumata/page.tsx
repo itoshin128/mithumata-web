@@ -1450,22 +1450,23 @@ export default function MitsumataPage() {
       <section className="relative py-12 md:py-20 lg:py-28">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
           <div className="space-y-16 md:space-y-20">
-            {/* パノラマ写真 */}
+            {/* パノラマ写真 - 元のアスペクト比で表示 */}
             <FadeInSection>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="relative aspect-[21/9] lg:aspect-[32/9] overflow-hidden shadow-2xl"
+                className="relative w-full overflow-hidden shadow-2xl"
                 whileHover={{ scale: 1.02 }}
               >
                 {/* 原生林のパノラマ写真を配置（木漏れ日が差し込む森の中、横長のワイド構図） */}
                 <Image
                   src="/images/lodges/_DSF5988.jpg"
                   alt="黒部源流の自然"
-                  fill
-                  className="object-cover"
+                  width={6240}
+                  height={4160}
+                  className="w-full h-auto"
                   quality={90}
                   loading="lazy"
                 />
