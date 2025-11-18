@@ -45,17 +45,9 @@ const ReservationButton = memo(() => {
             <span className="text-base font-serif font-medium tracking-[0.2em] text-black">
               予約する
             </span>
-            <motion.span
-              animate={{ y: [0, 4, 0] }}
-              transition={{
-                duration: 1.5,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              className="text-sm opacity-50 group-hover:opacity-100 transition-opacity rotate-90"
-            >
+            <span className="text-sm opacity-50 group-hover:opacity-100 transition-opacity rotate-90">
               →
-            </motion.span>
+            </span>
           </span>
 
           {/* ホバー時の背景 */}
@@ -63,7 +55,7 @@ const ReservationButton = memo(() => {
         </motion.button>
       </motion.div>
 
-      {/* モバイル版 - 右下の固定ボタン（最適化：44x44pt以上のタップエリア確保） */}
+      {/* モバイル版 - 右下の固定ボタン（パフォーマンス最適化：backdrop-blur削除） */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -75,7 +67,6 @@ const ReservationButton = memo(() => {
           transition={{ duration: 0.2 }}
           onClick={handleClick}
           className="
-            backdrop-blur-md
             text-black
             px-6 py-4
             rounded-full
@@ -83,7 +74,7 @@ const ReservationButton = memo(() => {
             flex items-center justify-center
           "
           style={{
-            backgroundColor: "rgba(255, 255, 255, 0.12)",
+            backgroundColor: "rgba(255, 255, 255, 0.95)",
             border: "1.5px solid rgba(255, 255, 255, 0.3)",
             boxShadow: `
               0 4px 16px rgba(0, 0, 0, 0.08),
@@ -342,7 +333,7 @@ export function HeroParallaxSection() {
     <section ref={sectionRef} className="relative w-full">
       {showFixedBg && (
         <div
-          className="md:hidden fixed top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
+          className="md:hidden absolute top-0 left-0 w-full h-screen z-10 pointer-events-none transition-opacity duration-300"
           style={{ opacity: bgOpacity }}
         >
           <div className="h-full w-full overflow-hidden">
@@ -595,20 +586,14 @@ export function HeroParallaxSection() {
       {/* 予約ボタン - 固定表示 */}
       <ReservationButton />
 
-      {/* スクロールインジケーター - モバイル最適化 */}
+      {/* スクロールインジケーター - モバイルパフォーマンス最適化：アニメーション削除 */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 1.6 }}
-        className="fixed bottom-6 sm:bottom-8 md:bottom-10 right-6 sm:right-8 md:right-16 lg:right-20 z-40"
+        className="hidden md:block fixed bottom-6 sm:bottom-8 md:bottom-10 right-6 sm:right-8 md:right-16 lg:right-20 z-40"
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{
-            duration: 2.5,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
+        <div
           className="flex flex-col items-center gap-2 sm:gap-2.5 cursor-pointer group opacity-50 hover:opacity-100 transition-opacity duration-500"
           onClick={() => {
             window.scrollTo({
@@ -618,20 +603,12 @@ export function HeroParallaxSection() {
           }}
         >
           <div className="w-6 h-10 sm:w-6 sm:h-10 border-2 border-white/50 group-hover:border-white rounded-full flex items-start justify-center p-1.5 transition-colors duration-300">
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              className="w-1.5 h-1.5 bg-white/70 group-hover:bg-white rounded-full transition-colors duration-300"
-            />
+            <div className="w-1.5 h-1.5 bg-white/70 group-hover:bg-white rounded-full transition-colors duration-300" />
           </div>
           <span className="text-white/70 group-hover:text-white text-[8px] sm:text-[8px] font-serif font-light tracking-[0.2em] sm:tracking-[0.25em] uppercase transition-colors duration-300">
             Scroll
           </span>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   )

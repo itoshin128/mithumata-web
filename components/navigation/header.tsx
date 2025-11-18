@@ -69,13 +69,13 @@ export function Header() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          {/* エレガント サークル ボタン */}
+          {/* エレガント サークル ボタン（モバイルパフォーマンス最適化：backdrop-blur削除） */}
           <motion.div
-            className="relative overflow-hidden rounded-full backdrop-blur-md"
+            className="relative overflow-hidden rounded-full md:backdrop-blur-md"
             animate={{
               width: isHovered ? 64 : 60,
               height: isHovered ? 64 : 60,
-              backgroundColor: isHovered ? "rgba(250, 247, 241, 0.20)" : "rgba(250, 247, 241, 0.15)",
+              backgroundColor: isHovered ? "rgba(250, 247, 241, 0.95)" : "rgba(250, 247, 241, 0.92)",
             }}
             transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
             style={{
@@ -148,7 +148,7 @@ export function Header() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 8 }}
                 transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full mr-3.5 px-3 py-1.5 rounded-full bg-white/92 backdrop-blur-md text-gray-900 text-[9px] font-semibold tracking-[0.15em] whitespace-nowrap"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-full mr-3.5 px-3 py-1.5 rounded-full bg-white/95 md:backdrop-blur-md text-gray-900 text-[9px] font-semibold tracking-[0.15em] whitespace-nowrap"
                 style={{
                   border: "1px solid rgba(0, 0, 0, 0.08)",
                   boxShadow: "0 2px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06)",
@@ -171,7 +171,7 @@ export function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              className="fixed inset-0 backdrop-blur-lg z-[60]"
+              className="fixed inset-0 md:backdrop-blur-lg z-[60]"
               style={{
                 background: "rgba(0, 0, 0, 0.5)",
               }}
@@ -194,7 +194,7 @@ export function Header() {
                 stiffness: 220,
                 opacity: { duration: 0.25 },
               }}
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] backdrop-blur-2xl z-[70] overflow-hidden"
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] md:backdrop-blur-2xl z-[70] overflow-hidden"
               style={{
                 backgroundColor: "rgba(250, 247, 241, 0.98)",
                 boxShadow: "-16px 0 48px rgba(0, 0, 0, 0.12)",
