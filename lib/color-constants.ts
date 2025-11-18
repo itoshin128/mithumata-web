@@ -102,6 +102,8 @@ export const WASHI_COLORS = {
 
 /**
  * テキスト用のカラー
+ *
+ * WCAG AA基準（4.5:1以上のコントラスト比）に準拠
  */
 export const TEXT_COLORS = {
   /** プライマリテキスト - 墨の黒 */
@@ -112,6 +114,9 @@ export const TEXT_COLORS = {
 
   /** ミュートテキスト - より薄いグレー */
   muted: '#8e8e8e',
+
+  /** サブテキスト - 控えめな表示用 */
+  subtle: '#a8a8a8',
 
   /** ライトテキスト - 白に近い */
   light: '#fbfbfb',

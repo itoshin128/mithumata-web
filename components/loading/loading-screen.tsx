@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { ANIMATION } from '@/lib/animation-constants'
+import { COLORS } from '@/lib/color-constants'
 
 export function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true)
@@ -9,12 +11,12 @@ export function LoadingScreen() {
   const [showSkipHint, setShowSkipHint] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
-  // スキップ処理
+  // スキップ処理 - デザインシステムのdurationを使用
   const handleSkip = useCallback(() => {
     setFadeOut(true)
     setTimeout(() => {
       setIsVisible(false)
-    }, 800)
+    }, ANIMATION.duration.slow)
   }, [])
 
   // モーション設定の検知
@@ -59,17 +61,17 @@ export function LoadingScreen() {
     // スキップヒントを1秒後に表示
     const skipHintTimer = setTimeout(() => {
       setShowSkipHint(true)
-    }, 1000)
+    }, ANIMATION.duration.slower)
 
-    // ローディング画面を1.5秒表示してからフェードアウト開始（短縮：3.5秒→1.5秒）
+    // ローディング画面を1.5秒表示してからフェードアウト開始（54%短縮）
     const fadeTimer = setTimeout(() => {
       setFadeOut(true)
     }, 1500)
 
-    // フェードアウト完了後に非表示（短縮：5秒→2.3秒）
+    // フェードアウト完了後に非表示（合計2.3秒で完了）
     const hideTimer = setTimeout(() => {
       setIsVisible(false)
-    }, 2300)
+    }, 1500 + ANIMATION.duration.slow)
 
     return () => {
       clearTimeout(skipHintTimer)
@@ -94,11 +96,12 @@ export function LoadingScreen() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] transition-opacity duration-800 cursor-pointer ${
-        fadeOut ? 'opacity-0' : 'opacity-100'
-      }`}
+      className={`fixed inset-0 z-[9999] cursor-pointer ${fadeOut ? 'opacity-0' : 'opacity-100'}`}
       style={{
-        background: 'linear-gradient(180deg, #f5f7f9 0%, #fafbfc 50%, #ffffff 100%)',
+        background: COLORS.gradients.washi,
+        transitionProperty: 'opacity',
+        transitionDuration: `${ANIMATION.duration.slow}ms`,
+        transitionTimingFunction: ANIMATION.easing.wafuu.join(','),
       }}
       onClick={handleSkip}
       role="button"
@@ -202,8 +205,8 @@ export function LoadingScreen() {
             className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-wider"
             style={{
               fontFamily: 'var(--font-noto-serif)',
-              color: '#3a4a5a',
-              animation: fontsLoaded ? 'textFadeIn 2s ease-out forwards' : 'none',
+              color: COLORS.text.primary,
+              animation: fontsLoaded ? `textFadeIn ${ANIMATION.duration.slower}ms ease-out forwards` : 'none',
               opacity: fontsLoaded ? 0 : 0,
             }}
           >
@@ -215,9 +218,9 @@ export function LoadingScreen() {
             className="text-lg md:text-xl lg:text-2xl tracking-[0.2em] font-light"
             style={{
               fontFamily: 'var(--font-noto-sans)',
-              color: '#5a6a7a',
-              animation: fontsLoaded ? 'textFadeIn 2s ease-out forwards' : 'none',
-              animationDelay: fontsLoaded ? '0.4s' : '0s',
+              color: COLORS.text.secondary,
+              animation: fontsLoaded ? `textFadeIn ${ANIMATION.duration.slower}ms ease-out forwards` : 'none',
+              animationDelay: fontsLoaded ? `${ANIMATION.duration.fast}ms` : '0s',
               opacity: fontsLoaded ? 0 : 0,
             }}
           >
@@ -229,7 +232,7 @@ export function LoadingScreen() {
             <div
               className="pt-12 md:pt-16"
               style={{
-                animation: 'textFadeIn 1s ease-out forwards',
+                animation: `skipHintFadeIn ${ANIMATION.duration.slow}ms ease-out forwards`,
                 opacity: 0,
               }}
             >
@@ -237,12 +240,22 @@ export function LoadingScreen() {
                 className="text-xs md:text-sm tracking-[0.3em] font-light flex items-center justify-center gap-3"
                 style={{
                   fontFamily: 'var(--font-noto-sans)',
-                  color: '#7a8a9a',
+                  color: COLORS.text.subtle,
                 }}
               >
-                <span className="inline-block w-6 h-[1px] bg-gradient-to-r from-transparent to-gray-400/50" />
+                <span
+                  className="inline-block w-6 h-[1px]"
+                  style={{
+                    background: `linear-gradient(to right, transparent, ${COLORS.text.subtle}80)`
+                  }}
+                />
                 <span>クリックまたはEscでスキップ</span>
-                <span className="inline-block w-6 h-[1px] bg-gradient-to-l from-transparent to-gray-400/50" />
+                <span
+                  className="inline-block w-6 h-[1px]"
+                  style={{
+                    background: `linear-gradient(to left, transparent, ${COLORS.text.subtle}80)`
+                  }}
+                />
               </p>
             </div>
           )}
@@ -321,6 +334,17 @@ export function LoadingScreen() {
           }
           100% {
             opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes skipHintFadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          100% {
+            opacity: 0.7;
             transform: translateY(0);
           }
         }
