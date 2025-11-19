@@ -75,7 +75,7 @@ export function Header() {
             animate={{
               width: isHovered ? 64 : 60,
               height: isHovered ? 64 : 60,
-              backgroundColor: isHovered ? "rgba(250, 247, 241, 0.95)" : "rgba(250, 247, 241, 0.92)",
+              backgroundColor: isHovered ? "rgba(255, 252, 240, 0.95)" : "rgba(255, 252, 240, 0.92)",
             }}
             transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
             style={{
@@ -196,7 +196,7 @@ export function Header() {
               }}
               className="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] md:backdrop-blur-2xl z-[70] overflow-hidden"
               style={{
-                backgroundColor: "rgba(250, 247, 241, 0.98)",
+                backgroundColor: "rgba(255, 252, 240, 0.98)",
                 boxShadow: "-16px 0 48px rgba(0, 0, 0, 0.12)",
               }}
             >
