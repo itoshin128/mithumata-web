@@ -505,7 +505,7 @@
     display: none;
   }
 
-  /* 和紙背景のブレンドモード - 極限の透明感と暖かみのバランス */
+  /* 和紙背景のブレンドモード - パフォーマンス最適化版 */
   .washi-grain-layer {
     mix-blend-mode: soft-light;
   }
@@ -514,16 +514,8 @@
     mix-blend-mode: overlay;
   }
 
-  .washi-diffusion-layer {
+  .washi-glow-layer {
     mix-blend-mode: screen;
-  }
-
-  .washi-iridescence-layer {
-    mix-blend-mode: color-dodge;
-  }
-
-  .washi-warmth-layer {
-    mix-blend-mode: overlay;
   }
 
   /* フォールバック: ブレンドモード未サポート環境 */
@@ -537,21 +529,11 @@
     .washi-color-layer {
       opacity: 0.4;
     }
-
-    .washi-warmth-layer {
-      opacity: 0.6;
-    }
   }
 
   @supports not (mix-blend-mode: screen) {
-    .washi-diffusion-layer {
-      opacity: 0.6;
-    }
-  }
-
-  @supports not (mix-blend-mode: color-dodge) {
-    .washi-iridescence-layer {
-      opacity: 0.3;
+    .washi-glow-layer {
+      opacity: 0.5;
     }
   }
 
