@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChevronUp, Calendar } from 'lucide-react'
+import { ChevronUp, Menu, Calendar } from 'lucide-react'
 import { useState } from 'react'
 import type { SectionConfig } from '@/hooks/useActiveSection'
 
@@ -66,25 +66,6 @@ export function MobileSectionNav({
                 )
               })}
             </div>
-
-            {/* 予約CTAボタン（モバイル展開時） */}
-            <motion.button
-              onClick={() => {
-                window.location.href = '#reservation'
-                setIsExpanded(false)
-              }}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-stone-700 to-stone-800 text-white rounded-lg shadow-lg hover:shadow-xl active:scale-95 transition-all duration-200"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="ご予約"
-            >
-              <Calendar className="w-5 h-5" />
-              <span className="font-serif text-sm tracking-[0.12em]">
-                ご予約
-              </span>
-            </motion.button>
           </div>
         )}
       </motion.div>
@@ -115,11 +96,20 @@ export function MobileSectionNav({
             {/* 現在のセクション表示 + 展開ボタン */}
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex-1 flex items-center justify-between gap-2 px-3 py-2 bg-white/80 hover:bg-white rounded-lg shadow-sm transition-all duration-200 group min-w-0"
+              className="flex-1 flex items-center gap-2 px-3 py-2 bg-white/80 hover:bg-white rounded-lg shadow-sm transition-all duration-200 group min-w-0"
+              aria-label="目次を開く"
             >
+              {/* メニューアイコン */}
+              <Menu className="w-4 h-4 text-stone-600 flex-shrink-0" />
+
               <div className="text-left min-w-0 flex-1">
-                <div className="text-[9px] text-stone-500 tracking-[0.2em] uppercase font-sans mb-0.5">
-                  {activeIndex + 1} / {sections.length}
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <span className="text-[10px] text-stone-600 font-medium tracking-[0.08em]">
+                    目次
+                  </span>
+                  <span className="text-[9px] text-stone-500 tracking-[0.2em] uppercase font-sans">
+                    {activeIndex + 1} / {sections.length}
+                  </span>
                 </div>
                 <div className="text-xs font-serif text-stone-800 tracking-[0.08em] truncate">
                   {sections[activeIndex]?.label || '三俣山荘'}

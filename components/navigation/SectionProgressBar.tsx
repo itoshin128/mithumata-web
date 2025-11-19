@@ -29,6 +29,10 @@ export function SectionProgressBar({
     }
   }
 
+  const activeIndex = sections.findIndex((s) => s.id === activeSection)
+  // activeIndexが-1の場合（セクションが見つからない場合）、最初のセクションを使用
+  const currentSection = sections[activeIndex >= 0 ? activeIndex : 0]
+
   return (
     <motion.aside
       className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden lg:block"
@@ -39,6 +43,30 @@ export function SectionProgressBar({
       transition={{ delay: 1, duration: 0.8 }}
     >
       <div className="relative">
+        {/* 目次ラベル */}
+        <div className="absolute -top-16 right-0 pr-6">
+          <div className="px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-l-lg shadow-sm border border-stone-200/50">
+            <span className="text-[10px] font-serif text-stone-600 tracking-[0.15em] font-medium">
+              目次
+            </span>
+          </div>
+        </div>
+
+        {/* 現在のセクション名 */}
+        <motion.div
+          key={activeSection}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="absolute -top-8 right-0 pr-6"
+        >
+          <div className="px-3 py-2 bg-white/95 backdrop-blur-sm rounded-l-lg shadow-md border border-stone-200/50 min-w-[120px]">
+            <div className="text-xs font-serif text-stone-800 tracking-[0.08em] whitespace-nowrap text-right">
+              {currentSection?.label || ''}
+            </div>
+          </div>
+        </motion.div>
+
         {/* 和紙調の背景 - ホバー時に展開 */}
         <motion.div
           className="absolute right-0 top-0 h-full bg-gradient-to-l from-stone-100/95 via-stone-50/90 to-transparent backdrop-blur-sm rounded-l-lg"

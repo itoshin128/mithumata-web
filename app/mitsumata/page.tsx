@@ -679,7 +679,7 @@ export default function MitsumataPage() {
       </section>
 
       {/* 全コンテンツセクションを包む統一背景レイヤー */}
-      <div className="post-hero-content relative">
+      <div id="about" className="post-hero-content relative">
         {/* 統一背景エフェクト */}
         <div className="absolute inset-0 z-0">
           <WashiBackground intensity="strong" animated={false} />
@@ -688,7 +688,7 @@ export default function MitsumataPage() {
         </div>
 
         {/* イントロダクションセクション */}
-        <section id="about" className={`relative ${STYLES.spacing.section}`}>
+        <section className={`relative ${STYLES.spacing.section}`}>
         <div className={`container mx-auto ${STYLES.spacing.container} max-w-6xl relative z-10`}>
 
           {/* センター配置のリード文 */}
@@ -945,6 +945,7 @@ export default function MitsumataPage() {
           previousSection={{ id: 'about', label: '山荘について' }}
           nextSection={{ id: 'accommodation', label: '宿泊料金' }}
         />
+      </div>
       </div>
 
       {/* 宿泊料金セクション */}
@@ -2562,7 +2563,6 @@ export default function MitsumataPage() {
           </FadeInSection>
         </div>
       </section>
-      </div>
     </main>
   )
 }
