@@ -9,53 +9,59 @@ export interface SectionConfig {
 
 /**
  * 現在表示されているセクションを検出するhook
- * ビューポート上部に最も近いセクションをアクティブとして判定
+ * Intersection Observer APIを使用してビューポート内のセクションを監視
  */
 export function useActiveSection(sections: SectionConfig[]) {
   const [activeSection, setActiveSection] = useState<string>(sections[0]?.id || '')
 
   useEffect(() => {
-    const handleScroll = () => {
-      // ビューポートの上部から少し下の位置（ヘッダーを考慮）
-      const scrollPosition = window.scrollY + 100
+    // 各セクションの可視状態を追跡
+    const visibleSections = new Map<string, number>()
 
-      // 現在のスクロール位置を過ぎたセクションのうち、最後のものを取得
-      let newActiveSection = sections[0]?.id || ''
+    const observers: IntersectionObserver[] = []
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i]
-        const element = document.getElementById(section.id)
+    // 各セクションを監視
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id)
+      if (!element) return
 
-        if (!element) continue
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // セクションが表示されている場合、その可視率を記録
+              visibleSections.set(section.id, entry.intersectionRatio)
+            } else {
+              // セクションが非表示の場合、削除
+              visibleSections.delete(section.id)
+            }
 
-        const rect = element.getBoundingClientRect()
-        const elementTop = rect.top + window.scrollY
+            // 最も可視率が高いセクションをアクティブに設定
+            let maxRatio = 0
+            let maxSection = sections[0]?.id || ''
 
-        // セクションの開始位置がスクロール位置を過ぎていたら、そのセクションをアクティブに
-        if (elementTop <= scrollPosition) {
-          newActiveSection = section.id
-          break
+            visibleSections.forEach((ratio, sectionId) => {
+              if (ratio > maxRatio) {
+                maxRatio = ratio
+                maxSection = sectionId
+              }
+            })
+
+            setActiveSection(maxSection)
+          })
+        },
+        {
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+          rootMargin: '-10% 0px -40% 0px', // 上部10%、下部40%をマージン
         }
-      }
+      )
 
-      setActiveSection(newActiveSection)
-    }
-
-    // 初期実行
-    handleScroll()
-
-    // スクロールイベントリスナー（デバウンス付き）
-    let timeoutId: NodeJS.Timeout
-    const debouncedHandleScroll = () => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(handleScroll, 50)
-    }
-
-    window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
+      observer.observe(element)
+      observers.push(observer)
+    })
 
     return () => {
-      clearTimeout(timeoutId)
-      window.removeEventListener('scroll', debouncedHandleScroll)
+      observers.forEach((observer) => observer.disconnect())
     }
   }, [sections])
 
