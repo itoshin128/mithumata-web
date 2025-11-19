@@ -30,6 +30,35 @@ export function Navigation({ totalSections, currentSection, onNavigate, sectionN
     <>
       {/* デスクトップ版 - 稜線型ナビゲーション */}
       <div className="hidden md:block fixed right-8 top-1/2 -translate-y-1/2 z-50">
+        {/* 目次ラベル */}
+        <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-lg shadow-sm border border-stone-200/50">
+          <span className="text-[10px] font-serif text-stone-600 tracking-[0.15em] font-medium">
+            目次
+          </span>
+        </div>
+
+        {/* 現在のセクション名 */}
+        <motion.div
+          key={currentSection}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="absolute left-0 -translate-x-full pr-4"
+          style={{ top: `${currentY}px`, transform: 'translate(-100%, -50%)' }}
+        >
+          <div className="px-3 py-2 bg-white/95 backdrop-blur-sm rounded-lg shadow-md border border-stone-200/50 min-w-[120px]">
+            <div className="text-xs font-serif text-stone-800 tracking-[0.08em] whitespace-nowrap">
+              {ridgePoints[currentSection]?.name || ''}
+            </div>
+            {ridgePoints[currentSection]?.elevation && (
+              <div className="text-[10px] text-stone-500 mt-0.5 flex items-center gap-1">
+                <Mountain className="w-3 h-3" />
+                {ridgePoints[currentSection].elevation}
+              </div>
+            )}
+          </div>
+        </motion.div>
+
         <svg className="w-24 h-96" viewBox="0 0 100 400" preserveAspectRatio="none">
           <defs>
             {/* 山小屋アイコンの光エフェクト */}
