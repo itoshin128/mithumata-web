@@ -30,7 +30,8 @@ export function SectionProgressBar({
   }
 
   const activeIndex = sections.findIndex((s) => s.id === activeSection)
-  const currentSection = sections[activeIndex]
+  // activeIndexが-1の場合（セクションが見つからない場合）、最初のセクションを使用
+  const currentSection = sections[activeIndex >= 0 ? activeIndex : 0]
 
   return (
     <motion.aside
