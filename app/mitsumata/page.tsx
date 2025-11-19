@@ -1810,53 +1810,6 @@ export default function MitsumataPage() {
         </div>
       </section>
 
-      {/* 情報セクション - ミニマル表現 */}
-      <section className="relative py-20 md:py-28 lg:py-36">{/* Major section spacing */}
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-            <FadeInSection delay={0.1}>
-              <div className="space-y-6 md:space-y-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md transition-shadow hover:shadow-lg">
-                    <Flower2 className="w-6 h-6 text-mitsumata-primary" />
-                  </div>
-                  <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    ベストシーズン
-                  </h3>
-                </div>
-                <div className="pl-16">
-                  <p className={`${STYLES.text.body} text-stone-700 leading-[2.2] md:leading-[2.4]`}>
-                    ここに説明文が入ります。ダミーテキストです。
-                    サンプルテキストがここに表示されます。
-                  </p>
-                </div>
-              </div>
-            </FadeInSection>
-
-            <FadeInSection delay={0.2}>
-              <div className="space-y-6 md:space-y-8">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-md transition-shadow hover:shadow-lg">
-                    <Calendar className="w-6 h-6 text-mitsumata-primary" />
-                  </div>
-                  <h3 className={`${STYLES.title.subsection} text-stone-800`}>
-                    営業期間
-                  </h3>
-                </div>
-                <div className="pl-16 space-y-4 md:space-y-5">
-                  <p className={`${STYLES.text.body} text-stone-700 leading-[2.2] md:leading-[2.4]`}>
-                    テキストがここに入ります
-                  </p>
-                  <p className={`${STYLES.text.caption} text-stone-500 leading-[2] md:leading-[2.2]`}>
-                    説明テキストがここに入ります。ダミーテキストです。
-                  </p>
-                </div>
-              </div>
-            </FadeInSection>
-          </div>
-        </div>
-      </section>
-
       {/* Section Divider - Transition to access information */}
       <div className="relative z-10">
         <SectionAnchorLinks
