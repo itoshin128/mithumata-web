@@ -906,7 +906,7 @@ export default function MitsumataPage() {
 
       {/* 食事セクション - ビジュアル重視 */}
       {/* 導入セクション */}
-      <section id="dining" className="relative h-[55vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
+      <section id="dining" className="relative h-[40vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           {/* 三俣山荘の食事風景または代表的な料理の全景を示す写真を配置（温かみのある雰囲気の写真） */}
@@ -1321,7 +1321,7 @@ export default function MitsumataPage() {
 
       {/* セクション1 - サンプルコンテンツ */}
       {/* オープニング */}
-      <section id="kurobe" ref={kurobeRef} className="relative h-[55vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
+      <section id="kurobe" ref={kurobeRef} className="relative h-[40vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           {/* 黒部源流の雄大な自然風景写真を配置（例：源流の清流、山々の連なり、渓谷の風景など）*/}
@@ -1648,7 +1648,7 @@ export default function MitsumataPage() {
 
       {/* セクション2 - 伊藤新道稜線ルート */}
       {/* オープニング */}
-      <section id="ito-shindo" className="relative h-[55vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
+      <section id="ito-shindo" className="relative h-[40vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           {/* 伊藤新道の稜線ルートの風景写真を配置（登山道や山岳風景、登山者の姿など） */}
