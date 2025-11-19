@@ -647,3 +647,35 @@
 .animate-accordion-up {
   animation: accordion-up 0.2s ease-out;
 }
+
+/* Swiper Pagination Custom Styles - 上品なドットデザイン */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 1.5rem !important;
+}
+
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background: #d6d3d1 !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 24px !important;
+  border-radius: 4px !important;
+  background: #78716c !important;
+}
+
+/* モバイルでのタッチ対応 */
+@media (hover: none) {
+  .swiper-pagination-bullet {
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 28px !important;
+  }
+}
