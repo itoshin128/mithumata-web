@@ -1649,163 +1649,273 @@ export default function MitsumataPage() {
         />
       </div>
 
-      {/* セクション2 - サンプルコンテンツ */}
-      {/* イントロ - 80vh */}
-      <section id="ito-shindo" className="relative h-[80vh] overflow-hidden">
-        {/* 伊藤新道の稜線ルートの風景写真を配置（登山道や山岳風景、登山者の姿など） */}
-        <Image
-          src="/images/placeholder.jpg"
-          alt="画像の説明"
-          fill
-          className="object-cover object-center"
-          style={{ filter: 'saturate(0.9) brightness(0.85)' }}
-          quality={90}
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
+      {/* セクション2 - 伊藤新道稜線ルート */}
+      {/* オープニング（100vh） */}
+      <section id="ito-shindo" className="relative h-screen overflow-hidden">
+        {/* 背景写真 */}
+        <div className="absolute inset-0">
+          {/* 伊藤新道の稜線ルートの風景写真を配置（登山道や山岳風景、登山者の姿など） */}
+          <Image
+            src="/images/placeholder.jpg"
+            alt="伊藤新道稜線ルートの景色"
+            fill
+            className="object-cover"
+            style={{ filter: 'brightness(0.75) saturate(1.1)' }}
+            quality={95}
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+        </div>
 
+        {/* タイトル */}
         <div className="relative h-full flex items-center justify-center z-10">
           <FadeInSection>
-            <div className="text-center space-y-6 md:space-y-8">
-              <h2
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
-                style={{
-                  textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)"
-                }}
-              >
-                伊藤新道
-              </h2>
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "8rem" }}
-                transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="h-[1.5px] bg-gradient-to-r from-transparent via-white/90 to-transparent mx-auto"
-              />
-              <p className="text-xl md:text-2xl lg:text-3xl font-serif font-light text-white/95 tracking-[0.2em]">
-                稜線ルート
+            <motion.h2
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
+              style={{
+                textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)",
+                fontFeatureSettings: "'palt' 1"
+              }}
+            >
+              伊藤新道 稜線ルート
+            </motion.h2>
+          </FadeInSection>
+        </div>
+      </section>
+
+      {/* リード文セクション */}
+      <section className="relative py-16 md:py-24 lg:py-32">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl">
+          <FadeInSection>
+            <div className="text-center space-y-8">
+              <p className="text-lg md:text-xl lg:text-2xl font-serif font-light text-stone-700 leading-[2.2] tracking-[0.05em]">
+                ダミーテキスト。ここに説明文が入ります。
+                <br />
+                ダミーテキストです。サンプルテキストがここに表示されます。
+                <br />
+                ここに説明文が入ります。ダミーテキストです。
+              </p>
+              <p className="text-base md:text-lg font-serif font-light text-stone-600 leading-[2] tracking-[0.04em]">
+                サンプルテキストがここに表示されます。ダミーテキストです。
+                <br />
+                ここに説明文が入ります。
               </p>
             </div>
           </FadeInSection>
         </div>
       </section>
 
-      {/* 紹介テキスト - 横スクロールギャラリー */}
-      <section className="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
+      {/* イラストマップセクション */}
+      <section className="relative py-16 md:py-24 lg:py-32 bg-stone-50/50">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
           <FadeInSection>
-            <div className="max-w-3xl mx-auto mb-16 md:mb-20 space-y-8 md:space-y-10">
-              <p className={`${STYLES.text.hero} text-stone-700 leading-[2.5] md:leading-[2.8]`}>
-                ここに説明文が入ります。ダミーテキストです。サンプルテキストがここに表示されます。
-                ダミーテキストです。サンプルテキストがここに表示されます。
-              </p>
-              <p className={`${STYLES.text.hero} text-stone-600 leading-[2.5] md:leading-[2.8]`}>
-                ここに説明文が入ります。ダミーテキストです。サンプルテキストがここに表示されます。
-                ダミーテキストです。
-              </p>
+            <div className="space-y-8">
+              <h3 className={`${STYLES.title.section} text-stone-800 text-center`}>
+                イラストマップ
+              </h3>
+              <div className="relative aspect-[4/3] bg-stone-200 rounded-lg overflow-hidden shadow-lg max-w-3xl mx-auto">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <p className="text-stone-500 font-serif">イラストマップを配置予定</p>
+                </div>
+              </div>
             </div>
           </FadeInSection>
+        </div>
+      </section>
 
-          {/* 横スクロールギャラリー */}
-          <div className="relative mt-20 md:mt-24">
-            <FadeInSection delay={0.2}>
-              <p className={`${STYLES.title.label} text-stone-500 mb-8 md:mb-10 text-center`}>
-                Sample Text
-              </p>
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
 
-              <Swiper
-                modules={[FreeMode, Mousewheel]}
-                spaceBetween={24}
-                slidesPerView="auto"
-                freeMode={{
-                  enabled: true,
-                  momentum: true,
-                  momentumRatio: 0.5,
-                }}
-                mousewheel={{
-                  forceToAxis: true,
-                }}
-                className="!overflow-visible"
-                breakpoints={{
-                  640: { spaceBetween: 32 },
-                  1024: { spaceBetween: 40 },
-                }}
+      {/* ストーリー展開 - 画面1：スポット1 */}
+      <section className="relative py-12 md:py-20 lg:py-28">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* 左側：テキスト */}
+            <div className="lg:col-span-5 flex items-center">
+              <FadeInSection delay={0.1}>
+                <div className="space-y-6 max-w-prose">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
+                    エリア名
+                    <br />
+                    スポット名
+                  </h3>
+                  <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    ダミーテキスト。
+                    ここに説明文が入ります。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
+                  </p>
+                </div>
+              </FadeInSection>
+            </div>
+
+            {/* 右側：写真2枚を上品にコンパクトに配置 */}
+            <div className="lg:col-span-7">
+              <div className="space-y-8 md:space-y-10 lg:space-y-12">
+                {/* 1枚目：写真 */}
+                <FadeInSection delay={0.2}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="relative w-[52%] overflow-hidden shadow-lg"
+                    whileHover={{ scale: 1.015 }}
+                  >
+                    <Image
+                      src="/images/placeholder.jpg"
+                      alt="伊藤新道稜線ルートの風景"
+                      width={6240}
+                      height={4160}
+                      className="w-full h-auto"
+                      quality={90}
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </FadeInSection>
+
+                {/* 2枚目：写真 */}
+                <FadeInSection delay={0.3}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="relative w-[80%] ml-auto overflow-hidden shadow-lg"
+                    whileHover={{ scale: 1.015 }}
+                  >
+                    <Image
+                      src="/images/placeholder.jpg"
+                      alt="伊藤新道稜線ルートの風景"
+                      width={4160}
+                      height={6240}
+                      className="w-full h-auto"
+                      quality={90}
+                      loading="lazy"
+                    />
+                  </motion.div>
+                </FadeInSection>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
+      {/* ストーリー展開 - 画面2：スポット2 */}
+      <section className="relative py-12 md:py-20 lg:py-28">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="space-y-16 md:space-y-20">
+            {/* パノラマ写真 */}
+            <FadeInSection>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative w-full overflow-hidden shadow-2xl"
+                whileHover={{ scale: 1.02 }}
               >
-                {/* 各スライド画像は、伊藤新道の主要ポイントの写真を配置（例：特徴的な岩場、展望ポイント、山小屋など） */}
-                {[
-                  {
-                    image: '/images/placeholder.jpg',
-                    title: 'ポイント名',
-                    elevation: '0,000m',
-                    description: '説明テキスト'
-                  },
-                  {
-                    image: '/images/placeholder.jpg',
-                    title: 'ポイント名',
-                    elevation: '0,000m',
-                    description: '説明テキスト'
-                  },
-                  {
-                    image: '/images/placeholder.jpg',
-                    title: 'ポイント名',
-                    elevation: '0,000m',
-                    description: '説明テキスト'
-                  },
-                  {
-                    image: '/images/placeholder.jpg',
-                    title: 'ポイント名',
-                    elevation: '0,000m',
-                    description: '説明テキスト'
-                  },
-                ].map((point, index) => (
-                  <SwiperSlide key={index} className="!w-[85vw] md:!w-[600px] lg:!w-[700px]">
-                    <motion.div
-                      className="relative group cursor-grab active:cursor-grabbing"
-                      whileHover={{ y: -8 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <div className="relative aspect-[4/3] overflow-hidden rounded-sm shadow-lg group-hover:shadow-2xl transition-shadow duration-500">
-                        <Image
-                          src={point.image}
-                          alt={point.title}
-                          fill
-                          className="object-cover transition-all duration-700 group-hover:scale-105"
-                          style={{ filter: 'saturate(0.88) brightness(0.92)' }}
-                          quality={90}
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent transition-opacity duration-500 group-hover:opacity-90" />
-
-                        {/* ホバー時の標高情報 */}
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          whileHover={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="absolute inset-0 flex flex-col items-center justify-center text-white backdrop-blur-[2px]"
-                        >
-                          <div className="text-5xl md:text-6xl lg:text-7xl font-serif font-light tracking-[0.1em] mb-3">
-                            {point.elevation}
-                          </div>
-                          <div className={`${STYLES.title.label} text-white/95`}>
-                            Sample Text
-                          </div>
-                        </motion.div>
-
-                        {/* 常時表示の情報 */}
-                        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 lg:p-10 text-white z-10 group-hover:opacity-0 transition-opacity duration-300">
-                          <h3 className={`${STYLES.title.card} text-white mb-2 md:mb-3`}>
-                            {point.title}
-                          </h3>
-                          <p className="text-sm md:text-base font-light tracking-[0.05em] text-white/90 leading-relaxed">
-                            {point.description}
-                          </p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                <Image
+                  src="/images/placeholder.jpg"
+                  alt="伊藤新道稜線ルートの自然"
+                  width={6240}
+                  height={4160}
+                  className="w-full h-auto"
+                  quality={90}
+                  loading="lazy"
+                />
+              </motion.div>
             </FadeInSection>
+
+            {/* テキスト */}
+            <FadeInSection delay={0.3}>
+              <div className="max-w-4xl mx-auto text-center space-y-8">
+                <h3 className={`${STYLES.title.section} text-stone-800`}>
+                  スポット名
+                </h3>
+                <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                  ここに説明文が入ります。
+                  ダミーテキストです。サンプルテキストがここに表示されます。
+                  ここに説明文が入ります。
+                  ダミーテキストです。
+                </p>
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="relative z-10">
+        <SectionDivider />
+      </div>
+
+      {/* ストーリー展開 - 画面3：スポット3 */}
+      <section className="relative py-12 md:py-20 lg:py-28">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* テキスト - 左側 (モバイルでは写真の下) */}
+            <div className="lg:col-span-5 order-2 lg:order-1">
+              <FadeInSection delay={0.3}>
+                <div className="space-y-6 max-w-prose">
+                  <h3 className={`${STYLES.title.section} text-stone-800`}>
+                    スポット名
+                  </h3>
+                  <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                    ダミーテキストです。
+                    ここに説明文が入ります。
+                    ダミーテキストです。
+                    サンプルテキストがここに表示されます。
+                  </p>
+                </div>
+              </FadeInSection>
+            </div>
+
+            {/* 写真 - 右側 */}
+            <div className="lg:col-span-7 order-1 lg:order-2">
+              <FadeInSection>
+                <motion.div
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="relative overflow-hidden shadow-2xl max-w-[65%] mx-auto"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Image
+                    src="/images/placeholder.jpg"
+                    alt="伊藤新道稜線ルートの風景"
+                    width={1365}
+                    height={2048}
+                    className="w-full h-auto"
+                    quality={90}
+                    loading="lazy"
+                  />
+                </motion.div>
+              </FadeInSection>
+            </div>
           </div>
         </div>
       </section>
