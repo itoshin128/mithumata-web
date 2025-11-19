@@ -18,46 +18,45 @@ import { SectionAnchorLinks } from '@/components/navigation/SectionAnchorLinks'
 import { useActiveSection, type SectionConfig } from '@/hooks/useActiveSection'
 import { useScrollProgress } from '@/hooks/useScrollProgress'
 
-// デザインシステム - モバイルファースト、上品で読みやすい統一ルール
+// デザインシステム - トップページと完全統一
 const STYLES = {
-  // セクションタイトルの階層（モバイル最適化済み）
+  // セクションタイトルの階層（トップページと完全統一）
   title: {
-    // モバイルから段階的に大きく - 視認性とエレガンスの両立
-    hero: "text-[2rem] leading-[1.4] sm:text-[2.5rem] sm:leading-[1.35] md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light tracking-[0.08em] md:tracking-[0.1em]",
-    section: "text-2xl leading-[1.5] sm:text-[1.75rem] md:text-3xl lg:text-4xl font-serif font-light tracking-[0.06em] md:tracking-[0.08em]",
-    subsection: "text-xl leading-[1.5] sm:text-[1.375rem] md:text-2xl lg:text-3xl font-serif font-light tracking-[0.04em] md:tracking-[0.06em]",
-    card: "text-lg leading-[1.6] sm:text-xl md:text-xl lg:text-2xl font-serif font-light tracking-[0.04em] md:tracking-[0.06em]",
-    label: "text-[0.625rem] leading-[1.6] sm:text-[0.688rem] md:text-xs lg:text-sm tracking-[0.25em] md:tracking-[0.3em] font-light font-sans uppercase",
+    hero: "text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light leading-[1.6] tracking-[0.08em]",
+    section: "text-xl md:text-2xl lg:text-3xl font-serif font-light tracking-[0.08em] leading-[1.6]",
+    subsection: "text-lg md:text-xl font-serif font-light tracking-[0.04em] leading-[1.6]",
+    card: "text-base md:text-lg lg:text-xl font-serif font-light tracking-[0.06em] leading-[1.6]",
+    label: "text-xs sm:text-[10px] md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-light font-sans uppercase",
   },
-  // セクション余白（モバイル最適化 - 快適な読書体験）
+  // セクション余白（トップページと統一）
   spacing: {
-    section: "py-12 sm:py-16 md:py-24 lg:py-32 xl:py-40",
-    container: "px-5 sm:px-6 md:px-10 lg:px-16 xl:px-20",
+    section: "py-16 md:py-32 lg:py-40",
+    container: "px-6 md:px-12 lg:px-20",
     mb: {
-      header: "mb-10 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24",
-      content: "mb-16 sm:mb-20 md:mb-24 lg:mb-28 xl:mb-32",
+      header: "mb-16 md:mb-20 lg:mb-24",
+      content: "mb-24 md:mb-28 lg:mb-32",
     }
   },
-  // テキストスタイル（モバイル読みやすさ重視）
+  // テキストスタイル（トップページと統一）
   text: {
-    hero: "text-[0.938rem] leading-[1.9] sm:text-base sm:leading-[1.85] md:text-lg md:leading-[1.8] lg:text-xl font-serif font-light tracking-[0.05em] md:tracking-[0.06em]",
-    body: "text-[0.938rem] leading-[1.9] sm:text-base sm:leading-[1.85] md:text-lg text-gray-700 tracking-[0.04em] md:tracking-[0.05em] font-serif font-light",
-    caption: "text-[0.688rem] leading-[1.7] sm:text-xs md:text-sm text-gray-500 font-serif font-light tracking-[0.08em] md:tracking-wider",
+    hero: "text-base sm:text-sm md:text-base lg:text-lg leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]",
+    body: "text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light",
+    caption: "text-xs md:text-sm text-gray-500 font-serif font-light tracking-wider",
   }
 } as const
 
-// 装飾線コンポーネント（モバイル最適化）
+// 装飾線コンポーネント（トップページと統一）
 function SectionDivider() {
   return (
-    <div className="flex items-center justify-center my-12 sm:my-16 md:my-20 lg:my-24">
-      <div className="flex items-center gap-3 sm:gap-4">
-        <div className="w-8 sm:w-12 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
-        <div className="flex gap-1.5 sm:gap-2">
-          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rotate-45 bg-gray-400 opacity-40"></div>
-          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rotate-45 bg-gray-400 opacity-60"></div>
-          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rotate-45 bg-gray-400 opacity-80"></div>
+    <div className="flex items-center justify-center my-16 md:my-20 lg:my-24">
+      <div className="flex items-center gap-4">
+        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-r from-transparent to-gray-300"></div>
+        <div className="flex gap-2">
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-40"></div>
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-60"></div>
+          <div className="w-2 h-2 rotate-45 bg-gray-400 opacity-80"></div>
         </div>
-        <div className="w-8 sm:w-12 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
+        <div className="w-12 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
       </div>
     </div>
   )
@@ -277,58 +276,58 @@ export default function MitsumataPage() {
           style={{ opacity }}
           className="relative z-10 h-full flex items-center justify-center"
         >
-          <div className="text-center px-5 sm:px-6 md:px-8 space-y-6 sm:space-y-8 md:space-y-10">
-            {/* メインタイトル - モバイル最適化された美しい明朝体 */}
+          <div className="text-center px-4 space-y-8">
+            {/* メインタイトル - トップページと統一 */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="space-y-5 sm:space-y-6 md:space-y-8"
+              className="space-y-6"
             >
               <h1
-                className="text-[2.5rem] leading-[1.3] sm:text-[3rem] sm:leading-[1.25] md:text-5xl lg:text-6xl xl:text-7xl font-serif font-light text-white tracking-[0.12em] sm:tracking-[0.14em] md:tracking-[0.16em]"
+                className={`${STYLES.title.hero} text-white`}
                 style={{
-                  textShadow: "0 4px 24px rgba(0,0,0,0.9), 0 2px 12px rgba(0,0,0,1), 0 8px 40px rgba(0,0,0,0.5)"
+                  textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)"
                 }}
               >
                 三俣山荘
               </h1>
 
-              {/* サブタイトル - モバイルで読みやすく */}
+              {/* サブタイトル */}
               <motion.div
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={{ opacity: 1, scaleX: 1 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
-                className="flex items-center justify-center gap-3 sm:gap-4 md:gap-5"
+                className="flex items-center justify-center gap-4"
               >
-                <div className="h-[1px] w-10 sm:w-14 md:w-20 bg-white/70" />
+                <div className="h-[1px] w-16 bg-white/60" />
                 <p
-                  className="text-sm leading-[1.6] sm:text-base md:text-lg lg:text-xl font-serif font-light text-white/95 tracking-[0.15em] sm:tracking-[0.18em] md:tracking-[0.2em] whitespace-nowrap px-2"
-                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.85), 0 4px 32px rgba(0,0,0,0.6)" }}
+                  className="text-xl md:text-2xl font-serif font-light text-white/95 tracking-[0.2em]"
+                  style={{ textShadow: "0 2px 20px rgba(0,0,0,0.8)" }}
                 >
                   黒部源流の山小屋
                 </p>
-                <div className="h-[1px] w-10 sm:w-14 md:w-20 bg-white/70" />
+                <div className="h-[1px] w-16 bg-white/60" />
               </motion.div>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* スクロールインジケーター - モバイル最適化 */}
+        {/* スクロールインジケーター */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="absolute bottom-8 sm:bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 z-20"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20"
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
+            animate={{ y: [0, 10, 0] }}
             transition={{
               duration: 2,
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="flex flex-col items-center gap-2 sm:gap-2.5 cursor-pointer group opacity-75 hover:opacity-100 transition-opacity active:opacity-100"
+            className="flex flex-col items-center gap-2 cursor-pointer group opacity-70 hover:opacity-100 transition-opacity"
             onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -340,7 +339,7 @@ export default function MitsumataPage() {
             aria-label="スクロールして続きを読む"
             tabIndex={0}
           >
-            <div className="w-5 h-8 sm:w-6 sm:h-10 md:w-7 md:h-11 border-2 border-white/70 group-hover:border-white group-active:border-white rounded-full flex items-start justify-center p-1.5 transition-colors">
+            <div className="w-6 h-10 border-2 border-white/60 group-hover:border-white rounded-full flex items-start justify-center p-1.5 transition-colors">
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{
@@ -348,10 +347,10 @@ export default function MitsumataPage() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-white/90 rounded-full"
+                className="w-1.5 h-1.5 bg-white/80 rounded-full"
               />
             </div>
-            <span className="text-white/80 text-[0.625rem] sm:text-xs font-serif tracking-[0.25em] sm:tracking-[0.3em] uppercase">
+            <span className="text-white/70 text-xs font-serif tracking-[0.25em] uppercase">
               Scroll
             </span>
           </motion.div>
@@ -367,20 +366,18 @@ export default function MitsumataPage() {
           {/* <TreeShadowBackground intensity="subtle" enableParallax={true} /> */}
         </div>
 
-        {/* イントロダクションセクション - モバイル最適化された詩的なテキスト */}
-        <section id="about" className="relative py-14 sm:py-20 md:py-28 lg:py-36 xl:py-44">
-        <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16 xl:px-20 max-w-6xl relative z-10">
+        {/* イントロダクションセクション */}
+        <section id="about" className={`relative ${STYLES.spacing.section}`}>
+        <div className={`container mx-auto ${STYLES.spacing.container} max-w-6xl relative z-10`}>
 
-          {/* センター配置のリード文 - モバイルで読みやすく */}
+          {/* センター配置のリード文 */}
           <FadeInSection>
-            <div className="space-y-10 sm:space-y-12 md:space-y-16 text-stone-700 text-center max-w-4xl mx-auto mb-24 sm:mb-32 md:mb-40 lg:mb-48">
-              <p className="text-base leading-[2.2] sm:text-lg sm:leading-[2.3] md:text-xl md:leading-[2.4] lg:text-2xl font-serif font-light tracking-[0.06em] sm:tracking-[0.07em] md:tracking-[0.08em] text-stone-800">
+            <div className="space-y-12 md:space-y-16 text-stone-700 text-center max-w-4xl mx-auto mb-32 md:mb-40 lg:mb-48">
+              <p className="text-lg md:text-xl lg:text-2xl leading-[2.4] font-serif font-light tracking-[0.08em] text-stone-800">
                 ここにリード文が入ります。ここにリード文が入ります。
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
+                <br />
                 ここにリード文が入ります。ここにリード文が入ります。
-                <br className="hidden sm:block" />
-                <span className="sm:hidden"> </span>
+                <br />
                 ここにリード文が入ります。ここにリード文が入ります。
               </p>
 
@@ -389,27 +386,23 @@ export default function MitsumataPage() {
                 whileInView={{ scaleX: 1 }}
                 transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="h-[1px] w-12 sm:w-16 md:w-20 bg-stone-300 mx-auto"
+                className="h-[1px] w-16 md:w-20 bg-stone-300 mx-auto"
               />
 
-              <div className="space-y-8 sm:space-y-10 md:space-y-12">
-                <p className="text-[0.938rem] leading-[2.1] sm:text-base sm:leading-[2.2] md:text-lg md:leading-[2.3] lg:text-xl lg:leading-[2.4] font-serif font-light tracking-[0.05em] sm:tracking-[0.055em] md:tracking-[0.06em] text-stone-600">
+              <div className="space-y-10 md:space-y-12">
+                <p className={`${STYLES.text.body} text-stone-600 leading-[2.4]`}>
                   ここにリード文が入ります。ここにリード文が入ります。
-                  <br className="hidden sm:block" />
-                  <span className="sm:hidden"> </span>
+                  <br />
                   ここにリード文が入ります。ここにリード文が入ります。
-                  <br className="hidden sm:block" />
-                  <span className="sm:hidden"> </span>
+                  <br />
                   ここにリード文が入ります。ここにリード文が入ります。
                 </p>
 
-                <p className="text-[0.938rem] leading-[2.1] sm:text-base sm:leading-[2.2] md:text-lg md:leading-[2.3] lg:text-xl lg:leading-[2.4] font-serif font-light tracking-[0.05em] sm:tracking-[0.055em] md:tracking-[0.06em] text-stone-600">
+                <p className={`${STYLES.text.body} text-stone-600 leading-[2.4]`}>
                   ここにリード文が入ります。ここにリード文が入ります。
-                  <br className="hidden sm:block" />
-                  <span className="sm:hidden"> </span>
+                  <br />
                   ここにリード文が入ります。ここにリード文が入ります。
-                  <br className="hidden sm:block" />
-                  <span className="sm:hidden"> </span>
+                  <br />
                   ここにリード文が入ります。ここにリード文が入ります。
                 </p>
               </div>
@@ -476,10 +469,10 @@ export default function MitsumataPage() {
         <SectionDivider />
       </div>
 
-      {/* 写真セクション1 - モバイル最適化された左寄せ写真 + テキスト */}
-      <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32">
-        <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 md:gap-14 lg:gap-20 items-center">
+      {/* 写真セクション1 */}
+      <section className={`relative ${STYLES.spacing.section}`}>
+        <div className={`container mx-auto ${STYLES.spacing.container} max-w-7xl relative z-10`}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             {/* 写真 - モバイルで見やすいアスペクト比 */}
             <div className="lg:col-span-8">
               <FadeInSection>
@@ -507,11 +500,11 @@ export default function MitsumataPage() {
             {/* テキスト - モバイルで読みやすく */}
             <div className="lg:col-span-4">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6 sm:space-y-7 md:space-y-8 max-w-prose">
+                <div className="space-y-8 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
                     展望食堂からの景色
                   </h3>
-                  <p className="text-[0.938rem] leading-[2] sm:text-base sm:leading-[2.1] md:text-lg md:leading-[2.1] font-serif font-light text-stone-600 tracking-[0.04em] sm:tracking-[0.045em] md:tracking-[0.05em]">
+                  <p className={`${STYLES.text.body}`}>
                     ここに説明文が入ります。ダミーテキストです。
                     サンプルテキストがここに表示されます。
                     ここに説明文が入ります。
@@ -526,18 +519,18 @@ export default function MitsumataPage() {
         </div>
       </section>
 
-      {/* 写真セクション2 - モバイル最適化された右寄せ写真 + テキスト */}
-      <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32">
-        <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 md:gap-14 lg:gap-20 items-center">
+      {/* 写真セクション2 */}
+      <section className={`relative ${STYLES.spacing.section}`}>
+        <div className={`container mx-auto ${STYLES.spacing.container} max-w-7xl relative z-10`}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             {/* テキスト - モバイルでは写真の下 */}
             <div className="lg:col-span-5 order-2 lg:order-1">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6 sm:space-y-7 md:space-y-8 max-w-prose">
+                <div className="space-y-8 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
                     豊かな植生
                   </h3>
-                  <p className="text-[0.938rem] leading-[2] sm:text-base sm:leading-[2.1] md:text-lg md:leading-[2.1] font-serif font-light text-stone-600 tracking-[0.04em] sm:tracking-[0.045em] md:tracking-[0.05em]">
+                  <p className={`${STYLES.text.body}`}>
                     ここに説明文が入ります。ダミーテキストです。
                     サンプルテキストがここに表示されます。
                     ここに説明文が入ります。
@@ -575,11 +568,11 @@ export default function MitsumataPage() {
         </div>
       </section>
 
-      {/* 写真セクション3 - モバイル最適化 */}
-      <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32">
-        <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 md:gap-14 lg:gap-20 items-center">
-            {/* 写真 - モバイルで見やすいアスペクト比 */}
+      {/* 写真セクション3 */}
+      <section className={`relative ${STYLES.spacing.section}`}>
+        <div className={`container mx-auto ${STYLES.spacing.container} max-w-7xl relative z-10`}>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
+            {/* 写真 */}
             <div className="lg:col-span-8">
               <FadeInSection>
                 <motion.div
@@ -603,14 +596,14 @@ export default function MitsumataPage() {
               </FadeInSection>
             </div>
 
-            {/* テキスト - モバイルで読みやすく */}
+            {/* テキスト */}
             <div className="lg:col-span-4">
               <FadeInSection delay={0.3}>
-                <div className="space-y-6 sm:space-y-7 md:space-y-8 max-w-prose">
+                <div className="space-y-8 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
                     スタッフの明るさ
                   </h3>
-                  <p className="text-[0.938rem] leading-[2] sm:text-base sm:leading-[2.1] md:text-lg md:leading-[2.1] font-serif font-light text-stone-600 tracking-[0.04em] sm:tracking-[0.045em] md:tracking-[0.05em]">
+                  <p className={`${STYLES.text.body}`}>
                     ここに説明文が入ります。ダミーテキストです。
                     サンプルテキストがここに表示されます。
                     ここに説明文が入ります。
@@ -633,25 +626,25 @@ export default function MitsumataPage() {
         />
       </div>
 
-      {/* 宿泊料金セクション - モバイル最適化 */}
-      <section id="accommodation" className="relative py-14 sm:py-18 md:py-24 lg:py-32 xl:py-40">
-        <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16 xl:px-20 max-w-7xl relative z-10">
-          {/* セクションタイトル - モバイル最適化 */}
+      {/* 宿泊料金セクション */}
+      <section id="accommodation" className={`relative ${STYLES.spacing.section}`}>
+        <div className={`container mx-auto ${STYLES.spacing.container} max-w-7xl relative z-10`}>
+          {/* セクションタイトル */}
           <FadeInSection>
-            <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24 space-y-4 sm:space-y-5 md:space-y-6">
+            <div className={`text-center ${STYLES.spacing.mb.header} space-y-6`}>
               <h2 className={`${STYLES.title.section} text-stone-800`}>
                 宿泊料金
               </h2>
 
               <motion.div
                 initial={{ width: 0 }}
-                whileInView={{ width: "3rem" }}
+                whileInView={{ width: "4rem" }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto sm:w-16"
+                className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
               />
 
-              <p className="text-[0.938rem] sm:text-base md:text-lg font-serif font-light text-stone-600 tracking-[0.04em] sm:tracking-[0.045em] leading-[1.9] sm:leading-[2]">
+              <p className={`${STYLES.text.body} text-stone-600`}>
                 料金プラン
               </p>
             </div>
@@ -2329,15 +2322,15 @@ export default function MitsumataPage() {
       </div>
 
       {/* よくある質問セクション */}
-      <section id="faq" className="relative py-14 sm:py-18 md:py-24 lg:py-32 xl:py-40">
-        <div className="container mx-auto px-5 sm:px-6 md:px-10 lg:px-16 xl:px-20 max-w-5xl">
-          {/* Section Header - Centered - モバイル最適化 */}
+      <section id="faq" className={`relative ${STYLES.spacing.section}`}>
+        <div className={`container mx-auto ${STYLES.spacing.container} max-w-5xl`}>
+          {/* Section Header - Centered */}
           <FadeInSection delay={0.1}>
-            <div className="text-center mb-12 sm:mb-14 md:mb-18 lg:mb-20 xl:mb-24 max-w-3xl mx-auto">
-              <h2 className="text-xl leading-[1.5] sm:text-[1.375rem] md:text-2xl lg:text-3xl font-serif font-light mb-5 sm:mb-6 md:mb-8 tracking-[0.06em] sm:tracking-[0.07em] md:tracking-[0.08em] text-balance">
+            <div className={`text-center ${STYLES.spacing.mb.header} max-w-3xl mx-auto`}>
+              <h2 className={`${STYLES.title.section} mb-6 md:mb-8 text-balance`}>
                 よくあるご質問
               </h2>
-              <p className="text-[0.875rem] leading-[1.85] sm:text-[0.938rem] md:text-base text-gray-700 tracking-[0.04em] sm:tracking-[0.045em] font-serif font-light text-pretty">
+              <p className={`${STYLES.text.body} text-pretty`}>
                 お問い合わせの多いご質問をまとめました。
                 <br className="hidden md:block" />
                 その他のご質問は、お気軽にお問い合わせください。
