@@ -254,6 +254,113 @@ function PricingCards() {
   )
 }
 
+// グッズギャラリーコンポーネント - モバイルは横スクロール、デスクトップはグリッド
+function GoodsGallery() {
+  const goodsItems = [
+    { id: 1, name: 'ダミー商品名', image: '/images/lodges/DSCF8815.jpg' },
+    { id: 2, name: 'ダミー商品名', image: '/images/lodges/_DSF4055.jpg' },
+    { id: 3, name: 'ダミー商品名', image: '/images/lodges/DSCF0241.jpg' },
+  ]
+
+  return (
+    <>
+      {/* モバイル: 横スクロールカルーセル */}
+      <div className="md:hidden">
+        <Swiper
+          modules={[FreeMode, Mousewheel]}
+          spaceBetween={16}
+          slidesPerView={1.15}
+          centeredSlides={true}
+          freeMode={{
+            enabled: true,
+            sticky: false,
+          }}
+          mousewheel={{
+            forceToAxis: true,
+          }}
+          breakpoints={{
+            480: {
+              slidesPerView: 1.2,
+              spaceBetween: 20,
+            },
+            640: {
+              slidesPerView: 1.3,
+              spaceBetween: 24,
+            },
+          }}
+          className="!overflow-visible"
+        >
+          {goodsItems.map((item, index) => (
+            <SwiperSlide key={item.id}>
+              <FadeInSection delay={index * 0.1}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  className="group relative aspect-[3/4] overflow-hidden bg-white cursor-pointer shadow-lg active:shadow-2xl transition-all duration-500"
+                >
+                  {/* 商品画像 */}
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out active:scale-105"
+                    style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                    quality={90}
+                    loading="lazy"
+                  />
+
+                  {/* オーバーレイと商品名 */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 flex items-end justify-center pb-6 sm:pb-8">
+                    <p className="text-white text-sm sm:text-base font-serif font-light tracking-[0.15em]">
+                      {item.name}
+                    </p>
+                  </div>
+                </motion.div>
+              </FadeInSection>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* デスクトップ: 3列グリッド */}
+      <div className="hidden md:grid md:grid-cols-3 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto">
+        {goodsItems.map((item, index) => (
+          <FadeInSection key={item.id} delay={index * 0.1}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8 }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: "-100px" }}
+              className="group relative aspect-[3/4] overflow-hidden bg-white cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+            >
+              {/* 商品画像 */}
+              <Image
+                src={item.image}
+                alt={item.name}
+                fill
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                style={{ filter: 'saturate(0.85) brightness(0.95)' }}
+                quality={90}
+                loading="lazy"
+              />
+
+              {/* ホバー時のオーバーレイと商品名 */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-8">
+                <p className="text-white text-base md:text-lg font-serif font-light tracking-[0.15em] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  {item.name}
+                </p>
+              </div>
+            </motion.div>
+          </FadeInSection>
+        ))}
+      </div>
+    </>
+  )
+}
+
 // 館内写真ギャラリーのデータ
 const INTERIOR_IMAGES = [
   {
@@ -1231,43 +1338,8 @@ export default function MitsumataPage() {
             </div>
           </FadeInSection>
 
-          {/* グッズグリッド - 3枚の商品写真を綺麗に並べて表示 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 lg:gap-12 max-w-6xl mx-auto">
-            {[
-              { id: 1, name: '商品名', image: '/images/lodges/DSCF8815.jpg' },
-              { id: 2, name: '商品名', image: '/images/lodges/_DSF4055.jpg' },
-              { id: 3, name: '商品名', image: '/images/lodges/DSCF0241.jpg' },
-            ].map((item, index) => (
-              <FadeInSection key={item.id} delay={index * 0.1}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="group relative aspect-[3/4] overflow-hidden bg-white cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
-                >
-                  {/* 商品画像 */}
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                    style={{ filter: 'saturate(0.85) brightness(0.95)' }}
-                    quality={90}
-                    loading="lazy"
-                  />
-
-                  {/* ホバー時のオーバーレイと商品名 */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-8">
-                    <p className="text-white text-base md:text-lg font-serif font-light tracking-[0.15em] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      {item.name}
-                    </p>
-                  </div>
-                </motion.div>
-              </FadeInSection>
-            ))}
-          </div>
+          {/* グッズギャラリー - モバイルは横スクロール、デスクトップはグリッド */}
+          <GoodsGallery />
 
           {/* 注釈 */}
           <FadeInSection delay={0.5}>
