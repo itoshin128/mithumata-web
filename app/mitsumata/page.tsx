@@ -1431,7 +1431,7 @@ export default function MitsumataPage() {
                       三俣山荘から黒部源流
                     </p>
                     <p className="text-base md:text-lg text-stone-600 font-serif font-light">
-                      片道 約1時間30分〜2時間
+                      片道 約1時間
                     </p>
                   </div>
 
