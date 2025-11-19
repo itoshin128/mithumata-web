@@ -177,9 +177,6 @@ function InteriorGalleryCarousel() {
           ))}
         </motion.div>
 
-        {/* グラデーションフェード（両端）- より自然に */}
-        <div className="absolute inset-y-0 left-0 w-24 md:w-40 lg:w-56 bg-gradient-to-r from-stone-50 via-stone-50/60 to-transparent pointer-events-none z-10" />
-        <div className="absolute inset-y-0 right-0 w-24 md:w-40 lg:w-56 bg-gradient-to-l from-stone-50 via-stone-50/60 to-transparent pointer-events-none z-10" />
 
         {/* 一時停止インジケーター */}
         {isPaused && (
@@ -908,8 +905,8 @@ export default function MitsumataPage() {
       </div>
 
       {/* 食事セクション - ビジュアル重視 */}
-      {/* 導入セクション（100vh） */}
-      <section id="dining" className="relative h-screen overflow-hidden">
+      {/* 導入セクション */}
+      <section id="dining" className="relative h-[40vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           {/* 三俣山荘の食事風景または代表的な料理の全景を示す写真を配置（温かみのある雰囲気の写真） */}
@@ -937,7 +934,7 @@ export default function MitsumataPage() {
             >
               {/* タイトル */}
               <h2
-                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
+                className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
                 style={{
                   textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)"
                 }}
@@ -1323,8 +1320,8 @@ export default function MitsumataPage() {
       </div>
 
       {/* セクション1 - サンプルコンテンツ */}
-      {/* オープニング（100vh） */}
-      <section id="kurobe" ref={kurobeRef} className="relative h-screen overflow-hidden">
+      {/* オープニング */}
+      <section id="kurobe" ref={kurobeRef} className="relative h-[40vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           {/* 黒部源流の雄大な自然風景写真を配置（例：源流の清流、山々の連なり、渓谷の風景など）*/}
@@ -1352,7 +1349,7 @@ export default function MitsumataPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
+              className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
               style={{
                 textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)",
                 fontFeatureSettings: "'palt' 1"
@@ -1650,8 +1647,8 @@ export default function MitsumataPage() {
       </div>
 
       {/* セクション2 - 伊藤新道稜線ルート */}
-      {/* オープニング（100vh） */}
-      <section id="ito-shindo" className="relative h-screen overflow-hidden">
+      {/* オープニング */}
+      <section id="ito-shindo" className="relative h-[40vh] md:h-[65vh] lg:h-[70vh] overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           {/* 伊藤新道の稜線ルートの風景写真を配置（登山道や山岳風景、登山者の姿など） */}
@@ -1674,7 +1671,7 @@ export default function MitsumataPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
+              className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light text-white tracking-[0.15em] leading-[1.3]"
               style={{
                 textShadow: "0 6px 60px rgba(0,0,0,0.95), 0 3px 20px rgba(0,0,0,1)",
                 fontFeatureSettings: "'palt' 1"
