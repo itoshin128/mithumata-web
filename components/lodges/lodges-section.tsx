@@ -53,8 +53,8 @@ export function LodgesSection() {
       <div className="container mx-auto px-6 max-w-7xl">
         {/* セクションヘッダー */}
         <FadeInSection className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-serif font-light mb-6 text-gray-900 tracking-wider">三つの山荘</h2>
-          <p className="text-lg md:text-xl text-gray-700 max-w-2xl mx-auto leading-relaxed font-serif font-light">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-light mb-6 text-gray-900 tracking-wider">三つの山荘</h2>
+          <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed font-serif font-light">
             それぞれに異なる魅力を持つ、黒部源流の拠点
           </p>
         </FadeInSection>
@@ -89,15 +89,15 @@ export function LodgesSection() {
 
                     {/* 画像上のテキスト */}
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-2xl md:text-3xl font-serif font-light mb-2 tracking-wide">{lodge.name}</h3>
-                      <p className="text-sm opacity-90 font-light">{lodge.tagline}</p>
+                      <h3 className="text-xl md:text-2xl font-serif font-light mb-2 tracking-wide">{lodge.name}</h3>
+                      <p className="text-sm md:text-base opacity-90 font-light">{lodge.tagline}</p>
                     </div>
                   </div>
 
                   {/* コンテンツ */}
                   <div className="p-6">
                     {/* メタ情報 */}
-                    <div className="flex items-center gap-4 mb-4 text-sm text-gray-600 font-serif">
+                    <div className="flex items-center gap-4 mb-4 text-sm md:text-base text-gray-600 font-serif">
                       <div className="flex items-center gap-1.5">
                         <Mountain className="w-4 h-4" />
                         <span>{lodge.elevation}</span>
@@ -109,11 +109,11 @@ export function LodgesSection() {
                     </div>
 
                     {/* 説明 */}
-                    <p className="text-gray-700 leading-relaxed mb-6 font-serif font-light">{lodge.description}</p>
+                    <p className="text-sm md:text-base lg:text-lg text-gray-700 leading-relaxed mb-6 font-serif font-light">{lodge.description}</p>
 
                     {/* CTA */}
                     <div className="flex items-center gap-2 text-gray-900 font-serif font-light tracking-wide group-hover:gap-3 transition-all">
-                      <span className="text-sm">詳しく見る</span>
+                      <span className="text-sm md:text-base">詳しく見る</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>

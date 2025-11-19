@@ -154,13 +154,13 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
           <div className="container mx-auto px-4 max-w-7xl text-white">
             <FadeInSection>
               <span
-                className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 shadow-lg"
+                className="inline-block px-4 py-2 rounded-full text-sm md:text-base font-medium mb-4 shadow-lg"
                 style={{ backgroundColor: theme.primary }}
               >
                 {lodge.name}
               </span>
-              <h1 className="text-6xl md:text-5xl sm:text-4xl font-bold mb-4 text-balance">{lodge.description}</h1>
-              <div className="flex flex-wrap items-center gap-6 text-lg">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 text-balance">{lodge.description}</h1>
+              <div className="flex flex-wrap items-center gap-6 text-base md:text-lg">
                 <div className="flex items-center gap-2">
                   <Mountain className="w-5 h-5" />
                   <span>{lodge.elevation}</span>
@@ -183,7 +183,7 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <FadeInSection className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4" style={{ color: theme.primary }}>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4" style={{ color: theme.primary }}>
               {lodge.name}の特徴
             </h2>
           </FadeInSection>
@@ -201,8 +201,8 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
                       >
                         <Icon className="w-8 h-8" style={{ color: theme.primary }} />
                       </div>
-                      <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                      <p className="text-gray-600">{feature.description}</p>
+                      <h3 className="text-lg md:text-xl lg:text-2xl font-bold mb-2">{feature.title}</h3>
+                      <p className="text-sm md:text-base text-gray-600">{feature.description}</p>
                     </CardContent>
                   </Card>
                 </FadeInSection>
@@ -218,35 +218,35 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* 施設情報 */}
             <FadeInSection>
-              <h2 className="text-3xl font-bold mb-8" style={{ color: theme.primary }}>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: theme.primary }}>
                 施設情報
               </h2>
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-bold text-lg mb-2">宿泊施設</h3>
-                  <p className="text-gray-700">{lodge.facilities.accommodation}</p>
+                  <h3 className="font-bold text-base md:text-lg mb-2">宿泊施設</h3>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-700">{lodge.facilities.accommodation}</p>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-2">食事</h3>
-                  <p className="text-gray-700">{lodge.facilities.meals}</p>
+                  <h3 className="font-bold text-base md:text-lg mb-2">食事</h3>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-700">{lodge.facilities.meals}</p>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-2">設備</h3>
-                  <p className="text-gray-700">{lodge.facilities.amenities}</p>
+                  <h3 className="font-bold text-base md:text-lg mb-2">設備</h3>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-700">{lodge.facilities.amenities}</p>
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+                  <h3 className="font-bold text-base md:text-lg mb-2 flex items-center gap-2">
                     <Calendar className="w-5 h-5" style={{ color: theme.primary }} />
                     営業期間
                   </h3>
-                  <p className="text-gray-700">{lodge.facilities.season}</p>
+                  <p className="text-sm md:text-base lg:text-lg text-gray-700">{lodge.facilities.season}</p>
                 </div>
               </div>
             </FadeInSection>
 
             {/* アクセス情報 */}
             <FadeInSection delay={0.2}>
-              <h2 className="text-3xl font-bold mb-8" style={{ color: theme.primary }}>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8" style={{ color: theme.primary }}>
                 アクセス
               </h2>
               <div className="space-y-4 mb-8">
@@ -256,17 +256,17 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
                       className="w-2 h-2 rounded-full mt-2 flex-shrink-0"
                       style={{ backgroundColor: theme.primary }}
                     />
-                    <p className="text-gray-700">{route}</p>
+                    <p className="text-sm md:text-base lg:text-lg text-gray-700">{route}</p>
                   </div>
                 ))}
               </div>
 
-              <h3 className="font-bold text-lg mb-4">周辺の山</h3>
+              <h3 className="font-bold text-base md:text-lg mb-4">周辺の山</h3>
               <div className="flex flex-wrap gap-2">
                 {lodge.nearbyPeaks.map((peak, index) => (
                   <span
                     key={index}
-                    className="px-4 py-2 rounded-full text-sm font-medium"
+                    className="px-4 py-2 rounded-full text-sm md:text-base font-medium"
                     style={{
                       backgroundColor: theme.bg,
                       color: theme.primary,
@@ -285,14 +285,14 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <FadeInSection>
-            <h2 className="text-4xl font-bold mb-6">ご予約・お問い合わせ</h2>
-            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6">ご予約・お問い合わせ</h2>
+            <p className="text-base md:text-lg text-gray-700 mb-8 leading-relaxed">
               {lodge.name}へのご予約、ご質問はお気軽にお問い合わせください。
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
-                className="px-6 py-3 sm:px-8 sm:py-6 text-base sm:text-lg text-white font-semibold shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
+                className="px-6 py-3 sm:px-8 sm:py-6 text-sm md:text-base text-white font-semibold shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
                 style={{
                   background: `linear-gradient(135deg, ${theme.primary} 0%, ${theme.primary}dd 100%)`,
                 }}
@@ -305,7 +305,7 @@ export default function LodgePage({ params }: { params: { slug: string } }) {
               <Button
                 size="lg"
                 variant="outline"
-                className="px-6 py-3 sm:px-8 sm:py-6 text-base sm:text-lg font-semibold bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-gray-500 shadow-sm hover:shadow-lg active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
+                className="px-6 py-3 sm:px-8 sm:py-6 text-sm md:text-base font-semibold bg-white hover:bg-gray-50 border-2 border-gray-300 hover:border-gray-500 shadow-sm hover:shadow-lg active:scale-[0.98] transition-all duration-300 group min-h-[44px]"
               >
                 <span className="flex items-center gap-2 justify-center">
                   <Mail className="w-5 h-5" />
