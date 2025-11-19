@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useRef, useState } from "react"
 import { FadeInSection } from "@/components/animations/fade-in-section"
@@ -59,6 +59,198 @@ function SectionDivider() {
         <div className="w-12 md:w-16 h-[1px] bg-gradient-to-l from-transparent to-gray-300"></div>
       </div>
     </div>
+  )
+}
+
+// 宿泊料金カードコンポーネント - モバイルはタブ、デスクトップはグリッド
+function PricingCards() {
+  const [activeTab, setActiveTab] = useState<'dinner' | 'room' | 'tent'>('dinner')
+
+  // 料金プランデータ
+  const plans = {
+    dinner: {
+      title: '一泊二食付き',
+      price: '00,000',
+      color: 'mitsumata-primary',
+      items: [
+        '夕食・朝食付き',
+        '山小屋オリジナルメニュー',
+        '温かいお部屋',
+        '寝具完備',
+      ]
+    },
+    room: {
+      title: '素泊まり',
+      price: '00,000',
+      color: 'stone-700',
+      items: [
+        '食事なし',
+        'お部屋のみ',
+        '温かいお部屋',
+        '寝具完備',
+      ]
+    },
+    tent: {
+      title: 'テント泊',
+      price: '0,000',
+      color: 'stone-600',
+      items: [
+        'テント場利用',
+        'トイレ利用可',
+        '水場利用可',
+        '受付での休憩可',
+      ]
+    }
+  }
+
+  type PlanKey = keyof typeof plans
+
+  // タブボタンコンポーネント
+  const TabButton = ({ planKey, label }: { planKey: PlanKey; label: string }) => (
+    <button
+      onClick={() => setActiveTab(planKey)}
+      className={`
+        relative flex-1 py-3 px-4
+        text-sm md:text-base font-serif font-light tracking-[0.04em]
+        transition-all duration-300
+        ${activeTab === planKey
+          ? 'text-stone-800'
+          : 'text-stone-400 hover:text-stone-600'
+        }
+      `}
+      aria-selected={activeTab === planKey}
+      role="tab"
+    >
+      {label}
+      {activeTab === planKey && (
+        <motion.div
+          layoutId="activeTab"
+          className="absolute bottom-0 left-0 right-0 h-0.5 bg-stone-800"
+          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+        />
+      )}
+    </button>
+  )
+
+  // カードコンポーネント
+  const PricingCard = ({ planKey, delay = 0 }: { planKey: PlanKey; delay?: number }) => {
+    const plan = plans[planKey]
+
+    // 明示的なカラークラス定義（Tailwind JIT対応）
+    const colorClass = planKey === 'dinner'
+      ? 'text-mitsumata-primary'
+      : planKey === 'room'
+        ? 'text-stone-700'
+        : 'text-stone-600'
+
+    const bgClass = planKey === 'dinner'
+      ? 'bg-mitsumata-primary'
+      : planKey === 'room'
+        ? 'bg-stone-500'
+        : 'bg-stone-400'
+
+    const accentGradient = planKey === 'dinner'
+      ? 'bg-gradient-to-r from-mitsumata-primary/80 via-mitsumata-primary to-mitsumata-primary/80'
+      : planKey === 'room'
+        ? 'bg-gradient-to-r from-stone-400/80 via-stone-400 to-stone-400/80'
+        : 'bg-gradient-to-r from-stone-300/80 via-stone-300 to-stone-300/80'
+
+    const hoverBgClass = planKey === 'dinner' ? 'bg-mitsumata-primary/5' : 'bg-stone-500/5'
+
+    return (
+      <FadeInSection delay={delay}>
+        <motion.div
+          whileHover={{ y: -12, scale: 1.02 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
+          tabIndex={0}
+          role="article"
+          aria-label={`${plan.title}プラン`}
+        >
+          {/* アクセント線 */}
+          <motion.div
+            className={`absolute top-0 left-0 right-0 h-0.5 sm:h-1 ${accentGradient}`}
+            whileHover={{ height: '2px' }}
+            transition={{ duration: 0.3 }}
+          />
+
+          <div className="p-6 sm:p-7 md:p-8 lg:p-10 space-y-6 sm:space-y-7 md:space-y-8">
+            {/* カードタイトル */}
+            <div className="space-y-3 sm:space-y-4">
+              <h3 className={`${STYLES.title.card} text-stone-800 text-center font-medium`}>
+                {plan.title}
+              </h3>
+
+              {/* 価格 */}
+              <div className="text-center space-y-1.5 sm:space-y-2">
+                <div className="flex items-baseline justify-center gap-0.5 sm:gap-1">
+                  <span className="text-xs sm:text-sm md:text-base font-sans text-stone-500">¥</span>
+                  <span className={`text-[2.5rem] leading-none sm:text-5xl md:text-6xl font-serif font-light ${colorClass} tracking-tight`}>
+                    {plan.price}
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm font-sans text-stone-500 tracking-wide">
+                  1名様あたり
+                </p>
+              </div>
+            </div>
+
+            {/* 区切り線 */}
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
+
+            {/* 含まれる内容 */}
+            <ul className="space-y-3 sm:space-y-4" role="list">
+              {plan.items.map((item, index) => (
+                <li key={index} className="flex items-start gap-2.5 sm:gap-3">
+                  <span className={`inline-block w-1.5 h-1.5 rounded-full ${bgClass} mt-2 sm:mt-2.5 flex-shrink-0`} aria-hidden="true" />
+                  <span className={`${STYLES.text.body}`}>
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ホバー時の背景効果 */}
+          <div className={`absolute inset-0 ${hoverBgClass} opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`} />
+        </motion.div>
+      </FadeInSection>
+    )
+  }
+
+  return (
+    <>
+      {/* モバイル: タブインターフェース */}
+      <div className="md:hidden">
+        {/* タブボタン */}
+        <div className="flex border-b border-stone-200 mb-8" role="tablist">
+          <TabButton planKey="dinner" label="一泊二食" />
+          <TabButton planKey="room" label="素泊まり" />
+          <TabButton planKey="tent" label="テント泊" />
+        </div>
+
+        {/* タブコンテンツ */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            role="tabpanel"
+          >
+            <PricingCard planKey={activeTab} />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* デスクトップ: 3列グリッド */}
+      <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8">
+        <PricingCard planKey="dinner" delay={0.1} />
+        <PricingCard planKey="room" delay={0.2} />
+        <PricingCard planKey="tent" delay={0.3} />
+      </div>
+    </>
   )
 }
 
@@ -650,233 +842,8 @@ export default function MitsumataPage() {
             </div>
           </FadeInSection>
 
-          {/* 料金カード - モバイル最適化 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 md:gap-6 lg:gap-8">
-            {/* 一泊二食付きカード */}
-            <FadeInSection delay={0.1}>
-              <motion.div
-                whileHover={{ y: -12, scale: 1.02 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
-                tabIndex={0}
-                role="article"
-                aria-label="一泊二食付きプラン"
-              >
-                {/* アクセント線 - モバイル最適化 */}
-                <motion.div
-                  className="absolute top-0 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r from-mitsumata-primary/80 via-mitsumata-primary to-mitsumata-primary/80"
-                  whileHover={{ height: '2px' }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                <div className="p-6 sm:p-7 md:p-8 lg:p-10 space-y-6 sm:space-y-7 md:space-y-8">
-                  {/* カードタイトル - モバイル最適化 */}
-                  <div className="space-y-3 sm:space-y-4">
-                    <h3 className={`${STYLES.title.card} text-stone-800 text-center font-medium`}>
-                      一泊二食付き
-                    </h3>
-
-                    {/* 価格 - モバイル最適化 */}
-                    <div className="text-center space-y-1.5 sm:space-y-2">
-                      <div className="flex items-baseline justify-center gap-0.5 sm:gap-1">
-                        <span className="text-xs sm:text-sm md:text-base font-sans text-stone-500">¥</span>
-                        <span className="text-[2.5rem] leading-none sm:text-5xl md:text-6xl font-serif font-light text-mitsumata-primary tracking-tight">
-                          00,000
-                        </span>
-                      </div>
-                      <p className="text-xs sm:text-sm font-sans text-stone-500 tracking-wide">
-                        1名様あたり
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 区切り線 */}
-                  <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
-
-                  {/* 含まれる内容 - モバイル最適化 */}
-                  <ul className="space-y-3 sm:space-y-4" role="list">
-                    <li className="flex items-start gap-2.5 sm:gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2 sm:mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-[0.938rem] sm:text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.75] sm:leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2.5 sm:gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2 sm:mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-[0.938rem] sm:text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.75] sm:leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2.5 sm:gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2 sm:mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-[0.938rem] sm:text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.75] sm:leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2.5 sm:gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-mitsumata-primary mt-2 sm:mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-[0.938rem] sm:text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.75] sm:leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* ホバー時の背景効果 */}
-                <div className="absolute inset-0 bg-mitsumata-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </motion.div>
-            </FadeInSection>
-
-            {/* 素泊まりカード */}
-            <FadeInSection delay={0.2}>
-              <motion.div
-                whileHover={{ y: -12, scale: 1.02 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
-                tabIndex={0}
-                role="article"
-                aria-label="ラベルテキスト"
-              >
-                {/* アクセント線 */}
-                <motion.div
-                  className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-400/80 via-stone-400 to-stone-400/80"
-                  whileHover={{ height: '2px' }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                <div className="p-8 md:p-10 space-y-8">
-                  {/* カードタイトル */}
-                  <div className="space-y-4">
-                    <h3 className={`${STYLES.title.card} text-stone-800 text-center font-medium`}>
-                      素泊まり
-                    </h3>
-
-                    {/* 価格 */}
-                    <div className="text-center space-y-2">
-                      <div className="flex items-baseline justify-center gap-1">
-                        <span className="text-sm md:text-base font-sans text-stone-500">¥</span>
-                        <span className="text-5xl md:text-6xl font-serif font-light text-stone-700 tracking-tight">
-                          00,000
-                        </span>
-                      </div>
-                      <p className="text-sm font-sans text-stone-500 tracking-wide">
-                        1名様あたり
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 区切り線 */}
-                  <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
-
-                  {/* 含まれる内容 */}
-                  <ul className="space-y-4" role="list">
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-500 mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* ホバー時の背景効果 */}
-                <div className="absolute inset-0 bg-stone-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </motion.div>
-            </FadeInSection>
-
-            {/* テント泊カード */}
-            <FadeInSection delay={0.3}>
-              <motion.div
-                whileHover={{ y: -12, scale: 1.02 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="relative bg-white rounded-sm shadow-lg hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-400 overflow-hidden group cursor-pointer"
-                tabIndex={0}
-                role="article"
-                aria-label="ラベルテキスト"
-              >
-                {/* アクセント線 */}
-                <motion.div
-                  className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-stone-300/80 via-stone-300 to-stone-300/80"
-                  whileHover={{ height: '2px' }}
-                  transition={{ duration: 0.3 }}
-                />
-
-                <div className="p-8 md:p-10 space-y-8">
-                  {/* カードタイトル */}
-                  <div className="space-y-4">
-                    <h3 className={`${STYLES.title.card} text-stone-800 text-center font-medium`}>
-                      テント泊
-                    </h3>
-
-                    {/* 価格 */}
-                    <div className="text-center space-y-2">
-                      <div className="flex items-baseline justify-center gap-1">
-                        <span className="text-sm md:text-base font-sans text-stone-500">¥</span>
-                        <span className="text-5xl md:text-6xl font-serif font-light text-stone-600 tracking-tight">
-                          0,000
-                        </span>
-                      </div>
-                      <p className="text-sm font-sans text-stone-500 tracking-wide">
-                        1名様あたり
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* 区切り線 */}
-                  <div className="h-[1px] bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
-
-                  {/* 含まれる内容 */}
-                  <ul className="space-y-4" role="list">
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-stone-400 mt-2.5 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-base font-serif font-light text-stone-700 tracking-[0.03em] leading-[1.8]">
-                        項目テキスト
-                      </span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* ホバー時の背景効果 */}
-                <div className="absolute inset-0 bg-stone-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              </motion.div>
-            </FadeInSection>
-          </div>
+          {/* 料金カード - モバイルはタブ、デスクトップは3列グリッド */}
+          <PricingCards />
 
           {/* 注意事項 */}
           <FadeInSection delay={0.4}>
