@@ -5,9 +5,9 @@
 
 :root {
   /* Washi Background Colors - 和紙背景色（一元管理）*/
-  /* 和紙特有の暖かく明るいクリーム色 - ほぼ純白に近い透明感のある色 */
+  /* 和紙特有の暖かく明るいクリーム色 - 透明感と暖かみの絶妙なバランス */
   /* 注意：他の変数より先に定義する必要があります */
-  --washi-bg-color: #FFFEFA;
+  --washi-bg-color: #FFFDF7;
 
   /* Base Colors */
   /* 和紙背景色を参照 - 一元管理された--washi-bg-colorを使用 */
@@ -505,7 +505,7 @@
     display: none;
   }
 
-  /* 和紙背景のブレンドモード - 極限の透明感と明るさを追求 */
+  /* 和紙背景のブレンドモード - 極限の透明感と暖かみのバランス */
   .washi-grain-layer {
     mix-blend-mode: soft-light;
   }
@@ -520,6 +520,10 @@
 
   .washi-iridescence-layer {
     mix-blend-mode: color-dodge;
+  }
+
+  .washi-warmth-layer {
+    mix-blend-mode: multiply;
   }
 
   /* フォールバック: ブレンドモード未サポート環境 */
@@ -544,6 +548,12 @@
   @supports not (mix-blend-mode: color-dodge) {
     .washi-iridescence-layer {
       opacity: 0.3;
+    }
+  }
+
+  @supports not (mix-blend-mode: multiply) {
+    .washi-warmth-layer {
+      opacity: 0.5;
     }
   }
 

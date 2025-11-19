@@ -84,9 +84,9 @@ export const WashiBackground = memo(function WashiBackground({ className = "", i
   }, [animated])
 
   const intensityConfig = {
-    subtle: { grain: 0.10, color: 0.04, glow: 0.35, diffusion: 0.25, iridescence: 0.08 },
-    medium: { grain: 0.12, color: 0.05, glow: 0.42, diffusion: 0.30, iridescence: 0.10 },
-    strong: { grain: 0.15, color: 0.06, glow: 0.50, diffusion: 0.35, iridescence: 0.12 },
+    subtle: { grain: 0.10, color: 0.08, glow: 0.35, diffusion: 0.25, iridescence: 0.12, warmth: 0.18 },
+    medium: { grain: 0.12, color: 0.10, glow: 0.42, diffusion: 0.30, iridescence: 0.15, warmth: 0.22 },
+    strong: { grain: 0.15, color: 0.12, glow: 0.50, diffusion: 0.35, iridescence: 0.18, warmth: 0.26 },
   }
 
   const config = intensityConfig[intensity]
@@ -128,23 +128,26 @@ export const WashiBackground = memo(function WashiBackground({ className = "", i
         }}
       />
 
-      {/* 色調レイヤー - 明るく暖かな色調 */}
+      {/* 色調レイヤー - 明るく暖かな色調（クリーム色強化） */}
       <div
         ref={colorLayerRef}
         className="absolute inset-0 washi-color-layer"
         style={{
           opacity: config.color,
           backgroundImage: `
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'%3E%3Cfilter id='warmth1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='4' seed='37'/%3E%3CfeGaussianBlur stdDeviation='35'/%3E%3CfeColorMatrix values='0 0 0 0 0.97, 0 0 0 0 0.94, 0 0 0 0 0.91, 0 0 0 0.25 0'/%3E%3C/filter%3E%3Crect width='1200' height='1200' filter='url(%23warmth1)' fill='%23f5ecdf'/%3E%3C/svg%3E"),
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='warmth2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004' numOctaves='3' seed='41'/%3E%3CfeGaussianBlur stdDeviation='40'/%3E%3CfeColorMatrix values='0 0 0 0 0.99, 0 0 0 0 0.98, 0 0 0 0 0.97, 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='1400' height='1400' filter='url(%23warmth2)' fill='%23fcfaf7'/%3E%3C/svg%3E")
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200'%3E%3Cfilter id='warmth1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='4' seed='37'/%3E%3CfeGaussianBlur stdDeviation='35'/%3E%3CfeColorMatrix values='0 0 0 0 0.98, 0 0 0 0 0.94, 0 0 0 0 0.86, 0 0 0 0.32 0'/%3E%3C/filter%3E%3Crect width='1200' height='1200' filter='url(%23warmth1)' fill='%23faecd0'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='warmth2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.004' numOctaves='3' seed='41'/%3E%3CfeGaussianBlur stdDeviation='40'/%3E%3CfeColorMatrix values='0 0 0 0 0.99, 0 0 0 0 0.97, 0 0 0 0 0.93, 0 0 0 0.24 0'/%3E%3C/filter%3E%3Crect width='1400' height='1400' filter='url(%23warmth2)' fill='%23fff8ec'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000'%3E%3Cfilter id='warmth3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.008' numOctaves='4' seed='47'/%3E%3CfeGaussianBlur stdDeviation='30'/%3E%3CfeColorMatrix values='0 0 0 0 0.96, 0 0 0 0 0.92, 0 0 0 0 0.84, 0 0 0 0.20 0'/%3E%3C/filter%3E%3Crect width='1000' height='1000' filter='url(%23warmth3)' fill='%23f5e8d0'/%3E%3C/svg%3E")
           `,
           backgroundSize: `
             1000px 1000px,
-            1200px 1200px
+            1200px 1200px,
+            800px 800px
           `,
           backgroundPosition: `
             0 0,
-            40px 50px
+            40px 50px,
+            80px 100px
           `,
           backgroundRepeat: "repeat",
           transition: "opacity 0.35s ease-out",
@@ -207,28 +210,49 @@ export const WashiBackground = memo(function WashiBackground({ className = "", i
         }}
       />
 
-      {/* 虹彩レイヤー - 紙に光が当たった時の微妙な色彩変化 */}
+      {/* 虹彩レイヤー - ゴールデンアワーの暖かい光の反射 */}
       <div
         className="absolute inset-0 washi-iridescence-layer"
         style={{
           opacity: config.iridescence,
           backgroundImage: `
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1600'%3E%3Cfilter id='iridescent1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.002' numOctaves='5' seed='201'/%3E%3CfeGaussianBlur stdDeviation='60'/%3E%3CfeColorMatrix values='0 0 0 0 0.99, 0 0 0 0 0.96, 0 0 0 0 0.85, 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='1600' height='1600' filter='url(%23iridescent1)' fill='%23fff8d5'/%3E%3C/svg%3E"),
-            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800'%3E%3Cfilter id='iridescent2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0015' numOctaves='4' seed='207'/%3E%3CfeGaussianBlur stdDeviation='70'/%3E%3CfeColorMatrix values='0 0 0 0 0.98, 0 0 0 0 0.92, 0 0 0 0 0.88, 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='1800' height='1800' filter='url(%23iridescent2)' fill='%23fff5e6'/%3E%3C/svg%3E"),
-            radial-gradient(ellipse 3000px 2000px at 40% 60%, rgba(255, 250, 230, 0.15) 0%, transparent 80%)
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1600'%3E%3Cfilter id='iridescent1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.002' numOctaves='5' seed='201'/%3E%3CfeGaussianBlur stdDeviation='60'/%3E%3CfeColorMatrix values='0 0 0 0 0.98, 0 0 0 0 0.93, 0 0 0 0 0.80, 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='1600' height='1600' filter='url(%23iridescent1)' fill='%23fae8c0'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800'%3E%3Cfilter id='iridescent2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0015' numOctaves='4' seed='207'/%3E%3CfeGaussianBlur stdDeviation='70'/%3E%3CfeColorMatrix values='0 0 0 0 0.97, 0 0 0 0 0.90, 0 0 0 0 0.78, 0 0 0 0.10 0'/%3E%3C/filter%3E%3Crect width='1800' height='1800' filter='url(%23iridescent2)' fill='%23f7e5c8'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1400' height='1400'%3E%3Cfilter id='iridescent3'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0025' numOctaves='5' seed='211'/%3E%3CfeGaussianBlur stdDeviation='50'/%3E%3CfeColorMatrix values='0 0 0 0 0.99, 0 0 0 0 0.95, 0 0 0 0 0.85, 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='1400' height='1400' filter='url(%23iridescent3)' fill='%23fff0d8'/%3E%3C/svg%3E"),
+            radial-gradient(ellipse 3000px 2000px at 40% 60%, rgba(250, 235, 200, 0.20) 0%, transparent 80%)
           `,
           backgroundSize: `
             1400px 1400px,
             1600px 1600px,
+            1200px 1200px,
             100% 100%
           `,
           backgroundPosition: `
             0 0,
             300px 200px,
+            150px 100px,
             0 0
           `,
-          backgroundRepeat: "repeat, repeat, no-repeat",
+          backgroundRepeat: "repeat, repeat, repeat, no-repeat",
           filter: "blur(100px)",
+          transition: "opacity 0.5s ease-out",
+        }}
+      />
+
+      {/* 暖色拡散レイヤー - 和紙特有の柔らかなクリーム色の光 */}
+      <div
+        className="absolute inset-0 washi-warmth-layer"
+        style={{
+          opacity: config.warmth,
+          backgroundImage: `
+            radial-gradient(ellipse 2200px 1600px at 25% 35%, rgba(255, 248, 230, 0.75) 0%, transparent 65%),
+            radial-gradient(ellipse 1900px 1900px at 75% 65%, rgba(252, 243, 220, 0.70) 0%, transparent 70%),
+            radial-gradient(ellipse 2500px 1800px at 50% 50%, rgba(255, 250, 235, 0.65) 0%, transparent 75%),
+            radial-gradient(circle 2000px at 60% 40%, rgba(250, 240, 215, 0.60) 0%, transparent 70%),
+            radial-gradient(ellipse 1600px 1200px at 30% 70%, rgba(255, 245, 225, 0.55) 0%, transparent 65%)
+          `,
+          filter: "blur(120px)",
+          mixBlendMode: "multiply",
           transition: "opacity 0.5s ease-out",
         }}
       />
