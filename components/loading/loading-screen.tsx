@@ -6,8 +6,12 @@ export function LoadingScreen() {
   const [isVisible, setIsVisible] = useState(true)
   const [fadeOut, setFadeOut] = useState(false)
   const [fontsLoaded, setFontsLoaded] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    // モバイル検出
+    setIsMobile(window.innerWidth < 768)
+
     // フォントの読み込みを待機
     const loadFonts = async () => {
       try {
@@ -35,21 +39,23 @@ export function LoadingScreen() {
     // フォント読み込み完了後にタイマーを開始
     if (!fontsLoaded) return
 
-    // ローディング画面を3.5秒表示してからフェードアウト開始
+    // モバイルパフォーマンス最適化: モバイルは2.5秒、デスクトップは3.5秒
+    const fadeDelay = isMobile ? 2500 : 3500
+    const hideDelay = isMobile ? 4000 : 5000
+
     const fadeTimer = setTimeout(() => {
       setFadeOut(true)
-    }, 3500)
+    }, fadeDelay)
 
-    // フェードアウト完了後に非表示
     const hideTimer = setTimeout(() => {
       setIsVisible(false)
-    }, 5000)
+    }, hideDelay)
 
     return () => {
       clearTimeout(fadeTimer)
       clearTimeout(hideTimer)
     }
-  }, [fontsLoaded])
+  }, [fontsLoaded, isMobile])
 
   if (!isVisible) return null
 
@@ -69,7 +75,7 @@ export function LoadingScreen() {
           style={{
             background:
               'radial-gradient(ellipse 130% 100% at 50% 50%, rgba(210, 220, 230, 0.5) 0%, rgba(220, 230, 240, 0.3) 40%, transparent 70%)',
-            filter: 'blur(120px)',
+            filter: isMobile ? 'blur(40px)' : 'blur(120px)',
             animation: 'cloudClearSlow 3.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
           }}
         />
@@ -82,7 +88,7 @@ export function LoadingScreen() {
           style={{
             background:
               'radial-gradient(ellipse 110% 90% at 25% 50%, rgba(200, 210, 220, 0.6) 0%, rgba(215, 225, 235, 0.4) 35%, transparent 65%)',
-            filter: 'blur(90px)',
+            filter: isMobile ? 'blur(30px)' : 'blur(90px)',
             animation: 'cloudClearLeft 3.2s cubic-bezier(0.4, 0, 0.2, 1) forwards',
             animationDelay: '0.2s',
           }}
@@ -96,40 +102,45 @@ export function LoadingScreen() {
           style={{
             background:
               'radial-gradient(ellipse 110% 90% at 75% 50%, rgba(200, 210, 220, 0.6) 0%, rgba(215, 225, 235, 0.4) 35%, transparent 65%)',
-            filter: 'blur(90px)',
+            filter: isMobile ? 'blur(30px)' : 'blur(90px)',
             animation: 'cloudClearRight 3.2s cubic-bezier(0.4, 0, 0.2, 1) forwards',
             animationDelay: '0.2s',
           }}
         />
       </div>
 
-      {/* 近景の雲レイヤー左 - 最も速い */}
-      <div className="absolute inset-0 z-[3]">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 100% 80% at 20% 50%, rgba(190, 200, 210, 0.7) 0%, rgba(205, 215, 225, 0.5) 30%, transparent 60%)',
-            filter: 'blur(70px)',
-            animation: 'cloudClearLeftFast 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-            animationDelay: '0.4s',
-          }}
-        />
-      </div>
+      {/* モバイルパフォーマンス最適化: 近景レイヤーをデスクトップのみ表示 */}
+      {!isMobile && (
+        <>
+          {/* 近景の雲レイヤー左 - 最も速い */}
+          <div className="absolute inset-0 z-[3]">
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'radial-gradient(ellipse 100% 80% at 20% 50%, rgba(190, 200, 210, 0.7) 0%, rgba(205, 215, 225, 0.5) 30%, transparent 60%)',
+                filter: 'blur(70px)',
+                animation: 'cloudClearLeftFast 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+                animationDelay: '0.4s',
+              }}
+            />
+          </div>
 
-      {/* 近景の雲レイヤー右 - 最も速い */}
-      <div className="absolute inset-0 z-[3]">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 100% 80% at 80% 50%, rgba(190, 200, 210, 0.7) 0%, rgba(205, 215, 225, 0.5) 30%, transparent 60%)',
-            filter: 'blur(70px)',
-            animation: 'cloudClearRightFast 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-            animationDelay: '0.4s',
-          }}
-        />
-      </div>
+          {/* 近景の雲レイヤー右 - 最も速い */}
+          <div className="absolute inset-0 z-[3]">
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'radial-gradient(ellipse 100% 80% at 80% 50%, rgba(190, 200, 210, 0.7) 0%, rgba(205, 215, 225, 0.5) 30%, transparent 60%)',
+                filter: 'blur(70px)',
+                animation: 'cloudClearRightFast 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+                animationDelay: '0.4s',
+              }}
+            />
+          </div>
+        </>
+      )}
 
       {/* 上から差し込む淡い光 */}
       <div className="absolute inset-0 z-[4]">
@@ -137,7 +148,7 @@ export function LoadingScreen() {
           className="absolute inset-0"
           style={{
             background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 255, 255, 0.4) 0%, transparent 60%)',
-            filter: 'blur(60px)',
+            filter: isMobile ? 'blur(30px)' : 'blur(60px)',
             animation: 'lightReveal 2.5s ease-out forwards',
             animationDelay: '0.8s',
             opacity: 0,

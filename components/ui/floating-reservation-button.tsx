@@ -70,8 +70,8 @@ export function FloatingReservationButton() {
                 whileTap={{ scale: 0.97 }}
                 className="
                   relative group
-                  backdrop-blur-xl
-                  bg-gradient-to-br from-mitsumata-light/95 to-mitsumata-primary/95
+                  md:backdrop-blur-xl
+                  bg-gradient-to-br from-mitsumata-light/98 to-mitsumata-primary/98
                   hover:from-mitsumata-primary hover:to-mitsumata-dark
                   text-white
                   px-10 py-5
@@ -209,8 +209,7 @@ export function FloatingReservationButton() {
                 transition={{ duration: 0.3 }}
                 className="
                   relative
-                  backdrop-blur-xl
-                  bg-gradient-to-br from-mitsumata-light/95 to-mitsumata-primary/95
+                  bg-gradient-to-br from-mitsumata-light/98 to-mitsumata-primary/98
                   text-white
                   h-16
                   shadow-[0_8px_32px_rgba(45,80,22,0.5)]
@@ -220,19 +219,6 @@ export function FloatingReservationButton() {
                 "
                 onClick={handleClick}
               >
-                {/* 背景パルス */}
-                <motion.div
-                  className="absolute inset-0 bg-white/20"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0, 0.5],
-                  }}
-                  transition={{
-                    repeat: Number.POSITIVE_INFINITY,
-                    duration: 2,
-                    ease: "easeInOut",
-                  }}
-                />
 
                 {/* コンテンツ */}
                 <motion.div
