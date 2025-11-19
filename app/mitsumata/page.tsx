@@ -1745,9 +1745,7 @@ export default function MitsumataPage() {
               <FadeInSection delay={0.1}>
                 <div className="space-y-6 max-w-prose">
                   <h3 className={`${STYLES.title.section} text-stone-800`}>
-                    エリア名
-                    <br />
-                    スポット名
+                    展望台
                   </h3>
                   <p className="text-base md:text-lg leading-[2] font-serif font-light text-stone-600 tracking-[0.04em]">
                     ダミーテキスト。
@@ -1775,10 +1773,10 @@ export default function MitsumataPage() {
                     whileHover={{ scale: 1.015 }}
                   >
                     <Image
-                      src="/images/placeholder.jpg"
-                      alt="伊藤新道稜線ルートの風景"
-                      width={6240}
-                      height={4160}
+                      src="/images/lodges/3256_10.jpg"
+                      alt="展望台"
+                      width={1361}
+                      height={2048}
                       className="w-full h-auto"
                       quality={90}
                       loading="lazy"
