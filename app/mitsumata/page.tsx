@@ -2402,21 +2402,8 @@ export default function MitsumataPage() {
       </section>
 
       {/* CTAセクション - 予約への誘い */}
-      <section id="reservation" className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
-        {/* 背景装飾 */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-stone-50 via-stone-100/50 to-stone-50" />
-          {/* 和紙テクスチャ */}
-          <div
-            className="absolute inset-0 opacity-40"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E")`,
-              backgroundSize: '300px 300px',
-            }}
-          />
-        </div>
-
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative z-10">
+      <section id="reservation" className="relative py-20 md:py-32 lg:py-40">
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-6xl relative">
           <FadeInSection>
             {/* ヘッダー */}
             <div className="text-center mb-16 md:mb-20 space-y-6">

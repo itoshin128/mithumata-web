@@ -26,7 +26,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="relative z-30 bg-gradient-to-b from-[#FAF7F1] to-[#F5F0E8] text-stone-700 border-t border-stone-200/50">
+    <footer className="relative z-30 bg-gradient-to-b from-[#FFFCF0] to-[#FFF5E5] text-stone-700 border-t border-stone-200/50">
       {/* 繊細な装飾的な区切り線 */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-stone-300/40 to-transparent" />
 
@@ -145,7 +145,7 @@ export function Footer() {
       </div>
 
       {/* コピーライト */}
-      <div className="relative bg-[#F8F5EF]/80">
+      <div className="relative bg-[#FFF9EE]/80">
         <div className="container mx-auto px-6 md:px-8 lg:px-16 max-w-[1400px] py-8 md:py-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-5 md:gap-6">
             <p className="text-xs text-stone-500 font-sans tracking-wide order-2 md:order-1">

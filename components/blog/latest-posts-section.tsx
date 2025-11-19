@@ -217,8 +217,7 @@ function BlogCard({ post, delay = 0 }: BlogCardProps) {
             <div className="pt-2">
               <motion.span
                 whileHover={{ x: 4 }}
-                className="inline-flex items-center gap-2 text-sm md:text-base font-serif font-light tracking-[0.1em] transition-colors duration-300"
-                style={{ color: post.categoryColor }}
+                className="inline-flex items-center gap-2 text-sm md:text-base font-serif font-light tracking-[0.1em] text-gray-900 transition-colors duration-300"
                 aria-hidden="true"
               >
                 続きを読む
