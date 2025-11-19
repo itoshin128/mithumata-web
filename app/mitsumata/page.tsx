@@ -1451,29 +1451,6 @@ export default function MitsumataPage() {
         <SectionDivider />
       </div>
 
-      {/* イラストマップセクション */}
-      <section className="relative py-16 md:py-24 lg:py-32 bg-stone-50/50">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
-          <FadeInSection>
-            <div className="space-y-8">
-              <h3 className={`${STYLES.title.section} text-stone-800 text-center`}>
-                イラストマップ
-              </h3>
-              <div className="relative aspect-[4/3] bg-stone-200 rounded-lg overflow-hidden shadow-lg max-w-3xl mx-auto">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <p className="text-stone-500 font-serif">イラストマップを配置予定</p>
-                </div>
-              </div>
-            </div>
-          </FadeInSection>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="relative z-10">
-        <SectionDivider />
-      </div>
-
       {/* アクセス・コースタイムセクション */}
       <section className="relative py-16 md:py-24 lg:py-32">
         <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-4xl">
@@ -1763,29 +1740,6 @@ export default function MitsumataPage() {
                 <br />
                 ここに説明文が入ります。
               </p>
-            </div>
-          </FadeInSection>
-        </div>
-      </section>
-
-      {/* Section Divider */}
-      <div className="relative z-10">
-        <SectionDivider />
-      </div>
-
-      {/* イラストマップセクション */}
-      <section className="relative py-16 md:py-24 lg:py-32 bg-stone-50/50">
-        <div className="container mx-auto px-6 md:px-12 lg:px-20 max-w-5xl">
-          <FadeInSection>
-            <div className="space-y-8">
-              <h3 className={`${STYLES.title.section} text-stone-800 text-center`}>
-                イラストマップ
-              </h3>
-              <div className="relative aspect-[4/3] bg-stone-200 rounded-lg overflow-hidden shadow-lg max-w-3xl mx-auto">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <p className="text-stone-500 font-serif">イラストマップを配置予定</p>
-                </div>
-              </div>
             </div>
           </FadeInSection>
         </div>
