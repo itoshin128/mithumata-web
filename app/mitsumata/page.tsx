@@ -1656,7 +1656,7 @@ export default function MitsumataPage() {
         <div className="absolute inset-0">
           {/* 伊藤新道の稜線ルートの風景写真を配置（登山道や山岳風景、登山者の姿など） */}
           <Image
-            src="/images/placeholder.jpg"
+            src="/images/lodges/DSCF3047.jpg"
             alt="伊藤新道稜線ルートの景色"
             fill
             className="object-cover"
