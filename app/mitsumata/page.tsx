@@ -7,10 +7,11 @@ import { FadeInSection } from "@/components/animations/fade-in-section"
 import { WashiBackground } from "@/components/effects/washi-background"
 import TreeShadowBackground from "@/components/effects/tree-shadow-background"
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Mousewheel } from 'swiper/modules'
+import { FreeMode, Mousewheel, Pagination } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/free-mode'
-import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus } from 'lucide-react'
+import 'swiper/css/pagination'
+import { Calendar, Flower2, Train, Bus, Car, Footprints, Clock, MapPin, Plus, Minus, ChevronLeft, ChevronRight } from 'lucide-react'
 import * as Accordion from '@radix-ui/react-accordion'
 import { SectionProgressBar } from '@/components/navigation/SectionProgressBar'
 import { MobileSectionNav } from '@/components/navigation/MobileSectionNav'
@@ -266,8 +267,23 @@ function GoodsGallery() {
     <>
       {/* モバイル: 横スクロールカルーセル */}
       <div className="md:hidden">
+        {/* スワイプヒント */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="flex items-center justify-center gap-2 mb-6 text-stone-500"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          <span className="text-xs font-serif font-light tracking-[0.15em]">
+            スワイプして閲覧
+          </span>
+          <ChevronRight className="w-4 h-4" />
+        </motion.div>
+
         <Swiper
-          modules={[FreeMode, Mousewheel]}
+          modules={[FreeMode, Mousewheel, Pagination]}
           spaceBetween={16}
           slidesPerView={1.15}
           centeredSlides={true}
@@ -277,6 +293,10 @@ function GoodsGallery() {
           }}
           mousewheel={{
             forceToAxis: true,
+          }}
+          pagination={{
+            clickable: true,
+            dynamicBullets: false,
           }}
           breakpoints={{
             480: {
@@ -288,7 +308,9 @@ function GoodsGallery() {
               spaceBetween: 24,
             },
           }}
-          className="!overflow-visible"
+          className="!overflow-visible !pb-12"
+          role="region"
+          aria-label="お土産・グッズギャラリー"
         >
           {goodsItems.map((item, index) => (
             <SwiperSlide key={item.id}>
