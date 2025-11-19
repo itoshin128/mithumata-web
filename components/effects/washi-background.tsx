@@ -84,9 +84,9 @@ export const WashiBackground = memo(function WashiBackground({ className = "", i
   }, [animated])
 
   const intensityConfig = {
-    subtle: { grain: 0.10, color: 0.18, glow: 0.35, diffusion: 0.25, iridescence: 0.25, warmth: 0.35 },
-    medium: { grain: 0.12, color: 0.22, glow: 0.42, diffusion: 0.30, iridescence: 0.30, warmth: 0.42 },
-    strong: { grain: 0.15, color: 0.26, glow: 0.50, diffusion: 0.35, iridescence: 0.35, warmth: 0.50 },
+    subtle: { grain: 0.10, color: 0.12, glow: 0.35, diffusion: 0.25, iridescence: 0.18, warmth: 0.20 },
+    medium: { grain: 0.12, color: 0.15, glow: 0.42, diffusion: 0.30, iridescence: 0.22, warmth: 0.25 },
+    strong: { grain: 0.15, color: 0.18, glow: 0.50, diffusion: 0.35, iridescence: 0.25, warmth: 0.30 },
   }
 
   const config = intensityConfig[intensity]

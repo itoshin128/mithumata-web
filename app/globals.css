@@ -5,9 +5,9 @@
 
 :root {
   /* Washi Background Colors - 和紙背景色（一元管理）*/
-  /* 和紙特有の暖かく明るいクリーム色 - はっきりとした暖かみ */
+  /* 和紙特有の暖かく明るいクリーム色 - 控えめで上品な暖かみ */
   /* 注意：他の変数より先に定義する必要があります */
-  --washi-bg-color: #FFFCF0;
+  --washi-bg-color: #FFFEF8;
 
   /* Base Colors */
   /* 和紙背景色を参照 - 一元管理された--washi-bg-colorを使用 */
@@ -17,14 +17,14 @@
   --foreground: oklch(0.145 0 0);
 
   /* Card */
-  --card: #FFFEFA;
-  --card: oklch(0.996 0.007 75);
+  --card: #FFFFFC;
+  --card: oklch(0.998 0.004 75);
   --card-foreground: #252525;
   --card-foreground: oklch(0.145 0 0);
 
   /* Popover */
-  --popover: #FFFEFA;
-  --popover: oklch(0.996 0.007 75);
+  --popover: #FFFFFC;
+  --popover: oklch(0.998 0.004 75);
   --popover-foreground: #252525;
   --popover-foreground: oklch(0.145 0 0);
 
@@ -35,20 +35,20 @@
   --primary-foreground: oklch(0.985 0 0);
 
   /* Secondary */
-  --secondary: #FFF9EE;
-  --secondary: oklch(0.973 0.012 75);
+  --secondary: #FFFCF5;
+  --secondary: oklch(0.986 0.008 75);
   --secondary-foreground: #343434;
   --secondary-foreground: oklch(0.205 0 0);
 
   /* Muted */
-  --muted: #FFF9EE;
-  --muted: oklch(0.973 0.012 75);
+  --muted: #FFFCF5;
+  --muted: oklch(0.986 0.008 75);
   --muted-foreground: #8e8e8e;
   --muted-foreground: oklch(0.556 0 0);
 
   /* Accent */
-  --accent: #FFF9EE;
-  --accent: oklch(0.973 0.012 75);
+  --accent: #FFFCF5;
+  --accent: oklch(0.986 0.008 75);
   --accent-foreground: #343434;
   --accent-foreground: oklch(0.205 0 0);
 
@@ -59,10 +59,10 @@
   --destructive-foreground: oklch(0.577 0.245 27.325);
 
   /* Border & Input */
-  --border: #F5EFE3;
-  --border: oklch(0.935 0.015 75);
-  --input: #F5EFE3;
-  --input: oklch(0.935 0.015 75);
+  --border: #F8F3E8;
+  --border: oklch(0.950 0.012 75);
+  --input: #F8F3E8;
+  --input: oklch(0.950 0.012 75);
   --ring: #b5b5b5;
   --ring: oklch(0.708 0 0);
 
@@ -82,20 +82,20 @@
   --radius: 0.625rem;
 
   /* Sidebar */
-  --sidebar: #FFFCF0;
-  --sidebar: oklch(0.985 0.012 75);
+  --sidebar: #FFFEF8;
+  --sidebar: oklch(0.993 0.006 75);
   --sidebar-foreground: #252525;
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: #343434;
   --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: #FFFCF0;
-  --sidebar-primary-foreground: oklch(0.985 0.012 75);
-  --sidebar-accent: #FFF9EE;
-  --sidebar-accent: oklch(0.973 0.012 75);
+  --sidebar-primary-foreground: #FFFEF8;
+  --sidebar-primary-foreground: oklch(0.993 0.006 75);
+  --sidebar-accent: #FFFCF5;
+  --sidebar-accent: oklch(0.986 0.008 75);
   --sidebar-accent-foreground: #343434;
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: #F5EFE3;
-  --sidebar-border: oklch(0.935 0.015 75);
+  --sidebar-border: #F8F3E8;
+  --sidebar-border: oklch(0.950 0.012 75);
   --sidebar-ring: #b5b5b5;
   --sidebar-ring: oklch(0.708 0 0);
 

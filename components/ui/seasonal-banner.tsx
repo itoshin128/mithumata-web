@@ -96,8 +96,8 @@ export function SeasonalBanner({ text, type }: SeasonalBannerProps) {
           style={{
             maxWidth: "min(900px, calc(100% - 2rem))",
             background: isInfo
-              ? "linear-gradient(135deg, rgba(245, 250, 240, 0.97) 0%, rgba(252, 255, 248, 0.95) 50%, rgba(248, 252, 243, 0.97) 100%)"
-              : "linear-gradient(135deg, rgba(255, 252, 240, 0.97) 0%, rgba(255, 250, 235, 0.95) 50%, rgba(255, 248, 230, 0.97) 100%)",
+              ? "linear-gradient(135deg, rgba(250, 254, 245, 0.97) 0%, rgba(254, 255, 250, 0.95) 50%, rgba(252, 255, 248, 0.97) 100%)"
+              : "linear-gradient(135deg, rgba(255, 254, 248, 0.97) 0%, rgba(255, 252, 242, 0.95) 50%, rgba(255, 250, 235, 0.97) 100%)",
             border: isInfo ? "1px solid rgba(45, 80, 22, 0.12)" : "1px solid rgba(217, 119, 6, 0.12)",
           }}
         >
