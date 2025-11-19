@@ -43,25 +43,21 @@ export function SectionProgressBar({
       transition={{ delay: 1, duration: 0.8 }}
     >
       <div className="relative">
-        {/* 目次ラベル */}
-        <div className="absolute -top-16 right-0 pr-6">
-          <div className="px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-l-lg shadow-sm border border-stone-200/50">
-            <span className="text-[10px] font-serif text-stone-600 tracking-[0.15em] font-medium">
-              目次
-            </span>
-          </div>
-        </div>
-
-        {/* 現在のセクション名 */}
+        {/* 目次ラベルと現在のセクション名を統合 */}
         <motion.div
           key={activeSection}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="absolute -top-8 right-0 pr-6"
+          className="absolute -top-16 right-0 pr-6"
         >
-          <div className="px-3 py-2 bg-white/95 backdrop-blur-sm rounded-l-lg shadow-md border border-stone-200/50 min-w-[120px]">
-            <div className="text-xs font-serif text-stone-800 tracking-[0.08em] whitespace-nowrap text-right">
+          <div className="px-3 py-2.5 bg-white/95 backdrop-blur-sm rounded-l-lg shadow-md border border-stone-200/50 min-w-[120px] space-y-1">
+            {/* 目次ラベル */}
+            <div className="text-[9px] font-serif text-stone-500 tracking-[0.2em] uppercase text-right">
+              目次
+            </div>
+            {/* 現在のセクション名 */}
+            <div className="text-xs font-serif text-stone-800 tracking-[0.08em] whitespace-nowrap text-right font-medium">
               {currentSection?.label || ''}
             </div>
           </div>
