@@ -84,9 +84,9 @@ export const WashiBackground = memo(function WashiBackground({ className = "", i
   }, [animated])
 
   const intensityConfig = {
-    subtle: { grain: 0.10, color: 0.08, glow: 0.35, diffusion: 0.25, iridescence: 0.12, warmth: 0.18 },
-    medium: { grain: 0.12, color: 0.10, glow: 0.42, diffusion: 0.30, iridescence: 0.15, warmth: 0.22 },
-    strong: { grain: 0.15, color: 0.12, glow: 0.50, diffusion: 0.35, iridescence: 0.18, warmth: 0.26 },
+    subtle: { grain: 0.10, color: 0.18, glow: 0.35, diffusion: 0.25, iridescence: 0.25, warmth: 0.35 },
+    medium: { grain: 0.12, color: 0.22, glow: 0.42, diffusion: 0.30, iridescence: 0.30, warmth: 0.42 },
+    strong: { grain: 0.15, color: 0.26, glow: 0.50, diffusion: 0.35, iridescence: 0.35, warmth: 0.50 },
   }
 
   const config = intensityConfig[intensity]
@@ -245,14 +245,14 @@ export const WashiBackground = memo(function WashiBackground({ className = "", i
         style={{
           opacity: config.warmth,
           backgroundImage: `
-            radial-gradient(ellipse 2200px 1600px at 25% 35%, rgba(255, 248, 230, 0.75) 0%, transparent 65%),
-            radial-gradient(ellipse 1900px 1900px at 75% 65%, rgba(252, 243, 220, 0.70) 0%, transparent 70%),
-            radial-gradient(ellipse 2500px 1800px at 50% 50%, rgba(255, 250, 235, 0.65) 0%, transparent 75%),
-            radial-gradient(circle 2000px at 60% 40%, rgba(250, 240, 215, 0.60) 0%, transparent 70%),
-            radial-gradient(ellipse 1600px 1200px at 30% 70%, rgba(255, 245, 225, 0.55) 0%, transparent 65%)
+            radial-gradient(ellipse 2200px 1600px at 25% 35%, rgba(255, 240, 200, 0.85) 0%, transparent 65%),
+            radial-gradient(ellipse 1900px 1900px at 75% 65%, rgba(252, 235, 190, 0.80) 0%, transparent 70%),
+            radial-gradient(ellipse 2500px 1800px at 50% 50%, rgba(255, 245, 210, 0.75) 0%, transparent 75%),
+            radial-gradient(circle 2000px at 60% 40%, rgba(250, 230, 180, 0.70) 0%, transparent 70%),
+            radial-gradient(ellipse 1600px 1200px at 30% 70%, rgba(255, 238, 195, 0.65) 0%, transparent 65%)
           `,
           filter: "blur(120px)",
-          mixBlendMode: "multiply",
+          mixBlendMode: "overlay",
           transition: "opacity 0.5s ease-out",
         }}
       />
