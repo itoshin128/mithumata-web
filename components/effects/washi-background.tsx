@@ -84,28 +84,28 @@ export const WashiBackground = memo(function WashiBackground({ className = "", i
   }, [animated])
 
   const intensityConfig = {
-    subtle: { grain: 0.22, color: 0.08, glow: 0.16 },
-    medium: { grain: 0.25, color: 0.10, glow: 0.20 },
-    strong: { grain: 0.30, color: 0.12, glow: 0.24 },
+    subtle: { grain: 0.10, color: 0.04, glow: 0.35, diffusion: 0.25, iridescence: 0.08 },
+    medium: { grain: 0.12, color: 0.05, glow: 0.42, diffusion: 0.30, iridescence: 0.10 },
+    strong: { grain: 0.15, color: 0.06, glow: 0.50, diffusion: 0.35, iridescence: 0.12 },
   }
 
   const config = intensityConfig[intensity]
 
-  // モバイルパフォーマンス最適化: モバイルでは簡素化されたパターン
+  // モバイルパフォーマンス最適化: モバイルでは簡素化されたパターン（極限まで軽量化）
   const mobileBackgroundImage = `
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='fine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.0' numOctaves='4' seed='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.04 0.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23fine)' fill='%23000'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='medium'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.05 0.10'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23medium)' fill='%23000'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='coarse'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='13'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.06 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23coarse)' fill='%23000'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='fine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.0' numOctaves='4' seed='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.01 0.03'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23fine)' fill='%23000'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='medium'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.02 0.04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23medium)' fill='%23000'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='coarse'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='13'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.02 0.04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23coarse)' fill='%23000'/%3E%3C/svg%3E")
   `
 
-  // デスクトップパフォーマンス最適化: パターン数を10個→6個に削減（質感と明るさを維持）
+  // デスクトップ: 極限まで軽量化し透明感を追求（alpha値を1/3に削減）
   const desktopBackgroundImage = `
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='ultrafine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.8' numOctaves='5' seed='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.02 0.05 0.08'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23ultrafine)' fill='%23000'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='superfine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.8' numOctaves='4' seed='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.03 0.06 0.10'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23superfine)' fill='%23000'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='fine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.04 0.07 0.11'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23fine)' fill='%23000'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='450'%3E%3Cfilter id='vfiber'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 2.0' numOctaves='6' seed='13'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0.03 0.06 0.10'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='450' height='450' filter='url(%23vfiber)' fill='%23000'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='450'%3E%3Cfilter id='hfiber'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.0 0.03' numOctaves='6' seed='17'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0.03 0.06 0.10'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='450' height='450' filter='url(%23hfiber)' fill='%23000'/%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='medium'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' seed='19'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.04 0.08 0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23medium)' fill='%23000'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='ultrafine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.8' numOctaves='5' seed='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.01 0.02 0.03'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23ultrafine)' fill='%23000'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='superfine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.8' numOctaves='4' seed='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.01 0.02 0.04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23superfine)' fill='%23000'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='fine'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.01 0.02 0.04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23fine)' fill='%23000'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='450'%3E%3Cfilter id='vfiber'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.03 2.0' numOctaves='6' seed='13'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0.01 0.02 0.03'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='450' height='450' filter='url(%23vfiber)' fill='%23000'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='450' height='450'%3E%3Cfilter id='hfiber'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.0 0.03' numOctaves='6' seed='17'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0.01 0.02 0.03'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='450' height='450' filter='url(%23hfiber)' fill='%23000'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='medium'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' seed='19'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0.01 0.03 0.04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23medium)' fill='%23000'/%3E%3C/svg%3E")
   `
 
   return (
@@ -188,6 +188,48 @@ export const WashiBackground = memo(function WashiBackground({ className = "", i
           mixBlendMode: "soft-light",
           filter: "blur(25px)",
           transition: "opacity 0.4s ease-out",
+        }}
+      />
+
+      {/* 光の拡散レイヤー - 柔らかく広がる光の表現 */}
+      <div
+        className="absolute inset-0 washi-diffusion-layer"
+        style={{
+          opacity: config.diffusion,
+          backgroundImage: `
+            radial-gradient(ellipse 2000px 1500px at 20% 30%, rgba(255, 255, 255, 0.8) 0%, transparent 60%),
+            radial-gradient(ellipse 1800px 1800px at 80% 70%, rgba(255, 254, 250, 0.7) 0%, transparent 65%),
+            radial-gradient(ellipse 1500px 1000px at 50% 50%, rgba(255, 253, 245, 0.6) 0%, transparent 70%),
+            radial-gradient(circle 2500px at 60% 40%, rgba(255, 252, 242, 0.5) 0%, transparent 75%)
+          `,
+          filter: "blur(80px)",
+          transition: "opacity 0.5s ease-out",
+        }}
+      />
+
+      {/* 虹彩レイヤー - 紙に光が当たった時の微妙な色彩変化 */}
+      <div
+        className="absolute inset-0 washi-iridescence-layer"
+        style={{
+          opacity: config.iridescence,
+          backgroundImage: `
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1600'%3E%3Cfilter id='iridescent1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.002' numOctaves='5' seed='201'/%3E%3CfeGaussianBlur stdDeviation='60'/%3E%3CfeColorMatrix values='0 0 0 0 0.99, 0 0 0 0 0.96, 0 0 0 0 0.85, 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='1600' height='1600' filter='url(%23iridescent1)' fill='%23fff8d5'/%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1800' height='1800'%3E%3Cfilter id='iridescent2'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0015' numOctaves='4' seed='207'/%3E%3CfeGaussianBlur stdDeviation='70'/%3E%3CfeColorMatrix values='0 0 0 0 0.98, 0 0 0 0 0.92, 0 0 0 0 0.88, 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='1800' height='1800' filter='url(%23iridescent2)' fill='%23fff5e6'/%3E%3C/svg%3E"),
+            radial-gradient(ellipse 3000px 2000px at 40% 60%, rgba(255, 250, 230, 0.15) 0%, transparent 80%)
+          `,
+          backgroundSize: `
+            1400px 1400px,
+            1600px 1600px,
+            100% 100%
+          `,
+          backgroundPosition: `
+            0 0,
+            300px 200px,
+            0 0
+          `,
+          backgroundRepeat: "repeat, repeat, no-repeat",
+          filter: "blur(100px)",
+          transition: "opacity 0.5s ease-out",
         }}
       />
     </div>
