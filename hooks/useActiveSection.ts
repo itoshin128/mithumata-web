@@ -9,48 +9,53 @@ export interface SectionConfig {
 
 /**
  * 現在表示されているセクションを検出するhook
- * スクロール位置に基づいて最も近いセクションを判定
+ * ビューポート上部に最も近いセクションをアクティブとして判定
  */
 export function useActiveSection(sections: SectionConfig[]) {
   const [activeSection, setActiveSection] = useState<string>(sections[0]?.id || '')
 
   useEffect(() => {
     const handleScroll = () => {
-      // 現在のスクロール位置（ビューポートの中央）
-      const scrollPosition = window.scrollY + window.innerHeight / 2
+      // ビューポートの上部から少し下の位置（ヘッダーを考慮）
+      const scrollPosition = window.scrollY + 100
 
-      // 各セクションの位置を取得し、最も近いものを見つける
-      let closestSection = sections[0]?.id || ''
-      let closestDistance = Infinity
+      // 現在のスクロール位置を過ぎたセクションのうち、最後のものを取得
+      let newActiveSection = sections[0]?.id || ''
 
-      sections.forEach((section) => {
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i]
         const element = document.getElementById(section.id)
-        if (!element) return
+
+        if (!element) continue
 
         const rect = element.getBoundingClientRect()
         const elementTop = rect.top + window.scrollY
-        const elementCenter = elementTop + rect.height / 2
 
-        // スクロール位置とセクション中央の距離
-        const distance = Math.abs(scrollPosition - elementCenter)
-
-        if (distance < closestDistance) {
-          closestDistance = distance
-          closestSection = section.id
+        // セクションの開始位置がスクロール位置を過ぎていたら、そのセクションをアクティブに
+        if (elementTop <= scrollPosition) {
+          newActiveSection = section.id
+          break
         }
-      })
+      }
 
-      setActiveSection(closestSection)
+      setActiveSection(newActiveSection)
     }
 
     // 初期実行
     handleScroll()
 
-    // スクロールイベントリスナー
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    // スクロールイベントリスナー（デバウンス付き）
+    let timeoutId: NodeJS.Timeout
+    const debouncedHandleScroll = () => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(handleScroll, 50)
+    }
+
+    window.addEventListener('scroll', debouncedHandleScroll, { passive: true })
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(timeoutId)
+      window.removeEventListener('scroll', debouncedHandleScroll)
     }
   }, [sections])
 
