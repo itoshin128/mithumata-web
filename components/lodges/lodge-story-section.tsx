@@ -166,10 +166,10 @@ export function LodgeStorySection() {
               <FadeInSection delay={0.1}>
                 <div className={`flex ${lodge.id === "suisho" ? "justify-start" : "justify-end"} mb-20 md:mb-24 lg:mb-28`}>
                   <div className={`max-w-xl px-6 md:px-0 ${lodge.id === "suisho" ? "text-left md:ml-12 lg:ml-20 mr-auto" : "text-right md:mr-12 lg:mr-20 ml-auto"}`}>
-                    <h2 className="text-xl md:text-2xl lg:text-3xl font-serif font-light mb-8 md:mb-10 tracking-[0.08em] leading-[1.6] text-balance">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-light mb-8 md:mb-10 tracking-[0.08em] leading-[1.6] text-balance">
                       {lodge.title}
                     </h2>
-                    <p className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light">
+                    <p className="text-base md:text-lg lg:text-xl text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light">
                       {lodge.description}
                     </p>
                   </div>
@@ -256,8 +256,8 @@ export function LodgeStorySection() {
                         min-w-[220px] md:min-w-0
                       "
                     >
-                      <span className="text-sm">{lodge.name}の詳細</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      <span className="text-sm md:text-base">{lodge.name}の詳細</span>
+                      <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </motion.button>
                   </Link>
                 </div>

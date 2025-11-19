@@ -450,17 +450,17 @@ export function HeroParallaxSection() {
               className="space-y-5 sm:space-y-6 md:space-y-7 max-w-2xl"
             >
               <div className="space-y-3 sm:space-y-3 md:space-y-4">
-                {/* モバイル最適化: text-3xl（30px）に拡大、テキストシャドウ強化 */}
+                {/* メインタイトル: 大きく印象的に */}
                 <h1
-                  className="text-white text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light leading-[1.6] tracking-[0.08em]"
+                  className="text-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light leading-[1.6] tracking-[0.08em]"
                   style={{ textShadow: "0 4px 20px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,1)" }}
                 >
                   北アルプス黒部源流
                 </h1>
 
-                {/* モバイル最適化: text-xs（12px）に拡大、テキストシャドウ強化 */}
+                {/* 英語サブタイトル */}
                 <p
-                  className="text-white/95 text-xs sm:text-[10px] md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-light font-sans uppercase"
+                  className="text-white/95 text-xs md:text-sm tracking-[0.2em] font-light font-sans uppercase"
                   style={{ textShadow: "0 2px 14px rgba(0,0,0,0.75), 0 1px 4px rgba(0,0,0,1)" }}
                 >
                   Northern Alps Kurobe Genryu
@@ -468,16 +468,16 @@ export function HeroParallaxSection() {
               </div>
 
               <div className="space-y-3 sm:space-y-3 md:space-y-4 pt-3 sm:pt-3 md:pt-4">
-                {/* モバイル最適化: text-base（16px）に拡大、テキストシャドウ強化 */}
+                {/* 重要キャッチコピー: より大きく */}
                 <p
-                  className="text-white text-base sm:text-sm md:text-base lg:text-lg leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]"
+                  className="text-white text-lg md:text-xl lg:text-2xl leading-[1.8] font-serif font-light tracking-[0.04em]"
                   style={{ textShadow: "0 3px 16px rgba(0,0,0,0.75), 0 2px 6px rgba(0,0,0,1)" }}
                 >
                   北アルプス最奥、黒部源流の三つの山荘
                 </p>
-                {/* モバイル最適化: text-sm（14px）に拡大、テキストシャドウ強化 */}
+                {/* リード文 */}
                 <p
-                  className="text-white/95 text-sm sm:text-xs md:text-sm lg:text-base leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]"
+                  className="text-white/95 text-base md:text-lg lg:text-xl leading-[1.8] font-serif font-light tracking-[0.04em]"
                   style={{ textShadow: "0 3px 16px rgba(0,0,0,0.75), 0 2px 6px rgba(0,0,0,1)" }}
                 >
                   原始と変わらぬ生態系が息づく場所。
@@ -500,7 +500,7 @@ export function HeroParallaxSection() {
                 className="space-y-5 sm:space-y-6"
               >
                 <h2
-                  className="text-white text-lg sm:text-xl md:text-xl lg:text-2xl xl:text-3xl font-serif font-light leading-[1.6] tracking-[0.06em] sm:tracking-[0.08em]"
+                  className="text-white text-xl md:text-2xl lg:text-3xl font-serif font-light leading-[1.6] tracking-[0.06em]"
                   style={{ textShadow: "0 3px 16px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.95)" }}
                 >
                   山の広さと深さへの、入口
@@ -524,19 +524,19 @@ export function HeroParallaxSection() {
                 className="space-y-4 sm:space-y-5"
               >
                 <p
-                  className="text-white/95 text-sm sm:text-sm md:text-base lg:text-lg leading-[1.8] font-serif font-light tracking-[0.03em] sm:tracking-[0.04em]"
+                  className="text-white/95 text-base md:text-lg lg:text-xl leading-[1.8] font-serif font-light tracking-[0.03em]"
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   三俣山荘グループは、北アルプス最奥の黒部源流域に位置する三つの山荘、三俣山荘・水晶小屋・湯俣山荘を運営しています。
                 </p>
                 <p
-                  className="text-white/95 text-sm sm:text-sm md:text-base lg:text-lg leading-[1.8] font-serif font-light tracking-[0.03em] sm:tracking-[0.04em]"
+                  className="text-white/95 text-base md:text-lg lg:text-xl leading-[1.8] font-serif font-light tracking-[0.03em]"
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   私たちが目指すのは、単なる宿泊施設ではありません。訪れる人々が「山の広さと深さ」と出会い、新たな山の楽しみ方を発見する入口となる場所です。
                 </p>
                 <p
-                  className="text-white/95 text-sm sm:text-sm md:text-base lg:text-lg leading-[1.8] font-serif font-light tracking-[0.03em] sm:tracking-[0.04em]"
+                  className="text-white/95 text-base md:text-lg lg:text-xl leading-[1.8] font-serif font-light tracking-[0.03em]"
                   style={{ textShadow: "0 2px 12px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.9)" }}
                 >
                   道直し活動を通じた登山道の保全、湯俣川ネイチャーフィールドでの「面」としての山の楽しみ方の提案。山小屋の公共的役割を果たしながら、山との深いかかわりを大切にしています。
@@ -563,7 +563,7 @@ export function HeroParallaxSection() {
                   <motion.span
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-white text-xs sm:text-sm md:text-base font-serif font-light tracking-[0.1em] sm:tracking-[0.12em] text-center px-5 sm:px-6 relative z-10"
+                    className="text-white text-sm md:text-base font-serif font-light tracking-[0.1em] text-center px-5 sm:px-6 relative z-10"
                   >
                     三俣山荘
                     <br />
