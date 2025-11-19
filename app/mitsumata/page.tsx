@@ -23,11 +23,11 @@ import { useScrollProgress } from '@/hooks/useScrollProgress'
 const STYLES = {
   // セクションタイトルの階層（トップページと完全統一）
   title: {
-    hero: "text-3xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-light leading-[1.6] tracking-[0.08em]",
-    section: "text-xl md:text-2xl lg:text-3xl font-serif font-light tracking-[0.08em] leading-[1.6]",
-    subsection: "text-lg md:text-xl font-serif font-light tracking-[0.04em] leading-[1.6]",
+    hero: "text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-light leading-[1.6] tracking-[0.08em]",
+    section: "text-2xl md:text-3xl lg:text-4xl font-serif font-light tracking-[0.08em] leading-[1.6]",
+    subsection: "text-lg md:text-xl lg:text-2xl font-serif font-light tracking-[0.04em] leading-[1.6]",
     card: "text-base md:text-lg lg:text-xl font-serif font-light tracking-[0.06em] leading-[1.6]",
-    label: "text-xs sm:text-[10px] md:text-xs lg:text-sm tracking-[0.2em] sm:tracking-[0.25em] font-light font-sans uppercase",
+    label: "text-xs md:text-sm tracking-[0.2em] font-light font-sans uppercase",
   },
   // セクション余白（トップページと統一）
   spacing: {
@@ -40,8 +40,8 @@ const STYLES = {
   },
   // テキストスタイル（トップページと統一）
   text: {
-    hero: "text-base sm:text-sm md:text-base lg:text-lg leading-[1.8] sm:leading-[1.8] font-serif font-light tracking-[0.04em] sm:tracking-[0.05em]",
-    body: "text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light",
+    hero: "text-lg md:text-xl lg:text-2xl leading-[1.8] font-serif font-light tracking-[0.04em]",
+    body: "text-sm md:text-base lg:text-lg text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light",
     caption: "text-xs md:text-sm text-gray-500 font-serif font-light tracking-wider",
   }
 } as const
@@ -2360,50 +2360,50 @@ export default function MitsumataPage() {
                 {/* Questions Accordion */}
                 <Accordion.Root type="single" collapsible className="space-y-3 md:space-y-4">
                   <Accordion.Item value="faq-1" className="border-none">
-                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                    <Accordion.Trigger className="text-left font-serif font-light text-base md:text-lg tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
                       <span className="pr-4">質問テキスト</span>
                     </Accordion.Trigger>
-                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
+                    <Accordion.Content className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
                       サンプルテキストがここに表示されます。
                     </Accordion.Content>
                   </Accordion.Item>
 
                   <Accordion.Item value="faq-2" className="border-none">
-                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                    <Accordion.Trigger className="text-left font-serif font-light text-base md:text-lg tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
                       <span className="pr-4">質問テキスト</span>
                     </Accordion.Trigger>
-                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
+                    <Accordion.Content className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
                       サンプルテキストがここに表示されます。
                     </Accordion.Content>
                   </Accordion.Item>
 
                   <Accordion.Item value="faq-3" className="border-none">
-                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                    <Accordion.Trigger className="text-left font-serif font-light text-base md:text-lg tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
                       <span className="pr-4">質問テキスト</span>
                     </Accordion.Trigger>
-                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
+                    <Accordion.Content className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
                       サンプルテキストがここに表示されます。
                     </Accordion.Content>
                   </Accordion.Item>
 
                   <Accordion.Item value="faq-4" className="border-none">
-                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                    <Accordion.Trigger className="text-left font-serif font-light text-base md:text-lg tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
                       <span className="pr-4">質問テキスト</span>
                     </Accordion.Trigger>
-                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
+                    <Accordion.Content className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
                       サンプルテキストがここに表示されます。
                     </Accordion.Content>
                   </Accordion.Item>
 
                   <Accordion.Item value="faq-5" className="border-none">
-                    <Accordion.Trigger className="text-left font-serif font-light text-sm md:text-base tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
+                    <Accordion.Trigger className="text-left font-serif font-light text-base md:text-lg tracking-[0.04em] leading-[1.7] text-gray-900 hover:no-underline py-4 md:py-5 border-b border-gray-200 hover:border-gray-400 transition-all duration-300">
                       <span className="pr-4">質問テキスト</span>
                     </Accordion.Trigger>
-                    <Accordion.Content className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
+                    <Accordion.Content className="text-sm md:text-base lg:text-lg text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light pt-4 md:pt-5 pb-2 text-pretty">
                       ここに回答テキストが入ります。ダミーテキストです。
                       サンプルテキストがここに表示されます。
                     </Accordion.Content>

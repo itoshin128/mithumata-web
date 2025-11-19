@@ -94,7 +94,7 @@ function CompactBlogCard({ post, index, total }: { post: typeof latestPosts[0]; 
         {/* コンテンツセクション */}
         <div className="flex-1 p-5 flex flex-col">
           {/* タイトル */}
-          <h3 className="text-base md:text-lg font-serif font-light text-gray-900 line-clamp-2 mb-3 leading-snug tracking-[0.04em]">
+          <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 line-clamp-2 mb-3 leading-snug tracking-[0.04em]">
             {post.title}
           </h3>
 
@@ -192,12 +192,12 @@ function BlogCard({ post, delay = 0 }: BlogCardProps) {
           {/* Content */}
           <div className="flex-1 flex flex-col space-y-3 md:space-y-4">
             {/* Title */}
-            <h3 className="text-lg md:text-xl font-serif font-light tracking-[0.04em] leading-[1.6] text-gray-900 text-balance">
+            <h3 className="text-xl md:text-2xl font-serif font-light tracking-[0.04em] leading-[1.6] text-gray-900 text-balance">
               {post.title}
             </h3>
 
             {/* Excerpt */}
-            <p className="flex-1 text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light text-pretty line-clamp-3">
+            <p className="flex-1 text-sm md:text-base lg:text-lg text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light text-pretty line-clamp-3">
               {post.excerpt}
             </p>
 
@@ -323,11 +323,11 @@ export function LatestPostsSection() {
           <div className="text-center mb-16 md:mb-20 lg:mb-24 max-w-3xl mx-auto">
             <h2
               id="news-section-heading"
-              className="text-xl md:text-2xl lg:text-3xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance"
+              className="text-2xl md:text-3xl lg:text-4xl font-serif font-light mb-6 md:mb-8 tracking-[0.08em] leading-[1.6] text-balance"
             >
               お知らせ
             </h2>
-            <p className="text-sm md:text-base text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light text-pretty">
+            <p className="text-base md:text-lg text-gray-700 leading-[1.8] tracking-[0.04em] font-serif font-light text-pretty">
               山小屋の今を伝える、コラムとお知らせ。
               <br className="hidden md:block" />
               道直し活動、高山植物、山の楽しみ方など、様々な情報を発信しています。
@@ -440,7 +440,7 @@ export function LatestPostsSection() {
                 "
               >
                 <BookOpen className="w-5 h-5 md:w-4 md:h-4" />
-                <span className="text-base md:text-sm">すべての記事を見る</span>
+                <span className="text-sm md:text-base">すべての記事を見る</span>
                 <ArrowRight className="w-5 h-5 md:w-4 md:h-4 group-hover:translate-x-2 transition-transform duration-500" />
               </motion.button>
             </Link>
