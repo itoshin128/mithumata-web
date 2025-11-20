@@ -6,10 +6,14 @@ import Link from "next/link"
 import { X, Mountain } from "lucide-react"
 
 const navigationItems = [
-  { label: "山荘紹介", href: "/lodges" },
-  { label: "コラム", href: "/blog" },
-  { label: "アクセス", href: "/access" },
-  { label: "FAQ", href: "/faq" },
+  { label: "お知らせ", href: "/news" },
+  { label: "ブログ", href: "/blog" },
+  { label: "山荘について", href: "/lodges" },
+  { label: "伊藤新荘", href: "/ito-shinso" },
+  { label: "交通・アクセス", href: "/access" },
+  { label: "よくある質問", href: "/faq" },
+  { label: "スタッフ募集", href: "/recruit" },
+  { label: "お問い合わせ", href: "/contact" },
   { label: "予約する", href: "/reservations", highlight: true },
 ]
 
@@ -316,7 +320,7 @@ export function Header() {
                     </motion.h3>
                     <ul className="space-y-4" role="list">
                       {[
-                        { name: "三俣山荘", href: "/mitsumata", color: "mitsumata" },
+                        { name: "三俣山荘", href: "/lodges/mitsumata", color: "mitsumata" },
                         { name: "水晶小屋", href: "/lodges/suisho", color: "suisho" },
                         { name: "湯俣山荘", href: "/lodges/yumata", color: "yumata" },
                       ].map((lodge, index) => (

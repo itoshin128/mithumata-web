@@ -8,16 +8,14 @@ const footerLinks = {
     { label: "湯俣山荘", href: "/lodges/yumata" },
   ],
   情報: [
-    { label: "コラム・お知らせ", href: "/blog" },
-    { label: "アクセス", href: "/access" },
+    { label: "お知らせ", href: "/news" },
+    { label: "ブログ", href: "/blog" },
+    { label: "交通・アクセス", href: "/access" },
     { label: "よくあるご質問", href: "/faq" },
   ],
-  活動: [
-    { label: "道直し活動", href: "/trail-maintenance" },
-    { label: "伊藤新道", href: "/itoshindo" },
-    { label: "湯俣川ネイチャーフィールド", href: "/yumata-field" },
-  ],
   その他: [
+    { label: "伊藤新荘", href: "/ito-shinso" },
+    { label: "スタッフ募集", href: "/recruit" },
     { label: "お問い合わせ", href: "/contact" },
     { label: "プライバシーポリシー", href: "/privacy" },
     { label: "サイトマップ", href: "/sitemap" },
