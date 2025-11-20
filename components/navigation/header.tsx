@@ -3,38 +3,71 @@
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { X, Calendar, ArrowRight } from "lucide-react"
+import { X, Calendar, ArrowRight, ChevronDown } from "lucide-react"
 
-// カテゴリ別にメニューを整理
-const menuCategories = {
-  lodges: [
-    { name: "三俣山荘", href: "/lodges/mitsumata", color: "mitsumata" },
-    { name: "水晶小屋", href: "/lodges/suisho", color: "suisho" },
-    { name: "湯俣山荘", href: "/lodges/yumata", color: "yumata" },
-  ],
-  usage: [
-    { label: "交通・アクセス", href: "/access" },
-    { label: "よくある質問", href: "/faq" },
-    { label: "山荘について", href: "/lodges" },
-  ],
-  information: [
-    { label: "お知らせ", href: "/news" },
-    { label: "ブログ", href: "/blog" },
-  ],
-  experience: [
-    { label: "伊藤新道", href: "/ito-shindo" },
-    { label: "湯俣川ネイチャーフィールド", href: "/yumata-nature-field" },
-  ],
-  other: [
-    { label: "スタッフ募集", href: "/recruit" },
-    { label: "お問い合わせ", href: "/contact" },
-  ],
-}
+// メニュー構造の定義
+const menuStructure = [
+  {
+    type: "cta",
+    label: "予約する",
+    href: "/reservations",
+  },
+  {
+    type: "category",
+    label: "山荘について",
+    href: "/lodges",
+    expandable: true,
+    children: [
+      { label: "三俣山荘", href: "/lodges/mitsumata", color: "mitsumata" },
+      { label: "水晶小屋", href: "/lodges/suisho", color: "suisho" },
+      { label: "湯俣山荘", href: "/lodges/yumata", color: "yumata" },
+    ],
+  },
+  {
+    type: "category",
+    label: "山域を楽しむ",
+    children: [
+      { label: "伊藤新道", href: "/ito-shindo" },
+      { label: "湯俣川ネイチャーフィールド", href: "/yumata-nature-field" },
+    ],
+  },
+  {
+    type: "category",
+    label: "ご利用案内",
+    children: [
+      { label: "交通・アクセス", href: "/access" },
+      { label: "よくある質問", href: "/faq" },
+    ],
+  },
+  {
+    type: "category",
+    label: "情報",
+    children: [
+      { label: "お知らせ", href: "/news" },
+      { label: "ブログ", href: "/blog" },
+    ],
+  },
+  {
+    type: "category",
+    label: "その他",
+    children: [
+      { label: "スタッフ募集", href: "/recruit" },
+      { label: "お問い合わせ", href: "/contact" },
+    ],
+  },
+]
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [expandedCategories, setExpandedCategories] = useState<string[]>(["山荘について"])
   const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  const toggleCategory = (label: string) => {
+    setExpandedCategories((prev) =>
+      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
+    )
+  }
 
   // キーボードナビゲーション
   useEffect(() => {
@@ -180,7 +213,7 @@ export function Header() {
               aria-hidden="true"
             />
 
-            {/* メニューパネル - レスポンシブ幅 */}
+            {/* メニューパネル */}
             <motion.div
               id="main-menu"
               role="dialog"
@@ -195,7 +228,7 @@ export function Header() {
                 stiffness: 220,
                 opacity: { duration: 0.25 },
               }}
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-[500px] md:w-[600px] lg:w-[700px] md:backdrop-blur-2xl z-[70] overflow-hidden"
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-[460px] md:backdrop-blur-2xl z-[70] overflow-hidden"
               style={{
                 backgroundColor: "rgba(255, 254, 248, 0.98)",
                 boxShadow: "-16px 0 48px rgba(0, 0, 0, 0.12)",
@@ -214,7 +247,7 @@ export function Header() {
 
               <div className="relative flex flex-col h-full">
                 {/* ヘッダー */}
-                <div className="flex items-center justify-between px-8 md:px-10 lg:px-12 py-8 border-b border-gray-300/30">
+                <div className="flex items-center justify-between px-8 sm:px-10 py-7 border-b border-gray-300/30">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -242,197 +275,145 @@ export function Header() {
                   </motion.button>
                 </div>
 
-                {/* ナビゲーション - スクロール可能 */}
-                <nav className="flex-1 overflow-y-auto px-8 md:px-10 lg:px-12 py-8" aria-label="メインナビゲーション">
-                  {/* 予約ボタン - 最上部に配置 */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 20 }}
-                    className="mb-8"
-                  >
-                    <Link
-                      href="/reservations"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="group block relative overflow-hidden rounded-xl bg-gradient-to-br from-mitsumata to-mitsumata/90 p-6 md:p-7 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
-                    >
-                      <div className="relative z-10">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <span className="block text-white/90 text-xs font-semibold tracking-wider uppercase mb-2">
-                              Reservation
-                            </span>
-                            <span className="block text-white text-2xl md:text-3xl font-bold font-serif">
-                              予約する
-                            </span>
-                          </div>
-                          <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </Link>
-                  </motion.div>
-
-                  {/* 山荘セクション - 最優先 */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.25, type: "spring", stiffness: 200, damping: 20 }}
-                    className="mb-8"
-                  >
-                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4">
-                      山荘
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      {menuCategories.lodges.map((lodge, index) => (
-                        <motion.div
-                          key={lodge.href}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.3 + index * 0.05 }}
-                        >
-                          <Link
-                            href={lodge.href}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="group block p-4 rounded-lg bg-white/60 hover:bg-white border border-gray-200/50 hover:border-gray-300 transition-all duration-300 hover:shadow-md"
+                {/* ナビゲーション */}
+                <nav className="flex-1 overflow-y-auto px-8 sm:px-10 py-8" aria-label="メインナビゲーション">
+                  <ul className="space-y-1">
+                    {menuStructure.map((item, index) => {
+                      if (item.type === "cta") {
+                        // 予約CTAボタン
+                        return (
+                          <motion.li
+                            key={item.label}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 + index * 0.05, type: "spring", stiffness: 200, damping: 20 }}
+                            className="mb-6"
                           >
-                            <div className="flex items-center gap-2 mb-1">
-                              <div
-                                className="w-2 h-2 rounded-full transition-transform group-hover:scale-125"
-                                style={{ backgroundColor: `var(--${lodge.color}-primary)` }}
-                              />
-                              <span className="text-sm font-serif font-semibold text-gray-900">
-                                {lodge.name}
-                              </span>
+                            <Link
+                              href={item.href!}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="group block relative overflow-hidden rounded-xl bg-gradient-to-br from-mitsumata to-mitsumata/90 p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01]"
+                            >
+                              <div className="relative z-10 flex items-center justify-between">
+                                <div>
+                                  <span className="block text-white/90 text-[10px] font-semibold tracking-wider uppercase mb-1.5">
+                                    Reservation
+                                  </span>
+                                  <span className="block text-white text-2xl font-bold font-serif">予約する</span>
+                                </div>
+                                <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
+                              </div>
+                              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </Link>
+                          </motion.li>
+                        )
+                      }
+
+                      if (item.type === "category") {
+                        const isExpanded = expandedCategories.includes(item.label)
+                        const hasChildren = item.children && item.children.length > 0
+
+                        return (
+                          <motion.li
+                            key={item.label}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 + index * 0.05, type: "spring", stiffness: 200, damping: 20 }}
+                            className="border-b border-gray-200/40 last:border-0"
+                          >
+                            {/* カテゴリヘッダー */}
+                            <div className="py-4">
+                              {item.expandable && hasChildren ? (
+                                <button
+                                  onClick={() => toggleCategory(item.label)}
+                                  className="group w-full flex items-center justify-between text-left transition-colors duration-200"
+                                >
+                                  <span className="text-base font-serif font-semibold text-gray-900 group-hover:text-mitsumata transition-colors">
+                                    {item.label}
+                                  </span>
+                                  <motion.div
+                                    animate={{ rotate: isExpanded ? 180 : 0 }}
+                                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                                  >
+                                    <ChevronDown className="w-4 h-4 text-gray-500 group-hover:text-mitsumata transition-colors" />
+                                  </motion.div>
+                                </button>
+                              ) : item.href ? (
+                                <Link
+                                  href={item.href}
+                                  onClick={() => setIsMenuOpen(false)}
+                                  className="group flex items-center justify-between"
+                                >
+                                  <span className="text-base font-serif font-semibold text-gray-900 group-hover:text-mitsumata transition-colors">
+                                    {item.label}
+                                  </span>
+                                  <ArrowRight className="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                                </Link>
+                              ) : (
+                                <span className="text-base font-serif font-semibold text-gray-900">{item.label}</span>
+                              )}
+
+                              {/* 子要素 */}
+                              {hasChildren && (
+                                <AnimatePresence initial={false}>
+                                  {(!item.expandable || isExpanded) && (
+                                    <motion.ul
+                                      initial={item.expandable ? { height: 0, opacity: 0 } : false}
+                                      animate={{ height: "auto", opacity: 1 }}
+                                      exit={{ height: 0, opacity: 0 }}
+                                      transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                                      className="mt-3 space-y-1 overflow-hidden"
+                                    >
+                                      {item.children!.map((child, childIndex) => (
+                                        <motion.li
+                                          key={child.href}
+                                          initial={item.expandable ? { opacity: 0, x: -10 } : false}
+                                          animate={{ opacity: 1, x: 0 }}
+                                          exit={{ opacity: 0, x: -10 }}
+                                          transition={{
+                                            delay: item.expandable ? childIndex * 0.05 : 0,
+                                            duration: 0.2,
+                                          }}
+                                          className="relative pl-4"
+                                        >
+                                          {/* 階層を示す縦線 */}
+                                          <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-gray-300 via-gray-200 to-transparent" />
+
+                                          <Link
+                                            href={child.href}
+                                            onClick={() => setIsMenuOpen(false)}
+                                            className="group flex items-center gap-2.5 py-2.5 transition-all duration-200"
+                                          >
+                                            {/* 階層を示す横線とドット */}
+                                            <div className="flex items-center gap-2">
+                                              <div className="w-3 h-px bg-gray-300" />
+                                              <div
+                                                className="w-1.5 h-1.5 rounded-full transition-all duration-200 group-hover:scale-150"
+                                                style={{
+                                                  backgroundColor: child.color
+                                                    ? `var(--${child.color}-primary)`
+                                                    : "#9ca3af",
+                                                }}
+                                              />
+                                            </div>
+                                            <span className="text-sm font-serif text-gray-700 group-hover:text-gray-900 group-hover:translate-x-1 transition-all duration-200">
+                                              {child.label}
+                                            </span>
+                                          </Link>
+                                        </motion.li>
+                                      ))}
+                                    </motion.ul>
+                                  )}
+                                </AnimatePresence>
+                              )}
                             </div>
-                          </Link>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
-
-                  {/* 2カラムグリッド - デスクトップ最適化 */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
-                    {/* ご利用案内 */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.35 }}
-                    >
-                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4 pb-2 border-b border-gray-200">
-                        ご利用案内
-                      </h3>
-                      <ul className="space-y-2">
-                        {menuCategories.usage.map((item, index) => (
-                          <motion.li
-                            key={item.href}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.4 + index * 0.05 }}
-                          >
-                            <Link
-                              href={item.href}
-                              onClick={() => setIsMenuOpen(false)}
-                              className="group flex items-center gap-2 py-2 text-gray-700 hover:text-mitsumata transition-colors"
-                            >
-                              <span className="w-1 h-1 rounded-full bg-gray-400 group-hover:bg-mitsumata group-hover:scale-150 transition-all" />
-                              <span className="text-sm font-serif font-medium">{item.label}</span>
-                            </Link>
                           </motion.li>
-                        ))}
-                      </ul>
-                    </motion.div>
+                        )
+                      }
 
-                    {/* 情報・コンテンツ */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4 pb-2 border-b border-gray-200">
-                        情報
-                      </h3>
-                      <ul className="space-y-2">
-                        {menuCategories.information.map((item, index) => (
-                          <motion.li
-                            key={item.href}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.45 + index * 0.05 }}
-                          >
-                            <Link
-                              href={item.href}
-                              onClick={() => setIsMenuOpen(false)}
-                              className="group flex items-center gap-2 py-2 text-gray-700 hover:text-mitsumata transition-colors"
-                            >
-                              <span className="w-1 h-1 rounded-full bg-gray-400 group-hover:bg-mitsumata group-hover:scale-150 transition-all" />
-                              <span className="text-sm font-serif font-medium">{item.label}</span>
-                            </Link>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </motion.div>
-
-                    {/* 山域を楽しむ */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.45 }}
-                    >
-                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4 pb-2 border-b border-gray-200">
-                        山域を楽しむ
-                      </h3>
-                      <ul className="space-y-2">
-                        {menuCategories.experience.map((item, index) => (
-                          <motion.li
-                            key={item.href}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.5 + index * 0.05 }}
-                          >
-                            <Link
-                              href={item.href}
-                              onClick={() => setIsMenuOpen(false)}
-                              className="group flex items-center gap-2 py-2 text-gray-700 hover:text-mitsumata transition-colors"
-                            >
-                              <span className="w-1 h-1 rounded-full bg-gray-400 group-hover:bg-mitsumata group-hover:scale-150 transition-all" />
-                              <span className="text-sm font-serif font-medium">{item.label}</span>
-                            </Link>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </motion.div>
-
-                    {/* その他 */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4 pb-2 border-b border-gray-200">
-                        その他
-                      </h3>
-                      <ul className="space-y-2">
-                        {menuCategories.other.map((item, index) => (
-                          <motion.li
-                            key={item.href}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.55 + index * 0.05 }}
-                          >
-                            <Link
-                              href={item.href}
-                              onClick={() => setIsMenuOpen(false)}
-                              className="group flex items-center gap-2 py-2 text-gray-700 hover:text-mitsumata transition-colors"
-                            >
-                              <span className="w-1 h-1 rounded-full bg-gray-400 group-hover:bg-mitsumata group-hover:scale-150 transition-all" />
-                              <span className="text-sm font-serif font-medium">{item.label}</span>
-                            </Link>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  </div>
+                      return null
+                    })}
+                  </ul>
                 </nav>
 
                 {/* フッター */}
@@ -440,17 +421,15 @@ export function Header() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, type: "spring", stiffness: 180, damping: 20 }}
-                  className="px-8 md:px-10 lg:px-12 py-6 border-t border-gray-300/30 bg-stone-50/50"
+                  className="px-8 sm:px-10 py-6 border-t border-gray-300/30 bg-stone-50/50"
                 >
                   <div className="flex items-center gap-3">
-                    <Calendar className="w-4 h-4 text-gray-500" />
+                    <Calendar className="w-4 h-4 text-gray-500 flex-shrink-0" />
                     <div>
-                      <p className="text-xs text-gray-600 font-serif">
+                      <p className="text-xs text-gray-600 font-serif leading-relaxed">
                         北アルプス最奥、黒部源流の三つの山荘
                       </p>
-                      <p className="text-[10px] text-gray-500 tracking-wider mt-1">
-                        営業期間: 7月〜11月
-                      </p>
+                      <p className="text-[10px] text-gray-500 tracking-wider mt-1">営業期間: 7月〜11月</p>
                     </div>
                   </div>
                 </motion.div>
