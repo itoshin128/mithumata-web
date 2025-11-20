@@ -1,5 +1,7 @@
 import { FadeInSection } from "@/components/animations/fade-in-section"
-import { Mountain, MapPin, Calendar } from "lucide-react"
+import { Mountain, MapPin, Calendar, BookOpen, ArrowRight } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import Link from "next/link"
 
 export default function ItoShindoPage() {
   return (
@@ -38,9 +40,40 @@ export default function ItoShindoPage() {
           </FadeInSection>
         </div>
 
+        {/* ルートガイドへのリンク */}
         <FadeInSection delay={0.4}>
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <p className="text-gray-600">詳細な情報は準備中です。</p>
+          <Card className="hover:shadow-xl transition-shadow">
+            <CardContent className="p-0">
+              <Link
+                href="/ito-shindo/takahashi-route-guide"
+                className="block p-8 group"
+              >
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-lg bg-mitsumata/10 flex items-center justify-center flex-shrink-0 group-hover:bg-mitsumata/20 transition-colors">
+                    <BookOpen className="w-8 h-8 text-mitsumata" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-3 text-stone-900 group-hover:text-mitsumata transition-colors">
+                      高橋庄太郎の伊藤新道ルートガイド
+                    </h3>
+                    <p className="text-gray-700 mb-4 leading-relaxed">
+                      山岳ライター・高橋庄太郎による詳細なルートガイド。
+                      実際の踏破経験に基づいた、実践的な情報をお届けします。
+                    </p>
+                    <div className="flex items-center gap-2 text-mitsumata font-semibold group-hover:gap-3 transition-all">
+                      <span>ルートガイドを見る</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </CardContent>
+          </Card>
+        </FadeInSection>
+
+        <FadeInSection delay={0.5}>
+          <div className="bg-white rounded-lg shadow-md p-8 mt-12">
+            <p className="text-gray-600">その他の詳細な情報は準備中です。</p>
           </div>
         </FadeInSection>
       </div>

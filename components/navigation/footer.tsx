@@ -13,8 +13,11 @@ const footerLinks = {
     { label: "交通・アクセス", href: "/access" },
     { label: "よくあるご質問", href: "/faq" },
   ],
-  その他: [
+  山域を楽しむ: [
     { label: "伊藤新道", href: "/ito-shindo" },
+    { label: "湯俣川ネイチャーフィールド", href: "/yumata-nature-field" },
+  ],
+  その他: [
     { label: "スタッフ募集", href: "/recruit" },
     { label: "お問い合わせ", href: "/contact" },
     { label: "プライバシーポリシー", href: "/privacy" },
