@@ -532,8 +532,7 @@ const SECTIONS: SectionConfig[] = [
   { id: 'about', label: '山荘について' },
   { id: 'accommodation', label: '宿泊料金' },
   { id: 'dining', label: 'お食事' },
-  { id: 'kurobe', label: '黒部源流' },
-  { id: 'ito-shindo', label: '稜線ルート' },
+  { id: 'attractions', label: '周辺の魅力' },
   { id: 'access', label: 'アクセス' },
   { id: 'faq', label: 'FAQ' },
 ]
@@ -1375,17 +1374,44 @@ export default function MitsumataPage() {
         </div>
       </section>
 
-      {/* Section Divider - Transition to Kurobe Genryu story */}
+      {/* Section Divider - Transition to Attractions */}
       <div className="relative z-10">
         <SectionAnchorLinks
           previousSection={{ id: 'dining', label: 'お食事' }}
-          nextSection={{ id: 'kurobe', label: '黒部源流' }}
+          nextSection={{ id: 'attractions', label: '周辺の魅力' }}
         />
       </div>
 
-      {/* セクション1 - サンプルコンテンツ */}
-      {/* オープニング */}
-      <section id="kurobe" ref={kurobeRef} className="relative h-[35vh] sm:h-[45vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
+      {/* 周辺の魅力セクション */}
+      <section id="attractions" className="relative">
+        {/* 周辺の魅力 - 導入 */}
+        <div className={`${STYLES.spacing.section}`}>
+          <div className={`container mx-auto ${STYLES.spacing.container} max-w-4xl relative z-10`}>
+            <FadeInSection>
+              <div className={`text-center ${STYLES.spacing.mb.header} space-y-6`}>
+                <h2 className={`${STYLES.title.section} text-stone-800`}>
+                  周辺の魅力
+                </h2>
+
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "4rem" }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="h-[1px] bg-gradient-to-r from-transparent via-stone-400 to-transparent mx-auto"
+                />
+
+                <p className={`${STYLES.text.body} text-stone-600`}>
+                  三俣山荘を起点に広がる、雄大な自然の魅力をご紹介します
+                </p>
+              </div>
+            </FadeInSection>
+          </div>
+        </div>
+
+        {/* 黒部源流サブセクション */}
+        {/* オープニング */}
+        <section id="kurobe" ref={kurobeRef} className="relative h-[35vh] sm:h-[45vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
         {/* 背景写真 */}
         <div className="absolute inset-0">
           {/* 黒部源流の雄大な自然風景写真を配置（例：源流の清流、山々の連なり、渓谷の風景など）*/}
@@ -1679,15 +1705,12 @@ export default function MitsumataPage() {
         </div>
       </section>
 
-      {/* Section Divider - Transition to Ito Shindo */}
+      {/* Subsection Divider */}
       <div className="relative z-10">
-        <SectionAnchorLinks
-          previousSection={{ id: 'kurobe', label: '黒部源流' }}
-          nextSection={{ id: 'ito-shindo', label: '稜線ルート' }}
-        />
+        <SectionDivider />
       </div>
 
-      {/* セクション2 - 伊藤新道稜線ルート */}
+      {/* 伊藤新道稜線ルート サブセクション */}
       {/* オープニング */}
       <section id="ito-shindo" className="relative h-[35vh] sm:h-[45vh] md:h-[60vh] lg:h-[70vh] overflow-hidden">
         {/* 背景写真 */}
@@ -1933,10 +1956,13 @@ export default function MitsumataPage() {
         </div>
       </section>
 
+      </section>
+      {/* End of 周辺の魅力 section */}
+
       {/* Section Divider - Transition to access information */}
       <div className="relative z-10">
         <SectionAnchorLinks
-          previousSection={{ id: 'ito-shindo', label: '稜線ルート' }}
+          previousSection={{ id: 'attractions', label: '周辺の魅力' }}
           nextSection={{ id: 'access', label: 'アクセス' }}
         />
       </div>
