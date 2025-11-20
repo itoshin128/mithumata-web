@@ -7,7 +7,7 @@ const footerLinks = {
     { label: "水晶小屋", href: "/lodges/suisho" },
     { label: "湯俣山荘", href: "/lodges/yumata" },
   ],
-  情報: [
+  最新情報: [
     { label: "お知らせ", href: "/news" },
     { label: "ブログ", href: "/blog" },
     { label: "交通・アクセス", href: "/access" },

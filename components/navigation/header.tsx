@@ -64,7 +64,7 @@ const menuStructure: MenuStructure = [
   },
   {
     type: "category",
-    label: "情報",
+    label: "最新情報",
     children: [
       { label: "お知らせ", href: "/news" },
       { label: "ブログ", href: "/blog" },
@@ -276,12 +276,18 @@ export function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.15, type: "spring", stiffness: 160, damping: 18 }}
                   >
-                    <span className="block font-serif font-bold text-xl text-gray-900 tracking-tight">
-                      三俣山荘グループ
-                    </span>
-                    <span className="block text-[10px] text-gray-500 mt-1 tracking-[0.15em] uppercase">
-                      Kita Alps
-                    </span>
+                    <Link
+                      href="/"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block group transition-opacity hover:opacity-80"
+                    >
+                      <span className="block font-serif font-bold text-xl text-gray-900 tracking-tight">
+                        三俣山荘グループ
+                      </span>
+                      <span className="block text-[10px] text-gray-500 mt-1 tracking-[0.15em] uppercase">
+                        Kita Alps
+                      </span>
+                    </Link>
                   </motion.div>
 
                   <motion.button
