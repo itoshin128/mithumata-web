@@ -5,8 +5,31 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { X, Calendar, ArrowRight, ChevronDown } from "lucide-react"
 
+// 型定義
+type MenuItem = {
+  label: string
+  href: string
+  color?: string
+}
+
+type MenuCategory = {
+  type: "category"
+  label: string
+  href?: string
+  expandable?: boolean
+  children?: MenuItem[]
+}
+
+type MenuCTA = {
+  type: "cta"
+  label: string
+  href: string
+}
+
+type MenuStructure = (MenuCategory | MenuCTA)[]
+
 // メニュー構造の定義
-const menuStructure = [
+const menuStructure: MenuStructure = [
   {
     type: "cta",
     label: "予約する",
