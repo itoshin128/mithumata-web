@@ -9,7 +9,7 @@ const navigationItems = [
   { label: "お知らせ", href: "/news" },
   { label: "ブログ", href: "/blog" },
   { label: "山荘について", href: "/lodges" },
-  { label: "伊藤新荘", href: "/ito-shinso" },
+  { label: "伊藤新道", href: "/ito-shindo" },
   { label: "交通・アクセス", href: "/access" },
   { label: "よくある質問", href: "/faq" },
   { label: "スタッフ募集", href: "/recruit" },

@@ -14,7 +14,7 @@ const footerLinks = {
     { label: "よくあるご質問", href: "/faq" },
   ],
   その他: [
-    { label: "伊藤新荘", href: "/ito-shinso" },
+    { label: "伊藤新道", href: "/ito-shindo" },
     { label: "スタッフ募集", href: "/recruit" },
     { label: "お問い合わせ", href: "/contact" },
     { label: "プライバシーポリシー", href: "/privacy" },

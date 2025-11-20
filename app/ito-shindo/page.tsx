@@ -1,12 +1,12 @@
 import { FadeInSection } from "@/components/animations/fade-in-section"
 import { Mountain, MapPin, Calendar } from "lucide-react"
 
-export default function ItoShinsoPage() {
+export default function ItoShindoPage() {
   return (
     <main className="min-h-screen pt-20">
       <div className="container mx-auto px-4 max-w-7xl py-20">
         <FadeInSection>
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-stone-900">伊藤新荘</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-stone-900">伊藤新道</h1>
           <p className="text-lg text-gray-700 mb-12">
             北アルプス黒部源流域への新しい登山道、伊藤新道の情報をご紹介します。
           </p>
