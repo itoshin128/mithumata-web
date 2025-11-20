@@ -3,19 +3,33 @@
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { X, Mountain } from "lucide-react"
+import { X, Calendar, ArrowRight } from "lucide-react"
 
-const navigationItems = [
-  { label: "お知らせ", href: "/news" },
-  { label: "ブログ", href: "/blog" },
-  { label: "山荘について", href: "/lodges" },
-  { label: "伊藤新道", href: "/ito-shindo" },
-  { label: "交通・アクセス", href: "/access" },
-  { label: "よくある質問", href: "/faq" },
-  { label: "スタッフ募集", href: "/recruit" },
-  { label: "お問い合わせ", href: "/contact" },
-  { label: "予約する", href: "/reservations", highlight: true },
-]
+// カテゴリ別にメニューを整理
+const menuCategories = {
+  lodges: [
+    { name: "三俣山荘", href: "/lodges/mitsumata", color: "mitsumata" },
+    { name: "水晶小屋", href: "/lodges/suisho", color: "suisho" },
+    { name: "湯俣山荘", href: "/lodges/yumata", color: "yumata" },
+  ],
+  usage: [
+    { label: "交通・アクセス", href: "/access" },
+    { label: "よくある質問", href: "/faq" },
+    { label: "山荘について", href: "/lodges" },
+  ],
+  information: [
+    { label: "お知らせ", href: "/news" },
+    { label: "ブログ", href: "/blog" },
+  ],
+  experience: [
+    { label: "伊藤新道", href: "/ito-shindo" },
+    { label: "湯俣川ネイチャーフィールド", href: "/yumata-nature-field" },
+  ],
+  other: [
+    { label: "スタッフ募集", href: "/recruit" },
+    { label: "お問い合わせ", href: "/contact" },
+  ],
+}
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -49,14 +63,13 @@ export function Header() {
 
   return (
     <>
-      {/* トランスペアレント エレガンス ハンバーガーボタン */}
+      {/* ハンバーガーボタン */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.8, type: "spring", stiffness: 150, damping: 20 }}
         className="fixed z-50 pointer-events-none"
         style={{
-          // デスクトップ・モバイル共通: 右上
           top: "clamp(20px, 4vh, 32px)",
           right: "clamp(20px, 4vw, 32px)",
         }}
@@ -73,7 +86,6 @@ export function Header() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          {/* エレガント サークル ボタン（モバイルパフォーマンス最適化：backdrop-blur削除） */}
           <motion.div
             className="relative overflow-hidden rounded-full md:backdrop-blur-md"
             animate={{
@@ -93,28 +105,18 @@ export function Header() {
               `,
             }}
           >
-            {/* 外側の装飾リング */}
             <motion.div
               className="absolute -inset-[2px] rounded-full pointer-events-none"
-              animate={{
-                opacity: isHovered ? 0.4 : 0,
-              }}
+              animate={{ opacity: isHovered ? 0.4 : 0 }}
               transition={{ duration: 0.3 }}
-              style={{
-                border: "1px solid rgba(255, 255, 255, 0.3)",
-              }}
+              style={{ border: "1px solid rgba(255, 255, 255, 0.3)" }}
             />
-
-            {/* グラデーション オーバーレイ */}
             <motion.div
               className="absolute inset-0 rounded-full bg-gradient-to-br from-white/15 via-white/5 to-transparent pointer-events-none"
               animate={{ opacity: isHovered ? 1 : 0.7 }}
               transition={{ duration: 0.3 }}
             />
-
-            {/* アイコン コンテナ */}
             <div className="relative w-full h-full flex items-center justify-center">
-              {/* リファインド ハンバーガーアイコン */}
               <motion.div
                 className="flex flex-col"
                 animate={{ gap: isHovered ? "7px" : "6.5px" }}
@@ -135,16 +137,13 @@ export function Header() {
                       delay: index * 0.035,
                       ease: [0.4, 0, 0.2, 1],
                     }}
-                    style={{
-                      boxShadow: "0 0.5px 1.5px rgba(0, 0, 0, 0.25)",
-                    }}
+                    style={{ boxShadow: "0 0.5px 1.5px rgba(0, 0, 0, 0.25)" }}
                   />
                 ))}
               </motion.div>
             </div>
           </motion.div>
 
-          {/* ホバー時の洗練されたラベル */}
           <AnimatePresence>
             {isHovered && (
               <motion.span
@@ -169,21 +168,19 @@ export function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            {/* オーバーレイ - シンプルで洗練 */}
+            {/* オーバーレイ */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               className="fixed inset-0 md:backdrop-blur-lg z-[60]"
-              style={{
-                background: "rgba(0, 0, 0, 0.5)",
-              }}
+              style={{ background: "rgba(0, 0, 0, 0.5)" }}
               onClick={() => setIsMenuOpen(false)}
               aria-hidden="true"
             />
 
-            {/* メニューパネル - ミニマルエレガンス */}
+            {/* メニューパネル - レスポンシブ幅 */}
             <motion.div
               id="main-menu"
               role="dialog"
@@ -198,13 +195,13 @@ export function Header() {
                 stiffness: 220,
                 opacity: { duration: 0.25 },
               }}
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-[420px] md:backdrop-blur-2xl z-[70] overflow-hidden"
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-[500px] md:w-[600px] lg:w-[700px] md:backdrop-blur-2xl z-[70] overflow-hidden"
               style={{
                 backgroundColor: "rgba(255, 254, 248, 0.98)",
                 boxShadow: "-16px 0 48px rgba(0, 0, 0, 0.12)",
               }}
             >
-              {/* 繊細なテクスチャ */}
+              {/* 背景テクスチャ */}
               <div
                 className="absolute inset-0 pointer-events-none opacity-30"
                 style={{
@@ -216,8 +213,8 @@ export function Header() {
               />
 
               <div className="relative flex flex-col h-full">
-                {/* ヘッダー - ミニマル */}
-                <div className="flex items-center justify-between px-10 sm:px-12 py-8 border-b border-gray-300/30">
+                {/* ヘッダー */}
+                <div className="flex items-center justify-between px-8 md:px-10 lg:px-12 py-8 border-b border-gray-300/30">
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -245,134 +242,216 @@ export function Header() {
                   </motion.button>
                 </div>
 
-                {/* ナビゲーション - ミニマルエレガンス */}
-                <nav className="flex-1 overflow-y-auto px-10 sm:px-12 py-12" aria-label="メインナビゲーション">
-                  <ul className="space-y-2" role="list">
-                    {navigationItems.map((item, index) => (
-                      <motion.li
-                        key={item.href}
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{
-                          delay: 0.2 + index * 0.06,
-                          type: "spring",
-                          stiffness: 220,
-                          damping: 22,
-                        }}
-                      >
-                        <Link
-                          href={item.href}
-                          onClick={() => setIsMenuOpen(false)}
-                          className={`
-                            group block relative py-6 px-0 transition-all duration-300
-                            focus:outline-none focus:ring-0
-                            ${item.highlight ? "" : "border-b border-gray-200/40"}
-                          `}
-                        >
-                          <div className="relative">
-                            <span
-                              className={`
-                                block font-serif text-2xl tracking-tight leading-none transition-all duration-300
-                                ${
-                                  item.highlight
-                                    ? "text-mitsumata font-bold group-hover:tracking-wide"
-                                    : "text-gray-800 font-medium group-hover:text-mitsumata group-hover:translate-x-2"
-                                }
-                              `}
-                            >
-                              {item.label}
-                            </span>
-
-                            {/* 下線アニメーション */}
-                            {!item.highlight && (
-                              <motion.div
-                                className="absolute -bottom-[1px] left-0 h-[2px] bg-mitsumata"
-                                initial={{ width: 0 }}
-                                whileHover={{ width: "100%" }}
-                                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                              />
-                            )}
-
-                            {/* ハイライト項目の装飾 */}
-                            {item.highlight && (
-                              <motion.div
-                                className="absolute -left-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-mitsumata opacity-0 group-hover:opacity-100"
-                                initial={{ scale: 0 }}
-                                whileHover={{ scale: 1 }}
-                                transition={{ duration: 0.2 }}
-                              />
-                            )}
-                          </div>
-                        </Link>
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  {/* 山荘リンク - ミニマル */}
-                  <div className="mt-16 pt-12 border-t border-gray-300/30">
-                    <motion.h3
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 }}
-                      className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-8"
+                {/* ナビゲーション - スクロール可能 */}
+                <nav className="flex-1 overflow-y-auto px-8 md:px-10 lg:px-12 py-8" aria-label="メインナビゲーション">
+                  {/* 予約ボタン - 最上部に配置 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 20 }}
+                    className="mb-8"
+                  >
+                    <Link
+                      href="/reservations"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="group block relative overflow-hidden rounded-xl bg-gradient-to-br from-mitsumata to-mitsumata/90 p-6 md:p-7 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
                     >
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <span className="block text-white/90 text-xs font-semibold tracking-wider uppercase mb-2">
+                              Reservation
+                            </span>
+                            <span className="block text-white text-2xl md:text-3xl font-bold font-serif">
+                              予約する
+                            </span>
+                          </div>
+                          <ArrowRight className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  </motion.div>
+
+                  {/* 山荘セクション - 最優先 */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25, type: "spring", stiffness: 200, damping: 20 }}
+                    className="mb-8"
+                  >
+                    <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4">
                       山荘
-                    </motion.h3>
-                    <ul className="space-y-4" role="list">
-                      {[
-                        { name: "三俣山荘", href: "/lodges/mitsumata", color: "mitsumata" },
-                        { name: "水晶小屋", href: "/lodges/suisho", color: "suisho" },
-                        { name: "湯俣山荘", href: "/lodges/yumata", color: "yumata" },
-                      ].map((lodge, index) => (
-                        <motion.li
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {menuCategories.lodges.map((lodge, index) => (
+                        <motion.div
                           key={lodge.href}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{
-                            delay: 0.55 + index * 0.08,
-                            type: "spring",
-                            stiffness: 200,
-                            damping: 20,
-                          }}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.3 + index * 0.05 }}
                         >
                           <Link
                             href={lodge.href}
                             onClick={() => setIsMenuOpen(false)}
-                            className="group block relative py-3 transition-all duration-300 focus:outline-none"
+                            className="group block p-4 rounded-lg bg-white/60 hover:bg-white border border-gray-200/50 hover:border-gray-300 transition-all duration-300 hover:shadow-md"
                           >
-                            <div className="flex items-center gap-3">
-                              <motion.div
-                                className="w-1.5 h-1.5 rounded-full transition-all duration-300"
-                                style={{
-                                  backgroundColor: `var(--${lodge.color}-primary)`,
-                                }}
-                                whileHover={{ scale: 1.5 }}
+                            <div className="flex items-center gap-2 mb-1">
+                              <div
+                                className="w-2 h-2 rounded-full transition-transform group-hover:scale-125"
+                                style={{ backgroundColor: `var(--${lodge.color}-primary)` }}
                               />
-                              <span className="text-base font-serif font-medium text-gray-700 group-hover:text-gray-900 transition-all duration-300 group-hover:translate-x-1">
+                              <span className="text-sm font-serif font-semibold text-gray-900">
                                 {lodge.name}
                               </span>
                             </div>
                           </Link>
-                        </motion.li>
+                        </motion.div>
                       ))}
-                    </ul>
+                    </div>
+                  </motion.div>
+
+                  {/* 2カラムグリッド - デスクトップ最適化 */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+                    {/* ご利用案内 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.35 }}
+                    >
+                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4 pb-2 border-b border-gray-200">
+                        ご利用案内
+                      </h3>
+                      <ul className="space-y-2">
+                        {menuCategories.usage.map((item, index) => (
+                          <motion.li
+                            key={item.href}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.4 + index * 0.05 }}
+                          >
+                            <Link
+                              href={item.href}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="group flex items-center gap-2 py-2 text-gray-700 hover:text-mitsumata transition-colors"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-gray-400 group-hover:bg-mitsumata group-hover:scale-150 transition-all" />
+                              <span className="text-sm font-serif font-medium">{item.label}</span>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+
+                    {/* 情報・コンテンツ */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4 pb-2 border-b border-gray-200">
+                        情報
+                      </h3>
+                      <ul className="space-y-2">
+                        {menuCategories.information.map((item, index) => (
+                          <motion.li
+                            key={item.href}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.45 + index * 0.05 }}
+                          >
+                            <Link
+                              href={item.href}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="group flex items-center gap-2 py-2 text-gray-700 hover:text-mitsumata transition-colors"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-gray-400 group-hover:bg-mitsumata group-hover:scale-150 transition-all" />
+                              <span className="text-sm font-serif font-medium">{item.label}</span>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+
+                    {/* 山域を楽しむ */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.45 }}
+                    >
+                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4 pb-2 border-b border-gray-200">
+                        山域を楽しむ
+                      </h3>
+                      <ul className="space-y-2">
+                        {menuCategories.experience.map((item, index) => (
+                          <motion.li
+                            key={item.href}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.5 + index * 0.05 }}
+                          >
+                            <Link
+                              href={item.href}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="group flex items-center gap-2 py-2 text-gray-700 hover:text-mitsumata transition-colors"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-gray-400 group-hover:bg-mitsumata group-hover:scale-150 transition-all" />
+                              <span className="text-sm font-serif font-medium">{item.label}</span>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+
+                    {/* その他 */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      <h3 className="text-xs font-bold text-gray-500 uppercase tracking-[0.25em] mb-4 pb-2 border-b border-gray-200">
+                        その他
+                      </h3>
+                      <ul className="space-y-2">
+                        {menuCategories.other.map((item, index) => (
+                          <motion.li
+                            key={item.href}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.55 + index * 0.05 }}
+                          >
+                            <Link
+                              href={item.href}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="group flex items-center gap-2 py-2 text-gray-700 hover:text-mitsumata transition-colors"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-gray-400 group-hover:bg-mitsumata group-hover:scale-150 transition-all" />
+                              <span className="text-sm font-serif font-medium">{item.label}</span>
+                            </Link>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
                   </div>
                 </nav>
 
-                {/* フッター - ミニマル */}
+                {/* フッター */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.75, type: "spring", stiffness: 180, damping: 20 }}
-                  className="px-10 sm:px-12 py-10 border-t border-gray-300/30"
+                  transition={{ delay: 0.6, type: "spring", stiffness: 180, damping: 20 }}
+                  className="px-8 md:px-10 lg:px-12 py-6 border-t border-gray-300/30 bg-stone-50/50"
                 >
-                  <div className="space-y-3">
-                    <p className="text-xs text-gray-600 leading-relaxed font-serif tracking-wide">
-                      北アルプス最奥、黒部源流の三つの山荘
-                    </p>
-                    <p className="text-[10px] text-gray-500 tracking-wider">
-                      営業期間: 7月〜11月
-                    </p>
+                  <div className="flex items-center gap-3">
+                    <Calendar className="w-4 h-4 text-gray-500" />
+                    <div>
+                      <p className="text-xs text-gray-600 font-serif">
+                        北アルプス最奥、黒部源流の三つの山荘
+                      </p>
+                      <p className="text-[10px] text-gray-500 tracking-wider mt-1">
+                        営業期間: 7月〜11月
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               </div>
