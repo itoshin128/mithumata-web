@@ -20,8 +20,6 @@ const footerLinks = {
   その他: [
     { label: "スタッフ募集", href: "/recruit" },
     { label: "お問い合わせ", href: "/contact" },
-    { label: "プライバシーポリシー", href: "/privacy" },
-    { label: "サイトマップ", href: "/sitemap" },
   ],
 }
 
@@ -141,33 +139,36 @@ export function Footer() {
 
       {/* 装飾的な区切り線 */}
       <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-300/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-400/20 to-transparent translate-y-px" />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-stone-300/30 to-transparent" />
       </div>
 
-      {/* コピーライト */}
-      <div className="relative bg-[#FFF9EE]/80">
-        <div className="container mx-auto px-6 md:px-8 lg:px-16 max-w-[1400px] py-8 md:py-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-5 md:gap-6">
-            <p className="text-xs text-stone-500 font-sans tracking-wide order-2 md:order-1">
-              &copy; 2025 三俣山荘グループ. All rights reserved.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 text-xs order-1 md:order-2">
+      {/* コピーライト・フッターリンク */}
+      <div className="relative bg-gradient-to-b from-[#FFF9EE]/60 to-[#FFF5E5]/40">
+        <div className="container mx-auto px-6 md:px-8 lg:px-16 max-w-[1400px] py-6 md:py-7">
+          <div className="flex flex-col items-center gap-4">
+            {/* リーガルリンク */}
+            <div className="flex items-center gap-3 text-[11px]">
               <Link
                 href="/privacy"
-                className="text-stone-500 hover:text-stone-900 transition-colors font-sans tracking-wide relative group"
+                className="text-stone-400 hover:text-stone-700 transition-colors font-sans tracking-wide relative group"
               >
                 プライバシーポリシー
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-stone-900 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-stone-700 transition-all duration-300 group-hover:w-full" />
               </Link>
+              <span className="text-stone-300">•</span>
               <Link
                 href="/sitemap"
-                className="text-stone-500 hover:text-stone-900 transition-colors font-sans tracking-wide relative group"
+                className="text-stone-400 hover:text-stone-700 transition-colors font-sans tracking-wide relative group"
               >
                 サイトマップ
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-stone-900 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-stone-700 transition-all duration-300 group-hover:w-full" />
               </Link>
             </div>
+
+            {/* コピーライト */}
+            <p className="text-[10px] text-stone-400 font-sans tracking-wider">
+              &copy; 2025 三俣山荘グループ. All rights reserved.
+            </p>
           </div>
         </div>
       </div>
