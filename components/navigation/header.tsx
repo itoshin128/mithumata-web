@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { X, Calendar, ArrowRight, ChevronDown } from "lucide-react"
+import { X, ArrowRight, ChevronDown } from "lucide-react"
 
 // 型定義
 type MenuItem = {
@@ -30,11 +30,6 @@ type MenuStructure = (MenuCategory | MenuCTA)[]
 
 // メニュー構造の定義
 const menuStructure: MenuStructure = [
-  {
-    type: "cta",
-    label: "予約する",
-    href: "/reservations",
-  },
   {
     type: "category",
     label: "山荘について",
@@ -308,36 +303,6 @@ export function Header() {
                 <nav className="flex-1 overflow-y-auto px-8 sm:px-10 py-8" aria-label="メインナビゲーション">
                   <ul className="space-y-1">
                     {menuStructure.map((item, index) => {
-                      if (item.type === "cta") {
-                        // 予約CTAボタン
-                        return (
-                          <motion.li
-                            key={item.label}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 + index * 0.05, type: "spring", stiffness: 200, damping: 20 }}
-                            className="mb-6"
-                          >
-                            <Link
-                              href={item.href!}
-                              onClick={() => setIsMenuOpen(false)}
-                              className="group block relative overflow-hidden rounded-xl bg-gradient-to-br from-mitsumata to-mitsumata/90 p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01]"
-                            >
-                              <div className="relative z-10 flex items-center justify-between">
-                                <div>
-                                  <span className="block text-white/90 text-[10px] font-semibold tracking-wider uppercase mb-1.5">
-                                    Reservation
-                                  </span>
-                                  <span className="block text-white text-2xl font-bold font-serif">予約する</span>
-                                </div>
-                                <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
-                              </div>
-                              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </Link>
-                          </motion.li>
-                        )
-                      }
-
                       if (item.type === "category") {
                         const isExpanded = expandedCategories.includes(item.label)
                         const hasChildren = item.children && item.children.length > 0
@@ -411,20 +376,8 @@ export function Header() {
                                           <Link
                                             href={child.href}
                                             onClick={() => setIsMenuOpen(false)}
-                                            className="group flex items-center gap-2.5 py-2.5 transition-all duration-200"
+                                            className="group flex items-center py-2.5 transition-all duration-200"
                                           >
-                                            {/* 階層を示す横線とドット */}
-                                            <div className="flex items-center gap-2">
-                                              <div className="w-3 h-px bg-gray-300" />
-                                              <div
-                                                className="w-1.5 h-1.5 rounded-full transition-all duration-200 group-hover:scale-150"
-                                                style={{
-                                                  backgroundColor: child.color
-                                                    ? `var(--${child.color}-primary)`
-                                                    : "#9ca3af",
-                                                }}
-                                              />
-                                            </div>
                                             <span className="text-sm font-serif text-gray-700 group-hover:text-gray-900 group-hover:translate-x-1 transition-all duration-200">
                                               {child.label}
                                             </span>
@@ -444,24 +397,6 @@ export function Header() {
                     })}
                   </ul>
                 </nav>
-
-                {/* フッター */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, type: "spring", stiffness: 180, damping: 20 }}
-                  className="px-8 sm:px-10 py-6 border-t border-gray-300/30 bg-stone-50/50"
-                >
-                  <div className="flex items-center gap-3">
-                    <Calendar className="w-4 h-4 text-gray-500 flex-shrink-0" />
-                    <div>
-                      <p className="text-xs text-gray-600 font-serif leading-relaxed">
-                        北アルプス最奥、黒部源流の三つの山荘
-                      </p>
-                      <p className="text-[10px] text-gray-500 tracking-wider mt-1">営業期間: 7月〜11月</p>
-                    </div>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </>
