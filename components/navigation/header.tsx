@@ -321,18 +321,18 @@ export function Header() {
                             <Link
                               href={item.href!}
                               onClick={() => setIsMenuOpen(false)}
-                              className="group block relative overflow-hidden rounded-xl bg-gradient-to-br from-mitsumata to-mitsumata/90 p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.01]"
+                              className="group block relative overflow-hidden rounded-xl bg-white border-2 border-gray-900 p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.01]"
                             >
                               <div className="relative z-10 flex items-center justify-between">
                                 <div>
-                                  <span className="block text-white/90 text-[10px] font-semibold tracking-wider uppercase mb-1.5">
+                                  <span className="block text-gray-500 text-[10px] font-semibold tracking-wider uppercase mb-1.5">
                                     Reservation
                                   </span>
-                                  <span className="block text-white text-2xl font-bold font-serif">予約する</span>
+                                  <span className="block text-gray-900 text-2xl font-bold font-serif">予約する</span>
                                 </div>
-                                <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
+                                <ArrowRight className="w-6 h-6 text-gray-900 group-hover:translate-x-1 transition-transform" />
                               </div>
-                              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              <div className="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </Link>
                           </motion.li>
                         )
@@ -411,20 +411,8 @@ export function Header() {
                                           <Link
                                             href={child.href}
                                             onClick={() => setIsMenuOpen(false)}
-                                            className="group flex items-center gap-2.5 py-2.5 transition-all duration-200"
+                                            className="group flex items-center py-2.5 transition-all duration-200"
                                           >
-                                            {/* 階層を示す横線とドット */}
-                                            <div className="flex items-center gap-2">
-                                              <div className="w-3 h-px bg-gray-300" />
-                                              <div
-                                                className="w-1.5 h-1.5 rounded-full transition-all duration-200 group-hover:scale-150"
-                                                style={{
-                                                  backgroundColor: child.color
-                                                    ? `var(--${child.color}-primary)`
-                                                    : "#9ca3af",
-                                                }}
-                                              />
-                                            </div>
                                             <span className="text-sm font-serif text-gray-700 group-hover:text-gray-900 group-hover:translate-x-1 transition-all duration-200">
                                               {child.label}
                                             </span>
