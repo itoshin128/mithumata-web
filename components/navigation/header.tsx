@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { X, Calendar, ArrowRight, ChevronDown } from "lucide-react"
+import { X, ArrowRight, ChevronDown } from "lucide-react"
 
 // 型定義
 type MenuItem = {
@@ -397,24 +397,6 @@ export function Header() {
                     })}
                   </ul>
                 </nav>
-
-                {/* フッター */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6, type: "spring", stiffness: 180, damping: 20 }}
-                  className="px-8 sm:px-10 py-6 border-t border-gray-300/30 bg-stone-50/50"
-                >
-                  <div className="flex items-center gap-3">
-                    <Calendar className="w-4 h-4 text-gray-500 flex-shrink-0" />
-                    <div>
-                      <p className="text-xs text-gray-600 font-serif leading-relaxed">
-                        北アルプス最奥、黒部源流の三つの山荘
-                      </p>
-                      <p className="text-[10px] text-gray-500 tracking-wider mt-1">営業期間: 7月〜11月</p>
-                    </div>
-                  </div>
-                </motion.div>
               </div>
             </motion.div>
           </>
