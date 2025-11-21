@@ -31,11 +31,6 @@ type MenuStructure = (MenuCategory | MenuCTA)[]
 // メニュー構造の定義
 const menuStructure: MenuStructure = [
   {
-    type: "cta",
-    label: "予約する",
-    href: "/reservations",
-  },
-  {
     type: "category",
     label: "山荘について",
     href: "/lodges",
@@ -308,36 +303,6 @@ export function Header() {
                 <nav className="flex-1 overflow-y-auto px-8 sm:px-10 py-8" aria-label="メインナビゲーション">
                   <ul className="space-y-1">
                     {menuStructure.map((item, index) => {
-                      if (item.type === "cta") {
-                        // 予約CTAボタン
-                        return (
-                          <motion.li
-                            key={item.label}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 + index * 0.05, type: "spring", stiffness: 200, damping: 20 }}
-                            className="mb-6"
-                          >
-                            <Link
-                              href={item.href!}
-                              onClick={() => setIsMenuOpen(false)}
-                              className="group block relative overflow-hidden rounded-xl bg-white border-2 border-gray-900 p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.01]"
-                            >
-                              <div className="relative z-10 flex items-center justify-between">
-                                <div>
-                                  <span className="block text-gray-500 text-[10px] font-semibold tracking-wider uppercase mb-1.5">
-                                    Reservation
-                                  </span>
-                                  <span className="block text-gray-900 text-2xl font-bold font-serif">予約する</span>
-                                </div>
-                                <ArrowRight className="w-6 h-6 text-gray-900 group-hover:translate-x-1 transition-transform" />
-                              </div>
-                              <div className="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </Link>
-                          </motion.li>
-                        )
-                      }
-
                       if (item.type === "category") {
                         const isExpanded = expandedCategories.includes(item.label)
                         const hasChildren = item.children && item.children.length > 0
